@@ -27,21 +27,21 @@ export class BreakfastComponent {
   //For Category
   categories = [
     {
-      name: 'Pancake',
+      categoryName: 'Pancake',
       items: [
-        { name: 'Scotch Pancakes' },
-        { name: 'American Pancakes' },
-        { name: 'Russian Blinis' },
-        { name: 'Moroccan ' }
+        { itemName: 'Scotch Pancakes', itemImage:"https://i.pinimg.com/236x/0f/3d/f2/0f3df249931c091154ff928e3967166f.jpg" },
+        { itemName: 'American Pancakes' ,itemImage:"https://i.pinimg.com/236x/58/03/32/58033214f1ba8a7d86d3d643642c4e40.jpg"},
+        { itemName: 'Russian Blinis' ,itemImage:"https://i.pinimg.com/236x/ee/ec/09/eeec09bb683234e7e6688577246ef160.jpg"},
+        { itemName: 'Moroccan ',itemImage:"https://i.pinimg.com/236x/ce/96/fb/ce96fbc5a14262a8c87d498ad2ae7926.jpg" }
       ]
     },
     {
-      name: 'Breakfast Sandwich',
+      categoryName: 'Breakfast Sandwich',
       items: [
-        { name: 'Sunrise Sandwiches' },
-        { name: 'Morning Delight Deli' },
-        { name: 'Early Bird Bites' },
-        { name: 'Daybreak Deli' },
+        { itemName: 'Sunrise Sandwiches' ,itemImage:"https://i.pinimg.com/236x/fc/ca/3e/fcca3e65a4c7a66642e3c2d1b5eeae54.jpg"},
+        { itemName: 'Morning Delight Deli' ,itemImage:"https://i.pinimg.com/236x/22/05/56/220556f05be2ca4aa993364ec23759e5.jpg"},
+        { itemName: 'Crispy Chicken Wrap' ,itemImage:"https://i.pinimg.com/236x/01/97/0a/01970a7426bb7f59cbf915008b5337b6.jpg"},
+        { itemName: 'Daybreak Deli' ,itemImage:"https://i.pinimg.com/236x/d0/02/35/d002357b8ba5e6f6fe69b72dceff3a7c.jpg"},
         
       ]
     }

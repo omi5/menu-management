@@ -39,9 +39,16 @@
         <h1>Hello From Lunch</h1>
 
         <ng-container *ngFor="let category of categories">
-          <h1 class="category-Name">{{ category.name }}</h1>
+          <h1 class="category-Name">{{ category.categoryName }}</h1>
           <div class="show-menus-items">
-          <div *ngFor="let item of category.items"><app-menu-item></app-menu-item></div>
+          <div *ngFor="let item of category.items">
+            <app-menu-item 
+            [itemName]="item.itemName"
+            [src]="item.itemImage"
+            
+            >
+
+            </app-menu-item></div>
           </div>
         </ng-container>
         <!-- Provide Your Container Here -->

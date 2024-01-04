@@ -38,6 +38,7 @@ a {
     flex-direction: column;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    border-radius: 10px;
     margin: 20px 30px;
 }
 
