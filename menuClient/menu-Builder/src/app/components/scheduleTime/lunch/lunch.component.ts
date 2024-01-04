@@ -20,4 +20,35 @@ export class LunchComponent {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  //For Category
+  categories = [
+    {
+      name: 'Sandwiches',
+      items: [
+        { name: 'BLT Sandwich' },
+        { name: 'Turkey Club' },
+        { name: 'Veggie Panini' },
+        
+      ]
+    },
+    {
+      name: 'Salads',
+      items: [
+        { name: 'Caesar Salad' },
+        { name: 'Greek Salad' },
+        { name: 'Cobb Salad' },
+       
+      ]
+    },
+    {
+      name: 'Pasta',
+      items: [
+        { name: 'Spaghetti Bolognese' },
+        { name: 'Fettuccine Alfredo' },
+        { name: 'Penne Arrabbiata' },
+       
+      ]
+    }
+  ];
 }

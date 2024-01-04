@@ -68,3 +68,17 @@ nz-sider{
   .flex{
     display: flex;
   }
+
+
+    /* Show Menu Items Styles */
+
+.show-menus-items{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(18% - 10px), 1fr));
+  gap: 20px;
+}
+
+.category-Name{
+  font-size: 36px;
+  margin-left: 25px;
+}

@@ -21,4 +21,29 @@ export class AllDayComponent {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+
+  //For Category
+  categories = [
+    {
+      name: 'Burger',
+      items: [
+        { name: 'Cheeseburger' },
+        { name: 'Veggie Burger' },
+        { name: 'Bacon Burger' },
+        { name: 'Mushroom Burger' }
+      ]
+    },
+    {
+      name: 'Pizza',
+      items: [
+        { name: 'Margherita' },
+        { name: 'Pepperoni' },
+        { name: 'Vegetarian' },
+        { name: 'Hawaiian' },
+        { name: 'Meat Lover' }
+      ]
+    }
+  ];
+
 }

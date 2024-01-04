@@ -39,6 +39,7 @@ import { AllDayComponent } from './components/scheduleTime/all-day/all-day.compo
 import { BreakfastComponent } from './components/scheduleTime/breakfast/breakfast.component';
 import { LunchComponent } from './components/scheduleTime/lunch/lunch.component';
 import { DinnerComponent } from './components/scheduleTime/dinner/dinner.component';
+import { MenuItemComponent } from './components/scheduleTime/menu-item/menu-item.component';
 
 
 
@@ -59,6 +60,7 @@ registerLocaleData(en);
     BreakfastComponent,
     LunchComponent,
     DinnerComponent,
+    MenuItemComponent,
    
   ],
   imports: [
