@@ -18,4 +18,20 @@
     </ul>
   <!-- </nz-sider> -->
 
+   <nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="Create Schedule"
+      nzOkText="Add"
+      nzCancelText="Cancel"
+      (nzOnOk)="handleOk()"
+      (nzOnCancel)="handleCancel()"
+      [nzStyle]="{ width: '900px' }"
+    >
+        <ng-container *nzModalContent>
+
+        <app-modal-form (submitedForm)="submitForm()"></app-modal-form>
+          
+        </ng-container>
+      </nz-modal>
+
   

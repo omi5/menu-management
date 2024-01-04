@@ -8,6 +8,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   styleUrls: ['./nz-sider.component.css']
 })
 export class NzSiderComponent {
+
+
   //For Routing
   onAllDay(){
     this.router.navigate(['/allDay']);
@@ -36,11 +38,18 @@ export class NzSiderComponent {
 
   handleOk(): void {
     this.isVisible = false;
+    // this.submitedForm()
   }
 
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  submitForm(){
+    console.log("Submitted");
+  }
+
+ 
 
   
 }

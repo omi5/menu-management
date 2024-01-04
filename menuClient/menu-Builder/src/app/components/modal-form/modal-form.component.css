@@ -1,0 +1,52 @@
+.mx-auto{
+    /* margin-left: 70px; */
+}
+.flex{
+    display: flex;
+}
+
+.input-box-for-time input{
+    width: 150px;
+    margin-top: 5px;
+    padding: 13px;
+}
+.input-box-for-time label{
+    font-size: 20px; 
+     
+}
+.label{
+    width: 150px;
+    margin-right: 20px;
+    /* border: 1px solid red; */
+}
+.input-box-for-name input{
+    width: 350px;
+    margin-top: 5px;
+    padding: 13px;
+}
+.input-box-for-name label{
+    font-size: 20px; 
+    
+}
+.input-box-for-description{
+    margin-top: 20px;
+}
+.input-box-for-description textarea{
+    width: 650px;
+    margin-top: 5px;
+    padding: 13px;
+}
+.input-box-for-description label{
+    font-size: 20px;
+}
+.daySelect-checkbox{
+    font-size: 20px;
+    margin-left: 15px;
+    
+}
+.daySelect-checkbox input[type="checkbox"]{
+    transform: scale(1.5);
+}
+.mt-4{
+    margin-top: 35px;
+}

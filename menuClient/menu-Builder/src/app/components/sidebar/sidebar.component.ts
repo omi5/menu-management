@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-// import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService } from 'ng-zorro-antd/modal';
 // import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 // import { NzUploadFile } from 'ng-zorro-antd/upload';
 // import { Observable, Observer } from 'rxjs';
@@ -27,22 +27,20 @@ export class SidebarComponent {
 
   isVisible = false;
 
-  // constructor(private modalService: NzModalService,private fb: NonNullableFormBuilder) {}
+  constructor(private modalService: NzModalService) {}
 
   //use in Nz-sider
   showModal(): void {
     this.isVisible = true;
   }
-
   handleOk(): void {
     this.isVisible = false;
-    // this.submitForm();
-    
+   
   }
-
   handleCancel(): void {
     this.isVisible = false;
   }
+ 
 
   
   //for form

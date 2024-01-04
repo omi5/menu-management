@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 
@@ -15,6 +15,8 @@ interface Day {
   styleUrls: ['./modal-form.component.css']
 })
 export class ModalFormComponent {
+
+  @Output() submitedForm: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private fb: NonNullableFormBuilder) {}
 
