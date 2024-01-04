@@ -1,32 +1,44 @@
 <nz-layout >
-    <nz-sider  nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="light" nzMode="inline" >
-        <li nz-submenu nzTitle="Schedules" nzIcon="dashboard" class="hover-color">
-          <ul>
-            <li nz-menu-item>All Day</li>
-            <li nz-menu-item>Breakfast</li>
-            <li nz-menu-item>Lunch</li>
-            <li nz-menu-item>Dinner</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Create" nzIcon="form" class="hover-color">
-          <ul>
-            <li nz-menu-item >Menu Item</li>
-            <li nz-menu-item >Schedule</li>
-          </ul>
-        </li>
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-header>
-        <span
-          class="trigger"
-          nz-icon
-          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          (click)="isCollapsed = !isCollapsed"
-        ></span>
-      </nz-header>
-   
-    </nz-layout>
-  </nz-layout>
+  <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
+    <app-nz-sider></app-nz-sider>
+    
+  </nz-sider>
+  <!-- nz-Sider -->
+
+   <nz-layout>
+     <nz-header>
+       <span
+         class="trigger"
+         nz-icon
+         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+         (click)="isCollapsed = !isCollapsed"
+       ></span>
+     </nz-header>
+     <!-- nz-headerForTrigger -->
+
+     <nz-content>
+      <nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="Create Schedule"
+      nzOkText="Add"
+      nzCancelText="Cancel"
+      (nzOnOk)="handleOk()"
+      (nzOnCancel)="handleCancel()"
+      [nzStyle]="{ width: '700px' }"
+      >
+      <ng-container *nzModalContent>
+        <!-- category Form -->
+        <app-modal-form></app-modal-form>
+        <!-- category Form -->
+      </ng-container>
+      </nz-modal>
+
+
+      <!-- Provide Your Container Here -->
+      <!-- Provide Your Container Here -->
+     
+  
+     </nz-content>
+
+   </nz-layout>
+</nz-layout>

@@ -1,0 +1,21 @@
+<!-- <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color"> -->
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="light" nzMode="inline" >
+      <li nz-submenu nzTitle="Schedules" nzIcon="dashboard" class="hover-color">
+        <ul>
+          <li nz-menu-item  (click)="onAllDay()">All Day</li>
+          <li nz-menu-item (click)="onBreakfast()">Breakfast</li>
+          <li nz-menu-item (click)="onLunch()">Lunch</li>
+          <li nz-menu-item (click)="onDinner()">Dinner</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Create" nzIcon="form" class="hover-color">
+        <ul>
+          <li nz-menu-item routerLink="createMenu" >Menu Item</li>
+          <li nz-menu-item (click)="showModal()">Schedule</li>
+        </ul>
+      </li>
+    </ul>
+  <!-- </nz-sider> -->
+
+  

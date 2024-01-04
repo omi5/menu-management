@@ -1,0 +1,46 @@
+<nz-layout >
+    <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
+      <app-nz-sider></app-nz-sider>
+      
+    </nz-sider>
+    <!-- nz-Sider -->
+  
+     <nz-layout>
+       <nz-header>
+         <span
+           class="trigger"
+           nz-icon
+           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+           (click)="isCollapsed = !isCollapsed"
+         ></span>
+       </nz-header>
+       <!-- nz-headerForTrigger -->
+  
+       <nz-content>
+        <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Create Schedule"
+        nzOkText="Add"
+        nzCancelText="Cancel"
+        (nzOnOk)="handleOk()"
+        (nzOnCancel)="handleCancel()"
+        [nzStyle]="{ width: '700px' }"
+        >
+        <ng-container *nzModalContent>
+          <!-- category Form -->
+          <app-modal-form></app-modal-form>
+          <!-- category Form -->
+        </ng-container>
+        </nz-modal>
+  
+  
+        <!-- Provide Your Container Here -->
+
+        <h1>Hello From All Day</h1>
+        <!-- Provide Your Container Here -->
+       
+    
+       </nz-content>
+  
+     </nz-layout>
+  </nz-layout>

@@ -29,6 +29,16 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzSiderComponent } from './components/nz-sider/nz-sider.component';
+import { NzHeaderForTriggerComponent } from './components/nz-header-for-trigger/nz-header-for-trigger.component';
+import { ModalFormComponent } from './components/modal-form/modal-form.component';
+import { AllDayComponent } from './components/scheduleTime/all-day/all-day.component';
+import { BreakfastComponent } from './components/scheduleTime/breakfast/breakfast.component';
+import { LunchComponent } from './components/scheduleTime/lunch/lunch.component';
+import { DinnerComponent } from './components/scheduleTime/dinner/dinner.component';
 
 
 
@@ -41,6 +51,15 @@ registerLocaleData(en);
     AppComponent,
     SidebarComponent,
     LoginFormComponent,
+    ScheduleFormComponent,
+    NzSiderComponent,
+    NzHeaderForTriggerComponent,
+    ModalFormComponent,
+    AllDayComponent,
+    BreakfastComponent,
+    LunchComponent,
+    DinnerComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -55,7 +74,9 @@ registerLocaleData(en);
     AppRoutingModule,
     NzFormModule,
     NzInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzModalModule,
+    NzUploadModule
     
 
 
