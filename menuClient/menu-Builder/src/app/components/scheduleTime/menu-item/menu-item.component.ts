@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-menu-item',
@@ -14,6 +15,20 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+
+  // For Modal
+  isVisible = false;
+  constructor(private modalService: NzModalService) {}
+  showModal(): void {
+    this.isVisible = true;
+  }
+  handleOk(): void {
+    this.isVisible = false;
+  }
+  handleCancel(): void {
+    this.isVisible = false;
   }
 
 }

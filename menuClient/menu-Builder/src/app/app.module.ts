@@ -47,6 +47,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AddIngredientsFieldComponent } from './add-ingredients-field/add-ingredients-field.component';
+import { ItemDetailsComponent } from './components/scheduleTime/item-details/item-details.component';
 
 
 
@@ -70,6 +71,7 @@ registerLocaleData(en);
     MenuItemComponent,
     ItemRecipeFormComponent,
     AddIngredientsFieldComponent,
+    ItemDetailsComponent,
    
   ],
   imports: [
