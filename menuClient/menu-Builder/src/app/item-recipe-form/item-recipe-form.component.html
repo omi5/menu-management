@@ -1,0 +1,180 @@
+
+    <!-- <button nz-button nzType="primary" (click)="open()">Create</button> -->
+    <!-- <nz-drawer
+      [nzBodyStyle]="{ overflow: 'auto' }"
+      [nzMaskClosable]="false"
+      [nzWidth]="720"
+      [nzVisible]="visible"
+      nzTitle="Create"
+      [nzFooter]="footerTpl"
+      (nzOnClose)="close()"
+    > -->
+      <!-- <form nz-form *nzDrawerContent> -->
+
+        <!-- for Uploading Image -->
+        <div style="border: 1px solid yellow; margin-bottom: 20px;">
+            <nz-upload
+            
+            nzType="drag"
+            [nzMultiple]="true"
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            (nzChange)="handleChange($event)"
+          >
+            <p class="ant-upload-drag-icon">
+              <span nz-icon nzType="inbox"></span>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">
+              Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+            </p>
+            </nz-upload>
+        </div>
+        <!-- for Uploading Image -->
+        <div nz-row [nzGutter]="8" class="mt">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label class="label">Name</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Url</nz-form-label>
+              <nz-form-control>
+                <nz-input-group nzAddOnBefore="http://" nzAddOnAfter=".com">
+                  <input type="text" nz-input placeholder="please enter url" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Category</nz-form-label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please select an owner" >
+                  <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Type Of Food</nz-form-label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please choose the type">
+                  <nz-option *ngFor="let type of typeOfFood" [nzValue]="type" [nzLabel]="type"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Approver</nz-form-label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please choose the approver"></nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>DateTime</nz-form-label>
+              <nz-form-control>
+                <nz-range-picker></nz-range-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Portion Size</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Preparation Time</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Serving Temp</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Lasting Time</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Total Cost</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Total Calories</nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter user name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label>Description</nz-form-label>
+              <nz-form-control>
+                <textarea
+                  nz-input
+                  placeholder="please enter url description"
+                  [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                ></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <h2>Ingredients And Preparation Instruction</h2>
+
+        <app-add-ingredients-field></app-add-ingredients-field>
+
+
+
+      <!-- </form> -->
+
+      <!-- <ng-template #footerTpl>
+        <div style="float: right">
+          <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+          <button nz-button nzType="primary" (click)="close()">Submit</button>
+        </div>
+      </ng-template>
+    </nz-drawer> -->
+  

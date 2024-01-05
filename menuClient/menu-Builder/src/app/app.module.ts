@@ -40,6 +40,13 @@ import { BreakfastComponent } from './components/scheduleTime/breakfast/breakfas
 import { LunchComponent } from './components/scheduleTime/lunch/lunch.component';
 import { DinnerComponent } from './components/scheduleTime/dinner/dinner.component';
 import { MenuItemComponent } from './components/scheduleTime/menu-item/menu-item.component';
+import { ItemRecipeFormComponent } from './item-recipe-form/item-recipe-form.component';
+
+//For Drawer 
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { AddIngredientsFieldComponent } from './add-ingredients-field/add-ingredients-field.component';
 
 
 
@@ -61,6 +68,8 @@ registerLocaleData(en);
     LunchComponent,
     DinnerComponent,
     MenuItemComponent,
+    ItemRecipeFormComponent,
+    AddIngredientsFieldComponent,
    
   ],
   imports: [
@@ -78,7 +87,10 @@ registerLocaleData(en);
     NzInputModule,
     ReactiveFormsModule,
     NzModalModule,
-    NzUploadModule
+    NzUploadModule,
+    NzDrawerModule,
+    NzSelectModule,
+    NzDatePickerModule
     
 
 

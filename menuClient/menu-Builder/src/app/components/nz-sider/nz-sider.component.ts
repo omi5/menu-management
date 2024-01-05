@@ -29,26 +29,31 @@ export class NzSiderComponent {
   //For Modal
 
   isVisible = false;
-
   constructor(private modalService: NzModalService, private router: Router) {}
-
   showModal(): void {
     this.isVisible = true;
   }
-
   handleOk(): void {
     this.isVisible = false;
     // this.submitedForm()
   }
-
   handleCancel(): void {
     this.isVisible = false;
   }
-
   submitForm(){
     console.log("Submitted");
   }
 
+
+  //For Drawer
+
+  visible = false;
+  open(): void {
+    this.visible = true;
+  }
+  close(): void {
+    this.visible = false;
+  }
  
 
   
