@@ -19,16 +19,25 @@ export class MenuItemComponent implements OnInit {
 
 
   // For Modal
-  isVisible = false;
-  constructor(private modalService: NzModalService) {}
-  showModal(): void {
-    this.isVisible = true;
+  // isVisible = false;
+  // constructor(private modalService: NzModalService) {}
+  // showModal(): void {
+  //   this.isVisible = true;
+  // }
+  // handleOk(): void {
+  //   this.isVisible = false;
+  // }
+  // handleCancel(): void {
+  //   this.isVisible = false;
+  // }
+
+  //For Menu Item Drawer
+  visible = false;
+  open(): void {
+    this.visible = true;
   }
-  handleOk(): void {
-    this.isVisible = false;
-  }
-  handleCancel(): void {
-    this.isVisible = false;
+  close(): void {
+    this.visible = false;
   }
 
 }

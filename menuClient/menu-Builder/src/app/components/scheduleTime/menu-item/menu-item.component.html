@@ -10,7 +10,7 @@
         <header class="content__header">
             <div class="row-wrapper">
                 <h2 class="recipe-title">{{itemName}}</h2>
-                <div class="user-rating"></div>
+                <!-- <div class="user-rating" style="margin-left: 60px"> <h2 class="recipe-title">$20</h2></div> -->
             </div>
             <ul class="recipe-details">
                 <li class="recipe-details-item time">
@@ -34,23 +34,36 @@
             There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...
         </p>
         <footer class="content__footer">
-            <a (click)="showModal()">View Recipe</a>
+            <a (click)="open()">View Recipe</a>
         </footer>
     </div>
 </div>
 
 
-<nz-modal
-        [(nzVisible)]="isVisible"
-        nzTitle="Item Details"
-        nzOkText="Ok"
-        nzCancelText="Cancel"
-        (nzOnOk)="handleOk()"
-        (nzOnCancel)="handleCancel()"
-        [nzStyle]="{ width: '900px' }"
-      >
-        <ng-container *nzModalContent>
-            <app-item-details></app-item-details>
-        </ng-container>
-      </nz-modal>
+ <!--For  Menu Item Drawer  -->
+ <nz-drawer
+ [nzBodyStyle]="{ overflow: 'auto' }"
+ [nzMaskClosable]="false"
+ [nzWidth]="1420"
+ [nzVisible]="visible"
+ nzTitle="Create Items"
+ [nzFooter]="footerTpl"
+ (nzOnClose)="close()"
+>
+
+
+<form nz-form *nzDrawerContent>
+ 
+ <app-item-recipe-form></app-item-recipe-form>
+ 
+</form>
+
+<ng-template #footerTpl>
+ <div style="float: right; margin-right: 30px;">
+   <button nz-button style="margin-right: 8px;" (click)="close()"  class="close-btn">Cancel</button>
+   <button nz-button nzType="primary" (click)="close()"  class="Add-btn">Add Item</button>
+ </div>
+</ng-template>
+</nz-drawer>
+
 

@@ -35,15 +35,17 @@ export class NzSiderComponent {
   }
   handleOk(): void {
     this.isVisible = false;
-    // this.submitedForm()
+    console.log(this.data);
+    
   }
   handleCancel(): void {
     this.isVisible = false;
   }
-  submitForm(){
-    console.log("Submitted");
+  
+  data : any ;
+  submitedForm(data: any){
+    this.data= data;
   }
-
 
   //For Drawer
 
@@ -63,6 +65,8 @@ export class NzSiderComponent {
   closeRecipe(): void {
     this.visibleRecipeDrawer = false;
   }
+
+  
  
 
   

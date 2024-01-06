@@ -1,7 +1,7 @@
 <!-- <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color"> -->
-    <div class="logo"></div>
+    <div class="logo"><img src="../../../assets/images/logo.jpg" alt="" style="width: 100px; margin-left: 10px;"></div>
     <ul nz-menu nzTheme="light" nzMode="inline" >
-      <li nz-submenu nzTitle="Schedules" nzIcon="dashboard" class="hover-color">
+      <li nz-submenu nzTitle="Menus" nzIcon="dashboard" class="hover-color">
         <ul>
           <li nz-menu-item  (click)="onAllDay()">All Day</li>
           <li nz-menu-item (click)="onBreakfast()">Breakfast</li>
@@ -13,7 +13,7 @@
         <ul>
           <li nz-menu-item (click)="open()" >Menu Item Recipe</li>
           <li nz-menu-item (click)="showModal()">Schedule</li>
-          <li nz-menu-item (click)="openRecipeDrawer()">Recipe</li>
+          <li nz-menu-item (click)="openRecipeDrawer()">Ingredient Recipe</li>
         </ul>
       </li>
     </ul>
@@ -29,8 +29,8 @@
       [nzStyle]="{ width: '900px' }"
     >
         <ng-container *nzModalContent>
-
-        <app-modal-form (submitedForm)="submitForm()"></app-modal-form>
+          <!-- (submitedFormData)="submitForm($event)" -->
+        <app-modal-form (submitedFormData)="submitedForm($event)"></app-modal-form>
           
         </ng-container>
       </nz-modal>

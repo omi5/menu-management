@@ -16,8 +16,9 @@ interface Day {
 })
 export class ModalFormComponent {
 
-  @Output() submitedForm: EventEmitter<void> = new EventEmitter<void>();
-
+  @Output() submitedFormData: EventEmitter<void> = new EventEmitter<void>();
+  
+ 
   constructor(private fb: NonNullableFormBuilder) {}
 
 
@@ -65,7 +66,10 @@ export class ModalFormComponent {
       } else {
         console.log('Please select start and end days.');
       }
-  }
+
+      this.submitedFormData.emit(this.submitForm())
+    }
+    
 
   days: Day[] = [
     { name: 'Sunday', value: 0, selected: false },
