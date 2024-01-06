@@ -15,10 +15,12 @@
       .passenger-input {
         width: 30%;
         margin-right: 8px;
+        font-size: 20px;
       }
       .passenger-input-sm{
         width: 12%;
         margin-right: 8px;
+        font-size: 20px;
       }
 
       [nz-form] {
@@ -26,7 +28,14 @@
       }
 
       .add-button {
-        width: 60%;
+        width: 25%;
+        background-color:#038851 ;
+        color: #fff;
+        padding: 6px 4px;
+        font-size: 18px;
+      }
+      .add-button:hover{
+        background-color: #02643B;
       }
       .display-flex{
         display: flex;

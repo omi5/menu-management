@@ -1,18 +1,8 @@
 
-    <!-- <button nz-button nzType="primary" (click)="open()">Create</button> -->
-    <!-- <nz-drawer
-      [nzBodyStyle]="{ overflow: 'auto' }"
-      [nzMaskClosable]="false"
-      [nzWidth]="720"
-      [nzVisible]="visible"
-      nzTitle="Create"
-      [nzFooter]="footerTpl"
-      (nzOnClose)="close()"
-    > -->
-      <!-- <form nz-form *nzDrawerContent> -->
-
+ 
+      <div class="border-div" style="width: 1100px; margin: 0 auto;">
         <!-- for Uploading Image -->
-        <div style="border: 1px solid yellow; margin-bottom: 20px;">
+        <div style=" margin-bottom: 20px; width: 400px; margin: 0 auto; margin-bottom: 10px;">
             <nz-upload
             
             nzType="drag"
@@ -30,21 +20,21 @@
             </nz-upload>
         </div>
         <!-- for Uploading Image -->
-        <div nz-row [nzGutter]="8" class="mt">
+        <div nz-row [nzGutter]="8" class="mt" style="font-size: 25px;">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label class="label">Name</nz-form-label>
+              <label class="label" style="width: 150px;  text-align: center; font-size: 20px;">Name :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
+                <input nz-input placeholder="please enter item name"  style="font-size: 20px;"/>
               </nz-form-control>
             </nz-form-item>
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label>Url</nz-form-label>
+              <label style="width: 150px;  text-align: center; font-size: 20px;">Url :</label>
               <nz-form-control>
                 <nz-input-group nzAddOnBefore="http://" nzAddOnAfter=".com">
-                  <input type="text" nz-input placeholder="please enter url" />
+                  <input type="text" nz-input placeholder="please enter url" style="font-size: 20px;" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -53,9 +43,9 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label>Category</nz-form-label>
+              <label style="width: 150px;  text-align: center; font-size: 20px;">Category :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please select an owner" >
+                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;">
                   <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el"></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -63,16 +53,16 @@
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label>Type Of Food</nz-form-label>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Type Of Food :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please choose the type">
+                <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;">
                   <nz-option *ngFor="let type of typeOfFood" [nzValue]="type" [nzLabel]="type"></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
         </div>
-        <div nz-row [nzGutter]="8">
+        <!-- <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
               <nz-form-label>Approver</nz-form-label>
@@ -89,59 +79,59 @@
               </nz-form-control>
             </nz-form-item>
           </div>
+        </div> -->
+
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Portion Size :</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter portion size" style="font-size: 20px;" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label  style="width: 150px; text-align: center; font-size: 20px;">Preparation Time :</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter preparation time" style="font-size: 20px;"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Serving Temp :</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter serving temp" style="font-size: 20px;" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Lasting Time</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter lasting time"  style="font-size: 20px;"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
         </div>
 
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label>Portion Size</nz-form-label>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Total Cost :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
+                <input nz-input placeholder="" style="font-size: 20px;" />
               </nz-form-control>
             </nz-form-item>
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label>Preparation Time</nz-form-label>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Total Calories :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
-        <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-label>Serving Temp</nz-form-label>
-              <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-label>Lasting Time</nz-form-label>
-              <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
-
-        <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-label>Total Cost</nz-form-label>
-              <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <nz-form-label>Total Calories</nz-form-label>
-              <nz-form-control>
-                <input nz-input placeholder="please enter user name" />
+                <input nz-input placeholder="" style="font-size: 20px;"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -150,9 +140,10 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="24">
             <nz-form-item>
-              <nz-form-label>Description</nz-form-label>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;">Description :</label>
               <nz-form-control>
                 <textarea
+                  style="font-size: 20px;"
                   nz-input
                   placeholder="please enter url description"
                   [nzAutosize]="{ minRows: 4, maxRows: 4 }"
@@ -162,9 +153,23 @@
           </div>
         </div>
 
-        <h2>Ingredients And Preparation Instruction</h2>
+        <h2 style="margin-bottom: 25px;">Ingredients And Preparation Instruction</h2>
 
         <app-add-ingredients-field></app-add-ingredients-field>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

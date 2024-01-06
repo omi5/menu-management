@@ -2,7 +2,7 @@
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item *ngFor="let control of listOfControl; let i = index">
         <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
-          Passengers
+          <p style="font-size: 20px; text-align: center;">Ingredients</p>
         </nz-form-label>
         <nz-form-control
           [nzXs]="24"
@@ -20,7 +20,7 @@
           <div class="display-flex">
             <!-- <nz-form-label>Type Of Food</nz-form-label> -->
             <div class="passenger-input">
-              <nz-select nzPlaceHolder="Please choose the type">
+              <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;">
                 <nz-option *ngFor="let ingredient of ingredients" [nzValue]="ingredient" [nzLabel]="ingredient" ></nz-option>
               </nz-select>
             </div>
@@ -60,7 +60,7 @@
         <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
           <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
             <span nz-icon nzType="plus"></span>
-            Add field
+            Add Ingredient
           </button>
         </nz-form-control>
       </nz-form-item>
