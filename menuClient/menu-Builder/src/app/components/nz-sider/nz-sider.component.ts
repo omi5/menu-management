@@ -54,6 +54,15 @@ export class NzSiderComponent {
   close(): void {
     this.visible = false;
   }
+
+  //for Recipe Drawer
+  visibleRecipeDrawer = false;
+  openRecipeDrawer(): void {
+    this.visibleRecipeDrawer = true;
+  }
+  closeRecipe(): void {
+    this.visibleRecipeDrawer = false;
+  }
  
 
   

@@ -13,6 +13,7 @@
         <ul>
           <li nz-menu-item (click)="open()" >Menu Item Recipe</li>
           <li nz-menu-item (click)="showModal()">Schedule</li>
+          <li nz-menu-item (click)="openRecipeDrawer()">Recipe</li>
         </ul>
       </li>
     </ul>
@@ -35,7 +36,7 @@
       </nz-modal>
 
 
-
+      <!--For  Menu Item Drawer  -->
       <nz-drawer
       [nzBodyStyle]="{ overflow: 'auto' }"
       [nzMaskClosable]="false"
@@ -61,4 +62,30 @@
     </ng-template>
   </nz-drawer>
 
-  
+
+  <!-- For Recipe Drawer  -->
+
+  <nz-drawer
+      [nzBodyStyle]="{ overflow: 'auto' }"
+      [nzMaskClosable]="false"
+      [nzWidth]="1420"
+      [nzVisible]="visibleRecipeDrawer"
+      nzTitle="Create Recipe"
+      [nzFooter]="footerTpl"
+      (nzOnClose)="closeRecipe()"
+    >
+
+    
+    <form nz-form *nzDrawerContent>
+      
+    <app-recipe-form></app-recipe-form>
+      
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right; margin-right: 30px;">
+        <button nz-button style="margin-right: 8px;" (click)="closeRecipe()"  class="close-btn">Cancel</button>
+        <button nz-button nzType="primary" (click)="close()"  class="Add-btn">Add Item</button>
+      </div>
+    </ng-template>
+  </nz-drawer>
