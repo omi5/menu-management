@@ -77,21 +77,21 @@
       [nzWidth]="1420"
       [nzVisible]="visibleRecipeDrawer"
       nzTitle="Create Recipe"
-      [nzFooter]="footerTpl"
+      [nzFooter]="footerTpl1"
       (nzOnClose)="closeRecipe()"
     >
 
     
-    <form nz-form *nzDrawerContent >
+    <form nz-form *nzDrawerContent  (ngSubmit)="createRecipeItems()">
       
-    <app-recipe-form></app-recipe-form>
+    <app-recipe-form #recipeForm></app-recipe-form>
       
     </form>
 
-    <ng-template #footerTpl>
+    <ng-template #footerTpl1>
       <div style="float: right; margin-right: 30px;">
         <button nz-button style="margin-right: 8px;" (click)="closeRecipe()"  class="close-btn">Cancel</button>
-        <button nz-button nzType="primary" (click)="close()"  class="Add-btn">Add Item</button>
+        <button nz-button nzType="primary" (click)="createRecipeItems()"  class="Add-btn">Add Recipe</button>
       </div>
     </ng-template>
   </nz-drawer>

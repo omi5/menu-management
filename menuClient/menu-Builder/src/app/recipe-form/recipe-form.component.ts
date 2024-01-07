@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-form',
@@ -10,4 +10,55 @@ export class RecipeFormComponent {
 
   //For CheckBox
   checked = true;
+
+
+
+   //For Ingredients
+   @ViewChild('ingredients') ingredients: any
+
+   includeIngredients(){
+     return this.ingredients.submitForm();
+   }
+
+
+   //submit Data 
+  restaurantId! : number;
+  recipeName! : string;
+  categoryId! : string;
+  // itemProfileTastyTags! : string;
+  // typeOfFoods! : string;
+  recipeItemPortionsize!: string;
+  recipeItemPreparationtime!: string;
+  // servingTemperature! : string;
+  // itemLastingTime!: string;
+  recipeItemCost! : string;
+  recipeItemCalories! : string;
+  recipeItemDescription! : string;
+  // itemDietaryRestrictions! : string;
+  // imgUrls! : string
+
+
+  createRecipeItem(){
+    const ingredients = this.includeIngredients()
+    const newRecipe= {
+      "restaurant_id" : this.restaurantId ,
+      "recipeName":this.recipeName,
+      "category_id":parseInt(this.categoryId),
+      "recipeItemPortionsize":this.recipeItemPortionsize,
+      "recipeItemPreparationtime":this.recipeItemPreparationtime,
+      "recipeItemCost":this.recipeItemCost,
+      "recipeItemCalories":this.recipeItemCalories,
+      "recipeItemDescription":this.recipeItemDescription,
+      // "dietary_restrictions":this.itemDietaryRestrictions,
+      "ingredients":ingredients
+      }
+
+      console.log(newRecipe);
+      
+    }
+
+
+
+
 }
+

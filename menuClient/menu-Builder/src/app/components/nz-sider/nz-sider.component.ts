@@ -53,7 +53,7 @@ export class NzSiderComponent {
     this.data= data;
   }
 
-  //For Drawer
+  //For Menu Item Drawer
 
   visible = false;
   open(): void {
@@ -88,9 +88,15 @@ export class NzSiderComponent {
   @ViewChild('itemForm') itemForm: any
 
   createItems(): void{
-    console.log('click');
-    
+    // console.log('click');
     this.itemForm.createItem()
+  }
+
+  // for Create a  Recipe Items recipeForm
+  @ViewChild('recipeForm') recipeForm: any
+  createRecipeItems(): void{
+    console.log('click');
+    this.recipeForm.createRecipeItem()
   }
   
 

@@ -7,7 +7,7 @@
             <nz-form-item>
               <label class="label" style="width: 150px;  text-align: center; font-size: 20px;">Name :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter recipe name"  style="font-size: 20px;"/>
+                <input nz-input placeholder="please enter recipe name"  style="font-size: 20px;" [(ngModel)]="recipeName"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -17,7 +17,7 @@
             <nz-form-item>
               <label style="width: 150px;  text-align: center; font-size: 20px;">Category :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;">
+                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="categoryId">
                   <nz-option *ngFor="let el of category" [nzValue]="el" [nzLabel]="el"></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -35,7 +35,7 @@
             <nz-form-item>
               <label  style="width: 150px;  text-align: center; font-size: 20px;">Portion Size :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter portion size" style="font-size: 20px;" />
+                <input nz-input placeholder="please enter portion size" style="font-size: 20px;"   [(ngModel)]="recipeItemPortionsize"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -43,7 +43,7 @@
             <nz-form-item>
               <label  style="width: 150px; text-align: center; font-size: 20px;">Preparation Time :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter preparation time" style="font-size: 20px;"/>
+                <input nz-input placeholder="please enter preparation time" style="font-size: 20px;" [(ngModel)]="recipeItemPreparationtime"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -54,7 +54,7 @@
             <nz-form-item>
               <label  style="width: 150px;  text-align: center; font-size: 20px;">Total Cost :</label>
               <nz-form-control>
-                <input nz-input placeholder="" style="font-size: 20px;" />
+                <input nz-input placeholder="" style="font-size: 20px;" [(ngModel)]="recipeItemCost"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -62,7 +62,7 @@
             <nz-form-item>
               <label  style="width: 150px;  text-align: center; font-size: 20px;">Total Calories :</label>
               <nz-form-control>
-                <input nz-input placeholder="" style="font-size: 20px;"/>
+                <input nz-input placeholder="" style="font-size: 20px;" [(ngModel)]="recipeItemCalories"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -71,7 +71,7 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="24">
             <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;">Description :</label>
+              <label  style="width: 150px;  text-align: center; font-size: 20px;" [(ngModel)]="recipeItemDescription">Description :</label>
               <nz-form-control>
                 <textarea
                   style="font-size: 20px;"
@@ -87,7 +87,7 @@
         <hr style=" border-top: 2px solid #038851;">
         <h2 style="margin-bottom: 25px; padding-left: 25px;">Ingredients And Preparation Instruction</h2>
 
-        <app-add-ingredients-field></app-add-ingredients-field>
+        <app-add-ingredients-field #ingredients></app-add-ingredients-field>
 
       </div>
 

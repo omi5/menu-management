@@ -116,6 +116,8 @@ export class ItemRecipeFormComponent implements OnInit {
 
 
   //submit Data 
+  restaurantId!: number;
+  MealTimeId!: number;
   itemName! : string;
   itemProfileTastyTags! : string;
   categoryId! : string;
@@ -128,26 +130,28 @@ export class ItemRecipeFormComponent implements OnInit {
   itemCalories! : string;
   itemDescription! : string;
   itemDietaryRestrictions! : string;
-  imgUrls! : string
+  itemImage! : string
 
   
   createItem(){
     const ingredients = this.includeIngredients()
     let newItem ={
+      "restaurantId": 1,
+      "MealTimeId": 1,
       "itemName":this.itemName,
       "profileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "categoryId" : parseInt(this.categoryId),
       "typeOfFoods" : this.typeOfFoods,
       // .split(',')[
       //   Math.floor(Math.random()*this.typeOfFood.length)] ,
-        "portionSize" : parseInt(this.itemPortionsize),
-        "preparationTime" : parseInt(this.itemPreparationtime),
+        "itemPortionsize" : parseInt(this.itemPortionsize),
+        "itemPreparationtime" : parseInt(this.itemPreparationtime),
         "servingTemperature" : parseInt(this.servingTemperature) ,
-        "lastingTime" : parseInt(this.itemLastingTime),
-        "price" : parseInt(this.itemPrice),
-        "calories" : parseInt(this.itemCalories),
+        "itemLastingTime" : parseInt(this.itemLastingTime),
+        "itemPrice" : parseInt(this.itemPrice),
+        "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
-        "images" : this.imgUrls,
+        "itemImage" : this.itemImage,
         "ingredients": ingredients
         
     }
