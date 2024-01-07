@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -7,6 +8,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
+
+  constructor(private menuService: MenuItemServiceService){}
 
   @Input()
   itemName!: string;
@@ -39,5 +42,19 @@ export class MenuItemComponent implements OnInit {
   close(): void {
     this.visible = false;
   }
+
+
+  //Delete a Menu Item 
+  deleteMenuItem(id: number){
+    this.menuService.deleteMenuItem(id).subscribe(res=>{
+      console.log("Deleted Successfully");
+    })
+  }
+
+  //Update Menu Item
+  updateMenuItem(id: number){
+
+  }
+
 
 }

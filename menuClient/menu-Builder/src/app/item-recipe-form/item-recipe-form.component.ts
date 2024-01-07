@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { MenuItemServiceService } from '../services/menu-item-service.service';
 
 @Component({
   selector: 'app-item-recipe-form',
@@ -23,7 +24,7 @@ export class ItemRecipeFormComponent implements OnInit {
 
 
   //for Uploading a Image
-  constructor(private msg: NzMessageService) {}
+  constructor(private msg: NzMessageService, private menuService: MenuItemServiceService) {}
 
   handleChange({ file, fileList }: NzUploadChangeParam): void {
     const status = file.status;
@@ -135,12 +136,14 @@ export class ItemRecipeFormComponent implements OnInit {
   
   createItem(){
     const ingredients = this.includeIngredients()
+
     let newItem ={
       "restaurantId": 1,
       "MealTimeId": 1,
-      "itemName":this.itemName,
-      "profileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "categoryId" : parseInt(this.categoryId),
+      "item":{
+      "itemName":this.itemName,
+      "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "typeOfFoods" : this.typeOfFoods,
       // .split(',')[
       //   Math.floor(Math.random()*this.typeOfFood.length)] ,
@@ -152,13 +155,24 @@ export class ItemRecipeFormComponent implements OnInit {
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
         "itemImage" : this.itemImage,
-        "ingredients": ingredients
-        
+        "ingredients": ingredients,
+        "options":{
+          "add": ingredients ,
+          "no": ingredients
+        }
+      }
     }
 
     // console.log('ingredents',ingredients);
     
     console.log(newItem);
+
+    //for adding data to backend
+    this.menuService.createNewMenuItem(newItem).subscribe(res=>{
+      // alert("The Item has been added successfully");
+      console.log(res);
+      
+    })
     
     // return newItem;
   }

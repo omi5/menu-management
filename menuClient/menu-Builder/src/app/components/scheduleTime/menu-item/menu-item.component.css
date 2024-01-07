@@ -167,3 +167,12 @@ a {
     transform: translateY(-3px);
     box-shadow: 0 5px 10px 0 rgb(33, 198, 129);
 }
+
+.delete-btn{
+    background-color: rgb(138, 6, 6) !important;
+    margin-top: 10px;
+}
+.delete-btn:hover{
+    box-shadow: 0 5px 10px 0 rgb(177, 59, 59) !important;
+
+}
