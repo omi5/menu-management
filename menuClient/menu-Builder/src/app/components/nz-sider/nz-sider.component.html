@@ -30,7 +30,11 @@
     >
         <ng-container *nzModalContent>
           <!-- (submitedFormData)="submitForm($event)" -->
-        <app-modal-form (submitedFormData)="submitedForm($event)"></app-modal-form>
+        <app-modal-form  #modalForm></app-modal-form>
+
+        <!-- //Start -->
+
+        <!-- //End -->
           
         </ng-container>
       </nz-modal>
@@ -48,16 +52,18 @@
     >
 
     
-    <form nz-form *nzDrawerContent>
+    <form nz-form *nzDrawerContent (ngSubmit)="createItems()">
+     
       
-      <app-item-recipe-form></app-item-recipe-form>
+      <app-item-recipe-form #itemForm></app-item-recipe-form>
+
       
     </form>
 
     <ng-template #footerTpl>
       <div style="float: right; margin-right: 30px;">
-        <button nz-button style="margin-right: 8px;" (click)="close()"  class="close-btn">Cancel</button>
-        <button nz-button nzType="primary" (click)="close()"  class="Add-btn">Add Item</button>
+        <button nz-button style="margin-right: 8px;" (click)="close()"   class="close-btn">Cancel</button>
+        <button nz-button nzType="primary"  (click)="createItems()" class="Add-btn">Add Item</button>
       </div>
     </ng-template>
   </nz-drawer>
@@ -76,7 +82,7 @@
     >
 
     
-    <form nz-form *nzDrawerContent>
+    <form nz-form *nzDrawerContent >
       
     <app-recipe-form></app-recipe-form>
       

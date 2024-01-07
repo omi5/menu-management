@@ -1,5 +1,5 @@
-
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+<!-- [formGroup]="validateForm" -->
+    <form nz-form  (ngSubmit)="submitForm()">
       <nz-form-item *ngFor="let control of listOfControl; let i = index">
         <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
           <p style="font-size: 20px; text-align: center;">Ingredients</p>
@@ -20,32 +20,40 @@
           <div class="display-flex">
             <!-- <nz-form-label>Type Of Food</nz-form-label> -->
             <div class="passenger-input">
-              <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;">
+              <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;" [(ngModel)]="ingredientName" name="ingredientName">
                 <nz-option *ngFor="let ingredient of ingredients" [nzValue]="ingredient" [nzLabel]="ingredient" ></nz-option>
               </nz-select>
             </div>
           
-          <input
+            <input
+            [(ngModel)]="quantity"
+            name="quantity"
             class="passenger-input-sm"
             nz-input
             placeholder="qty"
             [attr.id]="control.id"
-            [formControlName]="control.controlInstance"
-          />
-          <input
+            
+            />
+            <!-- [formControlName]="control.controlInstance" -->
+            <input
+            [(ngModel)]="unitOfStock"
+            name="unitOfStock"
             class="passenger-input-sm"
             nz-input
             placeholder="units"
             [attr.id]="control.id"
-            [formControlName]="control.controlInstance"
-          />
-          <input
+            />
+            <!-- [formControlName]="control.controlInstance" -->
+            <!-- [ngModelOptions]="{standalone: true}" -->
+            <input
+            [(ngModel)]="preparation"
+            name="preparation"
             class="passenger-input"
             nz-input
-            placeholder="placeholder"
+            placeholder="preparation"
             [attr.id]="control.id"
-            [formControlName]="control.controlInstance"
-          />
+            />
+            <!-- [formControlName]="control.controlInstance" -->
         
           <span
             nz-icon
