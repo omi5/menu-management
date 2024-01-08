@@ -49,6 +49,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AddIngredientsFieldComponent } from './add-ingredients-field/add-ingredients-field.component';
 import { ItemDetailsComponent } from './components/scheduleTime/item-details/item-details.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
 
 
 
@@ -74,6 +75,7 @@ registerLocaleData(en);
     AddIngredientsFieldComponent,
     ItemDetailsComponent,
     RecipeFormComponent,
+    CategoryFormComponent,
    
   ],
   imports: [

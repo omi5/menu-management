@@ -35,14 +35,20 @@
             
             />
             <!-- [formControlName]="control.controlInstance" -->
-            <input
+            <!-- <input
             [(ngModel)]="unitOfStock"
             name="unitOfStock"
             class="passenger-input-sm"
             nz-input
             placeholder="units"
             [attr.id]="control.id"
-            />
+            /> -->
+
+            <nz-select nzPlaceHolder="units" style="font-size: 20px; width: 120px; margin-right: 8px;" [(ngModel)]="unitOfStock" name="unitOfStock">
+              <nz-option *ngFor="let el of convertionList" [nzValue]="el" [nzLabel]="el" ></nz-option>
+            </nz-select>
+
+
             <!-- [formControlName]="control.controlInstance" -->
             <!-- [ngModelOptions]="{standalone: true}" -->
             <input

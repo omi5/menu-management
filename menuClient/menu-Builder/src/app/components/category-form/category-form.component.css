@@ -1,0 +1,43 @@
+
+.flex{
+    display: flex;
+}
+
+/* .input-box-for-time input{
+    width: 150px;
+    margin-top: 5px;
+    padding: 13px;
+}
+.input-box-for-time label{
+    font-size: 20px; 
+     
+} */
+.label{
+    width: 150px;
+    margin-right: 20px;
+    /* border: 1px solid red; */
+}
+.input-box-for-name input{
+    width: 350px;
+    margin-top: 8px;
+    padding: 13px;
+}
+.input-box-for-name label{
+    font-size: 20px; 
+    
+    
+}
+
+.input-box-for-description textarea{
+    width: 450px;
+    margin-top: 8px;
+    padding: 13px;
+}
+.input-box-for-description label{
+    font-size: 20px;
+    
+}
+
+.mt-4{
+    margin-top: 30px;
+}

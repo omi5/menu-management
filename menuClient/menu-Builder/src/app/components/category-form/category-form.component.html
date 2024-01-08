@@ -1,0 +1,66 @@
+
+<div class="mx-auto">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+            <!-- //For Upload a Image -->
+
+            <div style=" margin-bottom: 20px; width: 400px; margin: 0 auto; margin-bottom: 10px;">
+                <nz-upload
+                
+                nzType="drag"
+                [nzMultiple]="true"
+                nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                (nzChange)="handleChange($event)"
+              >
+                <p class="ant-upload-drag-icon">
+                  <span nz-icon nzType="inbox"></span>
+                </p>
+                <p class="ant-upload-text">Click or drag file to this area to upload</p>
+                <!-- <p class="ant-upload-hint">
+                  Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+                </p> -->
+                </nz-upload>
+            </div>
+
+            <!-- //For Upload a Image -->
+    
+      
+            <div class="mt-4">
+            <div class="flex">
+
+            <nz-form-item class="input-box-for-name">
+                <nz-form-control nzErrorTip="Please input your username!">
+                    <label for="scheduleName" nzRequired>Category Name</label>    
+                    <nz-input-group nzPrefixIcon="" class="w-96 py-2">
+                    <input formControlName="scheduleName" nz-input placeholder="Name" class="p-2 text-xl" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item class="input-box-for-description">
+                <nz-form-control  nzHasFeedback nzErrorTip="Please write something here!">
+                    <label  nzRequired style="margin-bottom: 15px;">Description</label>
+                    <nz-textarea-count [nzMaxCharacterCount]="2000">
+                    <textarea formControlName="description" nz-input rows="2" placeholder="write any thing" class="w-full text-xl"></textarea>
+                    </nz-textarea-count>
+                </nz-form-control>
+            </nz-form-item>
+                
+            </div>
+
+            <div >
+            
+
+            </div>
+          </div>
+            
+           
+
+
+           
+            </form>
+</div>  
+
+
+
+     

@@ -36,22 +36,56 @@ export class NzSiderComponent {
   }
   
 
-  //For Modal
+  //For Modal For Schedule Start Here
 
-  isVisible = false;
   constructor(private modalService: NzModalService, private router: Router,private fb: NonNullableFormBuilder) {}
+  isVisible = false;
   showModal(): void {
     this.isVisible = true;
   }
-  
   handleCancel(): void {
     this.isVisible = false;
   }
+   //for Schedule modal
+   @ViewChild('modalForm') modalForm: any
+
+   handleOk(): void {
+     this.isVisible = false;
+     this.modalForm.submitForm()
+     // this.receiveSubmittedFormData(this.receivedFormData)
+     // console.log(this.data);
+     
+   }
+  //For Modal For Schedule End Here
+
+  //For Modal For Category start Here
+  isVisibleForCategory = false;
+  showModalForCategory(): void {
+    this.isVisibleForCategory = true;
+  }
+  handleOkForCategory(): void {
+    this.isVisibleForCategory = false;
+  }
+   //for Schedule modal
+   @ViewChild('modalFormForCategory') modalFormForCategory: any
+
+   handleCancelForCategory(): void {
+     this.isVisibleForCategory = false;
+     this.modalFormForCategory.submitForm()
+     // this.receiveSubmittedFormData(this.receivedFormData)
+     // console.log(this.data);
+     
+   }
+
+  //For Modal For Category end Here
+
   
   data : any ;
   submitedForm(data: any){
     this.data= data;
   }
+
+
 
   //For Menu Item Drawer
 
@@ -73,16 +107,7 @@ export class NzSiderComponent {
   }
 
 
-  //for Schedule modal
-  @ViewChild('modalForm') modalForm: any
-
-  handleOk(): void {
-    this.isVisible = false;
-    this.modalForm.submitForm()
-    // this.receiveSubmittedFormData(this.receivedFormData)
-    // console.log(this.data);
-    
-  }
+ 
 
   //for item form drawer
   @ViewChild('itemForm') itemForm: any
@@ -99,6 +124,12 @@ export class NzSiderComponent {
     this.recipeForm.createRecipeItem()
   }
   
+
+
+  ngOnInit(): void {
+  }
+
+
 
   //modal form
 

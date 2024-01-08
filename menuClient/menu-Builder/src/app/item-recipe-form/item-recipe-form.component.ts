@@ -22,6 +22,15 @@ export class ItemRecipeFormComponent implements OnInit {
   owner = [1,2,3]
   typeOfFood = ['Delivey Only', 'Pick Up', 'Eat Only']
 
+  //Array Of Portion Size
+   portionSizes = [
+    "Small",
+    "Medium",
+    "Large",
+    "Extra Small",
+    "Extra Large"
+]
+
 
   //for Uploading a Image
   constructor(private msg: NzMessageService, private menuService: MenuItemServiceService) {}
@@ -54,6 +63,9 @@ export class ItemRecipeFormComponent implements OnInit {
 
   listOfOptionForTastyTags: string[] = [];
   listOfSelectedValueForTastyTags = [];
+
+
+ 
 
   ngOnInit(): void {
     //For allergens
@@ -105,11 +117,14 @@ export class ItemRecipeFormComponent implements OnInit {
       'Fresh'
     ];
 
+  
+
     // for (let i = 10; i < 36; i++) {
     //   children.push(`${i.toString(36)}${i}`);
     // }
     this.listOfOption = allergens;
     this.listOfOptionForTastyTags= tastyTags;
+    
   }
 
   
@@ -127,15 +142,20 @@ export class ItemRecipeFormComponent implements OnInit {
   itemPreparationtime!: string;
   servingTemperature! : string;
   itemLastingTime!: string;
-  itemPrice! : string;
+  itemPrice! : number;
   itemCalories! : string;
   itemDescription! : string;
   itemDietaryRestrictions! : string;
+  ItemHowToDelivery!: string;
   itemImage! : string
 
   
+  
   createItem(){
     const ingredients = this.includeIngredients()
+    if(this.itemPortionsize === 'Medium'){
+      this.itemPrice = this.itemPrice * 2;
+    }
 
     let newItem ={
       "restaurantId": 1,
@@ -147,11 +167,11 @@ export class ItemRecipeFormComponent implements OnInit {
       "typeOfFoods" : this.typeOfFoods,
       // .split(',')[
       //   Math.floor(Math.random()*this.typeOfFood.length)] ,
-        "itemPortionsize" : parseInt(this.itemPortionsize),
+        "itemPortionsize" : this.itemPortionsize,
         "itemPreparationtime" : parseInt(this.itemPreparationtime),
         "servingTemperature" : parseInt(this.servingTemperature) ,
         "itemLastingTime" : parseInt(this.itemLastingTime),
-        "itemPrice" : parseInt(this.itemPrice),
+        "itemPrice" : this.itemPrice,
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
         "itemImage" : this.itemImage,

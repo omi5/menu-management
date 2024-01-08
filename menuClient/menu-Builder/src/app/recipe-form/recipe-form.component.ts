@@ -40,8 +40,10 @@ export class RecipeFormComponent {
 
   createRecipeItem(){
     const ingredients = this.includeIngredients()
+    console.log(this.recipeItemDescription);
+    
     const newRecipe= {
-      "restaurant_id" : this.restaurantId ,
+      "restaurantId" : 1 ,
       "recipeName":this.recipeName,
       "category_id":parseInt(this.categoryId),
       "recipeItemPortionsize":this.recipeItemPortionsize,
@@ -54,6 +56,7 @@ export class RecipeFormComponent {
       }
 
       console.log(newRecipe);
+      
       
     }
 

@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GetMenuItemBySchuduleService } from 'src/app/services/get-menu-item-by-schudule.service';
+import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 
 @Component({
   selector: 'app-breakfast',
   templateUrl: './breakfast.component.html',
   styleUrls: ['./breakfast.component.css']
 })
-export class BreakfastComponent {
+export class BreakfastComponent implements OnInit {
+
+  constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
 
   isCollapsed = false;
   //for modal
@@ -22,6 +26,29 @@ export class BreakfastComponent {
     this.isVisible = false;
   }
 
+
+  //getAll Item for backend for breakfast
+  AllMenuItems : any[] = []
+  getMenuItems(){
+    this.menuService.getAllMenuItems().subscribe(res=>{
+      this.AllMenuItems.push(res);
+      console.log('selected menu for breakfast',this.AllMenuItems);
+    })
+  }  
+
+  MenuForBreakfast: any[]= []
+  getFilterItemForBreakfast(id: any){
+    this.scheduleService.getAllMenuItemsUnderScheduleTime(id).subscribe(res=>{
+    this.MenuForBreakfast.push(res);
+    console.log("filtered Menu",this.MenuForBreakfast[0][0].listOfItems[0].item.ingredients);
+  });
+}
+
+  ngOnInit(): void {
+    this.getMenuItems();
+    this.getFilterItemForBreakfast(1);
+    
+  }
 
 
   //For Category

@@ -17,7 +17,8 @@ export class MenuItemComponent implements OnInit {
   src!: string;
 
   ngOnInit(): void {
-    
+    this.getMenuItems();
+    this.getMenuItemById(13);
   }
 
 
@@ -43,6 +44,30 @@ export class MenuItemComponent implements OnInit {
     this.visible = false;
   }
 
+  
+  
+  //Get All Menu Item
+  AllMenuItems : any[] = []
+  getMenuItems(){
+    this.menuService.getAllMenuItems().subscribe(res=>{
+      this.AllMenuItems.push(res);
+      // console.log(res);
+      
+      console.log(this.AllMenuItems);
+    })
+  }
+
+  //get Menu Item By Id
+  selectedMenuItem :any = [];
+  getMenuItemById(id: any){
+    this.menuService.getMenuItemById(id).subscribe(res=>{
+      this.selectedMenuItem.push(res);
+      console.log("Selected Menu Item", res);
+    })
+  }
+
+
+  
 
   //Delete a Menu Item 
   deleteMenuItem(id: number){
@@ -55,6 +80,26 @@ export class MenuItemComponent implements OnInit {
   updateMenuItem(id: number){
 
   }
+
+
+
+  //submit Data 
+  restaurantId!: number;
+  MealTimeId!: number;
+  // itemName! : string;
+  itemProfileTastyTags! : string;
+  categoryId! : string;
+  typeOfFoods! : string;
+  itemPortionsize!: string;
+  itemPreparationtime!: string;
+  servingTemperature! : string;
+  itemLastingTime!: string;
+  itemPrice! : string;
+  itemCalories! : string;
+  itemDescription! : string;
+  itemDietaryRestrictions! : string;
+  itemImage! : string
+
 
 
 }

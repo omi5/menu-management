@@ -11,6 +11,12 @@ export class AddIngredientsFieldComponent implements OnInit {
   validateForm: FormRecord<FormControl<string>> = this.fb.record({});
   listOfControl: any = [];
 
+   jsonData = [
+    {"name": "cup", "quantity": 10},
+    {"name": "tablespoon", "quantity": 5},
+    {"name": "plate", "quantity": 8}
+  ];
+
   addField(e?: MouseEvent): void {
     e?.preventDefault();
 
@@ -27,11 +33,23 @@ export class AddIngredientsFieldComponent implements OnInit {
     //   this.fb.control('', Validators.required)
     // );
 
+    if(this.unitOfStock === 'cup'){
+      const foundItem = this.jsonData.find(item => item.name === 'cup');
+    
+    if (foundItem) {
+        const newQuantity = this.quantity * foundItem.quantity;
+        this.quantity = newQuantity
+        console.log(`Updated total quantity: ${newQuantity}`);
+    } else {
+        console.log(`${foundItem} not found in the list.`);
+    }
+    }
+
     const ingredientsDetails = {
         id: 1,
         restaurantId: 1,
         ingredientName: this.ingredientName,
-        quantity: parseInt(this.quantity),
+        quantity: this.quantity,
         unitOfStock: this.unitOfStock,
         costPerUnit: 0.599,
         caloriesPerUnit: 150,
@@ -41,7 +59,7 @@ export class AddIngredientsFieldComponent implements OnInit {
       // console.log(this.listOfControl);
 
       this.ingredientName = '';
-      this.quantity = '';
+      this.quantity = 0;
       this.unitOfStock = '';
       this.preparation = '';
       
@@ -61,7 +79,7 @@ export class AddIngredientsFieldComponent implements OnInit {
   id! : number;
   restaurantId! : number;
   ingredientName! : string;
-  quantity! : string;
+  quantity! : number;
   unitOfStock! : string;
   costPerUnit! : number;
   caloriesPerUnit!: number;
@@ -106,5 +124,7 @@ export class AddIngredientsFieldComponent implements OnInit {
 
 
   //For Ingredients
-  ingredients = ['eggs', 'milks,', 'tomato', 'onion']
+  ingredients = ['eggs', 'milks', 'tomato', 'onion']
+  //For Conversion ml to cup like this
+  convertionList = ['cup', 'tablespoon'];
 }

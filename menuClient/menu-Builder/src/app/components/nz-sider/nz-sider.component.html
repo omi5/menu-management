@@ -12,13 +12,16 @@
       <li nz-submenu nzTitle="Create" nzIcon="form" class="hover-color">
         <ul>
           <li nz-menu-item (click)="open()" >Menu Item Recipe</li>
-          <li nz-menu-item (click)="showModal()">Schedule</li>
           <li nz-menu-item (click)="openRecipeDrawer()">Ingredient Recipe</li>
+          <li nz-menu-item (click)="showModal()">Schedule</li>
+          <li nz-menu-item (click)="showModalForCategory()">Category</li>
         </ul>
       </li>
     </ul>
   <!-- </nz-sider> -->
 
+
+    <!-- //Modal For Schedule  -->
    <nz-modal
       [(nzVisible)]="isVisible"
       nzTitle="Create Schedule"
@@ -38,6 +41,29 @@
           
         </ng-container>
       </nz-modal>
+
+    <!-- //Modal For category  -->
+
+    <nz-modal
+      [(nzVisible)]="isVisibleForCategory"
+      nzTitle="Create category"
+      nzOkText="Add"
+      nzCancelText="Cancel"
+      (nzOnOk)="handleOkForCategory()"
+      (nzOnCancel)="handleCancelForCategory()"
+      [nzStyle]="{ width: '900px' }"
+    >
+        <ng-container *nzModalContent>
+          <!-- (submitedFormData)="submitForm($event)" -->
+        <app-category-form  #modalFormForCategory></app-category-form>
+
+        <!-- //Start -->
+
+        <!-- //End -->
+          
+        </ng-container>
+      </nz-modal>
+
 
 
       <!--For  Menu Item Drawer  -->

@@ -94,11 +94,21 @@
         </div> -->
 
         <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="12">
+          <!-- <div nz-col nzSpan="12">
             <nz-form-item>
               <label  style="width: 150px;  text-align: center; font-size: 20px;">Portion Size :</label>
               <nz-form-control>
                 <input nz-input placeholder="please enter portion size" style="font-size: 20px;"  [(ngModel)]="itemPortionsize"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div> -->
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label style="width: 150px;  text-align: center; font-size: 20px;">Portion Size :</label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemPortionsize">
+                  <nz-option *ngFor="let el of portionSizes" [nzValue]="el" [nzLabel]="el" ></nz-option>
+                </nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -150,7 +160,7 @@
         </div>
 
         <div nz-row [nzGutter]="8">
-          <div nz-col style="width: 100%;">
+          <div nz-col nzSpan="12">
             <nz-form-item>
               <label style="width: 150px;  text-align: center; font-size: 20px;">Allergens :</label>
               <nz-form-control>
@@ -171,6 +181,16 @@
               </nz-form-control>
             </nz-form-item>
             
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label style="width: 150px;  text-align: center; font-size: 20px;">How to Delivery :</label>
+              <nz-form-control>
+                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="ItemHowToDelivery">
+                  <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el" ></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
           </div>
           
         </div>
