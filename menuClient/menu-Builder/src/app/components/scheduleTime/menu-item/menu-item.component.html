@@ -15,12 +15,12 @@
             <ul class="recipe-details">
                 <li class="recipe-details-item time">
                     <i class="fas fa-clock"></i>
-                    <span class="value">20</span>
+                    <span class="value">{{preparationTime}}</span>
                     <span class="title">Minutes</span>
                 </li>
                 <li class="recipe-details-item ingredients">
                     <i class="fa fa-book"></i>
-                    <span class="value">5</span>
+                    <span class="value">{{ingredients}}</span>
                     <span class="title">Ingredients</span>
                 </li>
                 <li class="recipe-details-item servings">
@@ -34,8 +34,8 @@
             There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...
         </p>
         <footer class="content__footer">
-            <a (click)="open()">View Recipe</a>
-            <a (click)="deleteMenuItem(1)" class="delete-btn">Delete</a>
+            <a (click)="editMenuItem(itemId)" >View Recipe</a>
+            <a (click)="deleteMenuItem(itemId)" class="delete-btn">Delete</a>
         </footer>
     </div>
 </div>

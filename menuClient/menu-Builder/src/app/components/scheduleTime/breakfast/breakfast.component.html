@@ -36,13 +36,17 @@
   
         <!-- Provide Your Container Here -->
 
-        <h1>Hello From Breakfast</h1>
-        <ng-container *ngFor="let category of categories">
-          <h1 class="category-Name">{{ category.categoryName }}</h1>
+        <!-- <h1>Hello From Breakfast</h1> -->
+        <ng-container *ngFor="let category of filtercategoryList[0]">
+          <h1>hello</h1>
+          <h1 class="category-Name">{{ category[0] }}</h1>
           <div class="show-menus-items">
-          <div *ngFor="let item of category.items">
+          <div *ngFor="let item of listForBurger">
             <app-menu-item 
-            [itemName]="item.itemName"
+            [itemName]="item.item.itemName"
+            [ingredients]="item.item.ingredients.length"
+            [preparationTime]="item.item.itemPreparationtime"
+            [itemId]="item.item.itemId"
             [src]="item.itemImage"
             ></app-menu-item>
           </div>

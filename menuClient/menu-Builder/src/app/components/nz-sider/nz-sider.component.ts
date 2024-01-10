@@ -63,15 +63,16 @@ export class NzSiderComponent {
   showModalForCategory(): void {
     this.isVisibleForCategory = true;
   }
-  handleOkForCategory(): void {
+  
+  handleCancelForCategory(): void {
     this.isVisibleForCategory = false;
   }
    //for Schedule modal
    @ViewChild('modalFormForCategory') modalFormForCategory: any
 
-   handleCancelForCategory(): void {
+   handleOkForCategory(): void {
+     this.modalFormForCategory.submitFormForCategory();
      this.isVisibleForCategory = false;
-     this.modalFormForCategory.submitForm()
      // this.receiveSubmittedFormData(this.receivedFormData)
      // console.log(this.data);
      
@@ -85,6 +86,9 @@ export class NzSiderComponent {
     this.data= data;
   }
 
+  category(){
+    this.router.navigate(['/category'])
+  }
 
 
   //For Menu Item Drawer

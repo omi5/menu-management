@@ -11,14 +11,15 @@ export class MenuItemComponent implements OnInit {
 
   constructor(private menuService: MenuItemServiceService){}
 
-  @Input()
-  itemName!: string;
-  @Input()
-  src!: string;
+  @Input() itemName!: string;
+  @Input() src!: string;
+  @Input() ingredients!: number
+  @Input() preparationTime!: number
+  @Input() itemId!: number
 
   ngOnInit(): void {
     this.getMenuItems();
-    this.getMenuItemById(13);
+    // this.getMenuItemById(13);
   }
 
 
@@ -37,8 +38,10 @@ export class MenuItemComponent implements OnInit {
 
   //For Menu Item Drawer
   visible = false;
-  open(): void {
+  editMenuItem(id: number): void {
     this.visible = true;
+    this.getMenuItemById(id);
+    
   }
   close(): void {
     this.visible = false;
@@ -62,9 +65,11 @@ export class MenuItemComponent implements OnInit {
   getMenuItemById(id: any){
     this.menuService.getMenuItemById(id).subscribe(res=>{
       this.selectedMenuItem.push(res);
-      console.log("Selected Menu Item", res);
+      console.log(" Menu Item by", res);
     })
   }
+
+  
 
 
   

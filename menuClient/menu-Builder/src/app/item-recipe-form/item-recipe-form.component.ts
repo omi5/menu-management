@@ -19,7 +19,13 @@ export class ItemRecipeFormComponent implements OnInit {
     this.visible = false;
   }
 
-  owner = [1,2,3]
+  owner = ["Burger","Pizza","Drinks"]
+  howToDelivered = [ 
+  'Cardboard Boxes',
+  'Plastic Containers',
+  'Styrofoam ',
+  'Paper Bags',
+  'Thermal Insulated Bags']
   typeOfFood = ['Delivey Only', 'Pick Up', 'Eat Only']
 
   //Array Of Portion Size
@@ -136,7 +142,7 @@ export class ItemRecipeFormComponent implements OnInit {
   MealTimeId!: number;
   itemName! : string;
   itemProfileTastyTags! : string;
-  categoryId! : string;
+  categoryId! : any;
   typeOfFoods! : string;
   itemPortionsize!: string;
   itemPreparationtime!: string;
@@ -153,14 +159,14 @@ export class ItemRecipeFormComponent implements OnInit {
   
   createItem(){
     const ingredients = this.includeIngredients()
-    if(this.itemPortionsize === 'Medium'){
-      this.itemPrice = this.itemPrice * 2;
+    if(this.categoryId === 'Burger'){
+      this.categoryId = 1;
     }
 
     let newItem ={
       "restaurantId": 1,
-      "MealTimeId": 1,
-      "categoryId" : parseInt(this.categoryId),
+      "mealTimeId": 1,
+      "categoryId" : this.categoryId,
       "item":{
       "itemName":this.itemName,
       "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
@@ -189,13 +195,51 @@ export class ItemRecipeFormComponent implements OnInit {
 
     //for adding data to backend
     this.menuService.createNewMenuItem(newItem).subscribe(res=>{
-      // alert("The Item has been added successfully");
-      console.log(res);
+      alert("The Item has been added successfully");
+      console.log('click',res);
       
     })
     
     // return newItem;
   }
+
+  getMenuItemById(id:any){
+    this.menuService.getMenuItemById(id).subscribe((res: any)=>{
+      return {...res};
+    })
+  }
+
+  // updatedMenuItem(id: any){
+  //   const res = this.getMenuItemById(id);
+  //   let updatedMenuItem = {
+  //   "restaurantId": 1,
+  //   "mealTimeId": 1,
+  //   "categoryId" : res.categoryId,
+  //   "item":{
+  //   "itemName":res.itemName,
+  //   "itemProfileTastyTags" : res.listOfSelectedValueForTastyTags ,
+  //   "typeOfFoods" : res.typeOfFoods,
+  //   // .split(',')[
+  //   //   Math.floor(Math.random()*this.typeOfFood.length)] ,
+  //     "itemPortionsize" : res.itemPortionsize,
+  //     "itemPreparationtime" : parseInt(res.itemPreparationtime),
+  //     "servingTemperature" : parseInt(res.servingTemperature) ,
+  //     "itemLastingTime" : parseInt(res.itemLastingTime),
+  //     "itemPrice" : res.itemPrice,
+  //     "itemCalories" : parseInt(res.itemCalories),
+  //     "itemDietaryRestrictions": res.listOfSelectedValue,
+  //     "itemImage" : res.itemImage,
+  //     "ingredients": ingredients,
+  //     "options":{
+  //       "add": res.ingredients ,
+  //       "no": res.ingredients
+  //     }
+  //   }
+  //  }
+  // }
+
+
+
 
 
 }

@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MakeRecipeService } from '../services/make-recipe.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -37,6 +38,7 @@ export class RecipeFormComponent {
   // itemDietaryRestrictions! : string;
   // imgUrls! : string
 
+  constructor(private recipeService:MakeRecipeService){}
 
   createRecipeItem(){
     const ingredients = this.includeIngredients()
@@ -56,7 +58,11 @@ export class RecipeFormComponent {
       }
 
       console.log(newRecipe);
-      
+      this.recipeService.createRecipeItem(newRecipe).subscribe(res=>{
+        alert('recipe created');
+        console.log('make recipe response', res);
+        
+      })
       
     }
 

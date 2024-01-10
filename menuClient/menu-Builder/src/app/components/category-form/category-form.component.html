@@ -1,6 +1,6 @@
 
 <div class="mx-auto">
-    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitFormForCategory()">
 
             <!-- //For Upload a Image -->
 
@@ -32,7 +32,7 @@
                 <nz-form-control nzErrorTip="Please input your username!">
                     <label for="scheduleName" nzRequired>Category Name</label>    
                     <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-                    <input formControlName="scheduleName" nz-input placeholder="Name" class="p-2 text-xl" />
+                    <input formControlName="categoryName" nz-input placeholder="Name" class="p-2 text-xl" />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
@@ -41,23 +41,16 @@
                 <nz-form-control  nzHasFeedback nzErrorTip="Please write something here!">
                     <label  nzRequired style="margin-bottom: 15px;">Description</label>
                     <nz-textarea-count [nzMaxCharacterCount]="2000">
-                    <textarea formControlName="description" nz-input rows="2" placeholder="write any thing" class="w-full text-xl"></textarea>
+                    <textarea formControlName="categoryDescription" nz-input rows="2" placeholder="write any thing" class="w-full text-xl"></textarea>
                     </nz-textarea-count>
                 </nz-form-control>
             </nz-form-item>
                 
             </div>
-
             <div >
-            
-
             </div>
           </div>
-            
-           
-
-
-           
+ 
             </form>
 </div>  
 

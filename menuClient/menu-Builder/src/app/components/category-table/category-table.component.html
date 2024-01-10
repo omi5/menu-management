@@ -1,0 +1,229 @@
+<div *ngIf="showAddButton" nz-td [ngClass]="{'add-button-container': true}">
+    <button (click)="onAdd()" nz-form [ngClass]="{'add-button': true}">Add</button>
+  </div>
+  
+  <nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="920"
+  [nzVisible]="visible"
+  nzTitle="Inventory Ingredient"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+  >
+  
+  <form nz-form *nzDrawerContent (ngSubmit)="submitForm()">
+        
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label for="categoryName">Ingredient Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="categoryName" [(ngModel)]="categoryName" name="categoryName" placeholder="Enter ingredient name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Unit Of Measurement</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Enter unit of measurement" [nzAllowClear]="true" [(ngModel)]="unitOfStock" name="unitOfStock" [nzMaxTagCount]="1" nzShowSearch>
+              <nz-option  nz-input id="unitOfStock"
+                *ngFor="let el of unitList"
+                [nzValue]="el"
+                [nzLabel]="el"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Category</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Enter category" [nzAllowClear]="true" [(ngModel)]="categoryName" name="categoryName" [nzMaxTagCount]="1" nzShowSearch>
+              <nz-option nz-input id="categoryName"
+                *ngFor="let el of categoryList"
+                [nzValue]="el"
+                [nzLabel]="el"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Calories Per Unit</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="caloriesPerUnit" name="caloriesPerUnit" placeholder="Enter calories per unit" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Reorder Point</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="reorderPoint" name="reorderPoint" placeholder="Enter reorder point" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Ideal Storing Temperature</nz-form-label>
+          <nz-form-control>
+            <input nz-input [(ngModel)]="idealStoringTemperature" name="idealStoringTemperature" placeholder="Enter ideal storing temperature" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Unit of Temperature</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Enter unit of temperature" [nzAllowClear]="true" [(ngModel)]="unitOfIdealStoringTemperature" name="unitOfIdealStoringTemperature" [nzMaxTagCount]="1" nzShowSearch>
+              <nz-option nz-input id="unitOfIdealStoringTemperature"
+                *ngFor="let el of temperatureUnitList"
+                [nzValue]="el"
+                [nzLabel]="el"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+     <!-- <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Expiration Date</nz-form-label>
+          <nz-form-control>
+            <nz-date-picker [nzDisabledDate]="disabledDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>  -->
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Perishable</nz-form-label>
+          <nz-form-control>
+            <nz-select nzPlaceHolder="Enter perishable or not" [nzAllowClear]="true" [(ngModel)]="perishable"  name="perishable"  [nzMaxTagCount]="1" nzShowSearch>
+              <nz-option nz-input id="perishable" [nzValue]="perishable"
+                *ngFor="let el of perishableList"
+                [nzValue]="el"
+                [nzLabel]="el"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    
+    <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label>Description</nz-form-label>
+          <nz-form-control>
+            <textarea
+              nz-input
+              [(ngModel)]="description"
+              name="description"
+              placeholder="Enter description"
+              [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div> 
+    
+  </form>
+  
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+      <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+    </div>
+  </ng-template >
+  </nz-drawer>
+
+<h2>{{ tableTitle }}</h2>
+<nz-table
+  #rowSelectionTable
+  [nzData]="ingredientData"
+  [nzFrontPagination]="frontPagination"
+  [nzTotal]="totalNumberOfData"
+  [nzPageIndex]="pageIndex"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="showPagination"
+  [nzPaginationPosition]="paginationPosition"
+  [nzPaginationType]="paginationType"
+  [nzBordered]="showBorder"
+  [nzOuterBordered]="outerBordered"
+  [nzSize]="sizeOfTable"
+  [nzLoading]="loadingStatus"
+  [nzFooter]="tableFooter"
+  [nzNoResult]="noResult"
+  [nzShowQuickJumper]="showQuickJumper"
+  [nzHideOnSinglePage]="hidePaginationOnSinglePage"
+>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ingredient Name</th>
+      <th>Current Stock</th>
+      <th>UOM</th>
+      <th>Cost Per Unit</th>
+      <th>Calories Per Unit</th>
+      <th>Reorder Point</th>
+      <th>Description</th>
+      <th>Ideal Storing Temperature</th>
+      <th>Unit of Temperature</th>
+      <th>Category</th>
+      <th>Last Updated</th>
+      <th>Delete</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of rowSelectionTable.data">
+      <td>{{ data.id }}</td>
+      <td>{{ data.categoryName }}</td>
+      <td>{{ data.currentStockQuantity }}</td>
+      <td>{{ data.unitOfStock }}</td>
+      <td>{{ data.costPerUnit }}</td>
+      <td>{{ data.caloriesPerUnit }}</td>
+      <td>{{ data.reorderPoint }}</td>
+      <td>{{ data.description }}</td>
+      <td>{{ data.idealStoringTemperature }}</td>
+      <td>{{ data.unitOfIdealStoringTemperature }}</td>
+      <td>{{ data.category.categoryName }}</td>
+      <td>{{ data.updatedAt }}</td>
+
+      <td *ngIf="showDeleteButton" nz-td>
+        <button nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="onDelete(data.id)" [ngClass]="{'delete-button': true}">Delete</button>
+      </td>
+      <td *ngIf="showEditButton" nz-td>
+        <button (click)="onEdit(data)" [ngClass]="{'edit-button': true}">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+
+</nz-table>

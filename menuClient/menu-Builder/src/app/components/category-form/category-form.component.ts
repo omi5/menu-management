@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { CategoryService } from 'src/app/services/category.service';
 
 
 @Component({
@@ -10,33 +11,10 @@ import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
   styleUrls: ['./category-form.component.css']
 })
 export class CategoryFormComponent {
-  @Output() submittedFormData: EventEmitter<any> = new EventEmitter<any>();
 
-  validateForm!: FormGroup;
+   //For Image Upload
 
-  constructor(private fb: FormBuilder, private msg: NzMessageService) {
-    this.validateForm = this.fb.group({
-      startTime: ['', [Validators.required]],
-      endTime: ['', [Validators.required]],
-      scheduleName: ['', Validators.required],
-      description: [''],
-      remember: [true]
-    });
-  }
-
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      const formData = this.validateForm.value;
-      console.log(formData);
-      
-    // this.submittedFormData.(formData);
-  }
-    
-  }
-
-  //For Image Upload
-
-  handleChange({ file, fileList }: NzUploadChangeParam): void {
+   handleChange({ file, fileList }: NzUploadChangeParam): void {
     const status = file.status;
     if (status !== 'uploading') {
       console.log(file, fileList);
@@ -48,6 +26,36 @@ export class CategoryFormComponent {
     }
   }
   //For Image Upload
+
+  @Output() submittedFormData: EventEmitter<any> = new EventEmitter<any>();
+
+  validateForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private msg: NzMessageService, private categoryService: CategoryService) {
+    this.validateForm = this.fb.group({
+      restaurantId: 1,
+      categotyId: 1,
+      categoryName: ['', Validators.required],
+      categoryDescription: [''],
+      categoryImage: 'image',
+    });
+  }
+
+  submitFormForCategory(): void {
+      const formData = this.validateForm.value;
+      this.categoryService.createCategory(formData).subscribe(res=>{
+        alert('categoryCreated');
+        console.log(res);
+        
+      })
+      console.log(formData);
+      
+    // this.submittedFormData.(formData);
+  
+    
+  }
+
+ 
 
 
 }

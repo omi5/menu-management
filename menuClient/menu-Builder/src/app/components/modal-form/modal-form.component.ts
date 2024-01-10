@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { ScheduleTimeService } from 'src/app/services/schedule-time.service';
 
 
 interface Day {
@@ -16,70 +17,22 @@ interface Day {
 })
 export class ModalFormComponent {
 
-  // constructor(private fb: NonNullableFormBuilder) {}
-  // @Output() submitedFormData: EventEmitter<void> = new EventEmitter<void>();
-  
-  // validateForm: FormGroup<{
-  //   startTime: FormControl<string>;
-  //   endTime: FormControl<string>;
-  //   scheduleName: FormControl<string>;
-  //   description: FormControl<string>;
-  //   startDay: FormControl<string>;
-  //   remember: FormControl<boolean>;
-  // }> = this.fb.group({
-  //   startTime: ['', [Validators.required]],
-  //   endTime: ['', [Validators.required]],
-  //   scheduleName: ['', Validators.required],
-  //   description: [''],
-  //   startDay:[''],
-  //   remember: [true]
-  // });
-
-  // msg: any;
-
-
-  //getting all Input for the form 
-
-  // submitForm(): void {
-  //   console.log('submit', this.validateForm.value);
-
-  //   const selectedStartDay = this.days.find(day => day.selected && this.startDay === null);
-  //   const selectedEndDay = this.days.find(day => day.selected && this.startDay !== null && day.value !== this.startDay);
-  
-  //     if (selectedStartDay) {
-  //       this.startDay = selectedStartDay.value;
-  //     }
-  
-  //     if (selectedEndDay) {
-  //       this.endDay = selectedEndDay.value;
-  //     }
-  
-  //     if (this.startDay !== null && this.endDay !== null) {
-  //       console.log(this.startDay);
-  //       console.log(this.endDay);
-        
-  //       console.log('Selected Day Range:', this.startDay, 'to', this.endDay);
-  //       // Perform actions based on the selected start and end day
-  //     } else {
-  //       console.log('Please select start and end days.');
-  //     }
-
-  //     this.submitedFormData.emit(this.submitForm())
-  //   }
+ 
 
 
   @Output() submittedFormData: EventEmitter<any> = new EventEmitter<any>();
 
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private scheduleService: ScheduleTimeService) {
     this.validateForm = this.fb.group({
+      restaurantId: 1,
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
-      scheduleName: ['', Validators.required],
+      mealTimeName: ['', Validators.required],
       description: [''],
-      startDay: this.startDay,
-      endDay: this.endDay,
+      startDay:[''],
+      endDay: [''],
       remember: [true]
     });
   }
@@ -87,57 +40,66 @@ export class ModalFormComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       const formData = this.validateForm.value;
+      this.scheduleService.createScheduleTime(formData).subscribe(res=>{
+        alert('ScheduleTime Created');
+        console.log('scheduleCreated', res);
+        
+      });
       console.log(formData);
       
-      const selectedStartDay = this.days.find(day => day.selected && this.startDay === null);
-      const selectedEndDay = this.days.find(day => day.selected && this.startDay !== null && day.value !== this.startDay);
+    //   const selectedStartDay = this.days.find(day => day.selected && this.startDay === null);
+    //   const selectedEndDay = this.days.find(day => day.selected && this.startDay !== null && day.value !== this.startDay);
 
-      if (selectedStartDay) {
-        this.startDay = selectedStartDay.value;
-      }
+    //   if (selectedStartDay) {
+    //     this.startDay = selectedStartDay.value;
+    //   }
 
-      if (selectedEndDay) {
-        this.endDay = selectedEndDay.value;
-      }
+    //   if (selectedEndDay) {
+    //     this.endDay = selectedEndDay.value;
+    //   }
 
-      if (this.startDay !== null && this.endDay !== null) {
-        console.log(this.startDay);
-        console.log(this.endDay);
+    //   if (this.startDay !== null && this.endDay !== null) {
+    //     console.log(this.startDay);
+    //     console.log(this.endDay);
         
-      } else {
-        console.log('Please select start and end days.');
-      }
-    } else {
-      console.log('Form is invalid');
-    }
+    //   } else {
+    //     console.log('Please select start and end days.');
+    //   }
+    // } else {
+    //   console.log('Form is invalid');
+    // }
     // this.submittedFormData.(formData);
   }
     
 
-  days: Day[] = [
-    { name: 'Sunday', value: 0, selected: false },
-    { name: 'Monday', value: 1, selected: false },
-    { name: 'Tuesday', value: 2, selected: false },
-    { name: 'Wednesday', value: 3, selected: false },
-    { name: 'Thursday', value: 4, selected: false },
-    { name: 'Friday', value: 5, selected: false },
-    { name: 'Saturday', value: 6, selected: false }
-  ];
+  // days: Day[] = [
+  //   { name: 'Sunday', value: 0, selected: false },
+  //   { name: 'Monday', value: 1, selected: false },
+  //   { name: 'Tuesday', value: 2, selected: false },
+  //   { name: 'Wednesday', value: 3, selected: false },
+  //   { name: 'Thursday', value: 4, selected: false },
+  //   { name: 'Friday', value: 5, selected: false },
+  //   { name: 'Saturday', value: 6, selected: false }
+  // ];
 
-  startDay: number | null = null;
-  endDay: number | null = null;
+  // startDay: number | null = null;
+  // endDay: number | null = null;
  
 
-  onDaySelect(event: any, value: number): void {
-    const isChecked = event.target.checked;
-    const selectedDay = this.days.find(day => day.value === value);
-    if (selectedDay) {
-      selectedDay.selected = isChecked;
-    }
-  }
+  // onDaySelect(event: any, value: number): void {
+  //   const isChecked = event.target.checked;
+  //   const selectedDay = this.days.find(day => day.value === value);
+  //   if (selectedDay) {
+  //     selectedDay.selected = isChecked;
+  //   }
+  // }
 
-  isSelected(value: number): boolean {
-    const selectedDay = this.days.find(day => day.value === value);
-    return !!selectedDay?.selected;
-  }
+  // isSelected(value: number): boolean {
+  //   const selectedDay = this.days.find(day => day.value === value);
+  //   return !!selectedDay?.selected;
+  // }
+}
+
+days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+
 }

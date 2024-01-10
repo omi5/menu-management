@@ -27,6 +27,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 //For LoginForm
 import { NzFormModule } from 'ng-zorro-antd/form';
+
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
@@ -50,6 +51,14 @@ import { AddIngredientsFieldComponent } from './add-ingredients-field/add-ingred
 import { ItemDetailsComponent } from './components/scheduleTime/item-details/item-details.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { CategoryTableComponent } from './components/category-table/category-table.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+
+
+
+// Ng-Zorro-Antd modules
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'; // For Popconfirm
 
 
 
@@ -76,6 +85,7 @@ registerLocaleData(en);
     ItemDetailsComponent,
     RecipeFormComponent,
     CategoryFormComponent,
+    CategoryTableComponent,
    
   ],
   imports: [
@@ -96,7 +106,10 @@ registerLocaleData(en);
     NzUploadModule,
     NzDrawerModule,
     NzSelectModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzTableModule,
+    NzButtonModule,
+    NzPopconfirmModule
     
 
 
