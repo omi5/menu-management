@@ -1,6 +1,4 @@
-.mx-auto{
-    /* margin-left: 70px; */
-}
+
 .flex{
     display: flex;
 }
@@ -8,17 +6,13 @@
 .input-box-for-time input{
     width: 150px;
     margin-top: 5px;
-    padding: 13px;
+    /* padding: 13px; */
 }
 .input-box-for-time label{
     font-size: 20px; 
      
 }
-.label{
-    width: 150px;
-    margin-right: 20px;
-    /* border: 1px solid red; */
-}
+
 .input-box-for-name input{
     width: 350px;
     margin-top: 5px;

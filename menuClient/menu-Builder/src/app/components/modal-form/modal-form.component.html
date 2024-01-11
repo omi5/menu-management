@@ -2,15 +2,15 @@
 <div class="mx-auto">
     <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
      
-      <div>
+      <div class="flex">
         <nz-form-item class="input-box-for-time">
           <nz-form-control nzErrorTip="Please input your username!">
             
             <div class="label">
-              <label for="startTime" nzRequired>Start Time</label> 
+              <label for="startTime" nzRequired>Start Day</label> 
             </div>   
            <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" formControlName="startDay">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a day" formControlName="startDay">
               <nz-option *ngFor="let day of days" [nzValue]="day" [nzLabel]="day"></nz-option>
             </nz-select>
           </nz-input-group>
@@ -22,51 +22,66 @@
         <nz-form-control nzErrorTip="Please input your username!">
           
             <div class="label">
-              <label for="endTime" nzRequired>End Time</label>  
+              <label for="endTime" nzRequired>End Day</label>  
             </div>
         <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" formControlName="endDay">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a day" formControlName="endDay">
             <nz-option *ngFor="let day of days" [nzValue]="day" [nzLabel]="day"></nz-option>
           </nz-select>
         </nz-input-group>
         
       </nz-form-control>
     </nz-form-item>
+
+    <nz-form-item class="input-box-for-time">
+      <nz-form-control nzErrorTip="Please input your username!">
+        
+        <div class="label">
+          <label for="startTime" nzRequired>Start Time</label> 
+        </div>   
+        <nz-input-group nzPrefixIcon="" class="w-96 py-2">
+        <!-- <input formControlName="startTime" nz-input placeholder="Start Time" class="p-2 text-xl" /> -->
+        <!-- [(ngModel)]="time" -->
+        <nz-time-picker
+          formControlName="startTime"
+          [nzUse12Hours]="true"
+          (ngModelChange)="log($event)"
+          nzFormat="h:mm a"
+        ></nz-time-picker>
+        </nz-input-group>
+     
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="input-box-for-time">
+    <nz-form-control nzErrorTip="Please input your username!">
+      
+        <div class="label">
+          <label for="endTime" nzRequired>End Time</label>  
+        </div>
+    <nz-input-group nzPrefixIcon="" class="w-96 py-2">
+      <!-- <input formControlName="endTime" nz-input placeholder="End Time" class="p-2 text-xl" /> -->
+      <nz-time-picker
+          formControlName="startTime"
+          [nzUse12Hours]="true"
+          (ngModelChange)="log($event)"
+          nzFormat="h:mm a"
+        ></nz-time-picker>
+    </nz-input-group>
+    
+  </nz-form-control>
+</nz-form-item>
       </div>
       
             <div class="mt-4">
             <div class="flex">
-            <nz-form-item class="input-box-for-time">
-                <nz-form-control nzErrorTip="Please input your username!">
-                  
-                  <div class="label">
-                    <label for="startTime" nzRequired>Start Time</label> 
-                  </div>   
-                  <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-                  <input formControlName="startTime" nz-input placeholder="Start Time" class="p-2 text-xl" />
-                </nz-input-group>
-               
-              </nz-form-control>
-            </nz-form-item>
-
-            <nz-form-item class="input-box-for-time">
-              <nz-form-control nzErrorTip="Please input your username!">
-                
-                  <div class="label">
-                    <label for="endTime" nzRequired>End Time</label>  
-                  </div>
-              <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-                <input formControlName="endTime" nz-input placeholder="End Time" class="p-2 text-xl" />
-              </nz-input-group>
-              
-            </nz-form-control>
-          </nz-form-item>
+            
 
           <nz-form-item class="input-box-for-name">
             <nz-form-control nzErrorTip="Please input your username!">
               <label for="scheduleName" nzRequired>Schedule Name</label>    
             <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-              <input formControlName="mealTimeName" nz-input placeholder="Name" class="p-2 text-xl" />
+              <input formControlName="mealTimeName" style="font-size: 20px; height: 38px;" nz-input placeholder="Name" class="p-2 text-xl" />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>

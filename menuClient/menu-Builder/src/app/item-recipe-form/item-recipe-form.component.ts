@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
+import { CloudinaryService } from '../services/cloudinary.service';
 
 @Component({
   selector: 'app-item-recipe-form',
@@ -10,6 +10,7 @@ import { MenuItemServiceService } from '../services/menu-item-service.service';
 })
 export class ItemRecipeFormComponent implements OnInit {
   visible = false;
+  cloudinary: any;
 
   open(): void {
     this.visible = true;
@@ -26,7 +27,7 @@ export class ItemRecipeFormComponent implements OnInit {
   'Styrofoam ',
   'Paper Bags',
   'Thermal Insulated Bags']
-  typeOfFood = ['Delivey Only', 'Pick Up', 'Eat Only']
+ 
 
   //Array Of Portion Size
    portionSizes = [
@@ -38,20 +39,83 @@ export class ItemRecipeFormComponent implements OnInit {
 ]
 
 
+
+
   //for Uploading a Image
   constructor(private msg: NzMessageService, private menuService: MenuItemServiceService) {}
 
-  handleChange({ file, fileList }: NzUploadChangeParam): void {
-    const status = file.status;
-    if (status !== 'uploading') {
-      console.log(file, fileList);
+  // handleChange({ file, fileList }: NzUploadChangeParam): void {
+  //   const status = file.status;
+  //   if (status !== 'uploading') {
+  //     console.log(file, fileList);
+  //   }
+  //   if (status === 'done') {
+  //     this.msg.success(`${file.name} file uploaded successfully.`);
+  //   } else if (status === 'error') {
+  //     this.msg.error(`${file.name} file upload failed.`);
+  //   }
+  // }
+
+
+
+  uploadedImageUrl: string | undefined;
+  private successMessageDisplayed = false;
+
+  handleChange(info: NzUploadChangeParam): void {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+      console.log('File information:', info.file);
+    console.log('File list:', info.fileList);
     }
-    if (status === 'done') {
-      this.msg.success(`${file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      this.msg.error(`${file.name} file upload failed.`);
-    }
+    if (info.file.status === 'done' && !this.successMessageDisplayed) {
+      this.msg.success(`${info.file.name} file uploaded successfully`);
+      this.successMessageDisplayed = true;
+      console.log('Upload response:', info.file.response);
+      this.uploadedImageUrl = info.file.response.url; 
+    } 
+    // else if (info.file.status === 'error') {
+    //   this.msg.error(`${info.file.name} file upload failed.`);
+    //   console.error('Upload error:', info.file.error);
+    // }
   }
+
+
+  selectFile(event: any): void {
+    const file = event?.file?.originFileObj;
+
+      this.cloudinary.cloudUpload(file, 'user123') 
+      .subscribe(
+        (response: any) => {
+          console.log('Cloudinary API Response:', response);
+          const fakeEvent: NzUploadChangeParam = {
+            file: {
+              ...event.file,
+              status: 'done',
+              response: response,
+            },
+            fileList: [...event.fileList],
+          };
+  
+          this.handleChange(fakeEvent);
+        },
+        (error: any) => {
+          console.error('Cloudinary API Error:', error);
+          const fakeEvent: NzUploadChangeParam = {
+            file: {
+              ...event.file,
+              status: 'error',
+              response: error,
+            },
+            fileList: [...event.fileList],
+          };
+  
+          this.handleChange(fakeEvent);
+        }
+      );
+  
+    
+  }
+
 
 
   //For Ingredients
@@ -69,6 +133,15 @@ export class ItemRecipeFormComponent implements OnInit {
 
   listOfOptionForTastyTags: string[] = [];
   listOfSelectedValueForTastyTags = [];
+
+
+  //For MealTime 
+  listOfOptionForMealTime: string[] = []
+  listOfSeletedValueForMealTime = []
+
+  //For Type Of Food
+  listOfOptionForTypeOfFood : string[] = []
+  listOfSeletedValueForTypeOfFood: string[] = []
 
 
  
@@ -123,6 +196,9 @@ export class ItemRecipeFormComponent implements OnInit {
       'Fresh'
     ];
 
+    const mealTime = ['All Day', 'BreakFast', 'Lunch','Dinner']
+    const  typeOfFood = ['Delivey Only', 'Pick Up', 'Eat Only','All']
+
   
 
     // for (let i = 10; i < 36; i++) {
@@ -130,6 +206,8 @@ export class ItemRecipeFormComponent implements OnInit {
     // }
     this.listOfOption = allergens;
     this.listOfOptionForTastyTags= tastyTags;
+    this.listOfOptionForMealTime = mealTime;
+    this.listOfOptionForTypeOfFood = typeOfFood;
     
   }
 
@@ -169,6 +247,7 @@ export class ItemRecipeFormComponent implements OnInit {
       "categoryId" : this.categoryId,
       "item":{
       "itemName":this.itemName,
+      "timeOfDay": this.listOfSeletedValueForMealTime,
       "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "typeOfFoods" : this.typeOfFoods,
       // .split(',')[
@@ -180,7 +259,7 @@ export class ItemRecipeFormComponent implements OnInit {
         "itemPrice" : this.itemPrice,
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
-        "itemImage" : this.itemImage,
+        "itemImage" : 'https://i.pinimg.com/236x/2f/8b/5d/2f8b5d0bf6e405594cc26a83dd3daaa4.jpg',
         "ingredients": ingredients,
         "options":{
           "add": ingredients ,

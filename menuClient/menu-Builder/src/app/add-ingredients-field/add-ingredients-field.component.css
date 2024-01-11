@@ -13,25 +13,28 @@
       }
 
       .passenger-input {
-        width: 30%;
+        width: 35%;
         margin-right: 8px;
-        font-size: 20px;
+        font-size: 18px;
       }
       .passenger-input-sm{
         width: 12%;
+        height: 32px;
         margin-right: 8px;
         font-size: 18px;
       }
 
-      [nz-form] {
-        max-width: 900px;
+      
+      .ingredient-div{
+        width: 850px;
       }
 
       .add-button {
         width: 25%;
         background-color:#038851 ;
         color: #fff;
-        padding: 6px 4px;
+        height: 40px;
+        /* padding: 6px 4px; */
         font-size: 18px;
       }
       .add-button:hover{

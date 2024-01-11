@@ -30,63 +30,83 @@ export class BreakfastComponent implements OnInit {
   
     //getAll Item for backend for breakfast
     AllMenuItems : any[] = []
+    listForBreakfastMenu :any[] = []
     getMenuItems(){
       this.menuService.getAllMenuItems().subscribe(res=>{
         this.AllMenuItems.push(res);
         console.log('selected menu for breakfast',this.AllMenuItems);
+        console.log('New Menu item',this.AllMenuItems[0][0].item.timeOfDay.includes('BreakFast'));
+
+        for(let i = 0; i <= this.AllMenuItems[0].length; i++){
+          if(this.AllMenuItems[0][i].item.timeOfDay.includes('BreakFast')){
+                this.listForBreakfastMenu.push(this.AllMenuItems[0][i])
+              }
+        }
+        // if(this.AllMenuItems[0][0].item.timeOfDay.includes('BreakFast')){
+        //   this.listForBreakfastMenu.push(this.AllMenuItems[0][0])
+        // }
+
       })
+      console.log('listOfBreakfastMenu', this.listForBreakfastMenu);
+      
     }  
+
+    itemForBreakFast : any[] = []
+    getitems(){
+      console.log('New Menu item',this.AllMenuItems[0][0]);
+      
+    }
   
     categoriesName : string = '' ;
     MenuForBreakfast: any[]= []
     onlyForBreakfast: any[] = []
     listForBurger: any[] = []
     categoryList: any[] = []
-    filtercategoryList: any[]=[]
+    filtercategoryList: any[]=[1,2]
   
-    getFilterItemForBreakfast(id: any){
-      this.scheduleService.getAllMenuItemsUnderScheduleTime(id).subscribe(res=>{
-      this.MenuForBreakfast.push(res);
-      console.log("filtered Menu",this.MenuForBreakfast[0][0].listOfItems);
-      this.onlyForBreakfast.push(this.MenuForBreakfast[0][0].listOfItems)
-      console.log('listOfItem', this.onlyForBreakfast);
+//     getFilterItemForBreakfast(id: any){
+//       this.scheduleService.getAllMenuItemsUnderScheduleTime(id).subscribe(res=>{
+//       this.MenuForBreakfast.push(res);
+//       console.log("filtered Menu",this.MenuForBreakfast[0][0].listOfItems);
+//       this.onlyForBreakfast.push(this.MenuForBreakfast[0][0].listOfItems)
+//       console.log('listOfItem', this.onlyForBreakfast);
 
-      for(let item of this.onlyForBreakfast){
-          for(let i of item){
-            this.categoryList.push(i.categoryId);
-            console.log('i',i.categoryId);
-            if (i.categoryId == 1){
-              this.listForBurger.push(i)
-            }
+//       for(let item of this.onlyForBreakfast){
+//           for(let i of item){
+//             this.categoryList.push(i.categoryId);
+//             console.log('i',i.categoryId);
+//             if (i.categoryId == 1){
+//               this.listForBurger.push(i)
+//             }
             
-          }
-          const filtercategory = [...new Set (this.categoryList)];
-          this.filtercategoryList.push(filtercategory);
-          console.log('categoryIdListFiltered',this.filtercategoryList[0]);
+//           }
+//           const filtercategory = [...new Set (this.categoryList)];
+//           this.filtercategoryList.push(filtercategory);
+//           console.log('categoryIdListFiltered',this.filtercategoryList[0]);
           
           
-          console.log('listOfBurger', this.listForBurger);
+//           console.log('listOfBurger', this.listForBurger);
           
 
-        console.log('categoryId', item[0].categoryId);
+//         console.log('categoryId', item[0].categoryId);
         
-        if(item[0].categoryId === 1){
-          console.log('burger');
-          this.categoriesName = 'Burger';
-        }
-        else{
-          console.log('Not Found');
+//         if(item[0].categoryId === 1){
+//           console.log('burger');
+//           this.categoriesName = 'Burger';
+//         }
+//         else{
+//           console.log('Not Found');
           
-        }
-      }
-      console.log(this.categoriesName);
+//         }
+//       }
+//       console.log(this.categoriesName);
       
       
-    });
+//     });
 
  
 
-}
+// }
 
 
 
@@ -108,7 +128,8 @@ export class BreakfastComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMenuItems();
-    this.getFilterItemForBreakfast(1);
+    // this.getFilterItemForBreakfast(1);
+    this.getitems()
     console.log('Name',this.categoriesName);
     
     
@@ -142,7 +163,7 @@ export class BreakfastComponent implements OnInit {
     // },
     {
       categoryName: this.categoriesName,
-      items: this.listForBurger
+      items: this.listForBreakfastMenu
     }
   ];
 

@@ -17,7 +17,13 @@ interface Day {
 })
 export class ModalFormComponent {
 
- 
+ //For Time 
+
+ time: Date | null = null;
+
+  log(value: Date): void {
+    console.log(value);
+  }
 
 
   @Output() submittedFormData: EventEmitter<any> = new EventEmitter<any>();

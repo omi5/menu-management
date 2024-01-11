@@ -1,14 +1,14 @@
 
  <!-- <form nz-form *nzDrawerContent (ngSubmit)="createItem()"> -->
-      <div class="border-div" style="width: 1100px; margin: 0 auto;">
+      <div class="border-div" >
         <!-- for Uploading Image -->
         <div style=" margin-bottom: 20px; width: 400px; margin: 0 auto; margin-bottom: 10px;">
             <nz-upload
             
             nzType="drag"
             [nzMultiple]="true"
-            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            (nzChange)="handleChange($event)"
+            nzAction="''"
+            (nzChange)="selectFile($event)"
           >
             <p class="ant-upload-drag-icon">
               <span nz-icon nzType="inbox"></span>
@@ -20,23 +20,25 @@
             </nz-upload>
         </div>
         <!-- for Uploading Image -->
+
         <div nz-row [nzGutter]="8" class="mt" style="font-size: 25px;">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label class="label" style="width: 150px;  text-align: center; font-size: 20px;">Name :</label>
+              <label class="label" style="width: 180px;  text-align: center; font-size: 20px; ">Name :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter item name" [(ngModel)]="itemName" style="font-size: 20px;"/>
+                <input nz-input placeholder="please enter item name" [(ngModel)]="itemName" style="font-size: 18px; height: 38px;"/>
               </nz-form-control>
             </nz-form-item>
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 150px;  text-align: center; font-size: 20px;">Tasty Tags :</label>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Tasty Tags :</label>
               <nz-form-control>
                 <!-- <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemProfileTastyTags">
                   <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el"></nz-option>
                 </nz-select> -->
                 <nz-select
+                  style="font-size: 20px;"
                   [nzMaxTagCount]="3"
                   [nzMaxTagPlaceholder]="tagPlaceHolder"
                   nzMode="multiple"
@@ -45,7 +47,7 @@
                 >
                   <nz-option *ngFor="let item of listOfOptionForTastyTags" [nzLabel]="item" [nzValue]="item"></nz-option>
                 </nz-select>
-                <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                <ng-template #tagPlaceHolder let-selectedList >and {{ selectedList.length }} more selected</ng-template>
 
 
               </nz-form-control>
@@ -55,24 +57,48 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 150px;  text-align: center; font-size: 20px;">Category :</label>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Category :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="categoryId">
+                <nz-select style="font-size: 20px;" nzPlaceHolder="Please select a Category"  [(ngModel)]="categoryId">
                   <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el" ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>
+
           <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Type Of Food :</label>
+              <nz-form-control>
+                <!-- <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemProfileTastyTags">
+                  <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el"></nz-option>
+                </nz-select> -->
+                <nz-select
+                  style="font-size: 20px;"
+                  [nzMaxTagCount]="3"
+                  [nzMaxTagPlaceholder]="tagPlaceHolder"
+                  nzMode="multiple"
+                  nzPlaceHolder="Please select"
+                  [(ngModel)]="listOfSeletedValueForTypeOfFood"
+                >
+                  <nz-option *ngFor="let item of listOfOptionForTypeOfFood" [nzLabel]="item" [nzValue]="item"></nz-option>
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList >and {{ selectedList.length }} more selected</ng-template>
+
+
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <!-- <div nz-col nzSpan="12">
             <nz-form-item>
               <label  style="width: 150px;  text-align: center; font-size: 20px;">Type Of Food :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;" [(ngModel)]="typeOfFoods">
+                <nz-select style="font-size: 20px;" nzPlaceHolder="Please choose the type" style="font-size: 20px;" [(ngModel)]="typeOfFoods">
                   <nz-option *ngFor="let type of typeOfFood" [nzValue]="type" [nzLabel]="type" ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
-          </div>
+          </div> -->
         </div>
         <!-- <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
@@ -104,9 +130,9 @@
           </div> -->
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 150px;  text-align: center; font-size: 20px;">Portion Size :</label>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Portion Size :</label>
               <nz-form-control>
-                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemPortionsize">
+                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px; " [(ngModel)]="itemPortionsize">
                   <nz-option *ngFor="let el of portionSizes" [nzValue]="el" [nzLabel]="el" ></nz-option>
                 </nz-select>
               </nz-form-control>
@@ -114,9 +140,9 @@
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label  style="width: 150px; text-align: center; font-size: 20px;">Preparation Time :</label>
+              <label  style="width: 180px; text-align: center; font-size: 20px;">Preparation Time :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter preparation time" style="font-size: 20px;" [(ngModel)]="itemPreparationtime"/>
+                <input nz-input placeholder="please enter preparation time" style="font-size: 20px; height: 38px;" [(ngModel)]="itemPreparationtime"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -124,36 +150,17 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;">Serving Temp :</label>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;">Serving Temp :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter serving temp" style="font-size: 20px;" [(ngModel)]="servingTemperature" />
+                <input nz-input placeholder="please enter serving temp" style="font-size: 20px; height: 38px;" [(ngModel)]="servingTemperature" />
               </nz-form-control>
             </nz-form-item>
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;">Lasting Time</label>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;">Lasting Time</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter lasting time"  style="font-size: 20px;" [(ngModel)]="itemLastingTime"/>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
-
-        <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;">Price :</label>
-              <nz-form-control>
-                <input nz-input placeholder="" style="font-size: 20px;" [(ngModel)]="itemPrice" />
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-          <div nz-col nzSpan="12">
-            <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;">Total Calories :</label>
-              <nz-form-control>
-                <input nz-input placeholder="" style="font-size: 20px;" [(ngModel)]="itemCalories"/>
+                <input nz-input placeholder="please enter lasting time"  style="font-size: 20px; height: 38px;" [(ngModel)]="itemLastingTime"/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -162,13 +169,33 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 150px;  text-align: center; font-size: 20px;">Allergens :</label>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;">Price :</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter the price" style="font-size: 20px; height: 38px;" [(ngModel)]="itemPrice" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;">Total Calories :</label>
+              <nz-form-control>
+                <input nz-input placeholder="please enter the calories" style="font-size: 20px; height: 38px;" [(ngModel)]="itemCalories"/>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Allergens :</label>
               <nz-form-control>
                 <!-- <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemDietaryRestrictions">
                   <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el" ></nz-option>
                 </nz-select> -->
 
                 <nz-select
+                style="font-size: 20px;"
                   [nzMaxTagCount]="3"
                   [nzMaxTagPlaceholder]="tagPlaceHolder"
                   nzMode="multiple"
@@ -184,7 +211,7 @@
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 150px;  text-align: center; font-size: 20px;">How to Delivery :</label>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">How to Delivery :</label>
               <nz-form-control>
                 <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="ItemHowToDelivery">
                   <nz-option *ngFor="let el of howToDelivered" [nzValue]="el" [nzLabel]="el" ></nz-option>
@@ -195,11 +222,38 @@
           
         </div>
 
+        <div nz-row [nzGutter]="8" class="mt" style="font-size: 25px;">
+         
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <label style="width: 180px;  text-align: center; font-size: 20px;">Meal Time :</label>
+              <nz-form-control>
+                <!-- <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px;" [(ngModel)]="itemProfileTastyTags">
+                  <nz-option *ngFor="let el of owner" [nzValue]="el" [nzLabel]="el"></nz-option>
+                </nz-select> -->
+                <nz-select
+                  style="font-size: 20px;"
+                  [nzMaxTagCount]="3"
+                  [nzMaxTagPlaceholder]="tagPlaceHolder"
+                  nzMode="multiple"
+                  nzPlaceHolder="Please select"
+                  [(ngModel)]="listOfSeletedValueForMealTime"
+                >
+                  <nz-option *ngFor="let item of listOfOptionForMealTime" [nzLabel]="item" [nzValue]="item"></nz-option>
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+
+
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
 
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="24">
             <nz-form-item>
-              <label  style="width: 150px;  text-align: center; font-size: 20px;" [(ngModel)]="itemDescription">Description :</label>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;" [(ngModel)]="itemDescription">Description :</label>
               <nz-form-control>
                 <textarea
                   style="font-size: 20px;"
@@ -214,7 +268,7 @@
 
         <hr style=" border-top: 2px solid #038851;">
 
-        <h2 style="margin-bottom: 25px;">Ingredients And Preparation Instruction</h2>
+        <h2 style="margin-bottom: 25px; margin-left: 20px;">Ingredients And Preparation Instruction</h2>
         
           <app-add-ingredients-field #ingredients></app-add-ingredients-field>
           

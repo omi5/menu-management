@@ -53,6 +53,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 
 
@@ -109,7 +110,8 @@ registerLocaleData(en);
     NzDatePickerModule,
     NzTableModule,
     NzButtonModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzTimePickerModule
     
 
 

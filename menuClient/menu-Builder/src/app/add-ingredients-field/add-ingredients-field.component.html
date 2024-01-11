@@ -1,86 +1,119 @@
 <!-- [formGroup]="validateForm" -->
-<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()">
-  <nz-form-item *ngFor="let control of listOfControl; let i = index">
-    <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
-      <p style="font-size: 20px; text-align: center;">Ingredients</p>
-    </nz-form-label>
-    <nz-form-control
-      [nzXs]="24"
-      [nzSm]="20"
-      [nzOffset]="i === 0 ? 0 : 4"
-      nzErrorTip="Please input passenger's name or delete this field."
-    >
-      <!-- <input
-        class="passenger-input"
-        nz-input
-        placeholder="placeholder"
-        [attr.id]="control.id"
-        [formControlName]="control.controlInstance"
-      /> -->
-      <div class="display-flex">
-        <!-- <nz-form-label>Type Of Food</nz-form-label> -->
-        <!-- [(ngModel)]="ingredientName" -->
-        <!-- name="ingredientName" -->
-        <div class="passenger-input">
-          <nz-select nzPlaceHolder="Please choose the type" style="font-size: 20px;"  formControlName="ingredientName"  >
-            <nz-option *ngFor="let ingredient of ingredients" [nzValue]="ingredient" [nzLabel]="ingredient" ></nz-option>
-          </nz-select>
-        </div>
-      
-        <!-- [(ngModel)]="quantity" -->
-        <!-- name="quantity" -->
-        <input
-        class="passenger-input-sm"
-        nz-input
-        placeholder="qty"
-        [attr.id]="control.id"
-        formControlName="quantity"
-        />
-        <!-- [formControlName]="control.controlInstance" -->
-        <!-- <input
-        [(ngModel)]="unitOfStock"
-        name="unitOfStock"
-        class="passenger-input-sm"
-        nz-input
-        placeholder="units"
-        [attr.id]="control.id"
-        /> -->
-        <!-- [(ngModel)]="unitOfStock" -->
-        <!-- name="unitOfStock" -->
-        <nz-select nzPlaceHolder="units" style="font-size: 20px; width: 120px; margin-right: 8px;" formControlName="unitOfStock" >
-          <nz-option *ngFor="let el of convertionList" [nzValue]="el" [nzLabel]="el" ></nz-option>
-        </nz-select>
+<form nz-form   (ngSubmit)="submitForm()">
+  <div style="display: flex;">
+    <div class="ingredient-div">
 
-
-        <!-- [formControlName]="control.controlInstance" -->
-        <!-- [ngModelOptions]="{standalone: true}" -->
-        <!-- [(ngModel)]="preparation" -->
-        <!-- name="preparation" -->
-        <input
-        class="passenger-input"
-        nz-input
-        placeholder="preparation"
-        [attr.id]="control.id"
-        formControlName="preparation"
-        />
+      <nz-form-item *ngFor="let control of listOfControl; let i = index">
+        <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
+          <p style="font-size: 20px; text-align: center;width: 150px;">Ingredients</p>
+        </nz-form-label>
+        <nz-form-control
+          [nzXs]="24"
+          [nzSm]="20"
+          [nzOffset]="i === 0 ? 0 : 4"
+          nzErrorTip="Please input passenger's name or delete this field."
+        >
+          <!-- <input
+            class="passenger-input"
+            nz-input
+            placeholder="placeholder"
+            [attr.id]="control.id"
+            [formControlName]="control.controlInstance"
+          /> -->
+          <div class="display-flex">
+            <!-- <nz-form-label>Type Of Food</nz-form-label> -->
+            <!-- [(ngModel)]="ingredientName" -->
+            <!-- formControlName="ingredientName" -->
+            <!-- name="ingredientName" -->
+            <div class="passenger-input">
+              <nz-select nzPlaceHolder="Please choose the type" style="font-size: 23px;"  [(ngModel)]="ingredientName"  name="ingredientName">
+                <nz-option *ngFor="let ingredient of ingredients" [nzValue]="ingredient" [nzLabel]="ingredient" ></nz-option>
+              </nz-select>
+            </div>
+          
+            <input
+            [(ngModel)]="quantity"
+            name="quantity"
+            class="passenger-input-sm"
+            nz-input
+            placeholder="qty"
+            [attr.id]="control.id"
+            />
+            <!-- formControlName="quantity" -->
+            <!-- [formControlName]="control.controlInstance" -->
+            <!-- <input
+            [(ngModel)]="unitOfStock"
+            name="unitOfStock"
+            class="passenger-input-sm"
+            nz-input
+            placeholder="units"
+            [attr.id]="control.id"
+            /> -->
+            <!-- [(ngModel)]="unitOfStock" -->
+            <!-- name="unitOfStock" -->
+            <nz-select nzPlaceHolder="units" style="font-size: 20px; width: 120px; margin-right: 8px;" [(ngModel)]="unitOfStock" name="unitOfStock">
+              <nz-option *ngFor="let el of convertionList" [nzValue]="el" [nzLabel]="el" ></nz-option>
+            </nz-select>
     
-      <span
-        nz-icon
-        nzType="minus-circle-o"
-        class="dynamic-delete-button"
-        (click)="removeField(control, $event)"
-      ></span>
+    
+            <!-- [formControlName]="control.controlInstance" -->
+            <!-- [ngModelOptions]="{standalone: true}" -->
+            <!-- <input
+            [(ngModel)]="preparation"
+            name="preparation"
+            class="passenger-input"
+            nz-input
+            placeholder="preparation"
+            [attr.id]="control.id"
+            formControlName="preparation"
+            /> -->
+        
+          <span
+            nz-icon
+            nzType="minus-circle-o"
+            class="dynamic-delete-button"
+            (click)="removeField(control, $event)"
+          ></span>
+        </div>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+          <button nz-button  class="add-button" (click)="addField($event)">
+            <span nz-icon nzType="plus"></span>
+            Add Ingredient
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+      
     </div>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
-      <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
-        <span nz-icon nzType="plus"></span>
-        Add Ingredient
-      </button>
-    </nz-form-control>
-  </nz-form-item>
+    <div>
+      <h2 style="margin-left: 200px;"> Material Calculator</h2>
+      <nz-form-item>
+        <label class="label" style="width: 180px;  text-align: center; font-size: 20px;">Cost per unit :</label>
+        <nz-form-control>
+
+          <input nz-input placeholder=""  style="font-size: 20px; height: 38px;"  />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <label class="label" style="width: 180px;  text-align: center; font-size: 20px;">Calories per unit :</label>
+        <nz-form-control>
+          <!-- [(ngModel)]="recipeName" -->
+          <input nz-input placeholder=""  style="font-size: 20px; height: 38px;" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <label class="label" style="width: 180px;  text-align: center; font-size: 20px;">Total cost :</label>
+        <nz-form-control>
+          <!-- [(ngModel)]="recipeName" -->
+          <input nz-input placeholder=""  style="font-size: 20px; height: 38px;" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </div>
+  
   <!-- <nz-form-item>
     <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
       <button nz-button nzType="primary">Submit</button>
