@@ -1,18 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
-import { MenuItemServiceService } from '../services/menu-item-service.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CloudinaryService } from '../services/cloudinary.service';
 import { CategoryService } from '../services/category.service';
 import { CategoryList } from '../interfaces/categoryList.interface';
 
-@Component({
-  selector: 'app-item-recipe-form',
-  templateUrl: './item-recipe-form.component.html'
-})
-export class ItemRecipeFormComponent implements OnInit {
+import { MenuItemServiceService } from '../services/menu-item-service.service';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload/interface';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
-  
+
+@Component({
+  selector: 'app-edit-menu-item',
+  templateUrl: './edit-menu-item.component.html',
+  styleUrls: ['./edit-menu-item.component.css']
+})
+export class EditMenuItemComponent implements OnInit{
+
+  @Input() selectedMenuItem!: any; 
+
+
+ 
+
   visible = false;
   cloudinary: any;
 
@@ -49,6 +56,7 @@ export class ItemRecipeFormComponent implements OnInit {
   constructor(private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService) {
     this.getAllCategory()
 
+    
   }
 
   // handleChange({ file, fileList }: NzUploadChangeParam): void {
@@ -154,6 +162,10 @@ export class ItemRecipeFormComponent implements OnInit {
  categories: CategoryList[] = []
 
   ngOnInit(): void {
+
+    console.log('editForItem', this.selectedMenuItem);
+    
+
     //For allergens
     const allergens: string[] = [
       'Peanuts',
@@ -255,7 +267,11 @@ export class ItemRecipeFormComponent implements OnInit {
     const ingredients = this.includeIngredients()
     // if(this.categoryId === 'Burger'){
     //   this.categoryId = 1;
+
     // }
+  
+
+    
     console.log(this.categoryId);
     
     let newItem ={
@@ -333,8 +349,6 @@ export class ItemRecipeFormComponent implements OnInit {
   //   }
   //  }
   // }
-
-
 
 
 

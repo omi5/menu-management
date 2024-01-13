@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTablePaginationPosition, NzTablePaginationType, NzTableSize } from 'ng-zorro-antd/table/public-api';
 import { CategoryService } from 'src/app/services/category.service';
@@ -8,24 +8,26 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: './category-table.component.html',
   styleUrls: ['./category-table.component.css']
 })
-export class CategoryTableComponent {
+export class CategoryTableComponent implements OnInit {
+  isCollapsed = false;
+
 
   frontPagination = true;
   totalNumberOfData = 0;
   pageIndex = 1;
   pageSize = 10;
   showPagination = true;
+  showQuickJumper = true;
+  hidePaginationOnSinglePage = true;
   paginationPosition: NzTablePaginationPosition = 'bottom';
   paginationType: NzTablePaginationType = 'small';
   showBorder = true;
   outerBordered = true;
   sizeOfTable: NzTableSize = 'small';
   loadingStatus = false;
-  tableTitle = 'Ingredient Table';
+  tableTitle = 'Category Table';
   tableFooter = '';
   noResult = 'No Data Present';
-  showQuickJumper = true;
-  hidePaginationOnSinglePage = true;
   showDeleteButton = true;
   showEditButton = true;
   showAddButton = true;
@@ -44,139 +46,89 @@ export class CategoryTableComponent {
   }
 
   submitForm() {
-    this.createUpdateIngredient();
+    this.createUpdateCategory();
     this.visible = false;
   }
 
   refreshFields(): void {
-    this.id = 0;
+    this.id = '';
     this.categoryName = '';
-    this.unitOfStock = '';
-    this.caloriesPerUnit = '';
-    this.reorderPoint = '';
-    this.idealStoringTemperature = '';
-    this.unitOfIdealStoringTemperature = '';
-    this.perishable = '';
-    this.description = '';
-    this.categoryId = 0;
-    this.categoryName = '';
+    this.categoryDescription = '';
+    this.categoryImage = '';
+    this.categoryId = null;
   }
 
-  categoryList = [ 'Dairy', 'Vegetable', 'Meat', 'Seafood', 'Fruit', 'Beverage', 'Bread', 'Spice', 'Flour', 'Oil', 'Sauce'];
-  unitList = ['ml', 'gm', 'piece', 'bottle', 'packet', 'kg', 'litre', 'pound'];
-  temperatureUnitList = ['Celsius', 'Fahrenheit'];
-  perishableList = ['Yes', 'No'];
+  categoryList: any[] = []; 
 
-  ingredientData: any[] = []; // Array of Ingredient objects
+  id = '';
+  categoryName = '';
+  categoryDescription = '';
+  categoryImage = '';
+  categoryId: number | null = null;
 
-  onCurrentPageDataChange(ingredientData: any[]): void {
-    this.ingredientData = ingredientData;
-  }
-
-  id!: number;
-  categoryName!: string;
-  unitOfStock!: string;
-  categoryId!: number;
-  caloriesPerUnit!: number | any;
-  reorderPoint!: number | any;
-  idealStoringTemperature!: number | any;
-  unitOfIdealStoringTemperature!: string;
-  perishable!: string;
-  description!: string;
-  // categoryName!: string;
-
-  constructor(private ingredientService: CategoryService, private message: NzMessageService) {}
-
-  //Have to make the restaurant id dynamic
-  @Input() restaurantId: number = 1;
+  constructor(private categoryService: CategoryService, private message: NzMessageService) {}
 
   ngOnInit(): void {
-
-    // this.ingredientService.refreshNeeded$.subscribe(() => {
-    //   this.loadAllIngredients(1);
-    // });
-    
-    this.loadAllIngredients(1);
-    
+    this.loadAllCategories();
   }
 
-  private loadAllIngredients(restaurantId: number) {
-    this.ingredientService.getAllCategory().subscribe( res=>{
-      console.log('categoryFound',res);
-      
-    })
-    //   // next: (data) => {
-    //   //   this.ingredientData = data.map(ingredient => ({
-    //   //     ...ingredient,
-    //       // updatedAt: formatDateToString(new Date(ingredient.updatedAt)),
-    //       // costPerUnit: ingredient.costPerUnit ? Number(ingredient.costPerUnit.toFixed(2)) : 0,
-    //     // }
-    //     ));
-
-    //     console.log('Ingredient data loaded', this.ingredientData);
-    //   },
-    //   error: (error: any) => {
-    //     console.error('Error fetching ingredient data', error);
-    //   },
-    // });
+  private loadAllCategories() {
+    this.categoryService.getAllCategory().subscribe({
+      next: (data: Object) => {
+        this.categoryList = (data as any[]).map((ingredient: any) => ({
+          ...ingredient,
+        }));
+        console.log('Ingredient data loaded', this.categoryList);
+      },
+      error: (error) => {
+        console.error('Error fetching ingredient data', error);
+      },
+    });
   }
 
-  createUpdateIngredient() {
-    let newItem = {
-      restaurantId: 1,
-      categoryId: 1,
-      ingredientName: this.categoryName,
-      unitOfStock: this.unitOfStock,
-      caloriesPerUnit: this.caloriesPerUnit,
-      reorderPoint: this.reorderPoint,
-      perishable: this.perishable,
-      description: this.description,
-      unitOfIdealStoringTemperature: this.unitOfIdealStoringTemperature,
-      idealStoringTemperature: this.idealStoringTemperature,
+  createUpdateCategory() {
+    let newCategory = {
+      restaurantId: 1, 
+      categoryName: this.categoryName,
+      categoryDescription: this.categoryDescription,
+      categoryImage: this.categoryImage,
+      categoryId: this.categoryId,
     };
 
-    console.log(newItem);
+    console.log(newCategory);
 
-    // if (this.isEdit) {
-    //   this.ingredientService.editIngredient(this.id, newItem).subscribe((res) => {
-    //     console.log(res);
-    //   });
-    // } else {
-    // this.ingredientService.addIngredient(newItem).subscribe((res) => {
-    //   console.log(res);
-    // });
-    // }
-
+    if (this.isEdit) {
+      this.categoryService.updateCategory(this.id, newCategory).subscribe((res) => {
+        console.log(res);
+      });
+    } else {
+      this.categoryService.createCategory(newCategory).subscribe((res) => {
+        console.log(res);
+      });
+    }
   }
 
-  onDelete(id: number): void {
-    // this.ingredientService.deleteIngredient(id).subscribe({
-    //   next: () => {
-    //     this.ingredientData = this.ingredientData.filter(
-    //       (ingredient) => ingredient.id !== id
-    //     );
-    //     console.log(`Ingredient with ID ${id} deleted successfully.`);
-    //   },
-    //   error: (error:any) => {
-    //     console.error(`Error deleting ingredient with ID ${id}`, error);
-    //   },
-    // });
+  onDelete(id: string): void {
+    this.categoryService.deleteCategory(id).subscribe({
+      next: () => {
+        this.categoryList = this.categoryList.filter(
+          (category) => category._id !== id
+        );
+        console.log(`Category with ID ${id} deleted successfully.`);
+      },
+      error: (error: any) => {
+        console.error(`Error deleting category with ID ${id}`, error);
+      },
+    });
   }
 
-  onEdit(ingredient: any): void {
+  onEdit(category: any): void {
     this.visible = true;
-    this.isEdit = true
-    this.id = ingredient.id;
-    this.categoryName = ingredient.categoryName;
-    this.unitOfStock = ingredient.unitOfStock;
-    this.caloriesPerUnit = ingredient.caloriesPerUnit;
-    this.reorderPoint = ingredient.reorderPoint;
-    this.idealStoringTemperature = ingredient.idealStoringTemperature;
-    this.unitOfIdealStoringTemperature = ingredient.unitOfIdealStoringTemperature;
-    this.perishable = ingredient.perishable;
-    this.description = ingredient.description;
-    this.categoryId = ingredient.categoryId;
-    this.categoryName = ingredient.category.categoryName;
+    this.isEdit = true;
+    this.id = category._id;
+    this.categoryName = category.categoryName;
+    this.categoryDescription = category.categoryDescription;
+    this.categoryImage = category.categoryImage;
+    this.categoryId = category.categoryId;
   }
-
 }

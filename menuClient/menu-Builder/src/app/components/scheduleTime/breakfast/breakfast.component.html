@@ -1,23 +1,22 @@
-<nz-layout >
-    <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
-      <app-nz-sider></app-nz-sider>
-      
-    </nz-sider>
-    <!-- nz-Sider -->
-  
-     <nz-layout>
-       <nz-header>
-         <span
-           class="trigger"
-           nz-icon
-           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-           (click)="isCollapsed = !isCollapsed"
-         ></span>
-       </nz-header>
-       <!-- nz-headerForTrigger -->
-  
-       <nz-content>
-        <nz-modal
+<nz-layout>
+  <nz-sider nzWidth="15%" nzCollapsible [(nzCollapsed)]="isCollapsed" class="sidebar-bg-color">
+    <app-nz-sider></app-nz-sider>
+  </nz-sider>
+  <!-- nz-Sider -->
+
+  <nz-layout>
+    <nz-header>
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+    </nz-header>
+    <!-- nz-headerForTrigger -->
+
+    <nz-content>
+      <nz-modal
         [(nzVisible)]="isVisible"
         nzTitle="Create Schedule"
         nzOkText="Add"
@@ -25,38 +24,30 @@
         (nzOnOk)="handleOk()"
         (nzOnCancel)="handleCancel()"
         [nzStyle]="{ width: '700px' }"
-        >
+      >
         <ng-container *nzModalContent>
           <!-- category Form -->
           <app-modal-form></app-modal-form>
           <!-- category Form -->
         </ng-container>
-        </nz-modal>
-  
-  
-        <!-- Provide Your Container Here -->
+      </nz-modal>
 
-        <!-- <h1>Hello From Breakfast</h1> -->
-        <ng-container *ngFor="let category of filtercategoryList">
-          <!-- <h1>hello</h1> -->
-          <h1 class="category-Name">Burger</h1>
-          <div class="show-menus-items">
-          <div *ngFor="let item of listForBreakfastMenu">
-            <app-menu-item 
-            [itemName]="item.item.itemName"
-            [ingredients]="item.item.ingredients.length"
-            [preparationTime]="item.item.itemPreparationtime"
-            [itemId]="item.item.itemId"
-            [src]="item.item.itemImage"
+      <!-- Iterate over categorizedMenu keys (category names) -->
+      <ng-container *ngFor="let category of Object.keys(categorizedMenu)">
+        <h1 class="category-Name">{{ category }}</h1>
+        <div class="show-menus-items">
+          <!-- Iterate over menu items in the current category -->
+          <div *ngFor="let item of categorizedMenu[category]">
+            <app-menu-item
+              [itemName]="item.item.itemName"
+              [ingredients]="item.item.ingredients.length"
+              [preparationTime]="item.item.itemPreparationtime"
+              [itemId]="item.item.itemId"
+              [src]="item.item.itemImage"
             ></app-menu-item>
           </div>
-          </div>
-        </ng-container>
-        <!-- Provide Your Container Here -->
-       
-    
-       </nz-content>
-  
-     </nz-layout>
+        </div>
+      </ng-container>
+    </nz-content>
   </nz-layout>
-
+</nz-layout>

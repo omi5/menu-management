@@ -15,8 +15,8 @@ export class MenuItemServiceService {
     return this.http.post(this.url+'/create', itemDetails);
   }
 
-  getAllMenuItems(){
-    return this.http.get(this.url); 
+  getAllMenuItems(): Observable<any>{
+    return this.http.get<any>(this.url); 
   }
 
   getMenuItemById (id: any){

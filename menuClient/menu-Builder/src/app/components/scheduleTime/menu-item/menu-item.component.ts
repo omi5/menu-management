@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 
 @Component({
@@ -37,9 +38,12 @@ export class MenuItemComponent implements OnInit {
   // }
 
   //For Menu Item Drawer
+  ItemForEdit : any;
   visible = false;
   editMenuItem(id: number): void {
     this.visible = true;
+    console.log('click form view recipe ');
+    
     this.getMenuItemById(id);
     
   }
@@ -66,6 +70,7 @@ export class MenuItemComponent implements OnInit {
     this.menuService.getMenuItemById(id).subscribe(res=>{
       this.selectedMenuItem.push(res);
       console.log(" Menu Item by", res);
+      return res;
     })
   }
 
@@ -83,27 +88,14 @@ export class MenuItemComponent implements OnInit {
 
   //Update Menu Item
   updateMenuItem(id: number){
-
+  
+    
   }
 
 
 
   //submit Data 
-  restaurantId!: number;
-  MealTimeId!: number;
-  // itemName! : string;
-  itemProfileTastyTags! : string;
-  categoryId! : string;
-  typeOfFoods! : string;
-  itemPortionsize!: string;
-  itemPreparationtime!: string;
-  servingTemperature! : string;
-  itemLastingTime!: string;
-  itemPrice! : string;
-  itemCalories! : string;
-  itemDescription! : string;
-  itemDietaryRestrictions! : string;
-  itemImage! : string
+  
 
 
 

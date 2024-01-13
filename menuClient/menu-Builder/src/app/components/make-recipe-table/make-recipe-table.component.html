@@ -2,6 +2,7 @@
 
 
 
+
 <nz-layout >
   <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
     <app-nz-sider></app-nz-sider>
@@ -34,7 +35,7 @@
         [nzMaskClosable]="false"
         [nzWidth]="920"
         [nzVisible]="visible"
-        nzTitle="Category"
+        nzTitle="Make Recipe Item"
         [nzFooter]="footerTpl"
         (nzOnClose)="close()"
       >
@@ -42,14 +43,14 @@
           <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
-                <nz-form-label for="categoryName">Category Name</nz-form-label>
+                <nz-form-label for="categoryName">Recipe Name</nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
                     id="categoryName"
                     [(ngModel)]="categoryName"
                     name="categoryName"
-                    placeholder="Enter category name"
+                    placeholder="Enter recipe name"
                   />
                 </nz-form-control>
               </nz-form-item>
@@ -59,22 +60,36 @@
           <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
-                <nz-form-label for="categoryDescription">Category Description</nz-form-label>
+                <nz-form-label>Description</nz-form-label>
+                <nz-form-control>
+                  <textarea
+                    nz-input
+                    [(ngModel)]="categoryDescription"
+                    name="categoryDescription"
+                    placeholder="Enter description"
+                    [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                  ></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+      
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-label>Image</nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
-                    id="categoryDescription"
-                    [(ngModel)]="categoryDescription"
-                    name="categoryDescription"
-                    placeholder="Enter category description"
+                    [(ngModel)]="categoryImage"
+                    name="categoryImage"
+                    placeholder="Enter image URL"
                   />
                 </nz-form-control>
               </nz-form-item>
             </div>
           </div>
       
-          <!-- Add other fields based on your actual data structure -->
-          
         </form>
       
         <ng-template #footerTpl>
@@ -90,7 +105,7 @@
       <h2>{{ tableTitle }}</h2>
       <nz-table
         #rowSelectionTable
-        [nzData]="categoryList"
+        [nzData]="recipeData"
         [nzFrontPagination]="frontPagination"
         [nzTotal]="totalNumberOfData"
         [nzPageIndex]="pageIndex"
@@ -110,22 +125,24 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Category Name</th>
-            <th>Category Description</th>
-            <!-- Add other table headers based on your actual data structure -->
-            <!-- <th>Last Updated</th> -->
+            <th>Recipe Name</th>
+            <th>Cost</th>
+            <th>Calories</th>
+            <th>Description</th>
             <th>Delete</th>
             <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of rowSelectionTable.data">
-            <td>{{ data.categoryId }}</td>
-            <td>{{ data.categoryName }}</td>
-            <td>{{ data.categoryDescription }}</td>
-            <!-- Add other table cells based on your actual data structure -->
-            <!-- <td>{{ data.updatedAt }}</td> -->
-      
+            <td>{{ data.recipeId }}</td>
+            <td>{{ data.recipeName }}</td>
+            <td>{{ data.recipeItemCost }}</td>
+            <td>{{ data.recipeItemCalories }}</td>
+            <td>{{ data.recipeItemDescription }}</td>
+            
+            <!-- <td>{{ data.updatedAt }}</td>
+            <td>{{ data.updatedAt }}</td> -->
             <td *ngIf="showDeleteButton" nz-td>
               <button
                 nz-popconfirm
@@ -144,7 +161,8 @@
           </tr>
         </tbody>
       </nz-table>
-      
+     
+     
   
      </nz-content>
 
