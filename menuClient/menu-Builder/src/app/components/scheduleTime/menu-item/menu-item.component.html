@@ -1,41 +1,44 @@
 <head>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.15.4/css/ionicons.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <div class="ft-recipe">
     <div class="ft-recipe__thumb">
         <img [src]="src" alt="Strawberry Waffle">
+        <h2 class="recipe-title">{{itemName}}</h2>
+        <a (click)="editMenuItem(itemId)" class="viewRecipeBtn" >View Recipe</a>
     </div>
     <div class="ft-recipe__content">
         <header class="content__header">
             <div class="row-wrapper">
-                <h2 class="recipe-title">{{itemName}}</h2>
                 <!-- <div class="user-rating" style="margin-left: 60px"> <h2 class="recipe-title">$20</h2></div> -->
             </div>
             <ul class="recipe-details">
-                <li class="recipe-details-item time">
+                <li class="recipe-details-item time ">
                     <i class="fas fa-clock"></i>
-                    <span class="value">{{preparationTime}}</span>
+                    <span class="value" style="color: #05CC79;">{{preparationTime}}</span>
                     <span class="title">Minutes</span>
                 </li>
                 <li class="recipe-details-item ingredients">
                     <i class="fa fa-book"></i>
-                    <span class="value">{{ingredients}}</span>
+                    <span class="value" style="color: #05CC79;">{{ingredients}}</span>
                     <span class="title">Ingredients</span>
                 </li>
                 <li class="recipe-details-item servings">
                     <i class="fas fa-user"></i>
-                    <span class="value">4-6</span>
+                    <span class="value" style="color: #05CC79;">4-6</span>
                     <span class="title">Serving</span>
                 </li>
             </ul>
         </header>
-        <p class="description">
+        <p class="description" >
             There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...
         </p>
         <footer class="content__footer">
-            <a (click)="editMenuItem(itemId)" >View Recipe</a>
-            <a (click)="deleteMenuItem(itemId)" class="delete-btn">Delete</a>
+            <!-- <a (click)="editMenuItem(itemId)" >View Recipe</a> -->
+            <!-- <a (click)="deleteMenuItem(itemId)"><i class="fa fa-remove" style="font-size:48px;color:red"></i></a> -->
+            <a (click)="deleteMenuItem(itemId)"><i class="fa fa-remove" style="font-size:48px;color:#a11809; margin-left: 280px;"></i></a>
         </footer>
     </div>
 </div>

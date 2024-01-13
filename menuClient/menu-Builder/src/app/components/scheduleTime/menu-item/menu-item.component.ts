@@ -66,6 +66,7 @@ export class MenuItemComponent implements OnInit {
 
   //get Menu Item By Id
   selectedMenuItem :any = [];
+ 
   getMenuItemById(id: any){
     this.menuService.getMenuItemById(id).subscribe(res=>{
       this.selectedMenuItem.push(res);
