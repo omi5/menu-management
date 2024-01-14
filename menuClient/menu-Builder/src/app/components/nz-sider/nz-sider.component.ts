@@ -34,6 +34,16 @@ export class NzSiderComponent {
   onDinner(){
     this.router.navigate(['/dinner'])
   }
+
+  category(){
+    this.router.navigate(['/category'])
+  }
+  recipe(){
+    this.router.navigate(['/recipe'])
+  }
+  schedule(){
+    this.router.navigate(['/schedule'])
+  }
   
 
   //For Modal For Schedule Start Here
@@ -86,9 +96,7 @@ export class NzSiderComponent {
     this.data= data;
   }
 
-  category(){
-    this.router.navigate(['/category'])
-  }
+ 
 
 
   //For Menu Item Drawer

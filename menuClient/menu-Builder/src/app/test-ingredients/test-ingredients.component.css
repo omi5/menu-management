@@ -1,27 +1,6 @@
-.image-upload-div{
-    width: 60%;
-    height: 30px;
-    border: 1px solid red;
-}
-.mt{
-    padding-top: 10px;
-}
-.border{
-    border: 1px solid black !important;
-    height: 30px;
-    width: 100px;
-}
-.label{
-    font-size: 30px;
-}
-.border-div{
-    border: 2px solid red;
-}
-
-
-/* For ingredients */
 body {
     font-family: "GTPressura", sans-serif;
+    margin-left: 200px;
   }
   
   .delete-button,
@@ -91,5 +70,3 @@ body {
   .form-group button {
     margin-top: 10px;
   }
-
-/* For ingredients */

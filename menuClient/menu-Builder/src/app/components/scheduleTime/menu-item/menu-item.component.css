@@ -112,6 +112,10 @@ a {
     /* background-color: rgba(0, 0, 0, 0.2) */
 }
 
+.ft-recipe__thumb:hover .recipe-title{
+    display: none;
+}
+
 .ft-recipe__content {
     flex: 1;
     padding: 0 2em 1em;

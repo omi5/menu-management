@@ -1,1 +1,47 @@
-<h1>Hello,  {{selectedMenuItem[0].item.itemName}}</h1>
+<!-- <h1>Hello,  {{selectedMenuItem[0].item.itemName}}</h1> -->
+
+<form action="" [formGroup]="form" (ngSubmit)="onsubmit()">
+    <div>
+        <label for="" >Name</label>
+        <input type="text" formControlName="itemName" />
+    </div>
+    <div>
+        <label for="" >TastyTags</label>
+        <input type="text" formControlName="itemProfileTastyTags" />
+    </div>
+    <div>
+        <label for="" >Price</label>
+        <input type="text" formControlName="itemPrice" />
+    </div>
+    <div>
+        <label for="" >Preparation time</label>
+        <input type="text" formControlName="itemPreparationtime" />
+    </div>
+    <div>
+        <label for="" >Portion size</label>
+        <input type="text" formControlName="itemPortionsize" />
+    </div>
+    <div nz-col nzSpan="12">
+        <nz-form-item>
+          <label style="width: 180px;  text-align: center; font-size: 20px;">Tasty Tags :</label>
+          <nz-form-control>
+            <nz-select
+              formControlName="TastyTags"
+              style="font-size: 20px;"
+              [nzMaxTagCount]="3"
+              [nzMaxTagPlaceholder]="tagPlaceHolder"
+              nzMode="multiple"
+              nzPlaceHolder="Please select"
+              >
+              <!-- [(ngModel)]="listOfSelectedValueForTastyTags" -->
+              <nz-option *ngFor="let item of listOfOptionForTastyTags" [nzLabel]="item" [nzValue]="item"></nz-option>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList >and {{ selectedList.length }} more selected</ng-template>
+
+
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    <button type="submit" (click)="onsubmit">submit</button>
+    <button type="button" (click)="loadingData()">data</button>
+</form>

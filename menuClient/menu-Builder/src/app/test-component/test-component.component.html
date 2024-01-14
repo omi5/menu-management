@@ -1,0 +1,45 @@
+<!-- 
+
+<div *ngFor="let item of Object.keys(categorizedMenu)" >
+    <h2 *ngIf="categorizedMenu[item].length > 0">{{ item}}</h2>
+    <!-- <ul *ngIf="menuItems.length > 0">
+        <li *ngFor="let menuItem of categorizedMenu[category.categoryName]">
+            {{ menuItem.item.itemName }}
+        </li>
+        
+    </ul> 
+    
+    <div class="show-menus-items" *ngIf="menuItems.length > 0">
+      <div *ngFor="let item of categorizedMenu[item]">
+    <!-- Iterate over menu items in the current category -->
+      <!-- <app-menu-item
+        [itemName]="item.item.itemName"
+        [ingredients]="item.item.ingredients.length"
+        [preparationTime]="item.item.itemPreparationtime"
+        [itemId]="item.item.itemId"
+        [src]="item.item.itemImage"
+      ></app-menu-item> 
+      <div>{{item.item.itemName}}</div>
+    </div>
+  </div>
+ </div> 
+
+
+    -->
+    <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
+      <h2 *ngIf="categorizedMenu[itemCategory].length > 0">{{ itemCategory }}</h2>
+      
+      <div class="show-menus-items" *ngIf="categorizedMenu[itemCategory].length > 0">
+        <div *ngFor="let item of categorizedMenu[itemCategory]">
+          <!-- Iterate over menu items in the current category -->
+         <app-menu-item
+        [itemName]="item.item.itemName"
+        [ingredients]="item.item.ingredients.length"
+        [preparationTime]="item.item.itemPreparationtime"
+        [itemId]="item.item.itemId"
+        [src]="item.item.itemImage"
+      ></app-menu-item> 
+        </div>
+      </div>
+    </div>
+    

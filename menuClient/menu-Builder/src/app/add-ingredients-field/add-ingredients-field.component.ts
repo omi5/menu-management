@@ -41,16 +41,20 @@ export class AddIngredientsFieldComponent implements OnInit {
     const ingredientControl = this.fb.group({
       ingredientName: ['', Validators.required],
       quantity: [0, Validators.required],
-      unitOfStock: ['', Validators.required]
+      unitOfStock: ['', Validators.required],
+      costPerUnit: [0.599],
+      caloriesPerUnit: [150],
     });
 
     const ingredientsArray = this.validateForm.get('ingredients') as FormArray;
+   
     if (ingredientsArray) {
       ingredientsArray.push(ingredientControl);
     }
 
     this.listOfControl.push(control);
   }
+
 
   removeField(controlInstance: string, e: MouseEvent): void {
     e.preventDefault();
@@ -64,6 +68,7 @@ export class AddIngredientsFieldComponent implements OnInit {
 
     this.listOfControl.splice(index, 1);
   }
+
   submitForm(): void {
     console.log('Form Valid:', this.validateForm.valid);
   

@@ -33,11 +33,11 @@
       </nz-modal>
 
       <!-- Iterate over categorizedMenu keys (category names) -->
-      <ng-container *ngFor="let category of Object.keys(categorizedMenu)">
+      <!-- <ng-container *ngFor="let category of Object.keys(categorizedMenu)">
         <h1 class="category-Name">{{ category }}</h1>
         <div class="show-menus-items">
           <!-- Iterate over menu items in the current category -->
-          <div *ngFor="let item of categorizedMenu[category]">
+          <!-- <div *ngFor="let item of categorizedMenu[category]">
             <app-menu-item
               [itemName]="item.item.itemName"
               [ingredients]="item.item.ingredients.length"
@@ -47,7 +47,10 @@
             ></app-menu-item>
           </div>
         </div>
-      </ng-container>
+      </ng-container>  -->
+
+
+      <app-test-component [menuItems]="listForBreakfastMenu"></app-test-component>
     </nz-content>
   </nz-layout>
 </nz-layout>

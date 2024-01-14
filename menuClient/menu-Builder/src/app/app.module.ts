@@ -63,6 +63,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'; // For Popconfirm
 import { ScheduleTimeTableComponent } from './components/schedule-time-table/schedule-time-table.component';
 import { MakeRecipeTableComponent } from './components/make-recipe-table/make-recipe-table.component';
 import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component';
+import { TestComponentComponent } from './test-component/test-component.component';
+import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
 
 
 
@@ -92,7 +94,9 @@ registerLocaleData(en);
     CategoryTableComponent,
     ScheduleTimeTableComponent,
     MakeRecipeTableComponent,
-    EditMenuItemComponent
+    EditMenuItemComponent,
+    TestComponentComponent,
+    TestIngredientsComponent
    
   ],
   imports: [

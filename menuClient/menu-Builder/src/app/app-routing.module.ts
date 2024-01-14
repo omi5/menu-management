@@ -9,6 +9,8 @@ import { DinnerComponent } from './components/scheduleTime/dinner/dinner.compone
 import { CategoryTableComponent } from './components/category-table/category-table.component';
 import { ScheduleTimeTableComponent } from './components/schedule-time-table/schedule-time-table.component';
 import { MakeRecipeTableComponent } from './components/make-recipe-table/make-recipe-table.component';
+import { TestComponentComponent } from './test-component/test-component.component';
+import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
 
 
 // Import other components and create your routes
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'category', component:  CategoryTableComponent},
   { path: 'recipe', component:  MakeRecipeTableComponent},
   { path: 'schedule', component:  ScheduleTimeTableComponent},
+  { path: 'viewMenu', component:  TestComponentComponent},
+  { path: 'ingredients', component:  TestIngredientsComponent},
+
   // Add more routes as needed
 ];
 

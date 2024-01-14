@@ -10,7 +10,10 @@ import { MenuItemServiceService } from 'src/app/services/menu-item-service.servi
 })
 export class MenuItemComponent implements OnInit {
 
-  constructor(private menuService: MenuItemServiceService){}
+  constructor(private menuService: MenuItemServiceService){
+    console.log('click form view recipe',this.selectedMenuItem);
+    
+  }
 
   @Input() itemName!: string;
   @Input() src!: string;
@@ -42,9 +45,9 @@ export class MenuItemComponent implements OnInit {
   visible = false;
   editMenuItem(id: number): void {
     this.visible = true;
-    console.log('click form view recipe ');
-    
     this.getMenuItemById(id);
+    console.log('click form view recipe ',this.selectedMenuItem);
+    
     
   }
   close(): void {
@@ -57,7 +60,7 @@ export class MenuItemComponent implements OnInit {
   AllMenuItems : any[] = []
   getMenuItems(){
     this.menuService.getAllMenuItems().subscribe(res=>{
-      this.AllMenuItems.push(res);
+      this.AllMenuItems.push(...res);
       // console.log(res);
       
       console.log(this.AllMenuItems);
@@ -65,7 +68,7 @@ export class MenuItemComponent implements OnInit {
   }
 
   //get Menu Item By Id
-  selectedMenuItem :any = [];
+  selectedMenuItem :any = [] ;
  
   getMenuItemById(id: any){
     this.menuService.getMenuItemById(id).subscribe(res=>{

@@ -1,0 +1,88 @@
+.sidebar-bg-color{
+    background:#fff;
+    height: 100vh;
+    
+    /* width: 25% !important;
+    border: 1px solid black; */
+}
+nz-sider{
+    width: 300px;
+    color: black;
+}
+/* nz-sider:hover{
+    color: #05CC79;
+} */
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    
+   
+  }
+  
+  .trigger:hover {
+    color: #05CC79;
+  }
+  ul li{
+    font-size: 20px;
+  }
+  
+
+  ul li:hover {
+    color: #05CC79;
+  }
+  /* .hover-color:hover{
+    color: #05CC79;
+  } */
+
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+
+  nz-header {
+    background: #fff;
+    padding: 0;
+  }
+
+  nz-content {
+    margin: 0 16px;
+  }
+
+  nz-breadcrumb {
+    margin: 16px 0;
+  }
+
+  .inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+  }
+
+  h2{
+    font-size: 38px;
+    font-weight: 600;
+    margin-left: 32px;
+    margin-top: 15px;
+  }
+
+  .flex{
+    display: flex;
+  }
+
+  /* Show Menu Items Styles */
+
+  .show-menus-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(20% - 10px), 1fr));
+    gap: 4px;
+}
+
+.category-Name{
+    font-size: 36px;
+    margin-left: 25px;
+}

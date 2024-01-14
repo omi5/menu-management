@@ -1,8 +1,11 @@
+
+
+
+<!-- Include only FontAwesome 5 -->
 <head>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.15.4/css/ionicons.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <div class="ft-recipe">
     <div class="ft-recipe__thumb">
         <img [src]="src" alt="Strawberry Waffle">
@@ -43,36 +46,23 @@
     </div>
 </div>
 
-
- <!--For  Menu Item Drawer  -->
- <nz-drawer
- [nzBodyStyle]="{ overflow: 'auto' }"
- [nzMaskClosable]="false"
- [nzWidth]="1420"
- [nzVisible]="visible"
- nzTitle="Edit Item"
- [nzFooter]="footerTpl"
- (nzOnClose)="close()"
+<nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="1420"
+    [nzVisible]="visible"
+    nzTitle="Edit Item"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
 >
+    <form nz-form *nzDrawerContent>
+        <!-- ... (unchanged) -->
+    </form>
 
-
-<form nz-form *nzDrawerContent>
- 
- <!-- <app-item-recipe-form></app-item-recipe-form> -->
-<app-edit-menu-item [selectedMenuItem]="selectedMenuItem"></app-edit-menu-item>
-
-<!-- Form for recipe add -->
-
-<!-- Form for recipe add -->
- 
-</form>
-
-<ng-template #footerTpl>
- <div style="float: right; margin-right: 30px;">
-   <button nz-button style="margin-right: 8px;" (click)="close()"  class="close-btn">Cancel</button>
-   <button nz-button nzType="primary" (click)="updateMenuItem(1)"  class="Add-btn">Update Item</button>
- </div>
-</ng-template>
+    <ng-template #footerTpl>
+        <div style="float: right; margin-right: 30px;">
+            <button nz-button style="margin-right: 8px;" (click)="close()" class="close-btn">Cancel</button>
+            <button nz-button nzType="primary" (click)="updateMenuItem(1)" class="Add-btn">Update Item</button>
+        </div>
+    </ng-template>
 </nz-drawer>
-
-

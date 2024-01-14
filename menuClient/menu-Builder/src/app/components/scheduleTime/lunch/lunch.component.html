@@ -38,7 +38,7 @@
 
         <!-- <h1>Hello From Lunch</h1> -->
 
-        <ng-container *ngFor="let category of filtercategoryList">
+        <!-- <ng-container *ngFor="let category of filtercategoryList">
           <h1>hello</h1>
           <h1 class="category-Name">{{ category[0] }}</h1>
           <div class="show-menus-items">
@@ -52,10 +52,11 @@
             ></app-menu-item>
           </div>
           </div>
-        </ng-container>
+        </ng-container> -->
         <!-- Provide Your Container Here -->
-       
-    
+
+      <app-test-component [menuItems]="listForLunchMenu"></app-test-component>
+   
        </nz-content>
   
      </nz-layout>
