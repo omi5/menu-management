@@ -343,11 +343,11 @@ totalCost: number = 0;
   
   
   createItem(){
-    const ingredients = this.includeIngredients()
+    const ingredients = this.submitForm()
     // if(this.categoryId === 'Burger'){
     //   this.categoryId = 1;
     // }
-    console.log(this.categoryId);
+    console.log('new ingredinte=======',ingredients);
     
     let newItem ={
       "restaurantId": 1,
@@ -368,7 +368,8 @@ totalCost: number = 0;
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
         "itemImage" : 'https://i.pinimg.com/236x/2f/8b/5d/2f8b5d0bf6e405594cc26a83dd3daaa4.jpg',
-        "ingredients": ingredients,
+        "ingredients": ingredients
+        ,
         "options":{
           "add": ingredients ,
           "no": ingredients
@@ -542,6 +543,7 @@ submitForm(): void {
     console.log('Form Data:', formData);
     console.log('Total Cost Per Unit:', this.totalCostPerUnit);
     console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
+    return formData.ingredientBatches;
 
     // Uncomment the following lines to send the data to the service
     // this.menuService.createNewMenuItem(formData).subscribe({
