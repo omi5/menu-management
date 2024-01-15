@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoryList } from '../interfaces/categoryList.interface';
+import { CategoryList,Category } from '../interfaces/categoryList.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,13 @@ export class CategoryService {
   getCategoryById(id: any){
     return this.http.get(this.url+`/${id}`);
   }
-  updateCategory(id:any, categoryObject: any){
-    return this.http.put(this.url + `/edit/${id}`, categoryObject)
+  updateCategory(id:any, categoryObject: Category){
+    console.log("service hit", categoryObject);
+    
+    let result = this.http.put(this.url + `/edit/${id}`, categoryObject)
+    console.log("from service", result);
+    return result
+    
   }
   deleteCategory(id: any){
     return this.http.delete(this.url + `/delete/${id}`);

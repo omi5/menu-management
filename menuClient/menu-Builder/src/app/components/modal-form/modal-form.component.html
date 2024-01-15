@@ -6,7 +6,7 @@
         <nz-form-item class="input-box-for-time">
           <nz-form-control nzErrorTip="Please input your username!">
             
-            <div class="label">
+            <div class="label" style="margin-bottom: 5px;">
               <label for="startTime" nzRequired>Start Day</label> 
             </div>   
            <nz-input-group nzPrefixIcon="" class="w-96 py-2">
@@ -21,8 +21,8 @@
       <nz-form-item class="input-box-for-time">
         <nz-form-control nzErrorTip="Please input your username!">
           
-            <div class="label">
-              <label for="endTime" nzRequired>End Day</label>  
+            <div class="label" style="margin-bottom: 5px;">
+              <label for="endTime" nzRequired >End Day</label>  
             </div>
         <nz-input-group nzPrefixIcon="" class="w-96 py-2">
           <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a day" formControlName="endDay">
@@ -40,14 +40,14 @@
           <label for="startTime" nzRequired>Start Time</label> 
         </div>   
         <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-        <!-- <input formControlName="startTime" nz-input placeholder="Start Time" class="p-2 text-xl" /> -->
+        <input formControlName="startTime" nz-input placeholder="Start Time" class="p-2 text-xl" />
         <!-- [(ngModel)]="time" -->
-        <nz-time-picker
+        <!-- <nz-time-picker
           formControlName="startTime"
           [nzUse12Hours]="true"
           (ngModelChange)="log($event)"
           nzFormat="h:mm a"
-        ></nz-time-picker>
+        ></nz-time-picker> -->
         </nz-input-group>
      
     </nz-form-control>
@@ -60,13 +60,13 @@
           <label for="endTime" nzRequired>End Time</label>  
         </div>
     <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-      <!-- <input formControlName="endTime" nz-input placeholder="End Time" class="p-2 text-xl" /> -->
-      <nz-time-picker
+      <input formControlName="endTime" nz-input placeholder="End Time" class="" />
+      <!-- <nz-time-picker
           formControlName="startTime"
           [nzUse12Hours]="true"
           (ngModelChange)="log($event)"
           nzFormat="h:mm a"
-        ></nz-time-picker>
+        ></nz-time-picker> -->
     </nz-input-group>
     
   </nz-form-control>

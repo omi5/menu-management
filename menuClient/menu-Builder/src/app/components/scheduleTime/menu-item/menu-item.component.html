@@ -2,9 +2,7 @@
 
 
 <!-- Include only FontAwesome 5 -->
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
+
 
 <div class="ft-recipe">
     <div class="ft-recipe__thumb">
@@ -12,37 +10,43 @@
         <h2 class="recipe-title">{{itemName}}</h2>
         <a (click)="editMenuItem(itemId)" class="viewRecipeBtn" >View Recipe</a>
     </div>
-    <div class="ft-recipe__content">
-        <header class="content__header">
-            <div class="row-wrapper">
-                <!-- <div class="user-rating" style="margin-left: 60px"> <h2 class="recipe-title">$20</h2></div> -->
-            </div>
-            <ul class="recipe-details">
-                <li class="recipe-details-item time ">
-                    <i class="fas fa-clock"></i>
-                    <span class="value" style="color: #05CC79;">{{preparationTime}}</span>
-                    <span class="title">Minutes</span>
-                </li>
-                <li class="recipe-details-item ingredients">
-                    <i class="fa fa-book"></i>
-                    <span class="value" style="color: #05CC79;">{{ingredients}}</span>
-                    <span class="title">Ingredients</span>
-                </li>
-                <li class="recipe-details-item servings">
-                    <i class="fas fa-user"></i>
-                    <span class="value" style="color: #05CC79;">4-6</span>
-                    <span class="title">Serving</span>
-                </li>
-            </ul>
-        </header>
-        <p class="description" >
-            There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...
-        </p>
-        <footer class="content__footer">
-            <!-- <a (click)="editMenuItem(itemId)" >View Recipe</a> -->
-            <!-- <a (click)="deleteMenuItem(itemId)"><i class="fa fa-remove" style="font-size:48px;color:red"></i></a> -->
-            <a (click)="deleteMenuItem(itemId)"><i class="fa fa-remove" style="font-size:48px;color:#a11809; margin-left: 280px;"></i></a>
-        </footer>
+    <!-- class="ft-recipe__content" -->
+    
+    <div >
+        <!-- class="content__header" -->
+        <div style=" margin-left: 15px; margin-top: 10px; width: 400px; ">
+            <p  style="font-size: 18px;">
+                There’s no better way to celebrate May being National Strawberry Month than by sharing a 
+            </p>    
+                
+               
+                    <div style="display: flex;">
+                    <div class="li-style" >
+                        <span style="font-size: 58px;">.</span>
+                        <span class="" style="color: #05CC79;">{{preparationTime}}</span>
+                        <span class="" style="padding-left: 8px;">Min</span>
+                    </div>
+                    <div class="li-style">
+                        <span style="font-size: 58px;">.</span>
+                        <span class="" style="color: #05CC79;">{{ingredients}}</span>
+                        <span class="" style="padding-left: 8px;">Ingredients</span>
+                    </div>
+                    <div class="li-style">
+                        <span style="font-size: 58px;">.</span>
+        
+                        <span class="" style="color: #05CC79;">4-6</span>
+                        <span class="" style="padding-left: 8px;">Serving</span>
+                    </div>
+                    <div class="li-style">
+        
+                        <a (click)="deleteMenuItem(itemId)"><span  style="font-size:28px;color:#a11809; margin-top: 42px; margin-left: 34px;" nz-icon nzType="delete" nzTheme="outline"></span></a>
+                    </div>
+                  </div>
+        </div>
+       
+          
+        
+       
     </div>
 </div>
 

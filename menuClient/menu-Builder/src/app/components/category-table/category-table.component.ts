@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTablePaginationPosition, NzTablePaginationType, NzTableSize } from 'ng-zorro-antd/table/public-api';
+import { Category } from 'src/app/interfaces/categoryList.interface';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -34,6 +35,7 @@ export class CategoryTableComponent implements OnInit {
 
   visible = false;
   isEdit = false;
+  private _id!: string;
   
   onAdd(): void {
     this.visible = true;
@@ -46,8 +48,16 @@ export class CategoryTableComponent implements OnInit {
   }
 
   submitForm() {
-    this.createUpdateCategory();
+    // this.onEdit();
     this.visible = false;
+    this.onEdit({ 
+      _id: this._id,
+      restaurantId: 1,
+      categoryName: this.categoryName,
+      categoryDescription: this.categoryDescription,
+      categoryImage: this.categoryImage,
+     
+    });
   }
 
   refreshFields(): void {
@@ -86,27 +96,27 @@ export class CategoryTableComponent implements OnInit {
     });
   }
 
-  createUpdateCategory() {
-    let newCategory = {
-      restaurantId: 1, 
-      categoryName: this.categoryName,
-      categoryDescription: this.categoryDescription,
-      categoryImage: this.categoryImage,
-      categoryId: this.categoryId,
-    };
+  // createUpdateCategory() {
+  //   let newCategory = {
+  //     restaurantId: 1, 
+  //     categoryName: this.categoryName,
+  //     categoryDescription: this.categoryDescription,
+  //     categoryImage: this.categoryImage,
+  //     categoryId: this.categoryId,
+  //   };
 
-    console.log(newCategory);
+  //   console.log(newCategory);
 
-    if (this.isEdit) {
-      this.categoryService.updateCategory(this.id, newCategory).subscribe((res) => {
-        console.log(res);
-      });
-    } else {
-      this.categoryService.createCategory(newCategory).subscribe((res) => {
-        console.log(res);
-      });
-    }
-  }
+  //   if (this.isEdit) {
+  //     this.categoryService.updateCategory(this.cate_id, newCategory).subscribe((res) => {
+  //       console.log(res);
+  //     });
+  //   } else {
+  //     this.categoryService.createCategory(newCategory).subscribe((res) => {
+  //       console.log(res);
+  //     });
+  //   }
+  // }
 
   onDelete(id: string): void {
     this.categoryService.deleteCategory(id).subscribe({
@@ -122,13 +132,34 @@ export class CategoryTableComponent implements OnInit {
     });
   }
 
-  onEdit(category: any): void {
+  onEdit(category: Category): void {
+    console.log('category table ',category);
+    
     this.visible = true;
     this.isEdit = true;
-    this.id = category._id;
+    this._id = category._id;
+   
     this.categoryName = category.categoryName;
     this.categoryDescription = category.categoryDescription;
     this.categoryImage = category.categoryImage;
-    this.categoryId = category.categoryId;
+   // this.restaurantId = category.restaurantId;
+    // this.categoryId = category.categoryId;
+    const editDetails = {
+      restaurantId: 1,
+      _id: category._id,
+      categoryName: category.categoryName,
+      categoryDescription: category.categoryDescription,
+      categoryImage: category.categoryImage,
+      //categoryId: category._id,
+    };
+    console.log('categoryId', category);
+    console.log("edit details final", editDetails);
+    
+    
+    this.categoryService.updateCategory(category._id, editDetails).subscribe(res=>{
+      console.log('====subscribe Data',res);
+      
+    })
   }
+
 }

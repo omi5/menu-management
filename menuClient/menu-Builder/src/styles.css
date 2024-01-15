@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('./assets/fonts/proximanova-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GT Pressura';
+    src: url('./assets/fonts/GT-Pressura-Extended-Black.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'Proxima Nova', 'sans-serif';
+}
+.font-gt-pressura {
+    font-family: 'GT Pressura', 'Arial', 'sans-serif';
+}
