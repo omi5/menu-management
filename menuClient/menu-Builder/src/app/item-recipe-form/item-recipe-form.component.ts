@@ -380,7 +380,7 @@ totalCostForAddOns: number = 0;
       "itemName":this.itemName,
       "timeOfDay": this.listOfSeletedValueForMealTime,
       "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
-      "typeOfFoods" : this.typeOfFoods,
+      "typeOfFoods" : this.listOfSeletedValueForTypeOfFood,
       // .split(',')[
       //   Math.floor(Math.random()*this.typeOfFood.length)] ,
         "itemPortionsize" : this.itemPortionsize,
@@ -388,6 +388,8 @@ totalCostForAddOns: number = 0;
         "servingTemperature" : parseInt(this.servingTemperature) ,
         "itemLastingTime" : parseInt(this.itemLastingTime),
         "itemPrice" : this.itemPrice,
+        "itemDescription": this.itemDescription,
+        "ItemHowToDelivery": this.ItemHowToDelivery,
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
         "itemImage" : 'https://i.pinimg.com/236x/2f/8b/5d/2f8b5d0bf6e405594cc26a83dd3daaa4.jpg',

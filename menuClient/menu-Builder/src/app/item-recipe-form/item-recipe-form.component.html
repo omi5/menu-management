@@ -212,9 +212,10 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="24">
             <nz-form-item>
-              <label  style="width: 180px;  text-align: center; font-size: 20px;" [(ngModel)]="itemDescription">Description :</label>
+              <label  style="width: 180px;  text-align: center; font-size: 20px;">Description :</label>
               <nz-form-control>
                 <textarea
+                [(ngModel)]="itemDescription"
                   style="font-size: 20px;"
                   nz-input
                   placeholder="please enter  description"

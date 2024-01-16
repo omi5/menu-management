@@ -14,7 +14,7 @@
                  alt="Avocado Salad"
                  />
              
-                <a (click)="editMenuItem(id)" class="viewBtn">View item</a>
+                <a (click)="editMenuItem(id)"  class="viewBtn">View item</a>
                 
             </div>
             <div class="meal-content">
@@ -52,23 +52,92 @@
   
 
 
-<nz-drawer
+   
+    <nz-drawer
     [nzBodyStyle]="{ overflow: 'auto' }"
     [nzMaskClosable]="false"
     [nzWidth]="1420"
-    [nzVisible]="visible"
-    nzTitle="Edit Item"
+    [nzVisible]="true"
+    nzTitle=""
     [nzFooter]="footerTpl"
     (nzOnClose)="close()"
->
-    <form nz-form *nzDrawerContent>
-        <!-- ... (unchanged) -->
-    </form>
+   >
+<ng-container *nzDrawerContent>
+
+  <div style="margin: 0 auto; margin-top: 80px;border: 1px solid yellow; display: flex;">
+    <div style="width: 500px; ">
+      <img
+      style="height: 900px; border-radius: 28px;"
+          [src]="src"
+          class="meal-img"
+          alt="Avocado Salad"
+      />
+    </div>
+    <!-- information div -->
+    <div style="border: 1px solid black; width: 700px; margin-left: 70px;">
+
+      <h1
+      style="font-size: 48px;color: #333;font-weight: 600;"
+      >{{itemName}}</h1>
+      <div style="display: flex; justify-content: space-evenly; margin-right: 50px; margin-top: 40px;">
+        <div>
+          <div style="display: flex;">
+            <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
+            <p class="peraStyle">{{itemCalories}}</p>
+          </div>
+          <span class="spanStyle">Calories</span>
+        </div>
+        <div>
+          <div style="display: flex;">
+            
+            <span class="iconDetails" nz-icon nzType="pie-chart" nzTheme="outline"></span>
+            <p class="peraStyle">{{itemPortionsize}}</p>
+          </div>
+          <span class="spanStyle" style="padding-left: 70px;">Size</span>
+        </div>
+        <div>
+          <div style="display: flex;">
+           
+            <span  class="iconDetails" nz-icon nzType="field-time" nzTheme="outline"></span>
+            <p class="peraStyle">{{preparationTime}}</p>
+          </div>
+          <span class="spanStyle" style="padding-left: 15px;">Minutes</span>
+        </div>
+        <div>
+          <div style="display: flex;">
+            <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
+            <p class="peraStyle">{{itemservingTemp}}</p>
+          </div>
+          <span class="spanStyle">Celsius</span>
+        </div>
+        <div>
+          <div style="display: flex;">
+            <span  class="iconDetails" nz-icon nzType="field-time" nzTheme="outline"></span>
+            <p class="peraStyle">{{itemLastingTime}}</p>
+          </div>
+          <span class="spanStyle">Minutes</span>
+        </div>
+
+      </div>
+
+      <div style="height: 400px; border: 1px solid palevioletred; margin-top: 48px;">
+        <h2 style="font-size: 32px; color: #000; font-weight: 500;">Ingredients</h2>
+      </div>
+      <div>
+        <p style="font-size: 32px;color: #333;font-weight: 500;">${{itemPrice}}</p>
+      </div>
+
+    </div >
+
+    
+  </div> 
+</ng-container>     
 
     <ng-template #footerTpl>
-        <div style="float: right; margin-right: 30px;">
+        <!-- <div style="float: right; margin-right: 30px;">
             <button nz-button style="margin-right: 8px;" (click)="close()" class="close-btn">Cancel</button>
             <button nz-button nzType="primary" (click)="updateMenuItem(1)" class="Add-btn">Update Item</button>
-        </div>
+        </div> -->
     </ng-template>
 </nz-drawer>
+

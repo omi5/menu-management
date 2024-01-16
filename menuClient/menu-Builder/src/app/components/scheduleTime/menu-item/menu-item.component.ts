@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
@@ -23,6 +24,8 @@ export class MenuItemComponent implements OnInit {
   @Input() id!: string
   @Input() itemCalories!: number
   @Input() itemPortionsize!: string
+  @Input() itemservingTemp!: number
+  @Input() itemLastingTime!: number
 
   ngOnInit(): void {
     this.getMenuItems();
@@ -49,6 +52,7 @@ export class MenuItemComponent implements OnInit {
   editMenuItem(id: string): void {
     this.visible = true;
     this.getMenuItemById(id);
+    this.loadingData();
     console.log('click form view recipe ',this.selectedMenuItem);
     
     
@@ -76,11 +80,59 @@ export class MenuItemComponent implements OnInit {
   getMenuItemById(id: any){
     this.menuService.getMenuItemById(id).subscribe(res=>{
       this.selectedMenuItem.push(res);
-      console.log(" Menu Item by", res);
+      console.log(" Menu Item b======y", res);
       return res;
     })
   }
 
+  form = new FormGroup({
+    itemName: new FormControl(),
+    itemProfileTastyTags: new FormControl(),
+    itemPrice: new FormControl(),
+    itemPreparationtime: new FormControl(),
+    itemPortionsize: new FormControl(),
+    itemCalories: new FormControl(),
+    itemDietaryRestrictions: new FormControl(),
+    itemImage: new FormControl(),
+    servingTemperature: new FormControl(),
+    timeOfDay: new FormControl(),
+    itemDescription: new FormControl(),
+    itemPackingType: new FormControl(),
+    itemLastingTime: new FormControl(),
+    itemCategory: new FormControl(),
+    typeOfFood: new FormControl(),
+    
+   })
+   loadingData(){
+    this.form.patchValue({
+      itemName: this.selectedMenuItem[0].item.itemName,
+      itemProfileTastyTags:this.selectedMenuItem[0].item.itemProfileTastyTags,
+      itemPrice:this.selectedMenuItem[0].item.itemPrice,
+      itemPreparationtime:this.selectedMenuItem[0].item.itemPreparationtime,
+      itemPortionsize:this.selectedMenuItem[0].item.itemPortionsize,
+      itemCalories : this.selectedMenuItem[0].item.itemCalories,
+      itemDietaryRestrictions: this.selectedMenuItem[0].item.itemDietaryRestrictions,
+      itemImage: this.selectedMenuItem[0].item.itemImage,
+      servingTemperature: this.selectedMenuItem[0].item.servingTemperature,
+      timeOfDay: this.selectedMenuItem[0].item.timeOfDay,
+      itemDescription:this.selectedMenuItem[0].item.itemDescription,
+      itemPackingType:this.selectedMenuItem[0].item.itemPackingType,
+      itemLastingTime:this.selectedMenuItem[0].item.itemLastingTime,
+      typeOfFood: this.selectedMenuItem[0].item.typeOfFood,
+      itemCategory:this.selectedMenuItem[0].category
+
+
+
+
+
+      
+    })
+   }
+   onsubmit(){
+    console.log(this.form.value);
+    
+   }
+   listOfOptionForTastyTags=[1,2,3]
   
 
 
