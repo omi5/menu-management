@@ -66,6 +66,7 @@ import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component
 import { TestComponentComponent } from './test-component/test-component.component';
 import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
 
+//For Icons
 
 
 registerLocaleData(en);
@@ -121,7 +122,8 @@ registerLocaleData(en);
     NzTableModule,
     NzButtonModule,
     NzPopconfirmModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+   
     
 
 

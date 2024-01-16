@@ -43,14 +43,46 @@
           <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
-                <nz-form-label for="categoryName">Recipe Name</nz-form-label>
+                <nz-form-label for="recipeName">Recipe Name</nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
-                    id="categoryName"
-                    [(ngModel)]="categoryName"
-                    name="categoryName"
+                    id="recipeName"
+                    [(ngModel)]="recipeName"
+                    name="recipeName"
                     placeholder="Enter recipe name"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-label for="recipeName">Recipe cost</nz-form-label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    id="recipeItemCost"
+                    [(ngModel)]="recipeItemCost"
+                    name="recipeItemCost"
+                    placeholder="Enter recipe cost"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-label for="recipeName">Recipe calories</nz-form-label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    id="recipeItemCalories"
+                    [(ngModel)]="recipeItemCalories"
+                    name="recipeItemCalories"
+                    placeholder="Enter recipe calories"
                   />
                 </nz-form-control>
               </nz-form-item>
@@ -64,8 +96,8 @@
                 <nz-form-control>
                   <textarea
                     nz-input
-                    [(ngModel)]="categoryDescription"
-                    name="categoryDescription"
+                    [(ngModel)]="recipeItemDescription"
+                    name="recipeItemDescription"
                     placeholder="Enter description"
                     [nzAutosize]="{ minRows: 4, maxRows: 4 }"
                   ></textarea>
@@ -74,21 +106,7 @@
             </div>
           </div>
       
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>Image</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    [(ngModel)]="categoryImage"
-                    name="categoryImage"
-                    placeholder="Enter image URL"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
+         
       
         </form>
       
@@ -124,7 +142,7 @@
       >
         <thead>
           <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Recipe Name</th>
             <th>Cost</th>
             <th>Calories</th>
@@ -135,7 +153,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of rowSelectionTable.data">
-            <td>{{ data.recipeId }}</td>
+            <!-- <td>{{ data.recipeId }}</td> -->
             <td>{{ data.recipeName }}</td>
             <td>{{ data.recipeItemCost }}</td>
             <td>{{ data.recipeItemCalories }}</td>

@@ -128,16 +128,16 @@ export class ScheduleTimeTableComponent implements OnInit {
     }
   }
 
-  onDelete(mealTimeId: string): void {
-    this.scheduleTimeService.deleteScheduleTime(mealTimeId).subscribe({
+  onDelete(Id: string): void {
+    this.scheduleTimeService.deleteScheduleTime(Id).subscribe({
       next: () => {
         this.scheduleTimes = this.scheduleTimes.filter(
-          (scheduleTime) => scheduleTime.mealTimeId !== mealTimeId
+          (scheduleTime) => scheduleTime._id !== Id
         );
-        console.log(`Schedule Time with ID ${mealTimeId} deleted successfully.`);
+        console.log(`Schedule Time with ID ${Id} deleted successfully.`);
       },
       error: (error: any) => {
-        console.error(`Error deleting schedule time with ID ${mealTimeId}`, error);
+        console.error(`Error deleting schedule time with ID ${Id}`, error);
       },
     });
   }
@@ -145,6 +145,7 @@ export class ScheduleTimeTableComponent implements OnInit {
   onEdit(scheduleTime: any): void {
     this.visible = true;
     this.isEdit = true;
+
     this.id = scheduleTime._id;
     this.restaurantId = scheduleTime.restaurantId;
     this.mealTimeName = scheduleTime.mealTimeName;
@@ -154,6 +155,28 @@ export class ScheduleTimeTableComponent implements OnInit {
     this.startTime = scheduleTime.startTime;
     this.endTime = scheduleTime.endTime;
     this.mealTimeId = scheduleTime.mealTimeId;
+
+
+    const editDetails={
+      // restaurantId: 1,
+      _id :scheduleTime._id,
+      restaurantId : scheduleTime.restaurantId,
+      mealTimeName : scheduleTime.mealTimeName,
+      startDay : scheduleTime.startDay,
+      endDay : scheduleTime.endDay,
+      description : scheduleTime.description,
+      startTime : scheduleTime.startTime,
+      endTime : scheduleTime.endTime,
+      mealTimeId : scheduleTime.mealTimeId,
+    }
+    console.log('categoryId=======', scheduleTime);
+    console.log("edit details final=====", editDetails);
+
+
+    this.scheduleTimeService.updateScheduleTime(scheduleTime._id, editDetails).subscribe(res=>{
+      console.log('====subscribe Data for schedule' ,res);
+      
+    })
   }
 
 }

@@ -24,7 +24,7 @@ export class MakeRecipeService {
   }
 
 
-  deleteRecipeItem(id: number){
+  deleteRecipeItem(id: string){
     return this.http.delete(this.url+`/delete/${id}`);
   }
 }

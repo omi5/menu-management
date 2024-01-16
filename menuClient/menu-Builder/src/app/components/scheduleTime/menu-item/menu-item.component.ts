@@ -19,7 +19,10 @@ export class MenuItemComponent implements OnInit {
   @Input() src!: string;
   @Input() ingredients!: number
   @Input() preparationTime!: number
-  @Input() itemId!: number
+  @Input() itemPrice!: number
+  @Input() id!: string
+  @Input() itemCalories!: number
+  @Input() itemPortionsize!: string
 
   ngOnInit(): void {
     this.getMenuItems();
@@ -43,7 +46,7 @@ export class MenuItemComponent implements OnInit {
   //For Menu Item Drawer
   ItemForEdit : any;
   visible = false;
-  editMenuItem(id: number): void {
+  editMenuItem(id: string): void {
     this.visible = true;
     this.getMenuItemById(id);
     console.log('click form view recipe ',this.selectedMenuItem);
@@ -84,7 +87,7 @@ export class MenuItemComponent implements OnInit {
   
 
   //Delete a Menu Item 
-  deleteMenuItem(id: number){
+  deleteMenuItem(id: string){
     this.menuService.deleteMenuItem(id).subscribe(res=>{
       console.log("Deleted Successfully");
     })

@@ -1,54 +1,56 @@
 
 
 
-<!-- Include only FontAwesome 5 -->
 
-
-<div class="ft-recipe">
-    <div class="ft-recipe__thumb">
-        <img [src]="src" alt="Strawberry Waffle">
-        <h2 class="recipe-title">{{itemName}}</h2>
-        <a (click)="editMenuItem(itemId)" class="viewRecipeBtn" >View Recipe</a>
-    </div>
-    <!-- class="ft-recipe__content" -->
-    
-    <div >
-        <!-- class="content__header" -->
-        <div style=" margin-left: 15px; margin-top: 10px; width: 400px; ">
-            <p  style="font-size: 18px;">
-                There’s no better way to celebrate May being National Strawberry Month than by sharing a 
-            </p>    
+      <!-- <section class="section-meals"> -->
+        <div class="container grid grid--3-cols margin-right-md">
+         
+      
+          <div class="meal">
+          <div class="viewDiv">
+            <img
+                [src]="src"
+                 class="meal-img"
+                 alt="Avocado Salad"
+                 />
+             
+                <a (click)="editMenuItem(id)" class="viewBtn">View item</a>
                 
-               
-                    <div style="display: flex;">
-                    <div class="li-style" >
-                        <span style="font-size: 58px;">.</span>
-                        <span class="" style="color: #05CC79;">{{preparationTime}}</span>
-                        <span class="" style="padding-left: 8px;">Min</span>
-                    </div>
-                    <div class="li-style">
-                        <span style="font-size: 58px;">.</span>
-                        <span class="" style="color: #05CC79;">{{ingredients}}</span>
-                        <span class="" style="padding-left: 8px;">Ingredients</span>
-                    </div>
-                    <div class="li-style">
-                        <span style="font-size: 58px;">.</span>
-        
-                        <span class="" style="color: #05CC79;">4-6</span>
-                        <span class="" style="padding-left: 8px;">Serving</span>
-                    </div>
-                    <div class="li-style">
-        
-                        <a (click)="deleteMenuItem(itemId)"><span  style="font-size:28px;color:#a11809; margin-top: 42px; margin-left: 34px;" nz-icon nzType="delete" nzTheme="outline"></span></a>
-                    </div>
-                  </div>
-        </div>
-       
+            </div>
+            <div class="meal-content">
+              <!-- <div class="meal-tags">
+                <span class="tag tag--vegan">Vegan</span>
+                <span class="tag tag--paleo">Paleo</span>
+              </div> -->
+              <p class="meal-title">{{itemName}}</p>
+              <ul class="meal-attributes">
+                <li class="meal-attribute">
+                  <span nz-icon nzType="fire" nzTheme="outline" class="meal-icon"></span>
+                    <span><strong>{{itemCalories}}</strong> calories</span>
+                </li>
+                <li class="meal-attribute">
+                  <span nz-icon nzType="pie-chart" nzTheme="outline" class="meal-icon"></span>
+                    <span><strong>{{itemPortionsize}}</strong></span>
+                </li>
+                <li class="meal-attribute">
+                  <span nz-icon nzType="dollar" nzTheme="outline" class="meal-icon"></span>
+                    <span><strong>{{itemPrice}}</strong>$</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- <div class="li-style"> -->
+              <a (click)="deleteMenuItem(id)" class="deletebtn"><span  style="font-size:28px;color:#a11809; margin-top: 20px; margin-left: 330px; margin-bottom: 8px;" nz-icon nzType="delete" nzTheme="outline"></span></a>
+            <!-- </div> -->
+          </div>
           
-        
-       
-    </div>
-</div>
+         
+          
+        </div>
+    <!-- </section> -->
+  
+  
+
 
 <nz-drawer
     [nzBodyStyle]="{ overflow: 'auto' }"

@@ -55,9 +55,10 @@ export class MakeRecipeTableComponent implements OnInit {
 
   refreshFields(): void {
     this.id = 0;
-    this.categoryName = '';
-    this.categoryDescription = '';
-    this.categoryImage = '';
+    this.recipeName = '';
+    this.recipeItemDescription = '';
+    this.recipeItemCost = '';
+    this.recipeItemCalories = '';
   }
 
   recipeData: any[] = [];
@@ -67,9 +68,10 @@ export class MakeRecipeTableComponent implements OnInit {
   }
 
   id!: number;
-  categoryName!: string;
-  categoryDescription!: string;
-  categoryImage!: string;
+  recipeName!: string;
+  recipeItemDescription!: string;
+  recipeItemCost!: string;
+  recipeItemCalories!: string;
 
   constructor(private recipeService: MakeRecipeService) {}
 
@@ -96,9 +98,10 @@ export class MakeRecipeTableComponent implements OnInit {
   createUpdateRecipeItem() {
     let newRecipeItem = {
       restaurantId: 1,
-      categoryName: this.categoryName,
-      categoryDescription: this.categoryDescription,
-      categoryImage: this.categoryImage,
+      recipeName: this.recipeName,
+      recipeItemDescription: this.recipeItemDescription,
+      recipeItemCost: this.recipeItemCost,
+      recipeItemCalories: this.recipeItemCalories,
     };
 
     console.log('New Recipe Item:', newRecipeItem);
@@ -125,10 +128,10 @@ export class MakeRecipeTableComponent implements OnInit {
   }
   
 
-  onDelete(id: number): void {
+  onDelete(id: string): void {
     this.recipeService.deleteRecipeItem(id).subscribe({
       next: () => {
-        this.recipeData = this.recipeData.filter(recipe => recipe.id !== id);
+        this.recipeData = this.recipeData.filter(recipe => recipe._id !== id);
         console.log(`Recipe with ID ${id} deleted successfully.`);
       },
       error: (error: any) => {
@@ -141,11 +144,33 @@ export class MakeRecipeTableComponent implements OnInit {
   onEdit(recipe: any): void {
     this.visible = true;
     this.isEdit = true;
+
     this.id = recipe._id;
-    this.categoryName = recipe.categoryName;
-    this.categoryDescription = recipe.categoryDescription;
-    this.categoryImage = recipe.categoryImage;
+    this.recipeName = recipe.recipeName;
+    this.recipeItemDescription = recipe.recipeItemDescription;
+    this.recipeItemCost = recipe.recipeItemCost;
+    this.recipeItemCalories = recipe.recipeItemCalories;
+
+    const editDetails ={
+      restaurantId: 1,
+      _id : recipe._id,
+      recipeName : recipe.recipeName,
+      recipeItemDescription : recipe.recipeItemDescription,
+      recipeItemCost : recipe.recipeItemCost,
+      recipeItemCalories : recipe.recipeItemCalories,
+    }
+
+    console.log('Recipe =======', recipe);
+    console.log("edit recipe details final====", editDetails);
+
+    this.recipeService.updateRecipeItem(recipe._id,editDetails).subscribe(res=>{
+      console.log('recipe updated details',res);
+      
+    })
   }
+
+
+  //for Drawer
 
   visibleRecipeDrawer = false;
 

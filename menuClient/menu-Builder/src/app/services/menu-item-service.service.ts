@@ -25,7 +25,7 @@ export class MenuItemServiceService {
   updateMenuItem(id: string, updatedValue :any ){
     return this.http.put(this.url + `/edit/${id}`,updatedValue)
   }
-  deleteMenuItem(id: number){
+  deleteMenuItem(id: string){
     return this.http.delete(this.url+`/delete/${id}`);
   }
 }

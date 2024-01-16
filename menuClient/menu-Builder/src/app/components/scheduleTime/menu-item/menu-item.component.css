@@ -1,118 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
 
-/* Variable Definitions */
-body {
-    background: #d6d6d6;
-    color: #323232;
-    line-height: 1.5;
-}
-
-/* Global Box Sizing */
 * {
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-/* Image Styling */
-img {
-    vertical-align: text-bottom;
+html {
+  font-size: 62.5%;
 }
 
-/* Anchor Styling */
-a {
-    color: inherit;
-    text-decoration: none;
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
 }
 
-
-
-.ft-recipe {
-    max-width: 410px;
-    height: auto;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border-radius: 28px;
-    /* margin: 0 30px; */
+.container {
+  /* 1140px */
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
 }
 
-
-
-.ft-recipe__thumb {
-    position: relative;
-    height: 200px;
-    box-shadow: 0px 0px 60px 0 rgba(0, 0, 0, 0.2);
+.grid {
+  display: grid;
+  column-gap: 6.4rem;
+  row-gap: 9.6rem;
 }
 
-.ft-recipe__thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 50%;
-    transition: transform 0.3s ease-in-out;
-}
-.ft-recipe__thumb:hover img{
-    transform: scale(1.2);
-   
-
-}
-.viewRecipeBtn{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 28px;
-    font-weight: 700;
-    display: none;
-
-}  
-.ft-recipe__thumb:hover .viewRecipeBtn{
-    display: block;
-    
+.grid--3-cols {
+  grid-template-columns: auto auto auto auto auto;
 }
 
-.ft-recipe__thumb:hover .recipe-title{
-    display: none;
+.margin-right-md {
+  margin-bottom: 4.8rem !important;
 }
 
-
-.recipe-title{
-    position: absolute;
-    bottom: 0;
-    left: 10px;
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
+strong {
+  font-weight: 500;
 }
 
-
-.recipe-details-item .value {
-    color: #ff4f87;
-    margin-left: .35em;
-    vertical-align: bottom;
-    font-size: 20px;
-    font-weight: 600;
+.section-meals {
+  padding: 9.6rem 0;
 }
 
-
-.description {
-    
-    height: 40px;
-    overflow:hidden;
+.meal {
+  width: 380px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+  
 }
 
-
-.li-style{
-    list-style: none;
-    font-size: 18px;
-    padding-right: 5px;
-   
-
-}
-/* .title{
-    padding-left: 10px;
+/* .meal:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
 } */
 
+.meal-content {
+  padding: 10px 10px 0px 4rem;
+}
+
+.meal-tags {
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background-color: #51cf66;
+  color: #333;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.tag--vegetarian {
+  background-color: #51cf66;
+}
+
+.tag--vegan {
+  background-color: #94d82d;
+}
+
+.tag--paleo {
+  background-color: #ffd43b;
+}
+
+.meal-title {
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.meal-attributes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meal-attribute {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meal-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: #e67e22;
+}
+
+.meal-img {
+  width: 100%;
+  height: 224.15px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+.viewDiv:hover .meal-img{
+  transform: scale(1.2);
+}
+.deletebtn{
+  margin-top: 20px;
+}
+
+.viewDiv{
+  position: relative;
+}
+.viewBtn a{
+  text-decoration: none;
+}
+.viewBtn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: none;
+ 
+}
+.viewDiv:hover .viewBtn{
+  display: block;
+}
