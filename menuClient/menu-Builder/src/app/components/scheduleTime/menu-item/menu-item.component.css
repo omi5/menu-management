@@ -154,6 +154,7 @@ strong {
 .peraStyle{
   font-size: 32px;
   color: #000;
+  margin-left: 8px;
 }
 .spanStyle{
   color: gray;

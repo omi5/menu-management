@@ -57,14 +57,14 @@
     [nzBodyStyle]="{ overflow: 'auto' }"
     [nzMaskClosable]="false"
     [nzWidth]="1420"
-    [nzVisible]="true"
+    [nzVisible]="visible"
     nzTitle=""
     [nzFooter]="footerTpl"
     (nzOnClose)="close()"
    >
 <ng-container *nzDrawerContent>
 
-  <div style="margin: 0 auto; margin-top: 80px;border: 1px solid yellow; display: flex;">
+  <div style="margin: 0 auto; margin-top: 80px; display: flex;">
     <div style="width: 500px; ">
       <img
       style="height: 900px; border-radius: 28px;"
@@ -74,7 +74,7 @@
       />
     </div>
     <!-- information div -->
-    <div style="border: 1px solid black; width: 700px; margin-left: 70px;">
+    <div style=" width: 700px; margin-left: 70px;">
 
       <h1
       style="font-size: 48px;color: #333;font-weight: 600;"
@@ -85,10 +85,10 @@
             <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
             <p class="peraStyle">{{itemCalories}}</p>
           </div>
-          <span class="spanStyle">Calories</span>
+          <span class="spanStyle" style="padding-left: 30px;">Calories</span>
         </div>
         <div>
-          <div style="display: flex;">
+          <div style="display: flex; text-align: center;">
             
             <span class="iconDetails" nz-icon nzType="pie-chart" nzTheme="outline"></span>
             <p class="peraStyle">{{itemPortionsize}}</p>
@@ -120,11 +120,19 @@
 
       </div>
 
-      <div style="height: 400px; border: 1px solid palevioletred; margin-top: 48px;">
+      <div style="height: 400px;  margin-top: 48px; margin-left: 5px;">
         <h2 style="font-size: 32px; color: #000; font-weight: 500;">Ingredients</h2>
+        <hr style=" border-top: 2px solid #038851;">
+
+        <ul style="list-style: circle; font-size: 28px; margin-top: 18px; margin-left: 30px;">
+          <li *ngFor="let ingredient of ingredients">{{ingredient.ingredientName}}</li>
+        </ul>
       </div>
-      <div>
-        <p style="font-size: 32px;color: #333;font-weight: 500;">${{itemPrice}}</p>
+
+      <hr style=" border-top: 2px solid #038851;">
+      <div style="display: flex; margin-left: 20px;">
+        <span nz-icon nzType="dollar" nzTheme="outline" class="iconDetails"></span>
+        <p style="font-size: 32px;color: #333;font-weight: 500; margin-left: 5px;">${{itemPrice}}</p>
       </div>
 
     </div >

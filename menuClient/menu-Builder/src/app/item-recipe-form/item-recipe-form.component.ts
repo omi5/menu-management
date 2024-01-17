@@ -58,7 +58,7 @@ totalCostForAddOns: number = 0;
 
   
   visible = false;
-  cloudinary: any;
+  // cloudinary: any;
 
   open(): void {
     this.visible = true;
@@ -90,7 +90,7 @@ totalCostForAddOns: number = 0;
 
 
   //for Uploading a Image
-  constructor(private _fb: FormBuilder,private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
+  constructor(private _fb: FormBuilder, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
     this.getAllCategory()
     this.orderForm = this._fb.group({
       ingredientBatches: this._fb.array([this.createIngredientBatch()]),
@@ -184,17 +184,19 @@ totalCostForAddOns: number = 0;
       console.log('Upload response:', info.file.response);
       this.uploadedImageUrl = info.file.response.url; 
     } 
-    // else if (info.file.status === 'error') {
+    
+  }
+
+  // else if (info.file.status === 'error') {
     //   this.msg.error(`${info.file.name} file upload failed.`);
     //   console.error('Upload error:', info.file.error);
     // }
-  }
  
 
   selectFile(event: any): void {
     const file = event?.file?.originFileObj;
 
-      this.cloudinary.cloudUpload(file, 'user123') 
+      this.cloudinary.cloudUpload(file, 'dkfnaltqp') 
       .subscribe(
         (response: any) => {
           console.log('Cloudinary API Response:', response);
@@ -230,6 +232,19 @@ totalCostForAddOns: number = 0;
 
 
   //For Ingredients
+ 
+ 
+ 
+
+  //
+ 
+
+
+
+
+
+  //New handle fun
+  
   @ViewChild('ingredients') ingredients: any
 
   includeIngredients(){
@@ -363,6 +378,38 @@ totalCostForAddOns: number = 0;
       console.log("Get All Recipes",res);
     })  
   }
+
+
+// For getting all recipes
+// getAllrecipe() {
+//   this.recipeService.getAllRecipe().subscribe((res: any) => {
+//     console.log("Get All Recipes", res);
+
+//     // Assuming the response is an array of recipes
+//     this.ingredients = res;
+
+//     // For each recipe, create an ingredient object and add it to the ingredients array
+//     this.ingredients.forEach((recipe: any) => {
+//       const ingredient = {
+//         id: recipe.id,
+//         ingredientName: recipe.itemName,
+//         unitOfStock: 0, // You might need to adjust this based on your data
+//         costPerUnit: recipe.itemPrice, // Adjust based on your data
+//         caloriesPerUnit: recipe.itemCalories, // Adjust based on your data
+//         liquid: 0, // You might need to adjust this based on your data
+//       };
+
+//       // Push the ingredient to the array
+//       this.ingredientBatchesArray.push(this._fb.group(ingredient));
+
+//       // Optionally, you might want to update the totals here
+//       this.updateTotals();
+//     });
+//   });
+// }
+
+
+
   
   createItem(){
     const ingredients = this.submitForm()

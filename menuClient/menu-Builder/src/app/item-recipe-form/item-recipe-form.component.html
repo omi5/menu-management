@@ -3,18 +3,32 @@
       <div class="border-div" >
         <!-- for Uploading Image -->
         <div style=" margin-bottom: 20px; width: 400px; margin: 0 auto; margin-bottom: 10px;">
-            <nz-upload
+            <!-- <nz-upload
             
             nzType="drag"
             [nzMultiple]="true"
-            nzAction="''"
+            nzAction="https://api.cloudinary.com/v1_1/dkfnaltqp/image/upload"
             (nzChange)="selectFile($event)"
           >
             <p class="ant-upload-drag-icon">
               <span nz-icon nzType="inbox"></span>
             </p>
             <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <img style="padding-bottom: 1rem; width: 5rem; object-fit: cover; " src="uploadedImageUrl || '' " alt="">
            
+            </nz-upload> -->
+
+            <nz-upload
+              nzType="drag"
+              [nzMultiple]="true"
+              nzAction="https://api.cloudinary.com/v1_1/dkfnaltqp/image/upload"
+              (nzChange)="selectFile($event)"
+            >
+              <p class="ant-upload-drag-icon">
+                <span nz-icon nzType="inbox"></span>
+              </p>
+              <p class="ant-upload-text">Click or drag file to this area to upload</p>
+              <img style="padding-bottom: 1rem; width: 5rem; object-fit: cover;" [src]="uploadedImageUrl || ''" alt="">
             </nz-upload>
         </div>
         <!-- for Uploading Image -->

@@ -56,11 +56,11 @@ export class RecipeFormComponent {
   }
 
    //For Ingredients
-   @ViewChild('ingredients') ingredients: any
+  //  @ViewChild('ingredients') ingredients: any
 
-   includeIngredients(){
-     return this.ingredients.submitForm();
-   }
+  //  includeIngredients(){
+  //    return this.ingredients.submitForm();
+  //  }
 
    
    constructor(private _fb: FormBuilder, private menuService: MenuItemServiceService,private recipeService:MakeRecipeService,private categoryService: CategoryService) {
@@ -151,15 +151,16 @@ export class RecipeFormComponent {
 
 
   createRecipeItem(){
-    const ingredients = this.includeIngredients()
+    
+    const ingredients = this.submitForm()
     console.log(this.recipeItemDescription);
     
     const newRecipe= {
       "restaurantId" : 1 ,
       "recipeName":this.recipeName,
       "category_id":parseInt(this.categoryId),
-      "recipeItemPortionsize":this.recipeItemPortionsize,
-      "recipeItemPreparationtime":this.recipeItemPreparationtime,
+      "recipeItemPortionSize":this.recipeItemPortionsize,
+      "recipeItemPreparationTime":this.recipeItemPreparationtime,
       "recipeItemCost":this.recipeItemCost,
       "recipeItemCalories":this.recipeItemCalories,
       "recipeItemDescription":this.recipeItemDescription,
