@@ -4,6 +4,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { MenuItemServiceService } from '../services/menu-item-service.service';
 import { CategoryList } from '../interfaces/categoryList.interface';
 import { CategoryService } from '../services/category.service';
+import { InventoryService } from '../services/inventory.service';
 
 
 @Component({
@@ -63,7 +64,7 @@ export class RecipeFormComponent {
   //  }
 
    
-   constructor(private _fb: FormBuilder, private menuService: MenuItemServiceService,private recipeService:MakeRecipeService,private categoryService: CategoryService) {
+   constructor(private _fb: FormBuilder, private inventoryService: InventoryService ,private menuService: MenuItemServiceService,private recipeService:MakeRecipeService,private categoryService: CategoryService) {
     this.getAllCategory()
     this.orderForm = this._fb.group({
       ingredientBatches: this._fb.array([this.createIngredientBatch()]),
@@ -129,7 +130,7 @@ export class RecipeFormComponent {
   }
 
   ngOnInit(): void {
-
+    this.getAllIngredinets()
 
   }
 
@@ -148,6 +149,24 @@ export class RecipeFormComponent {
   recipeItemDescription! : string;
   // itemDietaryRestrictions! : string;
   // imgUrls! : string
+
+
+
+   // getAll Ingredients
+   getAllIngredinets() {
+    this.inventoryService.getAllInventoryIngredients().subscribe(
+      (res) => {
+        res.forEach((items: any) => {
+          this.ingredentList.ingredients.push(items);
+        });
+        console.log('Inventory response:', res);
+        console.log('IngredentList:', this.ingredentList);
+      },
+      (error) => {
+        console.error('Error fetching inventory:', error);
+      }
+    );
+  }
 
 
   createRecipeItem(){

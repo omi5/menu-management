@@ -7,6 +7,9 @@ import { CategoryService } from '../services/category.service';
 import { CategoryList } from '../interfaces/categoryList.interface';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MakeRecipeService } from '../services/make-recipe.service';
+import { inventoryIngredient } from '../interfaces/inventoryIngredints.interface';
+import { recipeInterface } from '../interfaces/recipeIngredints.interface';
+import { InventoryService } from '../services/inventory.service';
 
 @Component({
   selector: 'app-item-recipe-form',
@@ -23,10 +26,14 @@ export class ItemRecipeFormComponent implements OnInit {
 //for ingredients
 public orderForm: FormGroup;
 public orderFormForAddOns: FormGroup;
+public orderFormForRecipe: FormGroup;
 totalCostPerUnit: number = 0;
 totalCaloriesPerUnit: number = 0;
 totalCaloriesPerUnitForAddOns: number = 0;
 totalCostPerUnitForAddOns: number =0;
+totalCostPerUnitForRecipe: number =0;
+totalCaloriesPerUnitForRecipe: number =0;
+totalCostForRecipe: number =0;
 totalCost: number = 0;
 totalCostForAddOns: number = 0;
  measurementToolArray:any = [];
@@ -58,6 +65,7 @@ totalCostForAddOns: number = 0;
 
   
   visible = false;
+  
   // cloudinary: any;
 
   open(): void {
@@ -90,7 +98,7 @@ totalCostForAddOns: number = 0;
 
 
   //for Uploading a Image
-  constructor(private _fb: FormBuilder, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
+  constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
     this.getAllCategory()
     this.orderForm = this._fb.group({
       ingredientBatches: this._fb.array([this.createIngredientBatch()]),
@@ -99,6 +107,10 @@ totalCostForAddOns: number = 0;
     this.orderFormForAddOns = this._fb.group({
       ingredientBatchesForAddOns: this._fb.array([this.createIngredientBatchForAddOns()]),
       percentageForAddOns: [0, Validators.required],
+    });
+    this.orderFormForRecipe = this._fb.group({
+      ingredientBatchesForRecipe: this._fb.array([this.createIngredientBatchForRecipe()]),
+      percentageForRecipe: [0, Validators.required],
     });
 
     
@@ -274,7 +286,8 @@ totalCostForAddOns: number = 0;
 
   ngOnInit(): void {
     //get recipe
-    this.getAllrecipe()
+    this.getAllRecipe()
+    this.getAllIngredinets()
 
 
     //For allergens
@@ -372,12 +385,16 @@ totalCostForAddOns: number = 0;
   ItemHowToDelivery!: string;
   itemImage! : string
 
-  //for get recipe 
-  getAllrecipe(){
-    this.recipeService.getAllRecipe().subscribe(res=>{
-      console.log("Get All Recipes",res);
-    })  
-  }
+  //for get recipe and ingredinets   inventoryIngredient | recipeInterface
+  // combainedRecipeAndIngredinets: any = []
+  // getAllRecipeAndIngredients(){
+  //   this.recipeService.getAllRecipe().subscribe(res=>{
+  //     this.combainedRecipeAndIngredinets = this.combainedRecipeAndIngredinets.concat(res);
+  //     this.inventoryService.getAllInventoryIngredients().subscribe(res =>{
+  //       this.combainedRecipeAndIngredinets = this.combainedRecipeAndIngredinets.concat(res);
+  //     })
+  //   })  
+  // }
 
 
 // For getting all recipes
@@ -408,7 +425,33 @@ totalCostForAddOns: number = 0;
 //   });
 // }
 
+//getAll recipe 
+  recipeCollections: any =[]
+  getAllRecipe(){
+    this.recipeService.getAllRecipe().subscribe(res=>{
+      console.log('recipe=====',res);
+      
+      this.recipeCollections.push(res)
+      console.log('list of recipe ===',this.recipeCollections);
+      
+    })
+  }
 
+  // getAll Ingredients
+  getAllIngredinets() {
+    this.inventoryService.getAllInventoryIngredients().subscribe(
+      (res) => {
+        res.forEach((items: any) => {
+          this.ingredentList.ingredients.push(items);
+        });
+        console.log('Inventory response:', res);
+        console.log('IngredentList:', this.ingredentList);
+      },
+      (error) => {
+        console.error('Error fetching inventory:', error);
+      }
+    );
+  }
 
   
   createItem(){
@@ -526,12 +569,27 @@ totalCostForAddOns: number = 0;
     });
   }
   
+  private createIngredientBatchForRecipe(): FormGroup {
+    return this._fb.group({
+      id: 1,
+      restuarantId: 1,
+      recipeName: [''],
+      unitOfStockForRecipe: [''],
+      quantityForRecipe: [''],
+      // costPerUnit: [0.559],
+      // caloriesPerUnit: [0.333],
+      // price: [0]
+    });
+  }
   
   get ingredientBatchesArray(): FormArray {
     return <FormArray>this.orderForm.get('ingredientBatches');
   }
   get ingredientBatchesArrayForAddOns(): FormArray {
     return <FormArray>this.orderFormForAddOns.get('ingredientBatchesForAddOns');
+  }
+  get ingredientBatchesArrayForRecipe(): FormArray {
+    return <FormArray>this.orderFormForRecipe.get('ingredientBatchesForRecipe');
   }
 
   addIngredientBatch(): void {
@@ -545,6 +603,12 @@ totalCostForAddOns: number = 0;
     this.updateTotalsForAddOns();
   }
   
+  addIngredientBatchForRecipe(): void {
+    this.ingredientBatchesArrayForRecipe.push(this.createIngredientBatchForRecipe());
+    console.log();
+    
+    this.updateTotalsForRecipe();
+  }
 
   removeIngredientBatch(index: number): void {
     this.ingredientBatchesArray.removeAt(index);
@@ -553,6 +617,10 @@ totalCostForAddOns: number = 0;
   removeIngredientBatchForAddOns(index: number): void {
     this.ingredientBatchesArrayForAddOns.removeAt(index);
     this.updateTotals();
+  }
+  removeIngredientBatchForRecipe(index: number): void {
+    this.ingredientBatchesArrayForRecipe.removeAt(index);
+    this.updateTotalsForRecipe();
   }
 
 // ... (existing code)
@@ -607,6 +675,43 @@ onIngredientChangeForAddOns(index: number): void {
 
     setTimeout(() => {
       this.updateTotalsForAddOns();
+    }, 100); // Optionally update totals when the ingredient changes
+
+  }
+  console.log("after change ", selectedIngredient);
+  
+}
+
+
+
+onIngredientChangeForRecipe(index: number): void {
+  const ingredientBatchForRecipe = this.ingredientBatchesArrayForRecipe.at(index);
+  console.log('index for recipe =====', index);
+  console.log('index Name for recipe=====', ingredientBatchForRecipe.value.recipeName);
+  
+  // console.log('=========list ',this.ingredentList.ingredients);
+  
+  // Find the selected ingredient in the mock data
+  const selectedIngredient = this.recipeCollections[0].find((ingredient: { recipeName: any; }) => ingredient.recipeName === ingredientBatchForRecipe.value.recipeName);
+  console.log('selectedIngredient =======', selectedIngredient);
+  
+
+  // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
+  // if (selectedIngredient) {
+  //   ingredientBatchForAddOns.patchValue({
+  //     costPerUnitForAddOns: selectedIngredient.costPerUnit,
+  //     // caloriesPerUnitForAddOns: selectedIngredient.caloriesPerUnit,
+  //     id: selectedIngredient.id
+  //   });
+  if (selectedIngredient) {
+    ingredientBatchForRecipe.patchValue({
+      totalCostPerUnitForRecipe: selectedIngredient.recipeItemCost,
+      caloriesPerUnit: selectedIngredient.caloriesPerUnit,
+      id: selectedIngredient.id
+    });
+
+    setTimeout(() => {
+      this.updateTotalsForRecipe();
     }, 100); // Optionally update totals when the ingredient changes
 
   }
@@ -751,6 +856,64 @@ updateTotalsForAddOns(): void {
     console.error("Percentage control not found in the form");
   }
 }
+updateTotalsForRecipe(): void {
+  
+  this.totalCostPerUnitForRecipe = 0;
+  this.totalCaloriesPerUnitForRecipe = 0;
+
+  // Check if the 'percentage' control exists in the form
+  const percentageControlForRecipe = this.orderFormForRecipe.get('percentageForRecipe');
+
+  if (percentageControlForRecipe) {
+    const percentage = percentageControlForRecipe.value / 100;
+    console.log("measurementTools", this.ingredientBatchesArrayForAddOns);
+
+    this.ingredientBatchesArrayForRecipe.controls.forEach((control: AbstractControl, index) => {
+      console.log(`Processing control at index ${index}`);
+
+      // Add this log to check the value of the control
+      console.log("Control value:", control.value);
+      
+      const costPerUnitControlForRecipe = control.get('costPerUnit') as FormControl;
+      const quantityControlForRecipe = control.get('quantity') as FormControl;
+      // const caloriesPerUnitControlForAddOns = control.get('caloriesPerUnitForAddOns') as FormControl;
+      const unitOfStockControlForRecipe = control.get('unitOfStock') as FormControl;
+      const price = control.get('price') as FormControl;
+
+      if (costPerUnitControlForRecipe && quantityControlForRecipe && price) {
+        const costPerUnit = costPerUnitControlForRecipe.value;
+        const quantity = quantityControlForRecipe.value;
+        
+        const unitOfStock = unitOfStockControlForRecipe.value;
+        console.log("costPerUnit For Add ons", costPerUnit);
+
+        console.log("quantity", quantity);
+        // console.log("caloriesPerUnit", caloriesPerUnit);
+        console.log("unitOfStock", unitOfStock);
+
+        // Find the measurement details for the selected unitOfStock
+        const measurementDetails = this.measurementTools[unitOfStock];
+
+        if (measurementDetails) {
+          // Determine the quantity based on measurementType
+
+          // this.totalCostPerUnit += costPerUnit * measurementQuantity;
+          this.totalCostPerUnitForRecipe += costPerUnit * quantity;
+          // this.totalCaloriesPerUnitForAddOns += caloriesPerUnit * quantity;
+        }
+        this.totalCostForRecipe = this.totalCostPerUnitForRecipe * (1 + percentage);
+        price.setValue(( costPerUnit * quantity)* (1 + percentage) )
+      }
+    });
+
+    // Calculate the total cost by applying the percentage
+   
+    
+    console.log("Total Cost ad on:", this.totalCostForRecipe);
+  } else {
+    console.error("Percentage control not found in the form");
+  }
+}
 
 
 submitFormForAddOns(): void {
@@ -780,6 +943,35 @@ submitFormForAddOns(): void {
     console.error('Form invalid');
   }
 }
+
+submitFormForRecipe(): void {
+  if (this.orderFormForRecipe.valid) {
+    const formData = this.orderFormForRecipe.value;
+    this.updateTotalsForRecipe()
+
+    console.log('add onsForm Data:', formData);
+    console.log('Total Cost Per Unit:', this.totalCostPerUnit);
+    console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
+    console.log('price', formData);
+    console.log('price=========', formData.ingredientBatchesForRecipe[0].price
+    );
+    
+    return formData.ingredientBatchesForRecipe;
+
+    // Uncomment the following lines to send the data to the service
+    // this.menuService.createNewMenuItem(formData).subscribe({
+    //   next: (response) => {
+    //     console.log('Post successful', response);
+    //   },
+    //   error: (error) => {
+    //     console.error('Error in post', error);
+    //   },
+    // });
+  } else {
+    console.error('Form invalid');
+  }
+}
+
 submitForm(): void {
   if (this.orderForm.valid) {
     const formData = this.orderForm.value;
