@@ -4,7 +4,7 @@
 
             <!-- //For Upload a Image -->
 
-            <div style=" margin-bottom: 20px; width: 400px; margin: 0 auto; margin-bottom: 10px;">
+            <div style=" margin-bottom: 20px; width: 400px;  margin-bottom: 10px;">
                 <nz-upload
                 
                 nzType="drag"
@@ -26,22 +26,22 @@
     
       
             <div class="mt-4">
-            <div class="flex">
+            <div class="">
 
             <nz-form-item class="input-box-for-name">
                 <nz-form-control nzErrorTip="Please input your category name!">
-                    <label for="scheduleName" nzRequired>Category Name</label>    
+                    <label for="scheduleName" nzRequired style="font-size: 20px;">Category Name</label>    
                     <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-                    <input formControlName="categoryName" nz-input placeholder="Name" class="p-2 text-xl"  style="font-size: 20px; height: 38px;" />
+                    <input formControlName="categoryName" nz-input placeholder="Name" class="p-2 text-xl"  style="font-size: 20px; height: 35px; margin-bottom: 10px; width: 25rem;" />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
 
             <nz-form-item class="input-box-for-description">
                 <nz-form-control  nzHasFeedback nzErrorTip="Please write something here!">
-                    <label  nzRequired style="margin-bottom: 15px;">Description</label>
+                    <label  nzRequired style="margin-bottom: 15px; font-size: 20px;">Description</label>
                     <nz-textarea-count [nzMaxCharacterCount]="2000">
-                    <textarea formControlName="categoryDescription" nz-input rows="2" placeholder="write any thing" class="w-full text-xl"></textarea>
+                    <textarea formControlName="categoryDescription" nz-input rows="2" placeholder="write any thing" class="w-full text-xl" style=" width: 25rem;"></textarea>
                     </nz-textarea-count>
                 </nz-form-control>
             </nz-form-item>

@@ -23,11 +23,13 @@
      <nz-content>
 
 
-      <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }">
-        <button (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
+      <!-- <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }"
+        style="margin-right: 40px; margin-top: 30px;"
+      >
+        <button style="width: 100px; font-size: 20px;" (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
           Add
         </button>
-      </div>
+      </div> -->
       
       <nz-drawer
         [nzBodyStyle]="{ overflow: 'auto' }"
@@ -39,10 +41,82 @@
         (nzOnClose)="close()"
       >
         <form nz-form *nzDrawerContent (ngSubmit)="submitForm()">
+        
+      
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <label style="width: 180px;font-size: 20px;  text-align: left;" >Start Day</label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    [(ngModel)]="startDay"
+                    name="startDay"
+                    placeholder="Enter start day"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+      
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <label style="width: 180px;font-size: 20px;  text-align: left;">End Day</label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    [(ngModel)]="endDay"
+                    name="endDay"
+                    placeholder="Enter end day"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+      
+         
+      
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <label style="width: 180px;font-size: 20px;  text-align: left;">Start Time</label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    [(ngModel)]="startTime"
+                    name="startTime"
+                    placeholder="Enter start time"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+      
+          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+            <div nz-col nzSpan="12">
+              <nz-form-item>
+                <label style="width: 180px;font-size: 20px;  text-align: left;">End Time</label>
+                <nz-form-control>
+                  <input
+                    nz-input
+                    [(ngModel)]="endTime"
+                    name="endTime"
+                    placeholder="Enter end time"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
           <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
-                <nz-form-label for="mealTimeName">Meal Time Name</nz-form-label>
+                <label for="mealTimeName" style="width: 180px;font-size: 20px;  text-align: left; ">Schedule name :</label>
                 <nz-form-control>
                   <input
                     nz-input
@@ -50,93 +124,34 @@
                     [(ngModel)]="mealTimeName"
                     name="mealTimeName"
                     placeholder="Enter meal time name"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
                   />
                 </nz-form-control>
               </nz-form-item>
             </div>
           </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
+
+          
+
+          <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
               <nz-form-item>
-                <nz-form-label>Start Day</nz-form-label>
+                <label  style="width: 180px; text-align: left;  font-size: 20px;">Description :</label>
                 <nz-form-control>
-                  <input
-                    nz-input
-                    [(ngModel)]="startDay"
-                    name="startDay"
-                    placeholder="Enter start day"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>End Day</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    [(ngModel)]="endDay"
-                    name="endDay"
-                    placeholder="Enter end day"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>Description</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
+                  <textarea
                     [(ngModel)]="description"
                     name="description"
-                    placeholder="Enter description"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>Start Time</nz-form-label>
-                <nz-form-control>
-                  <input
                     nz-input
-                    [(ngModel)]="startTime"
-                    name="startTime"
-                    placeholder="Enter start time"
-                  />
+                    placeholder="please enter  description"
+                    [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                    style="width: 28rem; font-size: 20px;"
+                  ></textarea>
                 </nz-form-control>
               </nz-form-item>
             </div>
           </div>
       
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>End Time</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    [(ngModel)]="endTime"
-                    name="endTime"
-                    placeholder="Enter end time"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+          <!-- <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
                 <nz-form-label>Meal Time ID</nz-form-label>
@@ -150,21 +165,22 @@
                 </nz-form-control>
               </nz-form-item>
             </div>
-          </div>
+          </div> -->
       
         </form>
       
         <ng-template #footerTpl>
           <div style="float: right">
-            <button nz-button style="margin-right: 8px" (click)="close()">
+            <button nz-button class="close-btn" style="margin-right: 8px" (click)="close()">
               Cancel
             </button>
-            <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+            <button nz-button nzType="primary" (click)="submitForm()" class="Add-btn">Submit</button>
           </div>
         </ng-template>
       </nz-drawer>
       
-      <h2>{{ tableTitle }}</h2>
+      <div style=" margin: 30px 20px 0px 20px;">
+      <h2 style="font-size: 32px;">{{ tableTitle }}</h2>
       <nz-table
         #rowSelectionTable
         [nzData]="scheduleTimes"
@@ -187,15 +203,15 @@
         <thead>
           <tr>
             <!-- <th>ID</th> -->
-            <th>Meal Time Name</th>
-            <th>Start Day</th>
-            <th>End Day</th>
-            <th>Description</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th style="font-size: 22px; font-weight: 700px;">Meal Time Name</th>
+            <th style="font-size: 22px; font-weight: 700px;">Start Day</th>
+            <th style="font-size: 22px; font-weight: 700px;">End Day</th>
+            <th style="font-size: 22px; font-weight: 700px;">Description</th>
+            <th style="font-size: 22px; font-weight: 700px;">Start Time</th>
+            <th style="font-size: 22px; font-weight: 700px;">End Time</th>
             <!-- <th>Meal Time ID</th> -->
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -215,18 +231,22 @@
                 nzPopconfirmTitle="Sure to delete?"
                 (nzOnConfirm)="onDelete(data._id)"
                 [ngClass]="{ 'delete-button': true }"
+                style="font-size: 18px;"
               >
                 Delete
               </button>
-            </td>
-            <td *ngIf="showEditButton" nz-td>
-              <button (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
+              <button style="margin-left: 15px; font-size: 18px;" (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
                 Edit
               </button>
             </td>
+            <!-- <td *ngIf="showEditButton" nz-td>
+              
+            </td> -->
           </tr>
         </tbody>
       </nz-table>
+
+    </div>
       
      
   

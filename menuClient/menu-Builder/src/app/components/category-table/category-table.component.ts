@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTablePaginationPosition, NzTablePaginationType, NzTableSize } from 'ng-zorro-antd/table/public-api';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Category } from 'src/app/interfaces/categoryList.interface';
 import { CategoryService } from 'src/app/services/category.service';
 
@@ -36,6 +37,7 @@ export class CategoryTableComponent implements OnInit {
   visible = false;
   isEdit = false;
   private _id!: string;
+  msg: any;
   
   onAdd(): void {
     this.visible = true;
@@ -161,5 +163,8 @@ export class CategoryTableComponent implements OnInit {
       
     })
   }
+
+
+  
 
 }

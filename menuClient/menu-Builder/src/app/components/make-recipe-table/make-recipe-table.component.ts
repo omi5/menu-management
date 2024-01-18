@@ -72,6 +72,9 @@ export class MakeRecipeTableComponent implements OnInit {
   recipeItemDescription!: string;
   recipeItemCost!: string;
   recipeItemCalories!: string;
+  recipeItemPortionSize!: number;
+  recipeItemPreparationTime!: number;
+
 
   constructor(private recipeService: MakeRecipeService) {}
 
@@ -102,6 +105,8 @@ export class MakeRecipeTableComponent implements OnInit {
       recipeItemDescription: this.recipeItemDescription,
       recipeItemCost: this.recipeItemCost,
       recipeItemCalories: this.recipeItemCalories,
+      recipeItemPortionSize: this.recipeItemPortionSize,
+      recipeItemPreparationTime: this.recipeItemPreparationTime
     };
 
     console.log('New Recipe Item:', newRecipeItem);
@@ -150,6 +155,8 @@ export class MakeRecipeTableComponent implements OnInit {
     this.recipeItemDescription = recipe.recipeItemDescription;
     this.recipeItemCost = recipe.recipeItemCost;
     this.recipeItemCalories = recipe.recipeItemCalories;
+    this.recipeItemPortionSize = recipe.recipeItemPortionSize
+    this.recipeItemPreparationTime = recipe.recipeItemPreparationTime
 
     const editDetails ={
       restaurantId: 1,
@@ -158,6 +165,8 @@ export class MakeRecipeTableComponent implements OnInit {
       recipeItemDescription : recipe.recipeItemDescription,
       recipeItemCost : recipe.recipeItemCost,
       recipeItemCalories : recipe.recipeItemCalories,
+      recipeItemPortionSize: recipe.recipeItemPortionSize,
+      recipeItemPreparationTime: recipe.recipeItemPreparationTime
     }
 
     console.log('Recipe =======', recipe);

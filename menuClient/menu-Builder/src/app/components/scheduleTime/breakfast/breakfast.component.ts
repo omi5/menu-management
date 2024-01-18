@@ -39,23 +39,43 @@ export class BreakfastComponent implements OnInit {
   filtercategoryList: any[]=[1,2]
   AllMenuItems : any[] = []
   listForBreakfastMenu :MenuItem[] = []
-  getMenuItems(){
-    this.menuService.getAllMenuItems().subscribe(res=>{
-      this.AllMenuItems.push(res);
-      console.log('selected menu for Lunch',this.AllMenuItems);
-      console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('BreakFast'));
+  // getMenuItems(){
+  //   this.menuService.getAllMenuItems().subscribe(res=>{
+  //     this.AllMenuItems.push(res);
+  //     console.log('selected menu for Lunch',this.AllMenuItems);
+  //     console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('BreakFast'));
 
-      for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-        if(this.AllMenuItems[0][i].item.timeOfDay.includes('BreakFast')){
-              this.listForBreakfastMenu.push(this.AllMenuItems[0][i])
-            }
-      }
+  //     for(let i = 0; i <= this.AllMenuItems[0].length; i++){
+  //       if(this.AllMenuItems[0][i].item.timeOfDay.includes('BreakFast')){
+  //             this.listForBreakfastMenu.push(this.AllMenuItems[0][i])
+  //           }
+  //     }
 
 
-    })
-    console.log('listOfLunchMenu', this.listForBreakfastMenu);
+  //   })
+  //   console.log('listOfLunchMenu', this.listForBreakfastMenu);
     
+  // }
+  getMenuItems() {
+    this.menuService.getAllMenuItems().subscribe(res => {
+      this.AllMenuItems.push(res);
+      console.log('Selected menu for Lunch', this.AllMenuItems);
+  
+      for (let i = 0; i < this.AllMenuItems[0].length; i++) {
+        const currentItem = this.AllMenuItems[0][i];
+        console.log('Checking item:', currentItem);
+  
+        if (currentItem.item.timeOfDay.includes('BreakFast')) {
+          console.log('Item added to breakfast menu:', currentItem);
+          this.listForBreakfastMenu.push(currentItem);
+        }
+      }
+  
+      console.log('listOfLunchMenu', this.listForBreakfastMenu);
+    });
   }
+  
+  
 
 
   ngOnInit(): void {

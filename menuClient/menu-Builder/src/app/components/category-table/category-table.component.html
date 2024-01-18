@@ -23,11 +23,13 @@
      <nz-content>
 
 
-      <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }">
-        <button (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
+      <!-- <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }"
+        style="margin-right: 40px; margin-top: 30px;"
+      >
+        <button style="width: 100px; font-size: 20px;" (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
           Add
         </button>
-      </div>
+      </div> -->
       
       <nz-drawer
         [nzBodyStyle]="{ overflow: 'auto' }"
@@ -42,7 +44,7 @@
           <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
-                <nz-form-label for="categoryName">Category Name</nz-form-label>
+                <nz-form-label for="categoryName" style="width: 180px;font-size: 20px;  text-align: left; ">Category Name</nz-form-label>
                 <nz-form-control>
                   <input
                     nz-input
@@ -50,28 +52,33 @@
                     [(ngModel)]="categoryName"
                     name="categoryName"
                     placeholder="Enter category name"
+                    style="font-size: 20px; height: 35px; width: 28rem;"
+
                   />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+              <nz-form-item>
+                <label  style="width: 180px; text-align: left;  font-size: 20px;">Description :</label>
+                <nz-form-control>
+                  <textarea
+                    [(ngModel)]="categoryDescription"
+                    name="categoryDescription"
+                    nz-input
+                    placeholder="please enter  description"
+                    [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                    style="width: 28rem; font-size: 20px;"
+                  ></textarea>
                 </nz-form-control>
               </nz-form-item>
             </div>
           </div>
       
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label for="categoryDescription">Category Description</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    id="categoryDescription"
-                    [(ngModel)]="categoryDescription"
-                    name="categoryDescription"
-                    placeholder="Enter category description"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
+         
       
           <!-- Add other fields based on your actual data structure -->
           
@@ -86,8 +93,17 @@
           </div>
         </ng-template>
       </nz-drawer>
+
+
+
+    
+
+
+
+     <div style=" margin: 30px 20px 0px 20px;">
+
+      <h2 style="font-size: 32px;">{{ tableTitle }}</h2>
       
-      <h2>{{ tableTitle }}</h2>
       <nz-table
         #rowSelectionTable
         [nzData]="categoryList"
@@ -110,12 +126,12 @@
         <thead>
           <tr>
             <!-- <th>ID</th> -->
-            <th>Category Name</th>
-            <th>Category Description</th>
+            <th style="font-size: 22px; font-weight: 700px;">Category Name</th>
+            <th style="font-size: 22px; font-weight: 700px;">Category Description</th>
             <!-- Add other table headers based on your actual data structure -->
             <!-- <th>Last Updated</th> -->
-            <th>Delete</th>
-            <th>Edit</th>
+            <th style="font-size: 22px; font-weight: 700px;">Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -132,19 +148,20 @@
                 nzPopconfirmTitle="Sure to delete?"
                 (nzOnConfirm)="onDelete(data._id)"
                 [ngClass]="{ 'delete-button': true }"
+                style="font-size: 18px;"
               >
                 Delete
               </button>
-            </td>
-            <td *ngIf="showEditButton" nz-td>
-              <button (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
+              <button style="margin-left: 15px; font-size: 18px;" (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
                 Edit
               </button>
             </td>
+           
           </tr>
         </tbody>
       </nz-table>
-      
+    
+    </div> 
   
      </nz-content>
 

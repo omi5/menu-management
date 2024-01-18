@@ -93,3 +93,7 @@ body {
   }
 
 /* For ingredients */
+
+.inputStyle input[type=text]{
+ border-color: red;
+}

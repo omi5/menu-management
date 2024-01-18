@@ -24,87 +24,123 @@
      <nz-content>
 
 
-      <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }">
-        <button (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
+      <!-- <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }"
+      style="margin-right: 40px; margin-top: 30px;"
+      >
+        <button style="width: 100px; font-size: 20px;" (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
           Add
         </button>
-      </div>
+      </div> -->
       
       <nz-drawer
         [nzBodyStyle]="{ overflow: 'auto' }"
         [nzMaskClosable]="false"
-        [nzWidth]="920"
+        [nzWidth]="1420"
         [nzVisible]="visible"
         nzTitle="Make Recipe Item"
         [nzFooter]="footerTpl"
         (nzOnClose)="close()"
       >
         <form nz-form *nzDrawerContent (ngSubmit)="submitForm()">
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label for="recipeName">Recipe Name</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
+
+          <div class="border-div" style="margin-top: 20px;">
+
+            <div nz-row [nzGutter]="8" class="mt" style="font-size: 25px;">
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label class="label" style="width: 180px;  text-align: left; font-size: 20px;">Name :</label>
+                  <nz-form-control>
+                    <input nz-input placeholder="please enter recipe name"  style="font-size: 18px; height: 35px; width: 28rem;"  
                     id="recipeName"
                     [(ngModel)]="recipeName"
-                    name="recipeName"
-                    placeholder="Enter recipe name"
-                  />
-                </nz-form-control>
-              </nz-form-item>
+                    name="recipeName"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+    
+              <!-- <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label style="width: 180px;  text-align: left; font-size: 20px;">Category :</label>
+                  <nz-form-control>
+                    <nz-select  style="font-size: 18px; height: 35px; width: 28rem;" nzPlaceHolder="Please select a Category"  [(ngModel)]="categoryId">
+                      <nz-option *ngFor="let el of categories" [nzValue]="el._id" [nzLabel]="el.categoryName" ></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div> -->
+              
             </div>
-          </div>
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label for="recipeName">Recipe cost</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    id="recipeItemCost"
-                    [(ngModel)]="recipeItemCost"
-                    name="recipeItemCost"
-                    placeholder="Enter recipe cost"
-                  />
-                </nz-form-control>
-              </nz-form-item>
+
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label  style="width: 180px;  text-align: left; font-size: 20px;">Portion Size :</label>
+                  <nz-form-control>
+                    <input nz-input placeholder="please enter portion size" style="font-size: 18px; height: 35px; width: 28rem;"   [(ngModel)]="recipeItemPortionSize" name="recipeItemPortionSize"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label  style="width: 180px; text-align: left; font-size: 20px; height: 38px;">Preparation Time :</label>
+                  <nz-form-control>
+                    <input nz-input placeholder="please enter preparation time"  style="font-size: 18px; height: 35px; width: 28rem;" [(ngModel)]="recipeItemPreparationTime" name="recipeItemPreparationTime"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
             </div>
-          </div>
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label for="recipeName">Recipe calories</nz-form-label>
-                <nz-form-control>
-                  <input
-                    nz-input
-                    id="recipeItemCalories"
-                    [(ngModel)]="recipeItemCalories"
-                    name="recipeItemCalories"
-                    placeholder="Enter recipe calories"
-                  />
-                </nz-form-control>
-              </nz-form-item>
+
+
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label  style="width: 180px;  text-align: left; font-size: 20px; ">Total Cost :</label>
+                  <nz-form-control>
+                    <input nz-input placeholder="please enter the cost"  style="font-size: 18px; height: 35px; width: 28rem;" [(ngModel)]="recipeItemCost" name="recipeItemCost"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col nzSpan="12">
+                <nz-form-item>
+                  <label  style="width: 180px;  text-align: left; font-size: 20px; ">Total Calories :</label>
+                  <nz-form-control>
+                    <input nz-input placeholder="please enter the calories"  style="font-size: 18px; height: 35px; width: 28rem;" [(ngModel)]="recipeItemCalories" name="recipeItemCalories"/>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
             </div>
-          </div>
-      
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
-            <div nz-col nzSpan="12">
-              <nz-form-item>
-                <nz-form-label>Description</nz-form-label>
-                <nz-form-control>
-                  <textarea
-                    nz-input
+
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzSpan="24">
+                <nz-form-item>
+                  <label  style="width: 180px;  text-align: left; font-size: 20px;" >Description :</label>
+                  <nz-form-control>
+                    <textarea
                     [(ngModel)]="recipeItemDescription"
                     name="recipeItemDescription"
-                    placeholder="Enter description"
+                    nz-input
+                    placeholder="please enter  description"
                     [nzAutosize]="{ minRows: 4, maxRows: 4 }"
-                  ></textarea>
-                </nz-form-control>
-              </nz-form-item>
+                    style="width: 1140px; font-size: 20px;"
+                    ></textarea>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
             </div>
-          </div>
+
+
+          
+          </div> 
+
+          <hr style=" border-top: 2px solid #038851;">
+          <h2 style="margin-bottom: 25px;  color: black; font-size: 28px;">Ingredients and preparation instruction</h2>
+
+
+          
+          
+          
+          <!-- Old one here -->
+
       
          
       
@@ -112,15 +148,16 @@
       
         <ng-template #footerTpl>
           <div style="float: right">
-            <button nz-button style="margin-right: 8px" (click)="close()">
+            <button nz-button class="close-btn" style="margin-right: 8px" (click)="close()">
               Cancel
             </button>
-            <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+            <button nz-button nzType="primary" (click)="submitForm()" class="Add-btn">Submit</button>
           </div>
         </ng-template>
       </nz-drawer>
       
-      <h2>{{ tableTitle }}</h2>
+    <div style=" margin: 30px 20px 0px 20px;">
+      <h2 style="font-size: 32px;">{{ tableTitle }}</h2>
       <nz-table
         #rowSelectionTable
         [nzData]="recipeData"
@@ -143,18 +180,22 @@
         <thead>
           <tr>
             <!-- <th>ID</th> -->
-            <th>Recipe Name</th>
-            <th>Cost</th>
-            <th>Calories</th>
-            <th>Description</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th style="font-size: 22px; font-weight: 700px;">Recipe Name</th>
+            <th style="font-size: 22px; font-weight: 700px;">Portion Size</th>
+            <th style="font-size: 22px; font-weight: 700px;">Preparation Time</th>
+            <th style="font-size: 22px; font-weight: 700px;">Cost</th>
+            <th style="font-size: 22px; font-weight: 700px;">Calories</th>
+            <th style="font-size: 22px; font-weight: 700px;">Description</th>
+            <th style="font-size: 22px; font-weight: 700px;">Action</th>
+            
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of rowSelectionTable.data">
             <!-- <td>{{ data.recipeId }}</td> -->
             <td>{{ data.recipeName }}</td>
+            <td>{{ data.recipeItemPortionSize }}</td>
+            <td>{{ data.recipeItemPreparationTime }}</td>
             <td>{{ data.recipeItemCost }}</td>
             <td>{{ data.recipeItemCalories }}</td>
             <td>{{ data.recipeItemDescription }}</td>
@@ -167,18 +208,22 @@
                 nzPopconfirmTitle="Sure to delete?"
                 (nzOnConfirm)="onDelete(data._id)"
                 [ngClass]="{ 'delete-button': true }"
+                style="font-size: 18px;"
               >
                 Delete
               </button>
-            </td>
-            <td *ngIf="showEditButton" nz-td>
-              <button (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
+              <button style="margin-left: 15px; font-size: 18px;" (click)="onEdit(data)" [ngClass]="{ 'edit-button': true }">
                 Edit
               </button>
             </td>
+            <!-- <td *ngIf="showEditButton" nz-td>
+             
+            </td> -->
           </tr>
         </tbody>
       </nz-table>
+     
+     </div>
      
      
   

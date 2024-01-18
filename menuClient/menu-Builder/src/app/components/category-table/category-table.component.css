@@ -1,3 +1,7 @@
+td{
+  font-size: 19px;
+}
+
 .delete-button,
 .edit-button,
 .add-button {
@@ -115,3 +119,4 @@ nz-breadcrumb {
 .flex{
   display: flex;
 }
+
