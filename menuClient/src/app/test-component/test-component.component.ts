@@ -60,7 +60,8 @@ export interface Category {
   styleUrls: ['./test-component.component.css'],
 })
 export class TestComponentComponent implements OnInit {
-  @Input() menuItems: any;
+  @Input() menuItems1: any;
+  menuItems: any;
   title = 'menu';
   // menuItems: MenuItem[] = [];
   categories: Category[] = [];
@@ -68,28 +69,30 @@ export class TestComponentComponent implements OnInit {
 
   Object = Object;
 
-  constructor(private menuItemsService: MenuItemServiceService, private categoryService: CategoryService) {}
+  constructor(private menuItemsService: MenuItemServiceService, private categoryService: CategoryService) {
+    
+  }
 
   ngOnInit(): void {
     forkJoin([
       this.categoryService.getAllCategory(),
-      this.menuItemsService.getAllMenuItems()
+      // this.menuItemsService.getAllMenuItems()
     ]).subscribe(
-      ([categories, menuItems]) => {
-        this.menuItems = [];
-        this.menuItems.push(...menuItems);
+      ([categories]) => {
+        // this.menuItems = [];
+        // this.menuItems.push(...menuItems);
 
         this.categories.push(...categories);
       
         console.log("cat...",categories);
-        console.log("cat...menu",menuItems);
+        // console.log("cat...menu",menuItems);
        
 
         this.categories.forEach((category) => {
           this.categorizedMenu[category.categoryName] = [];
         });
 
-        this.menuItems.forEach((menuItem:any) => {
+        this.menuItems1.forEach((menuItem:any) => {
           const category = this.categories.find((c) => c._id === menuItem.categoryId);
           if (category) {
             this.categorizedMenu[category.categoryName].push(menuItem);

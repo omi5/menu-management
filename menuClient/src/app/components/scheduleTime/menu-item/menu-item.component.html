@@ -6,7 +6,7 @@
         <div class="container grid grid--3-cols margin-right-md">
          
       
-          <div class="meal">
+          <div class="meal" style="margin-left: 25px;">
           <div class="viewDiv">
             <img
                 [src]="src"
@@ -26,13 +26,13 @@
               <ul class="meal-attributes">
                 <li class="meal-attribute">
                   <span nz-icon nzType="fire" nzTheme="outline" class="meal-icon"></span>
-                    <span><strong>{{itemCalories}}</strong> calories</span>
+                    <span><strong>{{itemCalories}}</strong> Calories</span>
                 </li>
                 <li class="meal-attribute">
                   <span nz-icon nzType="pie-chart" nzTheme="outline" class="meal-icon"></span>
                     <span><strong>{{itemPortionsize}}</strong></span>
                 </li>
-                <li class="meal-attribute">
+                <li class="meal-attribute" *ngIf="itemPrice">
                   <span nz-icon nzType="dollar" nzTheme="outline" class="meal-icon"></span>
                     <span><strong>{{itemPrice}}</strong>$</span>
                 </li>

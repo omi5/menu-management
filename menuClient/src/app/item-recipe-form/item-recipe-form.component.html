@@ -81,7 +81,7 @@
 
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 180px;  text-align: left;  font-size: 20px;">Type of food :</label>
+              <label style="width: 180px;  text-align: left;  font-size: 20px;">How to delivery :</label>
               <nz-form-control>
                 
                 <nz-select
@@ -136,7 +136,7 @@
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label  style="width: 180px; text-align: left;  font-size: 20px;">Lasting time</label>
+              <label  style="width: 180px; text-align: left;  font-size: 20px;">Lasting time :</label>
               <nz-form-control>
                 <input nz-input placeholder="please enter lasting time"  style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="itemLastingTime"/>
               </nz-form-control>
@@ -187,7 +187,7 @@
           </div>
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label style="width: 180px;  text-align: left;  font-size: 20px;">How to delivery :</label>
+              <label style="width: 180px;  text-align: left;  font-size: 20px;">Packing type :</label>
               <nz-form-control>
                 <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="ItemHowToDelivery">
                   <nz-option *ngFor="let el of howToDelivered" [nzValue]="el" [nzLabel]="el" ></nz-option>
@@ -259,6 +259,23 @@
     <!-- Ingredient Batches -->
     <div formArrayName="ingredientBatches">
       <div *ngFor="let batch of ingredientBatchesArray.controls; let i = index" [formGroupName]="i" class="form-group">
+
+        
+<!--              
+              <nz-select
+                style="width:250px; color: rgb(190, 186, 186);  border-color: rgb(190, 186, 186); height: 35px; margin-left: 70px; font-size: 20px;"
+                (change)="onIngredientChange(i)"
+                [nzMaxTagCount]="3"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+                nzMode="multiple"
+                nzPlaceHolder="select ingredient"
+                formControlName="ingredientName"
+              >
+                <nz-option *ngFor="let ingredient of ingredentList.ingredients" [nzLabel]="ingredient.ingredientName" [nzValue]="ingredient.ingredientName"></nz-option>
+              </nz-select>
+              <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template> -->
+
+
         
         <select style="width:250px; color: rgb(190, 186, 186);  border-color: rgb(190, 186, 186); height: 35px; margin-left: 70px; font-size: 20px;" formControlName="ingredientName" (change)="onIngredientChange(i)">
           <option value="">select ingredient</option>
@@ -427,7 +444,7 @@
  </div>
 
 
-   <div style="margin-left: 300px;">
+   <!-- <div style="margin-left: 300px;">
      <h2 style="font-size: 28px; margin-left: 70px;">Material calculator</h2>
        <div style="margin-bottom: 8px;">
            <label for="" style="width: 180px; margin-right: 39px;color: black; font-size: 20px;">Cost per unit :</label>
@@ -436,7 +453,7 @@
        <!-- <div style="margin-bottom: 8px;">
            <label for="" style="width: 180px;  margin-right: 20px;color: black; font-size: 18px;">calorie Per Unit</label>
            <input type="text" [value]="totalCaloriesPerUnitForAddOns" style="height: 32px;" >
-       </div> -->
+       </div> 
        <div style="margin-bottom: 8px;">
            <label for="" style="width: 180px;  margin-right: 40px;color: black; font-size: 20px;">Profit margin :</label>
            <input (input)="updateTotalsForAddOns()" type="text"  formControlName="percentageForAddOns" style="height: 35px;border:1px solid rgb(190, 186, 186);">
@@ -445,8 +462,8 @@
            <label for="" style="width: 180px; margin-right: 68px;color: black; font-size: 20px;">Total cost :</label>
            <input type="text" [value]="totalCostForAddOns" style="height: 35px; border:1px solid rgb(190, 186, 186);"  formControlName="price">
        </div>
-   </div>
- </div>
+      </div> -->
+    </div>
 
  </form>
 

@@ -16,9 +16,10 @@ import { TestIngredientsComponent } from './test-ingredients/test-ingredients.co
 // Import other components and create your routes
 
 const routes: Routes = [
-  { path: '', component: LoginFormComponent },
-  { path: 'dashboard', component:  SidebarComponent},
-  { path: 'allDay', component:  AllDayComponent},
+  // { path: '', component: LoginFormComponent },
+  // { path: 'dashboard', component:  SidebarComponent},
+  { path: '', component:  AllDayComponent}, // this is the route for allDay
+  { path: 'allDay', component:  AllDayComponent}, // this is the route for allDay
   { path: 'breakfast', component:  BreakfastComponent},
   { path: 'lunch', component:  LunchComponent},
   { path: 'dinner', component:  DinnerComponent},

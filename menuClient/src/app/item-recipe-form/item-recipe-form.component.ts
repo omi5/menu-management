@@ -40,27 +40,7 @@ totalCostForAddOns: number = 0;
  measurementTools: any;
  typeOfMeasurement: any = ['liquid','solid']
 
- //mock data
-  ingredentList ={
-  "ingredients": [
-      {
-          "id": 111,
-          "ingredientName": "Cheese",
-          "unitOfStock": "gm",
-          "costPerUnit": 200,
-          "caloriesPerUnit": 150,
-          "liquid": "No"
-      },
-      {
-          "id": 2222,
-          "ingredientName": "Cheese Cream",
-          "unitOfStock": "ml",
-          "costPerUnit": 300,
-          "caloriesPerUnit": 250,
-          "liquid": "Yes"
-      }
-  ]
-}
+
 
 
   
@@ -286,6 +266,28 @@ totalCostForAddOns: number = 0;
 
 
  categories: CategoryList[] = []
+
+  //mock data
+  ingredentList ={
+    "ingredients": [
+        {
+            "id": 111,
+            "ingredientName": "Cheese",
+            "unitOfStock": "gm",
+            "costPerUnit": 200,
+            "caloriesPerUnit": 150,
+            "liquid": "No"
+        },
+        {
+            "id": 2222,
+            "ingredientName": "Cheese Cream",
+            "unitOfStock": "ml",
+            "costPerUnit": 300,
+            "caloriesPerUnit": 250,
+            "liquid": "Yes"
+        }
+    ]
+  }
 
   ngOnInit(): void {
     //get recipe

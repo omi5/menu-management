@@ -70,7 +70,7 @@ export class MenuItemComponent implements OnInit {
       this.AllMenuItems.push(...res);
       // console.log(res);
       
-      console.log(this.AllMenuItems);
+      console.log('all menu item==',this.AllMenuItems);
     })
   }
 

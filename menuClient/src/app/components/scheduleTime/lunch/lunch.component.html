@@ -33,9 +33,30 @@
         </ng-container>
         </nz-modal>
   
-      <app-test-component [menuItems]="listForAllDayMenu"></app-test-component>
-        
-    
+  
+        <!-- Provide Your Container Here -->
+
+        <!-- <h1>Hello From Lunch</h1> -->
+
+        <!-- <ng-container *ngFor="let category of filtercategoryList">
+          <h1>hello</h1>
+          <h1 class="category-Name">{{ category[0] }}</h1>
+          <div class="show-menus-items">
+          <div *ngFor="let item of listForLunchMenu">
+            <app-menu-item 
+            [itemName]="item.item.itemName"
+            [ingredients]="item.item.ingredients.length"
+            [preparationTime]="item.item.itemPreparationtime"
+            [itemId]="item.item.itemId"
+            [src]="item.item.itemImage"
+            ></app-menu-item>
+          </div>
+          </div>
+        </ng-container> -->
+        <!-- Provide Your Container Here -->
+
+      <app-test-component [menuItems1]="listForLunchMenu"></app-test-component>
+   
        </nz-content>
   
      </nz-layout>
