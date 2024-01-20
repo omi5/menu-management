@@ -1,6 +1,10 @@
 td{
   font-size: 19px;
 }
+th{
+  font-size: 22px; 
+  font-weight: bold !important;
+}
 
 .delete-button,
 .edit-button,

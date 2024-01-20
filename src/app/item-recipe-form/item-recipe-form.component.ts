@@ -135,8 +135,8 @@ totalCostForAddOns: number = 0;
         }
       },
       
-      'gram': 'gm',
-      'mililiter': 'ml',
+      'gm': 'gm',
+      'ml': 'ml',
       
     };
     
@@ -290,19 +290,23 @@ totalCostForAddOns: number = 0;
   }
 
 
-  packingBox ={
-    "deliveryBox": [
-        {
-            "id": 1,
-            "boxName": "Medium Box",
-            // "unitOfStock": "gm",
-            // "costPerUnit": 200,
-            // "caloriesPerUnit": 150,
-            // "liquid": "No"
-        },
+  // packingBox ={
+  //   "deliveryBox": [
+        // {
+        //     "id": 1,
+        //     "boxName": "Medium Box",
+        //     "quantity": 1,
+        //     "restaurantId": 1
+        //     "unitOfStock": "gm",
+        //     "costPerUnit": 200,
+        //     "caloriesPerUnit": 150,
+        //     "liquid": "No"
+        // },
         
-    ]
-  }
+  //   ]
+  // }
+
+  packingBox: { deliveryBox: any[] } = { deliveryBox: [] };
 
 
   ngOnInit(): void {
@@ -406,7 +410,8 @@ totalCostForAddOns: number = 0;
   itemDescription! : string;
   itemDietaryRestrictions! : string;
   ItemHowToDelivery!: string;
-  itemImage! : string
+  itemImage! : string;
+  deliveryBoxDetails: any[] =[];
 
   //for get recipe and ingredinets   inventoryIngredient | recipeInterface
   // combainedRecipeAndIngredinets: any = []
@@ -517,16 +522,16 @@ totalCostForAddOns: number = 0;
       "typeOfFoods" : this.listOfSeletedValueForTypeOfFood,
       // .split(',')[
       //   Math.floor(Math.random()*this.typeOfFood.length)] ,
-        "itemPortionsize" : this.itemPortionsize,
-        "itemPreparationtime" : parseInt(this.itemPreparationtime),
+        "itemPortionSize" : this.itemPortionsize,
+        "itemPreparationTime" : parseInt(this.itemPreparationtime),
         "servingTemperature" : parseInt(this.servingTemperature) ,
         "itemLastingTime" : parseInt(this.itemLastingTime),
         "itemPrice" : this.itemPrice,
         "itemDescription": this.itemDescription,
-        "ItemHowToDelivery": this.ItemHowToDelivery,
+        "itemPackingType": this.deliveryBoxDetails,
         "itemCalories" : parseInt(this.itemCalories),
         "itemDietaryRestrictions": this.listOfSelectedValue,
-        "itemImage" : 'https://i.pinimg.com/236x/2f/8b/5d/2f8b5d0bf6e405594cc26a83dd3daaa4.jpg',
+        "itemImage" : this.uploadedImageUrl,
         "ingredients": {
           "rawIngredients": rawIngredients,
           "recipes": recipe
@@ -629,7 +634,7 @@ totalCostForAddOns: number = 0;
       quantity: [''],
       costPerUnit: [0.559],
       caloriesPerUnit: [0.333],
-      price: [0]
+      price: 0
     });
   }
   
@@ -682,6 +687,23 @@ totalCostForAddOns: number = 0;
     this.ingredientBatchesArrayForRecipe.removeAt(index);
     this.updateTotalsForRecipe();
   }
+
+
+//onPacking change
+
+onPackingChange(){
+  const packingDetails =  this.ItemHowToDelivery;
+  console.log('packing =====',packingDetails);
+  const selectedPacking = this.packingBox.deliveryBox.find(deliveryBox => deliveryBox.boxName === packingDetails);
+ console.log('selectedPacking ===', {...selectedPacking });
+ const finalPacking = {...selectedPacking }
+
+  this.deliveryBoxDetails.push(finalPacking)
+
+ console.log('After selectedPacking ===', this.deliveryBoxDetails);
+ 
+  
+}
 
 // ... (existing code)
 onIngredientChange(index: number): void {
@@ -962,15 +984,25 @@ updateTotalsForAddOns(): void {
         console.log("unitOfStock", unitOfStock);
 
         // Find the measurement details for the selected unitOfStock
+      
         const measurementDetails = this.measurementTools[unitOfStock];
 
         if (measurementDetails) {
           // Determine the quantity based on measurementType
+          let measurementQuantity: number;
 
-          // this.totalCostPerUnit += costPerUnit * measurementQuantity;
-          this.totalCostPerUnitForAddOns += costPerUnit * quantity;
-          // this.totalCaloriesPerUnitForAddOns += caloriesPerUnit * quantity;
+          if (typeof measurementDetails === 'object') {
+            // Handle object types like 'cup', 'tablespoon', 'teaspoon'
+            measurementQuantity = measurementDetails[quantity > 1 ? 'solid' : 'liquid'].quantity;
+          } else {
+            // Handle simple types like 'gram', 'mililiter'
+            measurementQuantity = 1;
+          }
+
+          this.totalCostPerUnitForAddOns += costPerUnit * measurementQuantity * quantity / 100;
+          // this.totalCaloriesPerUnit += caloriesPerUnit * measurementQuantity * quantity;
         }
+
         this.totalCostForAddOns = this.totalCostPerUnitForAddOns * (1 + percentage);
         price.setValue(( costPerUnit * quantity)* (1 + percentage) )
       }

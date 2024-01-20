@@ -188,9 +188,9 @@
           <div nz-col nzSpan="12">
             <nz-form-item>
               <label style="width: 180px;  text-align: left;  font-size: 20px;">Packing type :</label>
-              <nz-form-control>
-                <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="ItemHowToDelivery">
-                  <nz-option *ngFor="let el of packingBox" [nzValue]="el.boxName" [nzLabel]="el.boxName" ></nz-option>
+              <nz-form-control >
+                <nz-select nzPlaceHolder="Please select a box" style="font-size: 20px; height: 35px; width: 28rem; color: rgb(190, 186, 186) ;" [(ngModel)]="ItemHowToDelivery" (ngModelChange)="onPackingChange()">
+                  <nz-option  *ngFor="let el of packingBox.deliveryBox" [nzValue]="el.boxName" [nzLabel]="el.boxName" ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
@@ -213,7 +213,7 @@
                   nzPlaceHolder="Please select"
                   [(ngModel)]="listOfSeletedValueForMealTime"
                 >
-                  <nz-option *ngFor="let item of listOfOptionForMealTime" [nzLabel]="item" [nzValue]="item"></nz-option>
+                  <nz-option style="color: rgb(190, 186, 186); font-size: 20px;" *ngFor="let item of listOfOptionForMealTime" [nzLabel]="item" [nzValue]="item"></nz-option>
                 </nz-select>
                 <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
 

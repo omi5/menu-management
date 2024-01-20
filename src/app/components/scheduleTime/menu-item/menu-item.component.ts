@@ -23,7 +23,7 @@ export class MenuItemComponent implements OnInit {
   @Input() itemPrice!: number
   @Input() id!: string
   @Input() itemCalories!: number
-  @Input() itemPortionsize!: string
+  @Input() itemPortionSize!: string
   @Input() itemservingTemp!: number
   @Input() itemLastingTime!: number
 

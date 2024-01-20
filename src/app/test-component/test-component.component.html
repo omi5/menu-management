@@ -34,13 +34,13 @@
           <!-- Iterate over menu items in the current category -->
          <app-menu-item
         [itemName]="item.item.itemName"
-        [ingredients]="item.item.ingredients"
-        [preparationTime]="item.item.itemPreparationtime"
+        [ingredients]="item.item.ingredients.rawIngredients"
+        [preparationTime]="item.item.itemPreparationTime"
         [id]="item._id"
         [src]="item.item.itemImage"
         [itemPrice]="item.item.itemPrice"
         [itemCalories]="item.item.itemCalories"
-        [itemPortionsize]="item.item.itemPortionsize"
+        [itemPortionSize]="item.item.itemPortionSize"
         [itemservingTemp]="item.item.servingTemperature"
         [itemLastingTime]="item.item.itemLastingTime"
       ></app-menu-item> 

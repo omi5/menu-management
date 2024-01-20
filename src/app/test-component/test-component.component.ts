@@ -25,21 +25,15 @@ export interface MenuItem {
     itemCalories: number;
     timeOfDay: string[];
     itemProfileTastyTags: string[];
-    itemPortionsize: string;
-    itemPreparationtime: number;
+    itemPortionSize: string;
+    itemPreparationTime: number;
     itemLastingTime: number;
     servingTemperature: number;
     itemDietaryRestrictions: string[];
     ingredients: {
-      id: number;
-      restaurantId: number;
-      costPerUnit: number;
-      caloriesPerUnit: number;
-      _id: string;
-      ingredientName?: string;
-      unitOfStock?: string;
-      quantity?: number;
-    }[];
+      rawIngredients: any[];
+      recipes: any[]
+    };
     _id: string;
     itemId: number;
   };

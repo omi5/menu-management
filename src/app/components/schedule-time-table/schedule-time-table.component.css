@@ -1,6 +1,10 @@
 td{
   font-size: 19px;
 }
+th{
+  font-size: 22px; 
+  font-weight: bold !important;
+}
 
 .Add-btn{
   width: 120px;
