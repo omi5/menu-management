@@ -120,7 +120,11 @@
             <nz-form-item>
               <label  style="width: 180px; text-align: left;  font-size: 20px;">Preparation Time :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter preparation time" style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="itemPreparationtime"/>
+                <input nz-input placeholder="please enter preparation time" style="font-size: 20px; height: 35px; width: 18rem;" [(ngModel)]="itemPreparationtime"/>
+                <select name="" id="" style="font-size: 20px; height: 35px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186); color: rgb(190, 186, 186);">
+                  <option value="minutes" style="color: rgb(190, 186, 186);">Minutes</option>
+                  <option value="hours" style="color: rgb(190, 186, 186);">Hours</option>
+                </select>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -128,7 +132,7 @@
         <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <label  style="width: 180px; text-align: left;  font-size: 20px;">Serving temp :</label>
+              <label  style="width: 180px; text-align: left;  font-size: 20px;">Serving temp(°C) :</label>
               <nz-form-control>
                 <input nz-input placeholder="please enter serving temp" style="font-size: 20px; height: 35px; width: 28rem" [(ngModel)]="servingTemperature" />
               </nz-form-control>
@@ -138,7 +142,11 @@
             <nz-form-item>
               <label  style="width: 180px; text-align: left;  font-size: 20px;">Lasting time :</label>
               <nz-form-control>
-                <input nz-input placeholder="please enter lasting time"  style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="itemLastingTime"/>
+                <input nz-input placeholder="please enter lasting time"  style="font-size: 20px; height: 35px; width: 18rem;" [(ngModel)]="itemLastingTime"/>
+                <select name="" id="" style="font-size: 20px; height: 35px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186); color: rgb(190, 186, 186);">
+                  <option value="minutes" style="color: rgb(190, 186, 186);">Minutes</option>
+                  <option value="hours" style="color: rgb(190, 186, 186);">Hours</option>
+                </select>
               </nz-form-control>
             </nz-form-item>
           </div>
