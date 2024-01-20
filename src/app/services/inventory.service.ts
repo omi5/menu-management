@@ -13,4 +13,9 @@ export class InventoryService {
   getAllInventoryIngredients(): Observable<any>{
     return this.http.get<any>(this.url+'/getall');
   }
+
+  getAllPackingBox(): Observable<any>{
+    return this.http.get<any>(this.url+'/getAllPacking')
+  }
 }
+

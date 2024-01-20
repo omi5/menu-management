@@ -289,11 +289,27 @@ totalCostForAddOns: number = 0;
     ]
   }
 
+
+  packingBox ={
+    "deliveryBox": [
+        {
+            "id": 1,
+            "boxName": "Medium Box",
+            // "unitOfStock": "gm",
+            // "costPerUnit": 200,
+            // "caloriesPerUnit": 150,
+            // "liquid": "No"
+        },
+        
+    ]
+  }
+
+
   ngOnInit(): void {
     //get recipe
     this.getAllRecipe()
     this.getAllIngredinets()
-
+    this.getAllPackingBox()
     this.addIngredientBatch()
 
 
@@ -458,6 +474,22 @@ totalCostForAddOns: number = 0;
         console.error('Error fetching inventory:', error);
       }
     );
+  }
+
+  //get all Packing box
+  getAllPackingBox(){
+    this.inventoryService.getAllPackingBox().subscribe(
+      (res) => {
+        res.forEach((items: any) => {
+          this.packingBox.deliveryBox.push(items);
+        });
+        console.log('deliveryBox response:', res);
+        console.log('deliveryBox:', this.packingBox);
+      },
+      (error) => {
+        console.error('Error fetching deliveryBox:', error);
+      }
+    )
   }
 
   

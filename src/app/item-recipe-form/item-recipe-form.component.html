@@ -190,7 +190,7 @@
               <label style="width: 180px;  text-align: left;  font-size: 20px;">Packing type :</label>
               <nz-form-control>
                 <nz-select nzPlaceHolder="Please select a Category" style="font-size: 20px; height: 35px; width: 28rem;" [(ngModel)]="ItemHowToDelivery">
-                  <nz-option *ngFor="let el of howToDelivered" [nzValue]="el" [nzLabel]="el" ></nz-option>
+                  <nz-option *ngFor="let el of packingBox" [nzValue]="el.boxName" [nzLabel]="el.boxName" ></nz-option>
                 </nz-select>
               </nz-form-control>
             </nz-form-item>
