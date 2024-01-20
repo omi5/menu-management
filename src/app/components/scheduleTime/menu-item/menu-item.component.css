@@ -35,17 +35,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
 }
 
-/* @media (min-width: 768px) {
-  .grid--3-cols {
-    grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid--3-cols {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}  */
 
 .margin-right-md {
   margin-bottom: 4.8rem !important;

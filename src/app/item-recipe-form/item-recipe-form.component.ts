@@ -1108,10 +1108,6 @@ submitFormForRecipe(): void {
 
 return this.recipeListArray;
 
-  
-  
-
-
 
   // if (this.orderFormForRecipe.valid) {
   //   const formData = this.orderFormForRecipe.value;

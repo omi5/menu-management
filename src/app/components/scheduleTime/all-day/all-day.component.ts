@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetMenuItemBySchuduleService } from 'src/app/services/get-menu-item-by-schudule.service';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 import { MenuItem } from 'src/app/test-component/test-component.component';
@@ -8,7 +8,7 @@ import { MenuItem } from 'src/app/test-component/test-component.component';
   templateUrl: './all-day.component.html',
   styleUrls: ['./all-day.component.css']
 })
-export class AllDayComponent {
+export class AllDayComponent implements OnInit{
 
   isCollapsed = false;
   //for modal
@@ -26,6 +26,9 @@ export class AllDayComponent {
   }
 
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
+  ngOnInit(): void {
+   this.getMenuItems()
+  }
 
 
   //get All Menu
@@ -54,14 +57,14 @@ export class AllDayComponent {
       this.AllMenuItems.push(res);
       console.log('Selected menu for all====', this.AllMenuItems);
   
-      this.AllMenuItems[0].forEach((item: MenuItem) => {
-        if (item.item.timeOfDay.includes('BreakFast')) {
-          console.log('Item added to breakfast menu====:', item);
-          this.listForAllDayMenu.push(item);
-        }
-      });
+      // this.AllMenuItems[0].forEach((item: MenuItem) => {
+      //   if (item.item.timeOfDay.includes('BreakFast')) {
+      //     console.log('Item added to breakfast menu====:', item);
+      //     this.listForAllDayMenu.push(item);
+      //   }
+      // });
   
-      console.log('listOfLunchMenu====', this.listForAllDayMenu);
+      // console.log('listOfLunchMenu====', this.listForAllDayMenu);
     });
   }
 
