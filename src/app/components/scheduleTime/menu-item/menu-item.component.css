@@ -31,9 +31,9 @@ body {
   row-gap: 9.6rem;
 }
 
- .grid--3-cols {
+ /* .grid--3-cols {
   grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
-}
+} */
 
 
 .margin-right-md {

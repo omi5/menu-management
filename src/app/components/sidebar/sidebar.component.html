@@ -10,32 +10,14 @@
        <span
          class="trigger"
          nz-icon
-         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
          (click)="isCollapsed = !isCollapsed"
-       ></span>
-     </nz-header>
+         [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+         ></span>
+        </nz-header>
      <!-- nz-headerForTrigger -->
 
      <nz-content>
-      <!-- <nz-modal
-      [(nzVisible)]="isVisible"
-      nzTitle="Create Schedule"
-      nzOkText="Add"
-      nzCancelText="Cancel"
-      (nzOnOk)="handleOk()"
-      (nzOnCancel)="handleCancel()"
-      [nzStyle]="{ width: '700px' }"
-      > -->
-      <!-- <ng-container *nzModalContent> -->
-        <!-- category Form -->
-        <!-- <app-modal-form></app-modal-form> -->
-        <!-- category Form -->
-      <!-- </ng-container> -->
-      <!-- </nz-modal> -->
-
-
-      <!-- Provide Your Container Here -->
-      <!-- Provide Your Container Here -->
+      
      
   
      </nz-content>

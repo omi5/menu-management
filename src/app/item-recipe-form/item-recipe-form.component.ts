@@ -402,15 +402,17 @@ totalCostForAddOns: number = 0;
   categoryId! : any;
   typeOfFoods! : string;
   itemPortionsize!: string;
-  itemPreparationtime!: string;
+  itemPreparationtime!: any;
   servingTemperature! : string;
-  itemLastingTime!: string;
+  itemLastingTime!: any ;
   itemPrice! : number;
   itemCalories! : string;
   itemDescription! : string;
   itemDietaryRestrictions! : string;
   ItemHowToDelivery!: string;
   itemImage! : string;
+  lastingtimeInMinAndHour!: string;
+  itemPreparationTimeInMinAndHour!: string
   deliveryBoxDetails: any[] =[];
 
   //for get recipe and ingredinets   inventoryIngredient | recipeInterface
@@ -505,6 +507,13 @@ totalCostForAddOns: number = 0;
     const rawIngredients =  this.ingredientBatchesArray.controls.map((control: AbstractControl) => control.value)
     // const recipes =  this.ingredientBatchesArrayForRecipe.controls.map((control: AbstractControl) => control.value)
     console.log('===recipes===',recipe,rawIngredients);
+    if(this.lastingtimeInMinAndHour === 'hours'){
+      this.itemLastingTime =(this.itemLastingTime  * 60);
+    }
+    if(this.itemPreparationTimeInMinAndHour === 'hours'){
+      this.itemPreparationtime =(this.itemPreparationtime  * 60);
+    }
+    
     
     // if(this.categoryId === 'Burger'){
     //   this.categoryId = 1;

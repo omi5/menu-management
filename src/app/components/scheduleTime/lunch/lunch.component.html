@@ -1,5 +1,5 @@
 <nz-layout >
-    <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
+    <nz-sider nzWidth="15%" nzCollapsible  class="sidebar-bg-color">
       <app-nz-sider></app-nz-sider>
       
     </nz-sider>
@@ -10,10 +10,10 @@
          <span
            class="trigger"
            nz-icon
-           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
            (click)="isCollapsed = !isCollapsed"
-         ></span>
-       </nz-header>
+           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+           ></span>
+          </nz-header>
        <!-- nz-headerForTrigger -->
   
        <nz-content>

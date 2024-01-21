@@ -105,8 +105,8 @@ export class RecipeFormComponent {
         }
       },
       
-      'gram': 'gm',
-      'mililiter': 'ml',
+      'gm': 'gm',
+      'ml': 'ml',
       
     };
     
@@ -141,12 +141,13 @@ export class RecipeFormComponent {
   // itemProfileTastyTags! : string;
   // typeOfFoods! : string;
   recipeItemPortionsize!: string;
-  recipeItemPreparationtime!: string;
+  recipeItemPreparationtime!: any;
   // servingTemperature! : string;
   // itemLastingTime!: string;
   recipeItemCost! : string;
   recipeItemCalories! : string;
   recipeItemDescription! : string;
+  recipeItemPreparationtimeInMinAndHour! : string
   // itemDietaryRestrictions! : string;
   // imgUrls! : string
 
@@ -173,6 +174,10 @@ export class RecipeFormComponent {
     
     const ingredients = this.submitForm()
     console.log(this.recipeItemDescription);
+
+    if(this.recipeItemPreparationtimeInMinAndHour === 'hours'){
+      this.recipeItemPreparationtime =(this.recipeItemPreparationtime  * 60);
+    }
     
     const newRecipe= {
       "restaurantId" : 1 ,
@@ -341,7 +346,7 @@ export class RecipeFormComponent {
             // Determine the quantity based on measurementType
   
             // this.totalCostPerUnit += costPerUnit * measurementQuantity;
-            this.totalCostPerUnit += costPerUnit * quantity;
+            this.totalCostPerUnit +=  costPerUnit * quantity /100;
             this.totalCaloriesPerUnit += caloriesPerUnit * quantity;
           }
         }

@@ -1,35 +1,19 @@
-<!-- 
-
-<div *ngFor="let item of Object.keys(categorizedMenu)" >
-    <h2 *ngIf="categorizedMenu[item].length > 0">{{ item}}</h2>
-    <!-- <ul *ngIf="menuItems.length > 0">
-        <li *ngFor="let menuItem of categorizedMenu[category.categoryName]">
-            {{ menuItem.item.itemName }}
-        </li>
-        
-    </ul> 
-    
-    <div class="show-menus-items" *ngIf="menuItems.length > 0">
-      <div *ngFor="let item of categorizedMenu[item]">
-    <!-- Iterate over menu items in the current category -->
-      <!-- <app-menu-item
-        [itemName]="item.item.itemName"
-        [ingredients]="item.item.ingredients.length"
-        [preparationTime]="item.item.itemPreparationtime"
-        [itemId]="item.item.itemId"
-        [src]="item.item.itemImage"
-      ></app-menu-item> 
-      <div>{{item.item.itemName}}</div>
-    </div>
-  </div>
- </div> 
-
-
-    -->
+  
     <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
-      <h2 *ngIf="categorizedMenu[itemCategory].length > 0">{{ itemCategory }}</h2>
+      <div>
+        <h2 *ngIf="categorizedMenu[itemCategory].length > 0">{{ itemCategory }}
+         <span nz-icon nzType="edit" nzTheme="outline" class="editBtn" (click)="editBtn(itemCategory)"></span>
+          <span nz-icon nzType="delete" nzTheme="outline" class="deleteBtn" (click)="deleteBtn()"></span> 
+          <hr style=" border-top: 2px solid #038851; margin-top: 20px;">       
+        </h2>
+        
+      </div>
+
       
       <div class="show-menus-items" *ngIf="categorizedMenu[itemCategory].length > 0">
+        <div  class="AddBtnForCategory">
+          <button (click)="OpenDrawerForCreateMenuItem(itemCategory)" class="AddBtnForCategoryIcon"><span nz-icon nzType="plus" nzTheme="outline"></span></button>
+        </div>
         <div *ngFor="let item of categorizedMenu[itemCategory]">
           <!-- Iterate over menu items in the current category -->
          <app-menu-item
@@ -47,4 +31,96 @@
         </div>
       </div>
     </div>
+
+
+
+       <!--For  Menu Item Drawer  -->
+       <nz-drawer
+       [nzBodyStyle]="{ overflow: 'auto' }"
+       [nzMaskClosable]="false"
+       [nzWidth]="1420"
+       [nzVisible]="visible"
+       nzTitle="Create Items"
+       [nzFooter]="footerTpl"
+       (nzOnClose)="close()"
+     >
+ 
+     
+     <form nz-form *nzDrawerContent (ngSubmit)="createItems()">
+      
+       
+       <app-item-recipe-form #itemForm></app-item-recipe-form>
+ 
+       
+     </form>
+ 
+     <ng-template #footerTpl>
+       <div style="float: right; margin-right: 30px; ">
+         <button nz-button style="margin-right: 8px;" (click)="close()"   class="close-btn">Cancel</button>
+         <button nz-button nzType="primary"  (click)="createItems()" class="Add-btn">Add Item</button>
+       </div>
+     </ng-template>
+   </nz-drawer>
     
+
+   <!-- //For category  -->
+
+   <nz-modal
+   [(nzVisible)]="isVisibleForCategory"
+   nzTitle="Create category"
+   nzOkText="Add"
+   nzCancelText="Cancel"
+   (nzOnOk)="handleOkForCategory()"
+   (nzOnCancel)="handleCancelForCategory()"
+   [nzStyle]="{ width: '900px' }"
+ >
+     <ng-container *nzModalContent>
+
+      <h1>Hello</h1>
+      <form nz-form (ngSubmit)="submitForm()">
+        <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label for="categoryName" style="width: 180px;font-size: 20px;  text-align: left; ">Category Name</nz-form-label>
+              <nz-form-control>
+                <input
+                  nz-input
+                  id="categoryName"
+                  [(ngModel)]="categoryName"
+                  name="categoryName"
+                  placeholder="Enter category name"
+                  style="font-size: 20px; height: 35px; width: 28rem;"
+
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <!-- <div nz-row [nzGutter]="8">
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <label  style="width: 180px; text-align: left;  font-size: 20px;">Description :</label>
+              <nz-form-control>
+                <textarea
+                  [(ngModel)]="categoryDescription"
+                  name="categoryDescription"
+                  nz-input
+                  placeholder="please enter  description"
+                  [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                  style="width: 28rem; font-size: 20px;"
+                ></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div> -->
+    
+       
+    
+        <!-- Add other fields based on your actual data structure -->
+        
+      </form>
+      
+       
+     </ng-container>
+ </nz-modal>

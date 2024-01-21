@@ -10,7 +10,7 @@ import { MenuItem } from 'src/app/test-component/test-component.component';
 })
 export class AllDayComponent implements OnInit{
 
-  isCollapsed = false;
+  isCollapsed = true;
   //for modal
   isVisible = false;
   //use in Nz-sider

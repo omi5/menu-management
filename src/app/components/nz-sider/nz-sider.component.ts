@@ -127,6 +127,7 @@ export class NzSiderComponent {
   createItems(): void{
     // console.log('click');
     this.itemForm.createItem()
+    this.visible = false;
   }
 
   // for Create a  Recipe Items recipeForm

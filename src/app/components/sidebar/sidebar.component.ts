@@ -20,7 +20,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 })
 export class SidebarComponent {
   // use in Nz-sider
-  isCollapsed = false;
+  isCollapsed = true;
 
 
   //for modal

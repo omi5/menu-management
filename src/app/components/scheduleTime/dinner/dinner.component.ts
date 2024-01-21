@@ -11,7 +11,7 @@ export class DinnerComponent implements OnInit {
  
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
 
-  isCollapsed = false;
+  isCollapsed = true;
   //for modal
   isVisible = false;
   //use in Nz-sider

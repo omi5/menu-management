@@ -16,7 +16,7 @@ export class BreakfastComponent implements OnInit {
   categories: CategoryList[] = [];
   Object = Object;
  
-  isCollapsed = false;
+  isCollapsed = true;
   //for modal
   isVisible = false;
   //use in Nz-sider

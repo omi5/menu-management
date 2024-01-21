@@ -11,7 +11,7 @@ import { MenuItem } from 'src/app/test-component/test-component.component';
 export class LunchComponent {
 
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
-  isCollapsed = false;
+  isCollapsed = true;
   //for modal
   isVisible = false;
   //use in Nz-sider

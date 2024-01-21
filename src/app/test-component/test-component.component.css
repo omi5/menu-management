@@ -78,11 +78,47 @@ nz-sider{
 
   .show-menus-items{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(calc(20% - 10px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(calc(18% - 10px), 1fr));
     gap: 4px;
 }
+
+@media screen and (max-width: 768px) {
+  .show-menus-items {
+    max-width: 750px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(33% - 10px), 1fr));
+    /* Adjust the column width for smaller screens */
+  }
+}
+
 
 .category-Name{
     font-size: 36px;
     margin-left: 25px;
+}
+
+.editBtn{
+  padding-left: 1800px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+.deleteBtn{
+  cursor: pointer;
+}
+.AddBtnForCategory{
+  margin-left: 28px;
+  border-radius: 11px;
+  height: 520px;
+  width: 380px;
+  position: relative;
+  background-color: #f0f2f5;
+  border: 1px solid black;
+}
+.AddBtnForCategoryIcon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  border: none;
+  cursor: pointer;
 }
