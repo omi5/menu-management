@@ -26,13 +26,13 @@ export class NzSiderComponent {
   }
 
   onBreakfast(){
-    this.router.navigate(['/breakfast'])
+    this.router.navigate(['/BreakFast'])
   }
   onLunch(){
-    this.router.navigate(['/lunch'])
+    this.router.navigate(['/Lunch'])
   }
   onDinner(){
-    this.router.navigate(['/dinner'])
+    this.router.navigate(['/Dinner'])
   }
 
   category(){

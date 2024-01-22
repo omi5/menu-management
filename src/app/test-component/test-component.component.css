@@ -149,3 +149,33 @@ nz-sider{
   color: red !important;
   
 }
+.headerForMealTime{
+  text-transform: capitalize; 
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+
+}
+.Add-btn{
+  width: 120px;
+  background-color: #038851;
+}
+.Add-btn:hover{
+  background-color: #05CC79;
+}
+.close-btn{
+  width: 80px;
+  background-color: #05CC79;
+}
+.close-btn:hover{
+  background-color: #038851;
+}
+.AddCategoryBtn{
+  margin: 0 auto;
+  display: block;
+  font-size: 24px;
+  border: none;
+  background-color: #05CC79;
+  padding: 8px 12px;
+
+}

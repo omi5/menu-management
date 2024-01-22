@@ -1,4 +1,7 @@
-  
+  <h1 class="headerForMealTime">{{mealTimeName}} Menu Items</h1>
+  <button class="AddCategoryBtn"><span nz-icon nzType="plus" nzTheme="outline"></span>Add Category</button>
+
+
     <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
       <div>
         <h2 *ngIf="categorizedMenu[itemCategory].length > 0"  class="category-heading">{{ itemCategory }}
@@ -26,6 +29,7 @@
          <app-menu-item
         [itemName]="item.item.itemName"
         [ingredients]="item.item.ingredients.rawIngredients"
+        [recipes]="item.item.ingredients.recipes"
         [preparationTime]="item.item.itemPreparationTime"
         [id]="item._id"
         [src]="item.item.itemImage"

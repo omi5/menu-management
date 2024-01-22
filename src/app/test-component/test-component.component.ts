@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
 import { CategoryService } from '../services/category.service';
 import { forkJoin } from 'rxjs';
+import { ActivatedRoute, Route } from '@angular/router';
 
 export interface MenuItem {
   _id: string;
@@ -60,10 +61,11 @@ export class TestComponentComponent implements OnInit {
   allMenuItems: MenuItem[] = [];
   categories: Category[] = [];
   categorizedMenu: { [key: string]: MenuItem[] } = {};
+  mealTimeName: any = '';
 
   Object = Object;
 
-  constructor(private menuItemsService: MenuItemServiceService, private categoryService: CategoryService) {
+  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService) {
     
   }
 
@@ -101,6 +103,11 @@ export class TestComponentComponent implements OnInit {
     );
     this.getMenuItems()
     this.subscribeToIngredientChanges()
+    // this.mealTimeName = this.route.snapshot.paramMap.get();
+    console.log('route ======',this.route.snapshot.url[0].path);
+    this.mealTimeName = this.route.snapshot.url[0].path;
+    
+
   }
 
 
@@ -140,9 +147,55 @@ export class TestComponentComponent implements OnInit {
     console.log('delete Button is click');
     
   }
-  
+  filterMenuForMenu: any []= []
+   filterMenuItemsForDeleteAllMenu: any[] = []
   deleteFromAllMenu(itemCategory:any){
     console.log('click from all delete');
+
+    console.log('click from this menu delete');
+    console.log('edit Button click',itemCategory);
+    this.categories.map(item=>{
+      if(item.categoryName === itemCategory){
+        this.categoryItem.push(item)
+      }
+    })
+    // this.categoryName = this.categoryItem[0].categoryName
+    // this.id = this.categoryItem[0]._id
+    console.log('new cateee for delete=====',this.categoryItem[0]._id);
+    console.log('All menu Item for delete', this.allMenuItems);
+
+    this.allMenuItems.map(item=>{
+      if (item.categoryId == this.categoryItem[0]._id ) {
+        this.filterMenuForMenu.push(item);
+      }
+      
+    })
+    this.filterMenuForMenu.map(item =>{
+      if(item.item.timeOfDay.includes(this.mealTimeName)){
+        this.filterMenuItemsForDeleteAllMenu.push(item);
+      }
+    })
+    
+    this.filterMenuItemsForDeleteAllMenu.map(item=>{
+     
+      let index = item.item.timeOfDay.indexOf(this.mealTimeName);
+      if(index > -1){
+        item.item.timeOfDay = []
+      }
+      
+      this.filterMenuItemsForDeleteAllMenu.map((item: any) => {
+        this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
+          // Backend delete successful, trigger a refresh
+          console.log('Inside subscribe==',res);
+          
+          // this.menuItemsService.refreshNeeded$.next();
+        });
+      });
+      
+      console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
+      
+    }) 
+
     
    }
 
@@ -150,6 +203,8 @@ export class TestComponentComponent implements OnInit {
    filterMenu: any []= []
    filterMenuItemsForDeleteThisMenu: any[] = []
    deleteFromThisMenu(itemCategory:any){
+    console.log(this.mealTimeName);
+    
     console.log('click from this menu delete');
     console.log('edit Button click',itemCategory);
     this.categories.map(item=>{
@@ -169,14 +224,14 @@ export class TestComponentComponent implements OnInit {
       
     })
     this.filterMenu.map(item =>{
-      if(item.item.timeOfDay.includes('BreakFast')){
+      if(item.item.timeOfDay.includes(this.mealTimeName)){
         this.filterMenuItemsForDeleteThisMenu.push(item);
       }
     })
     
     this.filterMenuItemsForDeleteThisMenu.map(item=>{
      
-      let index = item.item.timeOfDay.indexOf('BreakFast');
+      let index = item.item.timeOfDay.indexOf(this.mealTimeName);
       if(index > -1){
         item.item.timeOfDay.splice(index,1);
       }

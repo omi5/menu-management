@@ -20,9 +20,9 @@ const routes: Routes = [
   // { path: 'dashboard', component:  SidebarComponent},
   { path: '', component:  AllDayComponent}, // this is the route for allDay
   { path: 'allDay', component:  AllDayComponent}, // this is the route for allDay
-  { path: 'breakfast', component:  BreakfastComponent},
-  { path: 'lunch', component:  LunchComponent},
-  { path: 'dinner', component:  DinnerComponent},
+  { path: 'BreakFast', component:  BreakfastComponent},
+  { path: 'Lunch', component:  LunchComponent},
+  { path: 'Dinner', component:  DinnerComponent},
   { path: 'category', component:  CategoryTableComponent},
   { path: 'recipe', component:  MakeRecipeTableComponent},
   { path: 'schedule', component:  ScheduleTimeTableComponent},
