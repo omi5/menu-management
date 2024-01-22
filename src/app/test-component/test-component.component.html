@@ -1,9 +1,16 @@
   
     <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
       <div>
-        <h2 *ngIf="categorizedMenu[itemCategory].length > 0">{{ itemCategory }}
+        <h2 *ngIf="categorizedMenu[itemCategory].length > 0"  class="category-heading">{{ itemCategory }}
          <span nz-icon nzType="edit" nzTheme="outline" class="editBtn" (click)="editBtn(itemCategory)"></span>
-          <span nz-icon nzType="delete" nzTheme="outline" class="deleteBtn" (click)="deleteBtn()"></span> 
+          <span nz-icon nzType="delete" nzTheme="outline" class="deleteBtn" (click)="deleteBtn()" nz-button nz-dropdown [nzDropdownMenu]="menu"></span> 
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item class="hoverDelete" (click)="deleteFromThisMenu(itemCategory)" >Delete from this menu</li>
+              <li nz-menu-item class="hoverDelete" (click)="deleteFromAllMenu(itemCategory)">Delete from all menu</li>
+            </ul>
+          </nz-dropdown-menu>
+         
           <hr style=" border-top: 2px solid #038851; margin-top: 20px;">       
         </h2>
         
@@ -67,8 +74,8 @@
 
    <nz-modal
    [(nzVisible)]="isVisibleForCategory"
-   nzTitle="Create category"
-   nzOkText="Add"
+   nzTitle="Edit category"
+   nzOkText="Update"
    nzCancelText="Cancel"
    (nzOnOk)="handleOkForCategory()"
    (nzOnCancel)="handleCancelForCategory()"
@@ -76,12 +83,11 @@
  >
      <ng-container *nzModalContent>
 
-      <h1>Hello</h1>
-      <form nz-form (ngSubmit)="submitForm()">
+      <form nz-form (ngSubmit)="submitFormForCategory()">
         <div nz-row [nzGutter]="8" class="mt" style="margin: 20px 0 10px 0">
           <div nz-col nzSpan="12">
             <nz-form-item>
-              <nz-form-label for="categoryName" style="width: 180px;font-size: 20px;  text-align: left; ">Category Name</nz-form-label>
+              <nz-form-label for="categoryName" style="width: 120px;font-size: 20px;  text-align: left; ">Category Name</nz-form-label>
               <nz-form-control>
                 <input
                   nz-input

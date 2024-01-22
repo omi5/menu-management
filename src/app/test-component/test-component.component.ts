@@ -57,7 +57,7 @@ export class TestComponentComponent implements OnInit {
   @Input() menuItems1: any;
   menuItems: any;
   title = 'menu';
-  // menuItems: MenuItem[] = [];
+  allMenuItems: MenuItem[] = [];
   categories: Category[] = [];
   categorizedMenu: { [key: string]: MenuItem[] } = {};
 
@@ -74,7 +74,7 @@ export class TestComponentComponent implements OnInit {
     ]).subscribe(
       ([categories]) => {
         // this.menuItems = [];
-        // this.menuItems.push(...menuItems);
+        // this.menuItem.push(...menuItems);
 
         this.categories.push(...categories);
       
@@ -99,26 +99,117 @@ export class TestComponentComponent implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
+    this.getMenuItems()
+    this.subscribeToIngredientChanges()
   }
 
+
+  private subscribeToIngredientChanges() {
+    this.menuItemsService.refreshNeeded$.subscribe(() => {
+      this.getMenuItems()
+      this.categoryService.getAllCategory()
+    });
+  }
+  //get All Menu Item 
+
+  getMenuItems(){
+    this.menuItemsService.getAllMenuItems().subscribe(res=>{
+      this.allMenuItems.push(...res)
+    })
+  }
+
+
+  categoryName!: string;
+  id! : string
+  categoryItem: any[] = []
   //edit button
   editBtn(itemCategory: any){
     console.log('edit Button click',itemCategory);
-    const categoryItem: any[] = []
     this.categories.map(item=>{
       if(item.categoryName === itemCategory){
-        categoryItem.push(item)
+        this.categoryItem.push(item)
       }
     })
+    this.categoryName = this.categoryItem[0].categoryName
+    this.id = this.categoryItem[0]._id
     this.showModalForCategory()
-    
-    console.log('new cateee=====',categoryItem);
+    console.log('new cateee=====',this.categoryItem[0].categoryName);
     
   }
   deleteBtn(){
     console.log('delete Button is click');
     
   }
+  
+  deleteFromAllMenu(itemCategory:any){
+    console.log('click from all delete');
+    
+   }
+
+
+   filterMenu: any []= []
+   filterMenuItemsForDeleteThisMenu: any[] = []
+   deleteFromThisMenu(itemCategory:any){
+    console.log('click from this menu delete');
+    console.log('edit Button click',itemCategory);
+    this.categories.map(item=>{
+      if(item.categoryName === itemCategory){
+        this.categoryItem.push(item)
+      }
+    })
+    // this.categoryName = this.categoryItem[0].categoryName
+    // this.id = this.categoryItem[0]._id
+    console.log('new cateee for delete=====',this.categoryItem[0]._id);
+    console.log('All menu Item for delete', this.allMenuItems);
+
+    this.allMenuItems.map(item=>{
+      if (item.categoryId == this.categoryItem[0]._id ) {
+        this.filterMenu.push(item);
+      }
+      
+    })
+    this.filterMenu.map(item =>{
+      if(item.item.timeOfDay.includes('BreakFast')){
+        this.filterMenuItemsForDeleteThisMenu.push(item);
+      }
+    })
+    
+    this.filterMenuItemsForDeleteThisMenu.map(item=>{
+     
+      let index = item.item.timeOfDay.indexOf('BreakFast');
+      if(index > -1){
+        item.item.timeOfDay.splice(index,1);
+      }
+      
+      this.filterMenuItemsForDeleteThisMenu.map((item: any) => {
+        this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
+          // Backend delete successful, trigger a refresh
+          console.log('Inside subscribe==',res);
+          
+          // this.menuItemsService.refreshNeeded$.next();
+        });
+      });
+      
+      console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
+      
+    }) 
+   }
+
+
+  submitFormForCategory() {
+   let editDetails = {
+    categoryName:this.categoryName
+   }
+  //  this.categoryName = this.categoryItem[0].categoryName
+   console.log("tadaaaaa", this.categoryItem[0].categoryName);
+   
+
+
+   this.categoryService.updateCategory(this.categoryItem[0]._id, editDetails).subscribe(res=> {
+    console.log('Updated the category', res);
+   })
+  }
+
   OpenDrawerForCreateMenuItem(itemCategory: any){
     this.open()
     console.log('click for open a drawer',itemCategory);
@@ -158,15 +249,14 @@ export class TestComponentComponent implements OnInit {
    @ViewChild('modalFormForCategory') modalFormForCategory: any
 
    handleOkForCategory(): void {
-     this.modalFormForCategory.submitFormForCategory();
+    //  this.modalFormForCategory.submitFormForCategory();
+    this.submitFormForCategory()
      this.isVisibleForCategory = false;
      // this.receiveSubmittedFormData(this.receivedFormData)
      // console.log(this.data);
      
    }
 
-   categoryName!: string;
-   submitForm(){
-    
-   }
+  
+  
 }

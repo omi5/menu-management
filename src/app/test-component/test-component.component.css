@@ -95,15 +95,32 @@ nz-sider{
     font-size: 36px;
     margin-left: 25px;
 }
+.category-heading {
+  position: relative;
+}
+.editBtn,
+.deleteBtn {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust the right value as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
+.deleteBtn {
+  right: 40px; 
+}
 .editBtn{
+  right: 90px;
+}
+/* .editBtn{
   padding-left: 1800px;
   padding-right: 20px;
   cursor: pointer;
 }
 .deleteBtn{
   cursor: pointer;
-}
+} */
 .AddBtnForCategory{
   margin-left: 28px;
   border-radius: 11px;
@@ -121,4 +138,14 @@ nz-sider{
   font-size: 80px;
   border: none;
   cursor: pointer;
+}
+
+.hoverDelete{
+  font-size: 22px !important;
+  margin-bottom: 8px;
+}
+
+.hoverDelete:hover{
+  color: red !important;
+  
 }

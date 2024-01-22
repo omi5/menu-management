@@ -311,6 +311,7 @@ totalCostForAddOns: number = 0;
 
   ngOnInit(): void {
     //get recipe
+    this.subscribeToIngredientChanges()
     this.getAllRecipe()
     this.getAllIngredinets()
     this.getAllPackingBox()
@@ -382,6 +383,15 @@ totalCostForAddOns: number = 0;
     this.listOfOptionForMealTime = mealTime;
     this.listOfOptionForTypeOfFood = typeOfFood;
     
+  }
+
+  private subscribeToIngredientChanges() {
+    this.menuService.refreshNeeded$.subscribe(() => {
+    this.getAllRecipe()
+    this.getAllIngredinets()
+    this.getAllPackingBox()
+    this.addIngredientBatch()
+    });
   }
 
   

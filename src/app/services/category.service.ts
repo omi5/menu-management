@@ -21,7 +21,7 @@ export class CategoryService {
   getCategoryById(id: any){
     return this.http.get(this.url+`/${id}`);
   }
-  updateCategory(id:any, categoryObject: Category){
+  updateCategory(id:any, categoryObject: any){
     console.log("service hit", categoryObject);
     
     let result = this.http.put(this.url + `/edit/${id}`, categoryObject)

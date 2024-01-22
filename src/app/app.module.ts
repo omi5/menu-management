@@ -65,6 +65,7 @@ import { MakeRecipeTableComponent } from './components/make-recipe-table/make-re
 import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component';
 import { TestComponentComponent } from './test-component/test-component.component';
 import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 //For Icons
 
@@ -123,6 +124,7 @@ registerLocaleData(en);
     NzButtonModule,
     NzPopconfirmModule,
     NzTimePickerModule,
+    NzDropDownModule
    
     
 

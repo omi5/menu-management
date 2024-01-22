@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,19 @@ export class MenuItemServiceService {
 
   constructor( private http: HttpClient) { }
 
+  private _refreshNeeded$ = new Subject<any>();
+
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  } 
+  
+  
   createNewMenuItem(itemDetails: any){
-    return this.http.post(this.url+'/create', itemDetails);
+    return this.http.post(this.url+'/create', itemDetails).pipe(
+      tap(() => {
+        // this._refreshNeeded$.next();
+      })
+    );
   }
 
   getAllMenuItems(): Observable<any>{
@@ -23,9 +34,11 @@ export class MenuItemServiceService {
     return this.http.get(this.url+`/${id}`)
   }
   updateMenuItem(id: string, updatedValue :any ){
-    return this.http.put(this.url + `/edit/${id}`,updatedValue)
+    const response = this.http.put(this.url + `/edit/${id}`,updatedValue)
+    this.refreshNeeded$.next(response);
+    return response;
   }
   deleteMenuItem(id: string){
-    return this.http.delete(this.url+`/delete/${id}`);
+    return this.http.delete(this.url+`/delete/${id}`)
   }
 }
