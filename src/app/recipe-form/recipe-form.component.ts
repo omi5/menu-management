@@ -145,7 +145,7 @@ export class RecipeFormComponent {
   // servingTemperature! : string;
   // itemLastingTime!: string;
   recipeItemCost! : string;
-  recipeItemCalories! : string;
+  recipeItemCalories! : any;
   recipeItemDescription! : string;
   recipeItemPreparationtimeInMinAndHour! : string
   // itemDietaryRestrictions! : string;
@@ -223,6 +223,7 @@ export class RecipeFormComponent {
     addIngredientBatch(): void {
       this.ingredientBatchesArray.push(this.createIngredientBatch());
       this.updateTotals();
+      this.recipeItemCalories = this.totalCaloriesPerUnit
     }
 
     removeIngredientBatch(index: number): void {
