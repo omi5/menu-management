@@ -416,7 +416,7 @@ totalCostForAddOns: number = 0;
   servingTemperature! : string;
   itemLastingTime!: any ;
   itemPrice! : number;
-  itemCalories! : string;
+  itemCalories! : any;
   itemDescription! : string;
   itemDietaryRestrictions! : string;
   ItemHowToDelivery!: string;
@@ -424,6 +424,8 @@ totalCostForAddOns: number = 0;
   lastingtimeInMinAndHour!: string;
   itemPreparationTimeInMinAndHour!: string
   deliveryBoxDetails: any[] =[];
+
+  
 
   //for get recipe and ingredinets   inventoryIngredient | recipeInterface
   // combainedRecipeAndIngredinets: any = []
@@ -671,6 +673,7 @@ totalCostForAddOns: number = 0;
   addIngredientBatch(): void {
     this.ingredientBatchesArray.push(this.createIngredientBatch());
     this.updateTotals();
+    this.itemCalories = this.totalCaloriesPerUnit;
   }
   addIngredientBatchForAddOns(): void {
     this.ingredientBatchesArrayForAddOns.push(this.createIngredientBatchForAddOns());
@@ -953,7 +956,7 @@ updateTotals(): void {
           }
 
           this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity / 100;
-          this.totalCaloriesPerUnit += caloriesPerUnit * measurementQuantity * quantity;
+          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity;
         }
       }
     });

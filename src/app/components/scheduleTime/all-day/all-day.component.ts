@@ -57,14 +57,14 @@ export class AllDayComponent implements OnInit{
       this.AllMenuItems.push(res);
       console.log('Selected menu for all====', this.AllMenuItems);
   
-      // this.AllMenuItems[0].forEach((item: MenuItem) => {
-      //   if (item.item.timeOfDay.includes('BreakFast')) {
-      //     console.log('Item added to breakfast menu====:', item);
-      //     this.listForAllDayMenu.push(item);
-      //   }
-      // });
+      this.AllMenuItems[0].forEach((item: MenuItem) => {
+        if (item.item.timeOfDay.includes('All Day')) {
+          console.log('Item added to All day menu====:', item);
+          this.listForAllDayMenu.push(item);
+        }
+      });
   
-      // console.log('listOfLunchMenu====', this.listForAllDayMenu);
+      console.log('listOFAll Day====', this.listForAllDayMenu);
     });
   }
 
