@@ -34,10 +34,10 @@ export class CategoryFormComponent {
   constructor(private fb: FormBuilder, private msg: NzMessageService, private categoryService: CategoryService) {
     this.validateForm = this.fb.group({
       restaurantId: 1,
-      categotyId: 1,
+      // categotyId: 1,
       categoryName: ['', Validators.required],
-      categoryDescription: [''],
-      categoryImage: 'image',
+      // categoryDescription: [''],
+      // categoryImage: 'image',
     });
   }
 

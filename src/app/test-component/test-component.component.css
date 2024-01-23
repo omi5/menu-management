@@ -177,5 +177,6 @@ nz-sider{
   border: none;
   background-color: #05CC79;
   padding: 8px 12px;
+  cursor: pointer;
 
 }

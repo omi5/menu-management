@@ -313,5 +313,26 @@ export class TestComponentComponent implements OnInit {
    }
 
   
+   isVisibleForCreateCategory = false;
+  showModalForCreateCategory(): void {
+    this.isVisibleForCreateCategory = true;
+  }
+  
+  handleCancelForCreateCategory(): void {
+    this.isVisibleForCreateCategory = false;
+  }
+   //for Schedule modal
+   @ViewChild('modalFormForCategory') modalFormForCreateCategory: any
+
+   handleOkForCreateCategory(): void {
+    //  this.modalFormForCategory.submitFormForCategory();
+    console.log('click from create category');
+    
+    this.modalFormForCreateCategory.submitFormForCategory()
+     this.isVisibleForCreateCategory = false;
+     // this.receiveSubmittedFormData(this.receivedFormData)
+     // console.log(this.data);
+     
+   }
   
 }

@@ -1,5 +1,5 @@
   <h1 class="headerForMealTime">{{mealTimeName}} Menu Items</h1>
-  <button class="AddCategoryBtn"><span nz-icon nzType="plus" nzTheme="outline"></span>Add Category</button>
+  <button class="AddCategoryBtn" (click)="showModalForCreateCategory()"><span nz-icon nzType="plus" nzTheme="outline"></span>Add Category</button>
 
 
     <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
@@ -134,3 +134,24 @@
        
      </ng-container>
  </nz-modal>
+
+
+ <nz-modal
+      [(nzVisible)]="isVisibleForCreateCategory"
+      nzTitle="Create category"
+      nzOkText="Add"
+      nzCancelText="Cancel"
+      (nzOnOk)="handleOkForCreateCategory()"
+      (nzOnCancel)="handleCancelForCreateCategory()"
+      [nzStyle]="{ width: '900px' }"
+    >
+        <ng-container *nzModalContent>
+          <!-- (submitedFormData)="submitForm($event)" -->
+        <app-category-form  #modalFormForCategory></app-category-form>
+
+        <!-- //Start -->
+
+        <!-- //End -->
+          
+        </ng-container>
+    </nz-modal>
