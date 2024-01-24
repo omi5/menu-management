@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class ApiClientService {
 
-  private apiUrl = 'https://hr-server-icl9.onrender.com';
+  private apiUrl = 'https://bento-menu-omi5.koyeb.app';
   private tokenKey = 'token';
 
   constructor(private http: HttpClient) { }

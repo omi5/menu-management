@@ -11,6 +11,8 @@ export class AuthRedirectComponent {
   constructor(private route: ActivatedRoute, private apiClientSerivce: ApiClientService, private router: Router) { }
   ngOnInit(): void {
     const code = this.route.snapshot.queryParamMap.get('code')
+    console.log('code====',code);
+    
     if (code) {
       this.apiClientSerivce.authenticate(code).subscribe({
         next: () => this.router.navigateByUrl('/allDay'),
