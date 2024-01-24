@@ -15,7 +15,7 @@ export class AuthRedirectComponent {
     
     if (code) {
       this.apiClientSerivce.authenticate(code).subscribe({
-        next: () => this.router.navigateByUrl('/allDay'),
+        next: () => this.router.navigateByUrl('https://bento-menu-builder.vercel.app/allDay'),
         // error: (error) => console.log(error)
         error: () => window.location.href = 'https://getbento.vercel.app/login'
       })
