@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GetMenuItemBySchuduleService {
-  readonly url = "http://localhost:3000/mealtime"
+  readonly url = "https://bento-menu-omi5.koyeb.app"
 
   constructor( private http: HttpClient) { }
 

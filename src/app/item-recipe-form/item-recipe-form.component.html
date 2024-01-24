@@ -1,27 +1,29 @@
 
  <!-- <form nz-form *nzDrawerContent (ngSubmit)="createItem()"> -->
-      <div class="border-div" >
+  <div class="border-div" >
         <!-- for Uploading Image -->
-        <div style=" width: 400px; margin: 0 auto; margin-bottom: 10px; height: 150px;">
+        <div style="object-fit: cover;">
+        <div style=" width: 400px; margin: 0 auto; margin-bottom: 20px;">
+          <nz-upload
+           
+            nzType="drag"
+            [nzMultiple]="true"
+            nzAction="https://api.cloudinary.com/v1_1/dkfnaltqp/image/upload"
+            (nzChange)="selectFile($event)"
+          >
+          <ng-container *ngIf="!uploadedImageUrl">
+            <p class="ant-upload-drag-icon">
+              <span nz-icon nzType="inbox"></span>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+          </ng-container>
+            <img style="width: 23rem;" [src]="uploadedImageUrl || ''" alt="">
+          </nz-upload>
           
-
-            <nz-upload
-              nzType="drag"
-              [nzMultiple]="true"
-              nzAction="https://api.cloudinary.com/v1_1/dkfnaltqp/image/upload"
-              (nzChange)="selectFile($event)"
-            >
-            <ng-container *ngIf="!uploadedImageUrl">
-              <p class="ant-upload-drag-icon">
-                <span nz-icon nzType="inbox"></span>
-              </p>
-              <p class="ant-upload-text">Click or drag file to this area to upload</p>
-            </ng-container>
-              <img style="width: 23rem;" [src]="uploadedImageUrl || ''" alt="">
-            </nz-upload>
         </div>
+      </div>
         <!-- for Uploading Image -->
-
+        
         <div nz-row [nzGutter]="8" style=" margin-top: 30px;">
           <div nz-col nzSpan="12">
             <nz-form-item>
@@ -270,7 +272,7 @@
        
         
        
-        <button style="margin-left: 8px;  border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatch(i)"><span style="font-size: 32px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+        <button style="margin-left: 8px;  border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatch(i)"><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
       </div>
       <button type="button" (click)="addIngredientBatch()" style="background-color: #2ecc71;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
     </div>
@@ -345,7 +347,7 @@
       
        
       
-       <button style="margin-left: 8px; ; border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatchForRecipe(i)"><span style="font-size: 32px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+       <button style="margin-left: 8px; ; border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatchForRecipe(i)"><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
      </div>
      <button type="button" (click)="addIngredientBatchForRecipe()" style="background-color: #2ecc71;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
    </div>
@@ -414,7 +416,7 @@
       
        
       
-       <button style="margin-left: 8px; ; border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatchForAddOns(i)"><span style="font-size: 32px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+       <button style="margin-left: 8px; ; border:none; cursor: pointer; background-color: #fff;" type="button" (click)="removeIngredientBatchForAddOns(i)"><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
      </div>
      <button type="button" (click)="addIngredientBatchForAddOns()" style="background-color: #2ecc71;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
    </div>

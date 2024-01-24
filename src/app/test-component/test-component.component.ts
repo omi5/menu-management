@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
 import { CategoryService } from '../services/category.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Route } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 export interface MenuItem {
   _id: string;
@@ -65,7 +66,7 @@ export class TestComponentComponent implements OnInit {
 
   Object = Object;
 
-  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService) {
+  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef) {
     
   }
 
@@ -150,9 +151,7 @@ export class TestComponentComponent implements OnInit {
   filterMenuForMenu: any []= []
    filterMenuItemsForDeleteAllMenu: any[] = []
   deleteFromAllMenu(itemCategory:any){
-    console.log('click from all delete');
-
-    console.log('click from this menu delete');
+  
     console.log('edit Button click',itemCategory);
     this.categories.map(item=>{
       if(item.categoryName === itemCategory){
@@ -164,10 +163,9 @@ export class TestComponentComponent implements OnInit {
    }
    console.log('mealTimeName',this.mealTimeName);
    
-    // this.categoryName = this.categoryItem[0].categoryName
-    // this.id = this.categoryItem[0]._id
-    console.log('new cateee for delete=====',this.categoryItem[0]._id);
-    console.log('All menu Item for delete', this.allMenuItems);
+ 
+    // console.log('new cateee for delete=====',this.categoryItem[0]._id);
+    // console.log('All menu Item for delete', this.allMenuItems);
 
     this.allMenuItems.map(item=>{
       if (item.categoryId == this.categoryItem[0]._id ) {
@@ -189,13 +187,14 @@ export class TestComponentComponent implements OnInit {
       }
       
       this.filterMenuItemsForDeleteAllMenu.map((item: any) => {
-        this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
+        this.menuItemsService.deleteMenuItem(item._id).subscribe((res) => {
           // Backend delete successful, trigger a refresh
-          console.log('Inside subscribe==',res);
-          this.menuItemsService.getAllMenuItems().subscribe(res =>{
-            this.menuItemsService.menuItemsSubject.next(res)
-
-          })
+          next: this.menuItemsService.getAllMenuItems().subscribe(res =>{
+            console.log('Inside subscribe==',res);
+            this.menuItemsService.menuItemsSubject.next(res);
+            this.cdr.detectChanges();
+            
+   })
           
           // this.menuItemsService.refreshNeeded$.next();
         });
@@ -393,7 +392,7 @@ export class TestComponentComponent implements OnInit {
     this.modalFormForCreateCategory.submitFormForCategory()
      this.isVisibleForCreateCategory = false;
      // this.receiveSubmittedFormData(this.receivedFormData)
-     // console.log(this.data);
+      // console.log(this.data);
      
    }
   

@@ -18,21 +18,21 @@ body {
 }
 
 
-.grid {
+/* .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr ;
   column-gap: 6.4rem;
   row-gap: 9.6rem;
-}
+} */
 
  /* .grid--3-cols {
   grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
 } */
 
 
-.margin-right-md {
+/* .margin-right-md {
   margin-bottom: 4.8rem !important;
-}
+} */
 
 strong {
   font-weight: 500;
@@ -61,7 +61,8 @@ strong {
   border-radius: 11px;
   overflow: hidden;
   transition: all 0.4s;
-  
+  margin-right: 15px;
+  /* margin-left: 0px; */
 }
 
 /* .meal:hover {

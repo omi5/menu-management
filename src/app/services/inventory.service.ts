@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InventoryService {
-  readonly url = "http://localhost:3000/inventory"
+  readonly url = "https://bento-menu-omi5.koyeb.app"
 
   constructor( private http: HttpClient) { }
 

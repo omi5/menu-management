@@ -26,19 +26,19 @@
         </div>
         <div *ngFor="let item of categorizedMenu[itemCategory]">
           <!-- Iterate over menu items in the current category -->
-         <app-menu-item
-        [itemName]="item.item.itemName"
-        [ingredients]="item.item.ingredients.rawIngredients"
-        [recipes]="item.item.ingredients.recipes"
-        [preparationTime]="item.item.itemPreparationTime"
-        [id]="item._id"
-        [src]="item.item.itemImage"
-        [itemPrice]="item.item.itemPrice"
-        [itemCalories]="item.item.itemCalories"
-        [itemPortionSize]="item.item.itemPortionSize"
-        [itemservingTemp]="item.item.servingTemperature"
-        [itemLastingTime]="item.item.itemLastingTime"
-      ></app-menu-item> 
+          <app-menu-item
+          [itemName]="item.item.itemName"
+          [ingredients]="item.item.ingredients.rawIngredients"
+          [recipes]="item.item.ingredients.recipes"
+          [preparationTime]="item.item.itemPreparationTime"
+          [id]="item._id"
+          [src]="item.item.itemImage"
+          [itemPrice]="item.item.itemPrice"
+          [itemCalories]="item.item.itemCalories"
+          [itemPortionSize]="item.item.itemPortionSize"
+          [itemservingTemp]="item.item.servingTemperature"
+          [itemLastingTime]="item.item.itemLastingTime"
+        ></app-menu-item> 
         </div>
       </div>
     </div>

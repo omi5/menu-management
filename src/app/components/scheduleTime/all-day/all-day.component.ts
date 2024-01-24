@@ -35,38 +35,38 @@ export class AllDayComponent implements OnInit{
   filtercategoryList: any[]=[1,2]
   AllMenuItems : any[] = []
   listForAllDayMenu :any[] = []
-  // getMenuItems(){
-  //   this.menuService.getAllMenuItems().subscribe(res=>{
-  //     this.AllMenuItems.push(res);
-  //     console.log('selected menu for breakfast',this.AllMenuItems);
-  //     console.log('New Menu item',this.AllMenuItems[0][0].item.timeOfDay.includes('All Day'));
-
-  //     for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-  //       if(this.AllMenuItems[0][i].item.timeOfDay.includes('All Day')){
-  //             this.listForAllDayMenu.push(this.AllMenuItems[0][i])
-  //           }
-  //     }
-
-  //   })
-  //   console.log('listOfBreakfastMenu', this.listForAllDayMenu);
-    
-  // } 
-
-  getMenuItems() {
-    this.menuService.getAllMenuItems().subscribe(res => {
+  getMenuItems(){
+    this.menuService.getAllMenuItems().subscribe(res=>{
       this.AllMenuItems.push(res);
-      console.log('Selected menu for all====', this.AllMenuItems);
+      console.log('selected menu for breakfast',this.AllMenuItems);
+      console.log('New Menu item',this.AllMenuItems[0][0].item.timeOfDay.includes('All Day'));
+
+      for(let i = 0; i <= this.AllMenuItems[0].length; i++){
+        if(this.AllMenuItems[0][i].item.timeOfDay.includes('All Day')){
+              this.listForAllDayMenu.push(this.AllMenuItems[0][i])
+            }
+      }
+
+    })
+    console.log('listOfBreakfastMenu', this.listForAllDayMenu);
+    
+  } 
+
+  // getMenuItems() {
+  //   this.menuService.menuItemsSubject.subscribe(res => {
+  //     this.AllMenuItems.push(res);
+  //     console.log('Selected menu for all====', this.AllMenuItems);
   
-      this.AllMenuItems[0].forEach((item: MenuItem) => {
-        if (item.item.timeOfDay.includes('All Day')) {
-          console.log('Item added to All day menu====:', item);
-          this.listForAllDayMenu.push(item);
-        }
-      });
+  //     this.AllMenuItems[0].forEach((item: MenuItem) => {
+  //       if (item.item.timeOfDay.includes('All Day')) {
+  //         console.log('Item added to All day menu====:', item);
+  //         this.listForAllDayMenu.push(item);
+  //       }
+  //     });
   
-      console.log('listOFAll Day====', this.listForAllDayMenu);
-    });
-  }
+  //     console.log('listOFAll Day====', this.listForAllDayMenu);
+  //   });
+  // }
 
 
   

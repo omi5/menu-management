@@ -8,7 +8,7 @@ import { CategoryList,Category } from '../interfaces/categoryList.interface';
 })
 export class CategoryService {
   [x: string]: any;
-  readonly url = "http://localhost:3000/category"
+  readonly url = "https://bento-menu-omi5.koyeb.app"
 
   constructor( private http: HttpClient) { }
 
