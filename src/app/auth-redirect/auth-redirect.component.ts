@@ -13,7 +13,7 @@ export class AuthRedirectComponent {
     const code = this.route.snapshot.queryParamMap.get('code')
     if (code) {
       this.apiClientSerivce.authenticate(code).subscribe({
-        next: () => this.router.navigateByUrl('/admin/createEmployee'),
+        next: () => this.router.navigateByUrl('/allDay'),
         // error: (error) => console.log(error)
         error: () => window.location.href = 'https://getbento.vercel.app/login'
       })
