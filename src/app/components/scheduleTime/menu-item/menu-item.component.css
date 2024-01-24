@@ -17,12 +17,6 @@ body {
   color: #555;
 }
 
-.container {
-  /* 1140px */
-  /* max-width: 120rem; */
-  /* padding: 0 3.2rem; */
-  /* margin: 0 auto;  */
-}
 
 .grid {
   display: grid;
@@ -61,7 +55,8 @@ strong {
 
 
 .meal {
-  width: 380px;
+  width: 220px;
+  height: 280px;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 11px;
   overflow: hidden;
@@ -75,7 +70,7 @@ strong {
 } */
 
 .meal-content {
-  padding: 10px 10px 0px 4rem;
+  padding: 10px 10px 0px 1rem;
 }
 
 .meal-tags {
@@ -108,30 +103,33 @@ strong {
 }
 
 .meal-title {
-  font-size: 32px;
+  font-size: 22px;
   color: #333;
-  font-weight: 600;
-  margin-bottom: 25px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-left: 15px;
 }
 
 .meal-attributes {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  
 }
 
 .meal-attribute {
-  font-size: 1.8rem;
+  font-size: 16px;
+  height: 25px;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: center; 
 }
+
 
 .meal-icon {
   height: 2.4rem;
   width: 2.4rem;
   color: #e67e22;
+  margin-top: 18px;
 }
 .iconDetails{
   height: 2.4rem;
@@ -154,7 +152,7 @@ strong {
 
 .meal-img {
   width: 100%;
-  height: 224.15px;
+  height: 130.15px;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }

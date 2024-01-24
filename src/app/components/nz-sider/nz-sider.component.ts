@@ -135,6 +135,7 @@ export class NzSiderComponent {
   createRecipeItems(): void{
     console.log('click');
     this.recipeForm.createRecipeItem()
+    this.visibleRecipeDrawer = false;
   }
   
 

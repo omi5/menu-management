@@ -21,7 +21,7 @@
 
       
       <div class="show-menus-items" *ngIf="categorizedMenu[itemCategory].length > 0">
-        <div  class="AddBtnForCategory">
+        <div  class="AddBtnForCategory border border-light-gray">
           <button (click)="OpenDrawerForCreateMenuItem(itemCategory)" class="AddBtnForCategoryIcon"><span nz-icon nzType="plus" nzTheme="outline"></span></button>
         </div>
         <div *ngFor="let item of categorizedMenu[itemCategory]">
@@ -60,7 +60,7 @@
      <form nz-form *nzDrawerContent (ngSubmit)="createItems()">
       
        
-       <app-item-recipe-form #itemForm></app-item-recipe-form>
+       <app-item-recipe-form #itemForm [categoryName]="nameOfCategory"></app-item-recipe-form>
  
        
      </form>

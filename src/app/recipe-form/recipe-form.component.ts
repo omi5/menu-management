@@ -182,7 +182,7 @@ export class RecipeFormComponent {
     const newRecipe= {
       "restaurantId" : 1 ,
       "recipeName":this.recipeName,
-      "category_id":parseInt(this.categoryId),
+      "categoryId":this.categoryId,
       "recipeItemPortionSize":this.recipeItemPortionsize,
       "recipeItemPreparationTime":this.recipeItemPreparationtime,
       "recipeItemCost":this.recipeItemCost,
@@ -251,6 +251,9 @@ export class RecipeFormComponent {
       }, 100); // Optionally update totals when the ingredient changes
   
     }
+    // this.updateTotals()
+    // this.recipeItemCalories = this.totalCaloriesPerUnit;
+
     console.log("after change", selectedIngredient);
     
   }

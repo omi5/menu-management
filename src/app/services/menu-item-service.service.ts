@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 })
 export class MenuItemServiceService {
 
-  private menuItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public menuItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public menuItems$: Observable<any[]> = this.menuItemsSubject.asObservable();
 
 
@@ -46,11 +46,31 @@ export class MenuItemServiceService {
   getMenuItemById (id: any){
     return this.http.get(this.url+`/${id}`)
   }
-  updateMenuItem(id: string, updatedValue :any ){
-    const response = this.http.put(this.url + `/edit/${id}`,updatedValue)
+  // updateMenuItem(id: string, updatedValue :any ){
+  //   const response = this.http.put(this.url + `/edit/${id}`,updatedValue)
+  //   this.refreshNeeded$.next(response);
+
+  //   this.menuItemsSubject.next(updatedMenuItems);
+  //   return response;
+  // }
+
+  updateMenuItem(id: string, updatedValue: any) {
+    const response = this.http.put(this.url + `/edit/${id}`, updatedValue)
+      .pipe(
+        tap(() => {
+          // After the update is successful, fetch the updated menu items
+          this.getAllMenuItems().subscribe(updatedMenuItems => {
+            // Update the BehaviorSubject with the new value
+            this.menuItemsSubject.next(updatedMenuItems);
+          });
+        })
+      );
+  
     this.refreshNeeded$.next(response);
+  
     return response;
   }
+  
   deleteMenuItem(id: string){
     return this.http.delete(this.url+`/delete/${id}`)
   }

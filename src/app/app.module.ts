@@ -66,6 +66,11 @@ import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component
 import { TestComponentComponent } from './test-component/test-component.component';
 import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthRedirectComponent } from './auth-redirect/auth-redirect.component';
+
+//Splash logo
+import {SpashLogoComponent} from './components/spash-logo/spash-logo.component'
 
 //For Icons
 
@@ -98,7 +103,10 @@ registerLocaleData(en);
     MakeRecipeTableComponent,
     EditMenuItemComponent,
     TestComponentComponent,
-    TestIngredientsComponent
+    TestIngredientsComponent,
+    NavbarComponent,
+    AuthRedirectComponent,
+    SpashLogoComponent
    
   ],
   imports: [
@@ -124,7 +132,8 @@ registerLocaleData(en);
     NzButtonModule,
     NzPopconfirmModule,
     NzTimePickerModule,
-    NzDropDownModule
+    NzDropDownModule,
+    
    
     
 

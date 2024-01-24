@@ -1,7 +1,5 @@
 
-
-
-
+<app-navbar></app-navbar>
 <nz-layout >
   <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
     <app-nz-sider></app-nz-sider>
@@ -10,26 +8,20 @@
   <!-- nz-Sider -->
 
    <nz-layout>
-     <nz-header>
+     <!-- <nz-header>
        <span
          class="trigger"
          nz-icon
          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
          (click)="isCollapsed = !isCollapsed"
        ></span>
-     </nz-header>
+     </nz-header> -->
      <!-- nz-headerForTrigger -->
 
      <nz-content>
 
 
-      <!-- <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }"
-        style="margin-right: 40px; margin-top: 30px;"
-      >
-        <button style="width: 100px; font-size: 20px;" (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
-          Add
-        </button>
-      </div> -->
+      
       
       <nz-drawer
         [nzBodyStyle]="{ overflow: 'auto' }"
@@ -43,7 +35,7 @@
         <form nz-form *nzDrawerContent (ngSubmit)="submitForm()">
         
       
-          <div nz-row [nzGutter]="8" class="mt" style="margin: 0 0 10px 0">
+          <div nz-row [nzGutter]="8"  style="margin: 0 0 10px 0">
             <div nz-col nzSpan="12">
               <nz-form-item>
                 <label style="width: 180px;font-size: 20px;  text-align: left;" >Start Day</label>
@@ -201,14 +193,14 @@
         [nzHideOnSinglePage]="hidePaginationOnSinglePage"
       >
         <thead>
-          <tr>
+          <tr style="font-size: 20px; font-weight: 500px;">
             <!-- <th>ID</th> -->
-            <th style="font-size: 22px; font-weight: 700px;">Schedule Name</th>
-            <th style="font-size: 22px; font-weight: 700px;">Start Day</th>
-            <th style="font-size: 22px; font-weight: 700px;">End Day</th>
-            <th style="font-size: 22px; font-weight: 700px;">Description</th>
-            <th style="font-size: 22px; font-weight: 700px;">Start Time</th>
-            <th style="font-size: 22px; font-weight: 700px;">End Time</th>
+            <th >Schedule Name</th>
+            <th >Start Day</th>
+            <th >End Day</th>
+            <th >Description</th>
+            <th >Start Time</th>
+            <th >End Time</th>
             <!-- <th>Meal Time ID</th> -->
             <th>Action</th>
             

@@ -120,7 +120,7 @@ export class TestComponentComponent implements OnInit {
   //get All Menu Item 
 
   getMenuItems(){
-    this.menuItemsService.getAllMenuItems().subscribe(res=>{
+    this.menuItemsService.menuItemsSubject.subscribe(res=>{
       this.allMenuItems.push(...res)
     })
   }
@@ -159,6 +159,11 @@ export class TestComponentComponent implements OnInit {
         this.categoryItem.push(item)
       }
     })
+   if(this.mealTimeName === 'allDay'){
+    this.mealTimeName = 'All Day'
+   }
+   console.log('mealTimeName',this.mealTimeName);
+   
     // this.categoryName = this.categoryItem[0].categoryName
     // this.id = this.categoryItem[0]._id
     console.log('new cateee for delete=====',this.categoryItem[0]._id);
@@ -187,6 +192,10 @@ export class TestComponentComponent implements OnInit {
         this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
           // Backend delete successful, trigger a refresh
           console.log('Inside subscribe==',res);
+          this.menuItemsService.getAllMenuItems().subscribe(res =>{
+            this.menuItemsService.menuItemsSubject.next(res)
+
+          })
           
           // this.menuItemsService.refreshNeeded$.next();
         });
@@ -202,54 +211,103 @@ export class TestComponentComponent implements OnInit {
 
    filterMenu: any []= []
    filterMenuItemsForDeleteThisMenu: any[] = []
-   deleteFromThisMenu(itemCategory:any){
-    console.log(this.mealTimeName);
+  //  deleteFromThisMenu(itemCategory:any){
+  //   console.log('brekfast====',this.mealTimeName);
+  //   console.log("item category------->",itemCategory)
+  //   console.log("item all list------->",this.categorizedMenu)
+  //   // this.categorizedMenu.itemCategory = [];
     
-    console.log('click from this menu delete');
-    console.log('edit Button click',itemCategory);
-    this.categories.map(item=>{
-      if(item.categoryName === itemCategory){
-        this.categoryItem.push(item)
-      }
-    })
-    // this.categoryName = this.categoryItem[0].categoryName
-    // this.id = this.categoryItem[0]._id
-    console.log('new cateee for delete=====',this.categoryItem[0]._id);
-    console.log('All menu Item for delete', this.allMenuItems);
+  //   console.log('click from this menu delete');
+  //   console.log('edit Button click',itemCategory);
+  //   this.categories.map(item=>{
+  //     if(item.categoryName === itemCategory){
+  //       this.categoryItem.push(item)
+  //     }
+  //   })
+  //   // this.categoryName = this.categoryItem[0].categoryName
+  //   // this.id = this.categoryItem[0]._id
+  //   console.log('new cateee for delete=====',this.categoryItem[0]._id);
+  //   console.log('All menu Item for delete', this.allMenuItems);
 
-    this.allMenuItems.map(item=>{
-      if (item.categoryId == this.categoryItem[0]._id ) {
-        this.filterMenu.push(item);
-      }
+  //   this.allMenuItems.map(item=>{
+  //     if (item.categoryId == this.categoryItem[0]._id ) {
+  //       this.filterMenu.push(item);
+  //     }
       
-    })
-    this.filterMenu.map(item =>{
-      if(item.item.timeOfDay.includes(this.mealTimeName)){
-        this.filterMenuItemsForDeleteThisMenu.push(item);
-      }
-    })
+  //   })
+  //   this.filterMenu.map(item =>{
+  //     if(item.item.timeOfDay.includes(this.mealTimeName)){
+  //       this.filterMenuItemsForDeleteThisMenu.push(item);
+  //     }
+  //   })
     
-    this.filterMenuItemsForDeleteThisMenu.map(item=>{
+  //   this.filterMenuItemsForDeleteThisMenu.map(item=>{
      
-      let index = item.item.timeOfDay.indexOf(this.mealTimeName);
-      if(index > -1){
-        item.item.timeOfDay.splice(index,1);
-      }
+  //     let index = item.item.timeOfDay.indexOf(this.mealTimeName);
+  //     if(index > -1){
+  //       item.item.timeOfDay.splice(index,1);
+  //     }
       
-      this.filterMenuItemsForDeleteThisMenu.map((item: any) => {
-        this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
-          // Backend delete successful, trigger a refresh
-          console.log('Inside subscribe==',res);
+  //     this.filterMenuItemsForDeleteThisMenu.map((item: any) => {
+  //       this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
+  //         // Backend delete successful, trigger a refresh
+  //         console.log('delete from this menu==',res);
+  //         this.menuItemsService.getAllMenuItems().subscribe(res =>{
+  //           this.menuItemsService.menuItemsSubject.next(res)
+  //           console.log('updateee delete',res);
+            
+  //         })
           
-          // this.menuItemsService.refreshNeeded$.next();
+  //         // this.menuItemsService.refreshNeeded$.next();
+  //       });
+
+  //     });
+
+  //     const updatedItem = [...this.filterMenuItemsForDeleteAllMenu]
+  //     this.menuItemsService.menuItemsSubject.next(updatedItem)
+      
+  //     console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
+      
+  //   }) 
+  //  }
+
+  deleteFromThisMenu(itemCategory: any) {
+    this.categories.forEach(item => {
+      if (item.categoryName === itemCategory) {
+        this.categoryItem.push(item);
+      }
+    });
+  
+    const categoryId = this.categoryItem[0]._id;
+    this.filterMenu = this.allMenuItems.filter(item => item.categoryId === categoryId);
+  
+    this.filterMenuItemsForDeleteThisMenu = this.filterMenu.filter(item =>
+      item.item.timeOfDay.includes(this.mealTimeName)
+    );
+  
+    this.filterMenuItemsForDeleteThisMenu.forEach(item => {
+      const index = item.item.timeOfDay.indexOf(this.mealTimeName);
+      if (index > -1) {
+        item.item.timeOfDay.splice(index, 1);
+      }
+  
+      this.menuItemsService.updateMenuItem(item._id, item).subscribe(res => {
+        // Backend delete successful, trigger a refresh
+        console.log('delete from this menu ==', res);
+        this.menuItemsService.getAllMenuItems().subscribe(updatedMenuItems => {
+          this.menuItemsService.menuItemsSubject.next(updatedMenuItems);
+          console.log('update delete', res);
         });
       });
-      
-      console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
-      
-    }) 
-   }
-
+    });
+  
+    // Optionally, if you want to update the local variable in the component
+    const updatedItems = this.filterMenuItemsForDeleteThisMenu.filter(item =>
+      item.item.timeOfDay.includes(this.mealTimeName)
+    );
+    this.filterMenuItemsForDeleteAllMenu = [...updatedItems];
+  }
+  
 
   submitFormForCategory() {
    let editDetails = {
@@ -265,7 +323,11 @@ export class TestComponentComponent implements OnInit {
    })
   }
 
+  nameOfCategory!: string;
+
   OpenDrawerForCreateMenuItem(itemCategory: any){
+    this.nameOfCategory = itemCategory;
+    
     this.open()
     console.log('click for open a drawer',itemCategory);
     

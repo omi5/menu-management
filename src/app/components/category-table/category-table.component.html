@@ -1,6 +1,4 @@
-
-
-
+<app-navbar></app-navbar>
 
 <nz-layout >
   <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color">
@@ -10,26 +8,18 @@
   <!-- nz-Sider -->
 
    <nz-layout>
-     <nz-header>
+     <!-- <nz-header>
        <span
          class="trigger"
          nz-icon
          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
          (click)="isCollapsed = !isCollapsed"
        ></span>
-     </nz-header>
+     </nz-header> -->
      <!-- nz-headerForTrigger -->
 
      <nz-content>
 
-
-      <!-- <div *ngIf="showAddButton" nz-td [ngClass]="{ 'add-button-container': true }"
-        style="margin-right: 40px; margin-top: 30px;"
-      >
-        <button style="width: 100px; font-size: 20px;" (click)="onAdd()" nz-form [ngClass]="{ 'add-button': true }">
-          Add
-        </button>
-      </div> -->
       
       <nz-drawer
         [nzBodyStyle]="{ overflow: 'auto' }"
@@ -124,13 +114,13 @@
         [nzHideOnSinglePage]="hidePaginationOnSinglePage"
       >
         <thead>
-          <tr>
+          <tr style="font-size: 20px; font-weight: 500px;">
             <!-- <th>ID</th> -->
-            <th style="font-size: 22px; font-weight: 700px;">Category Name</th>
-            <th style="font-size: 22px; font-weight: 700px;">Category Description</th>
+            <th >Category Name</th>
+            <th >Category Description</th>
             <!-- Add other table headers based on your actual data structure -->
             <!-- <th>Last Updated</th> -->
-            <th style="font-size: 22px; font-weight: 700px;">Action</th>
+            <th >Action</th>
             
           </tr>
         </thead>

@@ -9,8 +9,11 @@
     /* padding: 13px; */
 }
 .input-box-for-time label{
-    font-size: 20px; 
+    font-size: 18px; 
      
+}
+.input-box-for-name{
+    margin-top: 10px;
 }
 
 .input-box-for-name input{
@@ -19,11 +22,11 @@
     padding: 13px;
 }
 .input-box-for-name label{
-    font-size: 20px; 
+    font-size: 18px; 
     
 }
 .input-box-for-description{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .input-box-for-description textarea{
     width: 650px;

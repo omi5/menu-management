@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
@@ -40,6 +40,9 @@ totalCostForAddOns: number = 0;
  measurementTools: any;
  typeOfMeasurement: any = ['liquid','solid']
 
+ @Input() categoryName!: string;
+ selectedCategoryItem !: any[];
+
 
 
 
@@ -79,7 +82,7 @@ totalCostForAddOns: number = 0;
 
   //for Uploading a Image
   constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
-    this.getAllCategory()
+    
     this.orderForm = this._fb.group({
       // ingredientBatches: this._fb.array([this.createIngredientBatch()]),
       ingredientBatches: this._fb.array([]),
@@ -98,6 +101,8 @@ totalCostForAddOns: number = 0;
 
     
 
+    console.log('when click from ADD ===',this.categoryId);
+    
     
 
 
@@ -225,19 +230,11 @@ totalCostForAddOns: number = 0;
   }
 
 
-
   //For Ingredients
- 
- 
  
 
   //
  
-
-
-
-
-
   //New handle fun
   
   @ViewChild('ingredients') ingredients: any
@@ -313,10 +310,17 @@ totalCostForAddOns: number = 0;
     //get recipe
     this.subscribeToIngredientChanges()
     this.getAllRecipe()
+    this.getAllCategory()
     this.getAllIngredinets()
     this.getAllPackingBox()
     this.addIngredientBatch()
+    this.selectedCategory()
 
+    console.log('selectedCategory===',this.selectedCategoryItem);
+    
+    this.categoryId = this.categoryName;
+    console.log('categoryName=====',this.categoryId);
+    
 
     //For allergens
     const allergens: string[] = [
@@ -340,8 +344,41 @@ totalCostForAddOns: number = 0;
       'Pineapple',
       'Avocado',
       'Kiwi',
+      'Hazelnuts',
+      'Cashews',
+      'Almonds',
+      'Macadamia nuts',
+      'Pistachios',
+      'Walnuts',
+      'Pecans',
+      'Brazil nuts',
+      'Sunflower seeds',
+      'Poppy seeds',
+      'Cottonseed',
+      'Cocoa',
+      'Coconut',
+      'Chia seeds',
+      'Quinoa',
+      'Buckwheat',
+      'Amaranth',
+      'Sesame seeds',
+      'Mustard seeds',
+      'Anchovies',
+      'Crab',
+      'Lobster',
+      'Shrimp',
+      'Squid',
+      'Octopus',
+      'Clams',
+      'Oysters',
+      'Scallops',
+      'Haddock',
+      'Mackerel',
+      'Sardines',
+      'Tuna',
       // Add more allergens as needed
     ];
+    
 
     //For tasty tags
     const tastyTags: string[] = [
@@ -400,16 +437,38 @@ totalCostForAddOns: number = 0;
       // const categoryList = res as CategoryList;
       console.log('category List',res);
       this.categories.push(...res);
+
+     const selectCategoryItem = this.categories.find(item=> item.categoryName === this.categoryName)
+     this.categoryId = selectCategoryItem?._id
     })
   }
 
+  selectedCategory(){
+    console.log('invoked',this.categories);
+    
+    this.categories.length && this.categories.map((item:any) => {
+      if(item.categoryName === this.categoryName){
+
+        console.log('hhehehe', item);
+        return item
+      }
+      else{
+        console.log('else', item);
+        
+      }
+      
+
+    })
+  }
+  
+  
 
   //submit Data 
   restaurantId!: number;
   MealTimeId!: number;
   itemName! : string;
   itemProfileTastyTags! : string;
-  categoryId! : any;
+  categoryId : any = this.categoryName  ;
   typeOfFoods! : string;
   itemPortionsize!: string;
   itemPreparationtime!: any;
@@ -424,6 +483,10 @@ totalCostForAddOns: number = 0;
   lastingtimeInMinAndHour!: string;
   itemPreparationTimeInMinAndHour!: string
   deliveryBoxDetails: any[] =[];
+
+
+ 
+ 
 
   
 
@@ -518,7 +581,7 @@ totalCostForAddOns: number = 0;
     const recipe = this.submitFormForRecipe()
     const rawIngredients =  this.ingredientBatchesArray.controls.map((control: AbstractControl) => control.value)
     // const recipes =  this.ingredientBatchesArrayForRecipe.controls.map((control: AbstractControl) => control.value)
-    console.log('===recipes===',recipe,rawIngredients);
+    console.log('===createItem Category===',this.categoryId);
     if(this.lastingtimeInMinAndHour === 'hours'){
       this.itemLastingTime =(this.itemLastingTime  * 60);
     }
@@ -675,6 +738,7 @@ totalCostForAddOns: number = 0;
     this.updateTotals();
     this.itemCalories = this.totalCaloriesPerUnit;
   }
+
   addIngredientBatchForAddOns(): void {
     this.ingredientBatchesArrayForAddOns.push(this.createIngredientBatchForAddOns());
     console.log();
@@ -698,7 +762,10 @@ totalCostForAddOns: number = 0;
   
 
   removeIngredientBatch(index: number): void {
-    this.ingredientBatchesArray.removeAt(index);
+    console.log('remove Index ====',index);
+     this.ingredientBatchesArray.removeAt(index);
+     
+    // const removedCostPerUnit = removedBatch.get('costPerUnit').value || 0;
     this.updateTotals();
   }
   removeIngredientBatchForAddOns(index: number): void {
@@ -744,7 +811,8 @@ onIngredientChange(index: number): void {
 
     setTimeout(() => {
       this.updateTotals();
-    }, 100); // Optionally update totals when the ingredient changes
+    }, 100); 
+    // Optionally update totals when the ingredient changes
 
   }
   console.log("after change", selectedIngredient);

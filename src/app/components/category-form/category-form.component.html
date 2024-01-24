@@ -2,35 +2,14 @@
 <div class="mx-auto">
     <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitFormForCategory()">
 
-            <!-- //For Upload a Image -->
-
-          <!--- <div style=" margin-bottom: 20px; width: 400px;  margin-bottom: 10px;">
-                <nz-upload
-                
-                nzType="drag"
-                [nzMultiple]="true"
-                nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                (nzChange)="handleChange($event)"
-              >
-                <p class="ant-upload-drag-icon">
-                  <span nz-icon nzType="inbox"></span>
-                </p>
-                <p class="ant-upload-text">Click or drag file to this area to upload</p>
-                
-                </nz-upload>
-            </div>-->
-
-            <!-- //For Upload a Image -->
-    
-      
-            <div class="mt-4">
-            <div class="">
+           
+            <div >
 
             <nz-form-item class="input-box-for-name">
                 <nz-form-control nzErrorTip="Please input your category name!">
-                    <label for="scheduleName" nzRequired style="font-size: 20px;">Category Name</label>    
-                    <nz-input-group nzPrefixIcon="" class="w-96 py-2">
-                    <input formControlName="categoryName" nz-input placeholder="Name" class="p-2 text-xl"  style="font-size: 20px; height: 38px; margin-bottom: 10px; width: 25rem;" />
+                    <label for="scheduleName" nzRequired style="font-size: 18px;">Category Name</label>    
+                    <nz-input-group nzPrefixIcon="" >
+                    <input formControlName="categoryName" nz-input placeholder=" Category name" class=""  style="font-size: 16px; height: 38px; margin-bottom: 10px; width: 25rem;" />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
@@ -45,9 +24,7 @@
             </nz-form-item> -->
                 
             </div>
-            <div >
-            </div>
-          </div>
+            
  
             </form>
 </div>  

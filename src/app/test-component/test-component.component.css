@@ -64,7 +64,7 @@ nz-sider{
   }
 
   h2{
-    font-size: 38px;
+    font-size: 28px;
     font-weight: 600;
     margin-left: 32px;
     margin-top: 15px;
@@ -77,9 +77,10 @@ nz-sider{
   /* Show Menu Items Styles */
 
   .show-menus-items{
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fill, minmax(calc(18% - 10px), 1fr));
-    gap: 4px;
+    gap: 4px; */
+    display: flex;
 }
 
 @media screen and (max-width: 768px) {
@@ -92,7 +93,7 @@ nz-sider{
 
 
 .category-Name{
-    font-size: 36px;
+    font-size: 20px;
     margin-left: 25px;
 }
 .category-heading {
@@ -124,11 +125,11 @@ nz-sider{
 .AddBtnForCategory{
   margin-left: 28px;
   border-radius: 11px;
-  height: 520px;
-  width: 380px;
+  height: 280px;
+  width: 220px;
   position: relative;
   background-color: #f0f2f5;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .AddBtnForCategoryIcon{
   position: absolute;
@@ -151,7 +152,7 @@ nz-sider{
 }
 .headerForMealTime{
   text-transform: capitalize; 
-  font-size: 40px;
+  font-size: 28px;
   font-weight: bold;
   text-align: center;
 
@@ -173,10 +174,11 @@ nz-sider{
 .AddCategoryBtn{
   margin: 0 auto;
   display: block;
-  font-size: 24px;
+  color: #fff;
+  font-size: 15px;
   border: none;
   background-color: #05CC79;
-  padding: 8px 12px;
+  padding: 8px 15px;
   cursor: pointer;
 
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
+// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-menu-item',
@@ -137,12 +138,13 @@ export class MenuItemComponent implements OnInit {
   
 
 
-  
+   
 
   //Delete a Menu Item 
   deleteMenuItem(id: string){
     this.menuService.deleteMenuItem(id).subscribe(res=>{
       console.log("Deleted Successfully");
+    
     })
   }
 

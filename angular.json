@@ -93,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme.less",
               "src/styles.css"
             ],
             "scripts": []

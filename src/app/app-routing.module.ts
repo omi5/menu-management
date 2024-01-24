@@ -18,7 +18,7 @@ import { TestIngredientsComponent } from './test-ingredients/test-ingredients.co
 const routes: Routes = [
   // { path: '', component: LoginFormComponent },
   // { path: 'dashboard', component:  SidebarComponent},
-  { path: '', component:  AllDayComponent}, // this is the route for allDay
+  { path: '', redirectTo: '/allDay', pathMatch: 'full' },  // this is the route for allDay
   { path: 'allDay', component:  AllDayComponent}, // this is the route for allDay
   { path: 'BreakFast', component:  BreakfastComponent},
   { path: 'Lunch', component:  LunchComponent},

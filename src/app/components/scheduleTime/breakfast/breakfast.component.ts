@@ -59,7 +59,7 @@ export class BreakfastComponent implements OnInit {
  
   
   getMenuItems() {
-    this.menuService.getAllMenuItems().subscribe(res => {
+    this.menuService.menuItemsSubject.subscribe(res => {
       this.AllMenuItems.push(res);
       console.log('Selected menu for all====', this.AllMenuItems);
   
