@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InventoryService {
-  url = "https://bento-menu-omi5.koyeb.app"
+  // url = "https://bento-menu-omi5.koyeb.app"
+  url = "http://localhost:3000"
 
   // readonly urlForIngredinets = "https://sak-skeleton-samiya-kazi.koyeb.app/inventory/ingredients/1"
   // readonly urlForDeliveryBox = "https://sak-skeleton-samiya-kazi.koyeb.app/inventory/delivery-box/1 "
