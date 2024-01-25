@@ -71,9 +71,9 @@ export class TestComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.menuItemsService.menuItemsSubject.subscribe(res=>{
-      this.menuItems1 = res
-    })
+    // this.menuItemsService.menuItemsSubject.subscribe(res=>{
+    //   this.menuItems1 = res
+    // })
     forkJoin([
       this.categoryService.getAllCategory(),
       // this.menuItemsService.getAllMenuItems()
@@ -195,7 +195,7 @@ export class TestComponentComponent implements OnInit {
           next: this.menuItemsService.getAllMenuItems().subscribe(res =>{
             console.log('Inside subscribe==',res);
             this.menuItemsService.menuItemsSubject.next(res);
-            this.cdr.detectChanges();
+            // this.cdr.detectChanges();
             
    })
           

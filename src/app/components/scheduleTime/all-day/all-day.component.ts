@@ -46,7 +46,7 @@ export class AllDayComponent implements OnInit{
               this.listForAllDayMenu.push(this.AllMenuItems[0][i])
             }
       }
-      this.menuService.menuItemsSubject.next(this.AllMenuItems)
+      // this.menuService.menuItemsSubject.next(this.AllMenuItems)
 
     })
     console.log('listOfBreakfastMenu', this.listForAllDayMenu);
