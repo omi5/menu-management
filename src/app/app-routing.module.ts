@@ -11,6 +11,7 @@ import { ScheduleTimeTableComponent } from './components/schedule-time-table/sch
 import { MakeRecipeTableComponent } from './components/make-recipe-table/make-recipe-table.component';
 import { TestComponentComponent } from './test-component/test-component.component';
 import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
+import { AuthRedirectComponent } from './auth-redirect/auth-redirect.component';
 
 
 // Import other components and create your routes
@@ -18,6 +19,7 @@ import { TestIngredientsComponent } from './test-ingredients/test-ingredients.co
 const routes: Routes = [
   // { path: '', component: LoginFormComponent },
   // { path: 'dashboard', component:  SidebarComponent},
+  {path:'auth-redirect', component: AuthRedirectComponent},
   { path: '', redirectTo: '/allDay', pathMatch: 'full' },  // this is the route for allDay
   { path: 'allDay', component:  AllDayComponent}, // this is the route for allDay
   { path: 'BreakFast', component:  BreakfastComponent},
