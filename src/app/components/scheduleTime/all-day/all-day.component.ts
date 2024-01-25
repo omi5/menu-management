@@ -38,7 +38,7 @@ export class AllDayComponent implements OnInit{
   getMenuItems(){
     this.menuService.getAllMenuItems().subscribe(res=>{
       this.AllMenuItems.push(res);
-      console.log('selected menu for breakfast',this.AllMenuItems);
+      console.log('selected menu for allday',this.AllMenuItems);
       console.log('New Menu item',this.AllMenuItems[0][0].item.timeOfDay.includes('All Day'));
 
       for(let i = 0; i <= this.AllMenuItems[0].length; i++){
@@ -46,6 +46,7 @@ export class AllDayComponent implements OnInit{
               this.listForAllDayMenu.push(this.AllMenuItems[0][i])
             }
       }
+      this.menuService.menuItemsSubject.next(this.AllMenuItems)
 
     })
     console.log('listOfBreakfastMenu', this.listForAllDayMenu);

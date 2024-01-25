@@ -71,6 +71,9 @@ export class TestComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuItemsService.menuItemsSubject.subscribe(res=>{
+      this.menuItems1 = res
+    })
     forkJoin([
       this.categoryService.getAllCategory(),
       // this.menuItemsService.getAllMenuItems()
