@@ -317,6 +317,7 @@ totalCostForAddOns: number = 0;
     this.selectedCategory()
 
     console.log('selectedCategory===',this.selectedCategoryItem);
+    console.log('categ====',this.categoryId);
     
     this.categoryId = this.categoryName;
     console.log('categoryName=====',this.categoryId);
@@ -432,16 +433,7 @@ totalCostForAddOns: number = 0;
   }
 
   
-  getAllCategory(){
-    this.categoryService.getAllCategory().subscribe((res: CategoryList[])=>{
-      // const categoryList = res as CategoryList;
-      console.log('category List',res);
-      this.categories.push(...res);
 
-     const selectCategoryItem = this.categories.find(item=> item.categoryName === this.categoryName)
-     this.categoryId = selectCategoryItem?._id
-    })
-  }
 
   selectedCategory(){
     console.log('invoked',this.categories);
@@ -483,9 +475,20 @@ totalCostForAddOns: number = 0;
   lastingtimeInMinAndHour!: string;
   itemPreparationTimeInMinAndHour!: string
   deliveryBoxDetails: any[] =[];
+  NameOfCategory!: any;
 
 
- 
+  getAllCategory(){
+    this.categoryService.getAllCategory().subscribe((res: CategoryList[])=>{
+      // const categoryList = res as CategoryList;
+      console.log('category List',res);
+      this.categories.push(...res);
+
+     const selectCategoryItem = this.categories.find(item=> item.categoryName === this.categoryName)
+     this.categoryId = selectCategoryItem?._id
+    //  this.NameOfCategory = selectCategoryItem?.categoryName;
+    })
+  }
  
 
   
@@ -588,7 +591,11 @@ totalCostForAddOns: number = 0;
     if(this.itemPreparationTimeInMinAndHour === 'hours'){
       this.itemPreparationtime =(this.itemPreparationtime  * 60);
     }
+    const cateName =this.categories.find(item => item._id === this.categoryId);
+    console.log('nameOf ca',cateName?.categoryName);
     
+    console.log('cate=====Name', this.NameOfCategory);
+    this.categories
     
     // if(this.categoryId === 'Burger'){
     //   this.categoryId = 1;
@@ -599,6 +606,7 @@ totalCostForAddOns: number = 0;
       "restaurantId": 1,
       "mealTimeId": 1,
       "categoryId" : this.categoryId,
+      "categoryName": cateName?.categoryName,
       "item":{
       "itemName":this.itemName,
       "timeOfDay": this.listOfSeletedValueForMealTime,
