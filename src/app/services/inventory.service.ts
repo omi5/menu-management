@@ -12,7 +12,7 @@ export class InventoryService {
 
   // readonly urlForIngredinets = "https://sak-skeleton-samiya-kazi.koyeb.app/inventory/ingredients/1"
   // readonly urlForDeliveryBox = "https://sak-skeleton-samiya-kazi.koyeb.app/inventory/delivery-box/1 "
-  url = "http://localhost:3000/inventory"
+  url = "https://bento-menu-omi5.koyeb.app/inventory"
 
   constructor( private http: HttpClient) { }
 
