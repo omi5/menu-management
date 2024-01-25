@@ -62,6 +62,7 @@ strong {
   overflow: hidden;
   transition: all 0.4s;
   margin-right: 15px;
+  position: relative;
   /* margin-left: 0px; */
 }
 
@@ -176,7 +177,7 @@ strong {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   color: #fff;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   display: none;
  
