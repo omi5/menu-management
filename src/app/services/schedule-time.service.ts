@@ -5,23 +5,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ScheduleTimeService {
-  readonly url = "http://localhost:3000/mealtime"
+  readonly url = "https://bento-menu-omi5.koyeb.app"
+  // readonly url = "http://localhost:3000/mealtime"
 
   constructor( private http: HttpClient) { }
 
   createScheduleTime(scheduleObject: any){
-    return this.http.post(this.url+'/create', scheduleObject);
+    return this.http.post(this.url+'/mealtime/create', scheduleObject);
   }
   getAllScheduleTime(){
-    return this.http.get(this.url);
+    return this.http.get(this.url+'/mealtime');
   }
   getScheduleTimeById(id: any){
-    return this.http.get(this.url+`/${id}`);
+    return this.http.get(this.url+`/mealtime/${id}`);
   }
   updateScheduleTime(id:any, scheduleObject: any){
-    return this.http.put(this.url + `/edit/${id}`, scheduleObject)
+    return this.http.put(this.url + `/mealtime/edit/${id}`, scheduleObject)
   }
   deleteScheduleTime(id: any){
-    return this.http.delete(this.url + `/delete/${id}`);
+    return this.http.delete(this.url + `/mealtime/delete/${id}`);
   }
 }

@@ -5,26 +5,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MakeRecipeService {
-  readonly url = "http://localhost:3000/recipe"
+   url = "https://bento-menu-omi5.koyeb.app"
+  // readonly url = "http://localhost:3000/recipe"
 
   constructor(private http: HttpClient) { }
 
   createRecipeItem(recipeObject: any){
-   return this.http.post(this.url+'/create', recipeObject);
+   return this.http.post(this.url+'/recipe/create', recipeObject);
   }
   getAllRecipe(){
-    return this.http.get(this.url); 
+    return this.http.get(this.url+'/recipe'); 
   }
 
   getRecipeItemById (id: any){
-    return this.http.get(this.url+`/${id}`)
+    return this.http.get(this.url+`/recipe/${id}`)
   }
   updateRecipeItem(id: string, updatedValue :any ){
-    return this.http.put(this.url + `/edit/${id}`,updatedValue)
+    return this.http.put(this.url + `/recipe/edit/${id}`,updatedValue)
   }
 
 
   deleteRecipeItem(id: string){
-    return this.http.delete(this.url+`/delete/${id}`);
+    return this.http.delete(this.url+`/recipe/delete/${id}`);
   }
 }

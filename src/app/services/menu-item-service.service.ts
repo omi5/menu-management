@@ -11,7 +11,8 @@ export class MenuItemServiceService {
   public menuItems$: Observable<any[]> = this.menuItemsSubject.asObservable();
 
 
-  readonly url = "http://localhost:3000/menuItem"
+  // readonly url = "http://localhost:3000/menuItem"
+  readonly url = "https://bento-menu-omi5.koyeb.app"
 
   constructor( private http: HttpClient) { 
     this.getAllMenuItems().subscribe((menuItems)=>{
@@ -27,7 +28,7 @@ export class MenuItemServiceService {
 
   
   createNewMenuItem(itemDetails: any){
-    return this.http.post(this.url+'/create', itemDetails).pipe(
+    return this.http.post(this.url+'/menuItem/create', itemDetails).pipe(
       tap(() => {
         // this._refreshNeeded$.next();
       })
@@ -35,7 +36,7 @@ export class MenuItemServiceService {
   }
 
   getAllMenuItems(): Observable<any>{
-    return this.http.get<any>(this.url); 
+    return this.http.get<any>(this.url+'/menuItem'); 
   }
 
   // updateMenuItemsForCategory(categoryId: string, updateItems: any[]){
@@ -44,7 +45,7 @@ export class MenuItemServiceService {
   // }
 
   getMenuItemById (id: any){
-    return this.http.get(this.url+`/${id}`)
+    return this.http.get(this.url+`/menuItem/${id}`)
   }
   // updateMenuItem(id: string, updatedValue :any ){
   //   const response = this.http.put(this.url + `/edit/${id}`,updatedValue)
@@ -55,7 +56,7 @@ export class MenuItemServiceService {
   // }
 
   updateMenuItem(id: string, updatedValue: any) {
-    const response = this.http.put(this.url + `/edit/${id}`, updatedValue)
+    const response = this.http.put(this.url + `/menuItem/edit/${id}`, updatedValue)
       .pipe(
         tap(() => {
           // After the update is successful, fetch the updated menu items
@@ -72,6 +73,6 @@ export class MenuItemServiceService {
   }
   
   deleteMenuItem(id: string){
-    return this.http.delete(this.url+`/delete/${id}`)
+    return this.http.delete(this.url+`/menuItem/delete/${id}`)
   }
 }

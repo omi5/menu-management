@@ -8,28 +8,28 @@ import { CategoryList,Category } from '../interfaces/categoryList.interface';
 })
 export class CategoryService {
   [x: string]: any;
-  readonly url = "https://bento-menu-omi5.koyeb.app"
+   url = "https://bento-menu-omi5.koyeb.app"
 
   constructor( private http: HttpClient) { }
 
   createCategory(categoryObject: any){
-    return this.http.post(this.url+'/create', categoryObject);
+    return this.http.post(this.url+'/category/create', categoryObject);
   }
   getAllCategory():Observable<CategoryList[]>{
-    return this.http.get<CategoryList[]>(this.url);
+    return this.http.get<CategoryList[]>(this.url+ '/category');
   }
   getCategoryById(id: any){
-    return this.http.get(this.url+`/${id}`);
+    return this.http.get(this.url+`/category/${id}`);
   }
   updateCategory(id:any, categoryObject: any){
     console.log("service hit", categoryObject);
     
-    let result = this.http.put(this.url + `/edit/${id}`, categoryObject)
+    let result = this.http.put(this.url + `/category/edit/${id}`, categoryObject)
     console.log("from service", result);
     return result
     
   }
   deleteCategory(id: any){
-    return this.http.delete(this.url + `/delete/${id}`);
+    return this.http.delete(this.url + `/category/delete/${id}`);
   }
 }
