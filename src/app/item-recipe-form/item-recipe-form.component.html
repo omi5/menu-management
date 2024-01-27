@@ -263,7 +263,7 @@
           <option *ngFor="let ingredient of ingredentList.ingredients" [value]="ingredient.ingredientName">{{ ingredient.ingredientName }}</option>
         </select>
   
-        <input class="inputStyle" style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quntity" [value]="1" formControlName="quantity">
+        <input class="inputStyle" style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="1" formControlName="quantity">
   
         <select style="width:130px; font-size: 16px; height: 32px;   border-color: rgb(190, 186, 186);" formControlName="unitOfStock" nzPlaceHolder="Please select">
             <option value="" disabled selected hidden>unit</option>
@@ -338,7 +338,7 @@
         <option *ngFor="let recipe of recipeCollections[0]" [value]="recipe.recipeName">{{ recipe.recipeName }}</option>
       </select>
  
-       <input style="width:80px; height: 32px;  border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quntity" [value]="1" formControlName="quantityForRecipe">
+       <input style="width:80px; height: 32px;  border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="1" formControlName="quantityForRecipe">
  
        <select style="width:130px; font-size: 16px; height: 32px;   border-color: rgb(190, 186, 186);" formControlName="unitOfStockForRecipe"  nzPlaceHolder="Please select">
            <option value="" disabled selected hidden>unit</option>
@@ -407,7 +407,7 @@
          <option *ngFor="let ingredient of ingredentList.ingredients" [value]="ingredient.ingredientName">{{ ingredient.ingredientName }}</option>
        </select>
  
-       <input style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quntity" [value]="1" formControlName="quantity">
+       <input style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="1" formControlName="quantity">
  
        <select style="width:130px; font-size: 16px; height: 32px;  border-color: rgb(190, 186, 186);" formControlName="unitOfStock"  nzPlaceHolder="Please select">
            <option value="" disabled selected hidden>unit</option>

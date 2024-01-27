@@ -5,17 +5,8 @@
   </nz-sider>
   <!-- nz-Sider -->
 
-  <nz-layout>
-    <!-- <nz-header>
-      <span
-        class="trigger"
-        nz-icon
-        (click)="isCollapsed = !isCollapsed"
-        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        ></span>
-      </nz-header> -->
-    <!-- nz-headerForTrigger -->
-
+  <nz-layout style="background: #fff;">
+   
     <nz-content>
       <nz-modal
         [(nzVisible)]="isVisible"
@@ -32,23 +23,6 @@
           <!-- category Form -->
         </ng-container>
       </nz-modal>
-
-      <!-- Iterate over categorizedMenu keys (category names) -->
-      <!-- <ng-container *ngFor="let category of Object.keys(categorizedMenu)">
-        <h1 class="category-Name">{{ category }}</h1>
-        <div class="show-menus-items">
-          <!-- Iterate over menu items in the current category -->
-          <!-- <div *ngFor="let item of categorizedMenu[category]">
-            <app-menu-item
-              [itemName]="item.item.itemName"
-              [ingredients]="item.item.ingredients.length"
-              [preparationTime]="item.item.itemPreparationtime"
-              [itemId]="item.item.itemId"
-              [src]="item.item.itemImage"
-            ></app-menu-item>
-          </div>
-        </div>
-      </ng-container>  -->
 
       <div>
         <app-test-component [menuItems1]="listForBreakfastMenu"></app-test-component>

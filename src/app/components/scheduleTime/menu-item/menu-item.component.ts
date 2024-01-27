@@ -27,6 +27,10 @@ export class MenuItemComponent implements OnInit {
   @Input() itemPortionSize!: string
   @Input() itemservingTemp!: number
   @Input() itemLastingTime!: number
+  @Input() timeOfDay!: any
+  @Input() categoryName! : string
+  @Input() itemProfileTastyTags!: any
+  @Input() itemDietaryRestrictions!: any
   @Input() recipes!: any
 
   ngOnInit(): void {

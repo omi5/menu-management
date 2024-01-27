@@ -6,18 +6,9 @@
     </nz-sider>
     <!-- nz-Sider -->
   
-     <nz-layout>
-       <!-- <nz-header>
-         <span
-           class="trigger"
-           nz-icon
-           (click)="isCollapsed = !isCollapsed"
-           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-           ></span>
-          </nz-header> -->
-       <!-- nz-headerForTrigger -->
-  
-       <nz-content>
+     <nz-layout style="background: #fff;">
+       
+       <nz-content >
         <nz-modal
         [(nzVisible)]="isVisible"
         nzTitle="Create Schedule"
@@ -27,38 +18,16 @@
         (nzOnCancel)="handleCancel()"
         [nzStyle]="{ width: '700px' }"
         >
-        <ng-container *nzModalContent>
+        <ng-container *nzModalContent >
           <!-- category Form -->
           <app-modal-form></app-modal-form>
           <!-- category Form -->
         </ng-container>
         </nz-modal>
   
-  
-        <!-- Provide Your Container Here -->
-
-        <!-- <h1>Hello From Lunch</h1> -->
-
-        <!-- <ng-container *ngFor="let category of filtercategoryList">
-          <h1>hello</h1>
-          <h1 class="category-Name">{{ category[0] }}</h1>
-          <div class="show-menus-items">
-          <div *ngFor="let item of listForLunchMenu">
-            <app-menu-item 
-            [itemName]="item.item.itemName"
-            [ingredients]="item.item.ingredients.length"
-            [preparationTime]="item.item.itemPreparationtime"
-            [itemId]="item.item.itemId"
-            [src]="item.item.itemImage"
-            ></app-menu-item>
-          </div>
-          </div>
-        </ng-container> -->
-        <!-- Provide Your Container Here -->
-
-      <app-test-component [menuItems1]="listForLunchMenu"></app-test-component>
+        <app-test-component [menuItems1]="listForLunchMenu"></app-test-component>
    
-       </nz-content>
+        </nz-content>
   
      </nz-layout>
   </nz-layout>

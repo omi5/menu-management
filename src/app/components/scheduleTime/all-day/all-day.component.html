@@ -7,17 +7,8 @@
     </nz-sider>
     <!-- nz-Sider -->
   
-     <nz-layout>
-       <!-- <nz-header>
-         <span
-           class="trigger"
-           nz-icon
-           (click)="isCollapsed = !isCollapsed"
-           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-           ></span>
-          </nz-header> -->
-       <!-- nz-headerForTrigger -->
-  
+     <nz-layout style="background: #fff;">
+       
        <nz-content>
         <nz-modal
         [(nzVisible)]="isVisible"
@@ -37,7 +28,6 @@
   
       <app-test-component [menuItems1]="listForAllDayMenu"></app-test-component>
         
-    
        </nz-content>
   
      </nz-layout>

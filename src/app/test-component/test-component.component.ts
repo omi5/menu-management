@@ -109,7 +109,16 @@ export class TestComponentComponent implements OnInit {
     this.subscribeToIngredientChanges()
     // this.mealTimeName = this.route.snapshot.paramMap.get();
     console.log('route ======',this.route.snapshot.url[0].path);
-    this.mealTimeName = this.route.snapshot.url[0].path;
+    if(this.route.snapshot.url[0].path === 'BreakFast'){
+      this.mealTimeName = 'Breakfast';
+    }
+    else if(this.route.snapshot.url[0].path === 'allDay'){
+      this.mealTimeName = 'All Day';
+    }
+    else{
+
+      this.mealTimeName = this.route.snapshot.url[0].path;
+    }
     
 
   }
