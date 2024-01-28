@@ -213,3 +213,13 @@ strong {
   background-color: #ff7f50;
   /* background-color: #76453B; */
 }
+
+.anticon .anticon-close .ng-star-inserted svg path{
+  background-color: #038851;
+}
+.anticon .anticon-close .ng-star-inserted{
+  background-color: #038851;
+}
+.ant-drawer-close .ng-star-inserted{
+  background-color:#038851;
+}

@@ -16,7 +16,92 @@
   <div class="flex items-center">
     <!-- {{(user ? user.employeeInformation.name : "")}} -->
   
-    <button nz-button nzType="primary" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline"></span>Logout</button>
+    <button nz-button nzType="primary" (click)="open()"><span nz-icon nzType="plus-circle" nzTheme="outline"></span>Menu Item</button>
+    <button nz-button nzType="primary" (click)="openRecipeDrawer()"><span nz-icon nzType="unordered-list" nzTheme="outline"></span>Recipe</button>
+    <button nz-button nzType="primary" (click)="showModalForCategory()" class="mrBtn"><span nz-icon nzType="form" nzTheme="outline"></span>Category</button>
+    <button nz-button  class="logoutBtn" (click)="logout()"><span nz-icon nzType="logout" nzTheme="outline"></span>Logout</button>
   </div>
    
 </div>
+
+
+    <!--For  Menu Item Drawer  -->
+    <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="1420"
+    [nzVisible]="visible"
+    nzTitle="Create Items"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+
+  
+  <form nz-form *nzDrawerContent (ngSubmit)="createItems()">
+   
+    
+    <app-item-recipe-form #itemForm ></app-item-recipe-form>
+
+    
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right; margin-right: 30px; ">
+      <button nz-button style="margin-right: 8px;" (click)="close()"   class="close-btn">Cancel</button>
+      <button nz-button nzType="primary"  (click)="createItems()" class="Add-btn">Add Item</button>
+    </div>
+  </ng-template>
+  </nz-drawer>
+
+
+     <!-- //Modal For category  -->
+
+     <nz-modal
+     [(nzVisible)]="isVisibleForCategory"
+     nzTitle="Create category"
+     nzOkText="Add"
+     nzCancelText="Cancel"
+     (nzOnOk)="handleOkForCategory()"
+     (nzOnCancel)="handleCancelForCategory()"
+     [nzStyle]="{ width: '900px' }"
+   >
+       <ng-container *nzModalContent>
+         <!-- (submitedFormData)="submitForm($event)" -->
+       <app-category-form  #modalFormForCategory></app-category-form>
+
+       <!-- //Start -->
+
+       <!-- //End -->
+         
+       </ng-container>
+   </nz-modal>
+
+
+     <!-- For Recipe Drawer  -->
+
+  <nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="1420"
+  [nzVisible]="visibleRecipeDrawer"
+  nzTitle="Create Recipe"
+  [nzFooter]="footerTpl1"
+  (nzOnClose)="closeRecipe()"
+>
+
+
+<form nz-form *nzDrawerContent  (ngSubmit)="createRecipeItems()">
+  
+<app-recipe-form #recipeForm></app-recipe-form>
+  
+</form>
+
+<ng-template #footerTpl1>
+  <div style="float: right; margin-right: 30px;">
+    <button nz-button style="margin-right: 8px;" (click)="closeRecipe()"  class="close-btn">Cancel</button>
+    <button nz-button nzType="primary" (click)="createRecipeItems()"  class="Add-btn">Add Recipe</button>
+  </div>
+</ng-template>
+</nz-drawer>
+
+ 

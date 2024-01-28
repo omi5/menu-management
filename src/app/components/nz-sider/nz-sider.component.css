@@ -26,14 +26,14 @@ nz-sider{
   .trigger:hover {
     color: #05CC79;
   }
-  ul li{
+  ul{
     font-size: 20px;
   }
   
 
-  ul li:hover {
+  /* ul li:hover {
     color: #05CC79;
-  }
+  } */
   /* .hover-color:hover{
     color: #05CC79;
   } */
@@ -88,4 +88,19 @@ nz-sider{
   }
   .close-btn:hover{
     background-color: #038851;
+  }
+  .ant-layout-sider-trigger .ng-star-inserted{
+    display: none;
+  }
+  .sidebarIcons{
+    font-size: 16px;
+    margin-left: 23px;
+    margin-right: 10px;
+    margin-top: 18px;
+    padding-bottom: 4px;
+    /* border: 1px solid red; */
+  }
+  .sidebarLi{
+    padding-left: 49px !important;
+    font-size: 16px;
   }

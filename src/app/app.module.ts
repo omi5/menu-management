@@ -72,7 +72,9 @@ import { AuthRedirectComponent } from './auth-redirect/auth-redirect.component';
 //Splash logo
 import {SpashLogoComponent} from './components/spash-logo/spash-logo.component'
 
-//For Icons
+
+
+
 
 
 registerLocaleData(en);

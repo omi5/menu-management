@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
@@ -12,7 +13,7 @@ import { MenuItemServiceService } from 'src/app/services/menu-item-service.servi
 })
 export class MenuItemComponent implements OnInit {
 
-  constructor(private menuService: MenuItemServiceService){
+  constructor(private menuService: MenuItemServiceService , private location: Location){
     console.log('click form view recipe',this.selectedMenuItem);
     
   }
@@ -74,9 +75,6 @@ export class MenuItemComponent implements OnInit {
   getMenuItems(){
     this.menuService.getAllMenuItems().subscribe(res=>{
       this.AllMenuItems.push(...res);
-      // console.log(res);
-      
-      console.log('all menu item==',this.AllMenuItems);
     })
   }
 
@@ -148,6 +146,7 @@ export class MenuItemComponent implements OnInit {
   deleteMenuItem(id: string){
     this.menuService.deleteMenuItem(id).subscribe(res=>{
       console.log("Deleted Successfully");
+      window.location.reload();
     
     })
   }

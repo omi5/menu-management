@@ -118,7 +118,13 @@ export class NzSiderComponent {
     this.visibleRecipeDrawer = false;
   }
 
-
+// for Create a  Recipe Items recipeForm
+@ViewChild('recipeForm') recipeForm: any
+createRecipeItems(): void{
+  console.log('click');
+  this.recipeForm.createRecipeItem()
+  this.visibleRecipeDrawer = false;
+}
  
 
   //for item form drawer
@@ -130,15 +136,7 @@ export class NzSiderComponent {
     this.visible = false;
   }
 
-  // for Create a  Recipe Items recipeForm
-  @ViewChild('recipeForm') recipeForm: any
-  createRecipeItems(): void{
-    console.log('click');
-    this.recipeForm.createRecipeItem()
-    this.visibleRecipeDrawer = false;
-  }
   
-
 
   ngOnInit(): void {
   }

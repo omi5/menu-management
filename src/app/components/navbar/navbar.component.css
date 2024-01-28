@@ -19,3 +19,12 @@
     margin-right: 8px;
     margin-bottom: 12px;
   }
+
+  .mrBtn{
+    margin-right: 24px;
+  }
+  .logoutBtn{
+    color: #fff;
+    border-radius: 4px;
+    background-color: #990000 !important;
+  }

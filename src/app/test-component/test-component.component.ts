@@ -143,19 +143,42 @@ export class TestComponentComponent implements OnInit {
   id! : string
   categoryItem: any[] = []
   //edit button
-  editBtn(itemCategory: any){
-    console.log('edit Button click',itemCategory);
-    this.categories.map(item=>{
-      if(item.categoryName === itemCategory){
-        this.categoryItem.push(item)
-      }
-    })
-    this.categoryName = this.categoryItem[0].categoryName
-    this.id = this.categoryItem[0]._id
-    this.showModalForCategory()
-    console.log('new cateee=====',this.categoryItem[0].categoryName);
+  // editBtn(itemCategory: any){
+  //   console.log('edit Button click',itemCategory);
+  //   this.categories.map(item=>{
+  //     if(item.categoryName === itemCategory){
+  //       this.categoryItem.unshift(item)
+  //     }
+  //     this.categoryName = this.categoryItem[0].categoryName
+  //     this.id = this.categoryItem[0]._id
+  //   })
+  //   this.showModalForCategory()
+  //   console.log('new cateee=====',this.categoryItem);
     
+  // }
+
+  editBtn(itemCategory: any) {
+    console.log('edit Button click', itemCategory);
+  
+    // Find the category to edit in the categories array
+    const categoryToEdit = this.categories.find(item => item.categoryName === itemCategory);
+  
+    if (categoryToEdit) {
+      // If found, update categoryItem
+      this.categoryItem.unshift(categoryToEdit);
+  
+      // Update other properties
+      this.categoryName = this.categoryItem[0].categoryName;
+      this.id = this.categoryItem[0]._id;
+  
+      // Show modal
+      this.showModalForCategory();
+      console.log('new cateee=====', this.categoryItem);
+    } else {
+      console.error('Category not found:', itemCategory);
+    }
   }
+  
   deleteBtn(){
     console.log('delete Button is click');
     
@@ -380,6 +403,7 @@ export class TestComponentComponent implements OnInit {
     //  this.modalFormForCategory.submitFormForCategory();
     this.submitFormForCategory()
      this.isVisibleForCategory = false;
+    
      // this.receiveSubmittedFormData(this.receivedFormData)
      // console.log(this.data);
      
