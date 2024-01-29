@@ -325,58 +325,21 @@ totalCostForAddOns: number = 0;
 
     //For allergens
     const allergens: string[] = [
-      'Peanuts',
-      'Shellfish',
-      'Milk',
-      'Eggs',
-      'Soy',
-      'Wheat',
-      'Fish',
-      'Tree nuts',
-      'Sesame',
-      'Sulfites',
-      'Mustard',
-      'Celery',
-      'Lupin',
-      'Molluscs',
-      'Corn',
+      'Cereals',
       'Gluten',
-      'Red meat',
-      'Pineapple',
-      'Avocado',
-      'Kiwi',
-      'Hazelnuts',
-      'Cashews',
-      'Almonds',
-      'Macadamia nuts',
-      'Pistachios',
-      'Walnuts',
-      'Pecans',
-      'Brazil nuts',
-      'Sunflower seeds',
-      'Poppy seeds',
-      'Cottonseed',
-      'Cocoa',
-      'Coconut',
-      'Chia seeds',
-      'Quinoa',
-      'Buckwheat',
-      'Amaranth',
+      'Crustaceans',
+      'Eggs',
+      'Fish',
+      'Peanuts',
+      'Soybeans',
+      'Milk',
+      'Nuts',
+      'Celery',
+      'Mustard',
       'Sesame seeds',
-      'Mustard seeds',
-      'Anchovies',
-      'Crab',
-      'Lobster',
-      'Shrimp',
-      'Squid',
-      'Octopus',
-      'Clams',
-      'Oysters',
-      'Scallops',
-      'Haddock',
-      'Mackerel',
-      'Sardines',
-      'Tuna',
+      'Sulphur dioxide and sulphites',
+      'Lupin',
+      'Molluscs'
       // Add more allergens as needed
     ];
     
@@ -406,7 +369,7 @@ totalCostForAddOns: number = 0;
     ];
 
     const mealTime = ['All Day', 'BreakFast', 'Lunch','Dinner']
-    const  typeOfFood = ['Delivey Only', 'Pick Up', 'Eat Only','All']
+    const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
 
 
     

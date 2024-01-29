@@ -81,7 +81,7 @@ strong {
   gap: 0.4rem;
 }
 
-.tag {
+/* .tag {
   display: inline-block;
   padding: 0.4rem 0.8rem;
   font-size: 1.2rem;
@@ -102,7 +102,7 @@ strong {
 
 .tag--paleo {
   background-color: #ffd43b;
-}
+} */
 
 .meal-title {
   font-size: 22px;
@@ -136,12 +136,12 @@ strong {
 .iconDetails{
   height: 2.4rem;
   width: 2.4rem;
-  font-size: 22px;
+  font-size: 16px;
   color: #e67e22;
   margin-top: 10px;
 }
 .peraStyle{
-  font-size: 22px;
+  font-size: 18px;
   color: #000;
   margin-left: 4px;
   padding-top: 4px;
@@ -149,7 +149,7 @@ strong {
 }
 .spanStyle{
   color: gray;
-  font-size: 18px;
+  font-size: 15px;
   padding-left: 25px;
 
 }
@@ -190,28 +190,22 @@ strong {
 .tag {
   display: inline-block;
   padding: 0.4rem 0.8rem;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
   text-transform: uppercase;
   background-color: #51cf66;
   color: #333;
   border-radius: 100px;
-  font-weight: 600;
+  /* font-weight: 600; */
   height: 35px;
   color: #fff;
 }
 
-/* 'dark-green': '#02643B',
-'green': '#038851',
-'light-green': '#05CC79', */
-
 .tag--vegan {
-  /* background-color: #94d82d; */
   background-color: #038851;
   
 }
 .tag--paleo {
   background-color: #ff7f50;
-  /* background-color: #76453B; */
 }
 
 .anticon .anticon-close .ng-star-inserted svg path{
@@ -222,4 +216,19 @@ strong {
 }
 .ant-drawer-close .ng-star-inserted{
   background-color:#038851;
+}
+.ant-drawer-close{
+  color: #26a366 !important;
+}
+.Add-btn{
+  width: 100px;
+  background-color: #038851;
+}
+.Add-btn:hover{
+  background-color: #05CC79;
+}
+.close-btn{
+  width: 80px;
+  /* color:#fff; */
+  /* background-color: #05CC79; */
 }

@@ -2,11 +2,11 @@
   <!-- <button class="AddCategoryBtn" (click)="showModalForCreateCategory()"><span nz-icon nzType="plus" nzTheme="outline"></span>Add Category</button> -->
 
 
-    <div *ngFor="let itemCategory of Object.keys(categorizedMenu)">
-      <div>
-        <h2 *ngIf="categorizedMenu[itemCategory].length > 0"  class="category-heading">{{ itemCategory }}
+    <div *ngFor="let itemCategory of Object.keys(categorizedMenu)" style="margin-bottom: 25px;">
+      
+        <h2 *ngIf="categorizedMenu[itemCategory].length > 0"  class="category-heading"> <span> {{ itemCategory }}</span>
          <span nz-icon nzType="edit" nzTheme="outline" class="editBtn" (click)="editBtn(itemCategory)"></span>
-          <span nz-icon nzType="delete" nzTheme="outline" class="deleteBtn" (click)="deleteBtn()" nz-button nz-dropdown [nzDropdownMenu]="menu"></span> 
+          <span nz-icon nzType="close-circle" nzTheme="outline" class="deleteBtn" (click)="deleteBtn()" nz-button nz-dropdown [nzDropdownMenu]="menu"></span> 
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
               <li nz-menu-item class="hoverDelete" (click)="deleteFromThisMenu(itemCategory)" >Delete from this menu</li>
@@ -14,10 +14,10 @@
             </ul>
           </nz-dropdown-menu>
          
-          <hr style=" border-top: 1px solid #038851; margin-top: 20px;">       
+          <hr style=" border-top: 1px solid #038851;">       
         </h2>
         
-      </div>
+    
 
       
       <div class="show-menus-items" *ngIf="categorizedMenu[itemCategory].length > 0">
@@ -158,4 +158,4 @@
         <!-- //End -->
           
         </ng-container>
-    </nz-modal>
+ </nz-modal>

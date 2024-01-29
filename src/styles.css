@@ -2885,3 +2885,17 @@ pre {
 .content-evenly {
     align-content: space-evenly;
 } 
+
+/* //Chnage ng Zorro design */
+.ant-drawer-close{
+    color: #26a366 !important;
+}
+.anticon .ng-star-inserted .anticon-left svg{
+    display: none;
+}
+.ant-layout-sider-trigger{
+    background: #fff;
+}
+.nz-sider{
+    
+}

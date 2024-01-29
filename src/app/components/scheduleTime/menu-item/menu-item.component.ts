@@ -159,7 +159,21 @@ export class MenuItemComponent implements OnInit {
 
 
 
-  //submit Data 
+  //For Edit item
+  item : any;
+  OpenADrawerForEdit(id: string){
+     this.item = this.AllMenuItems.find(item => item._id  === id);
+    console.log('itemForEdit ====',this.item);
+    
+    this.openForEdit();
+  } 
+  visibleForEdit = false;
+ openForEdit(){
+  this.visibleForEdit = true;
+  }
+  closeForEdit(){
+    this.visibleForEdit = false;
+  }
   
 
 

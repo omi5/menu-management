@@ -71,10 +71,7 @@ nz-sider{
 
   .Add-btn{
     width: 120px;
-    /* text-align: center; */
-    /* font-size: 20px; */
     background-color: #038851;
-    /* margin-bottom: 15px; */
   }
   .Add-btn:hover{
     background-color: #05CC79;
@@ -82,8 +79,6 @@ nz-sider{
   .close-btn{
     width: 80px;
     color:#fff;
-    /* text-align: center; */
-    /* font-size: 15px; */
     background-color: #05CC79;
   }
   .close-btn:hover{
