@@ -1,6 +1,6 @@
 <!-- <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color"> -->
     
-    <ul nz-menu nzTheme="light" nzMode="inline" >
+    <!-- <ul nz-menu nzTheme="light" nzMode="inline" >
       <li  nzTitle="Menus" nzIcon="dashboard" class="hover-color">
         <span class="sidebarIcons" nz-icon nzType="dashboard" nzTheme="outline"></span>Menus
         <ul>
@@ -9,7 +9,7 @@
           <li class="sidebarLi" nz-menu-item (click)="onLunch()">Lunch</li>
           <li class="sidebarLi" nz-menu-item (click)="onDinner()">Dinner</li>
         </ul>
-      </li>
+      </li> -->
       <!-- <li nz-submenu nzTitle="Create" nzIcon="form" class="hover-color">
         <ul>
           <li nz-menu-item (click)="open()" >Menu Item Recipe</li>
@@ -18,7 +18,7 @@
           <li nz-menu-item (click)="showModalForCategory()">Category</li>
         </ul>
       </li> -->
-      <li  nzTitle="Tables" nzIcon="form" class="hover-color">
+      <!-- <li  nzTitle="Tables" nzIcon="form" class="hover-color">
         <span class="sidebarIcons" nz-icon nzType="table" nzTheme="outline"></span>Tables
         <ul>
           <li class="sidebarLi" nz-menu-item (click)="recipe()">Ingredient Recipe</li>
@@ -26,8 +26,36 @@
           <li class="sidebarLi" nz-menu-item (click)="category()">Category</li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
   <!-- </nz-sider> -->
+
+  <div style="display: flex;">
+    <ul nz-menu nzMode="inline">
+      <span class="sidebarIcons" nz-icon nzType="dashboard" nzTheme="outline"></span>Menus
+      <li nz-menu-item [nzSelected]="true" nzMatchRouter>
+              <a routerLink="/allDay">All Day</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+              <a routerLink="/BreakFast">Breakfast</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/Lunch">Lunch</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/Dinner">Dinner</a>
+            </li>
+       <span class="sidebarIcons" nz-icon nzType="table" nzTheme="outline"></span>Tables
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/recipe">Ingredient Recipe</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/category">Category</a>
+            </li>
+    </ul>
+    <div style="flex-grow: 1;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 
 
     <!-- //Modal For Schedule  -->

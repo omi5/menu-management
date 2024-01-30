@@ -11,7 +11,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -72,6 +72,10 @@ import { AuthRedirectComponent } from './auth-redirect/auth-redirect.component';
 //Splash logo
 import {SpashLogoComponent} from './components/spash-logo/spash-logo.component'
 
+import { AuthService } from '../app/interceptors/auth/auth.service';
+import { TokenService } from './interceptors/token/token.service';
+import { TestEditItemComponent } from './test-edit-item/test-edit-item.component';
+
 
 
 
@@ -108,7 +112,8 @@ registerLocaleData(en);
     TestIngredientsComponent,
     NavbarComponent,
     AuthRedirectComponent,
-    SpashLogoComponent
+    SpashLogoComponent,
+    TestEditItemComponent
    
   ],
   imports: [
@@ -142,7 +147,17 @@ registerLocaleData(en);
 
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenService,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

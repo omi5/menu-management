@@ -57,27 +57,19 @@ export class BreakfastComponent implements OnInit {
     
   // }
  
-  
   getMenuItems() {
     this.menuService.menuItemsSubject.subscribe(res => {
       this.AllMenuItems.push(res);
-      console.log('Selected menu for all====', this.AllMenuItems);
-  
       this.AllMenuItems[0].forEach((item: MenuItem) => {
-        if (item.item.timeOfDay.includes('BreakFast')) {
-          console.log('Item added to breakfast menu====:', item);
+        if (item.item.timeOfDay.includes('Breakfast')) {
           this.listForBreakfastMenu.push(item);
         }
       });
   
-      console.log('listOfLunchMenu====', this.listForBreakfastMenu);
+      // console.log('listOfLunchMenu====', this.listForBreakfastMenu);
     });
   }
   
-  
-  
-
-
   ngOnInit(): void {
     this.getMenuItems();
   }

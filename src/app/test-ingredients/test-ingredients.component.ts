@@ -45,9 +45,7 @@ export class TestIngredientsComponent implements OnInit {
       ingredientBatches: this._fb.array([this.createIngredientBatch()]),
       percentage: [0, Validators.required],
     });
-
     //for unit
-
      this.measurementTools = {
       "cup": {
         "liquid": {
@@ -85,34 +83,15 @@ export class TestIngredientsComponent implements OnInit {
       
     };
     
-    // const measurementToolArray = [];
-    
     for (const tool in this.measurementTools) {
       if (this.measurementTools.hasOwnProperty(tool)) {
         this.measurementToolArray.push(tool);
       }
     }
-    
-    console.log('measurementToolArray',this.measurementToolArray);
-    
-
-
-
-    //for unit
-
-    
-
   }
-
-  
 
   ngOnInit(): void {
-
-
   }
-
-
-
   private createIngredientBatch(): FormGroup {
     return this._fb.group({
       id: 1,
@@ -159,79 +138,19 @@ onIngredientChange(index: number): void {
     }, 100); // Optionally update totals when the ingredient changes
 
   }
-  console.log("after change", selectedIngredient);
   
 }
 
-
-
-//===== new
-// updateTotals(): void {
-//   console.log("Hit");
-  
-//   this.totalCostPerUnit = 0;
-//   this.totalCaloriesPerUnit = 0;
-  
-//   console.log("measurementTools", this.ingredientBatchesArray);
-
-//   this.ingredientBatchesArray.controls.forEach((control: AbstractControl, index) => {
-//     console.log(`Processing control at index ${index}`);
-    
-//     // Add this log to check the value of the control
-//     console.log("Control value:", control.value);
-//     const costPerUnitControl = control.get('costPerUnit') as FormControl;
-//     const quantityControl = control.get('quantity') as FormControl;
-//     const caloriesPerUnitControl = control.get('caloriesPerUnit') as FormControl;
-//     const unitOfStockControl = control.get('unitOfStock') as FormControl;
-
-//     if (costPerUnitControl && quantityControl && caloriesPerUnitControl) {
-//       const costPerUnit = costPerUnitControl.value;
-//       const quantity = quantityControl.value;
-//       const caloriesPerUnit = caloriesPerUnitControl.value;
-//       const unitOfStock = unitOfStockControl.value;
-//       console.log("costPerUnit", costPerUnit);
-      
-//     console.log("quantity", quantity);
-//     console.log("caloriesPerUnit", caloriesPerUnit);
-//     console.log("unitOfStock", unitOfStock);
-
-//       // Find the measurement details for the selected unitOfStock
-//       const measurementDetails = this.measurementTools[unitOfStock];
-
-//       if (measurementDetails) {
-//         // Determine the quantity based on measurementType
-
-//         // this.totalCostPerUnit += costPerUnit * measurementQuantity;
-//         this.totalCostPerUnit += costPerUnit * quantity;
-//         this.totalCaloriesPerUnit += caloriesPerUnit * quantity;
-//       }
-//     }
-    
-//   });
-  
-// }
-
-
-
-// =====New update
-
 updateTotals(): void {
-  console.log("Hit");
   this.totalCostPerUnit = 0;
   this.totalCaloriesPerUnit = 0;
-
   // Check if the 'percentage' control exists in the form
   const percentageControl = this.orderForm.get('percentage');
 
   if (percentageControl) {
     const percentage = percentageControl.value / 100;
-    console.log("measurementTools", this.ingredientBatchesArray);
-
     this.ingredientBatchesArray.controls.forEach((control: AbstractControl, index) => {
-      console.log(`Processing control at index ${index}`);
-
       // Add this log to check the value of the control
-      console.log("Control value:", control.value);
       const costPerUnitControl = control.get('costPerUnit') as FormControl;
       const quantityControl = control.get('quantity') as FormControl;
       const caloriesPerUnitControl = control.get('caloriesPerUnit') as FormControl;
@@ -242,56 +161,31 @@ updateTotals(): void {
         const quantity = quantityControl.value;
         const caloriesPerUnit = caloriesPerUnitControl.value;
         const unitOfStock = unitOfStockControl.value;
-        console.log("costPerUnit", costPerUnit);
-
-        console.log("quantity", quantity);
-        console.log("caloriesPerUnit", caloriesPerUnit);
-        console.log("unitOfStock", unitOfStock);
-
         // Find the measurement details for the selected unitOfStock
         const measurementDetails = this.measurementTools[unitOfStock];
-
         if (measurementDetails) {
           // Determine the quantity based on measurementType
-
           // this.totalCostPerUnit += costPerUnit * measurementQuantity;
           this.totalCostPerUnit += costPerUnit * quantity;
           this.totalCaloriesPerUnit += caloriesPerUnit * quantity;
         }
       }
     });
-
     // Calculate the total cost by applying the percentage
     this.totalCost = this.totalCostPerUnit * (1 + percentage);
-    console.log("Total Cost:", this.totalCost);
+    
   } else {
     console.error("Percentage control not found in the form");
   }
 }
 
-
-
-
-
-
   submitForm(): void {
     if (this.orderForm.valid) {
       const formData = this.orderForm.value;
       this.updateTotals()
-
       console.log('Form Data:', formData);
-      console.log('Total Cost Per Unit:', this.totalCostPerUnit);
-      console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
-
-      // Uncomment the following lines to send the data to the service
-      // this.menuService.createNewMenuItem(formData).subscribe({
-      //   next: (response) => {
-      //     console.log('Post successful', response);
-      //   },
-      //   error: (error) => {
-      //     console.error('Error in post', error);
-      //   },
-      // });
+      // console.log('Total Cost Per Unit:', this.totalCostPerUnit);
+      // console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
     } else {
       console.error('Form invalid');
     }

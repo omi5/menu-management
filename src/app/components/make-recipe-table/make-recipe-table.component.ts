@@ -12,9 +12,6 @@ export class MakeRecipeTableComponent implements OnInit {
 
   isCollapsed = false;
 
-
-
-
   frontPagination = true;
   totalNumberOfData = 0;
   pageIndex = 1;
@@ -75,7 +72,6 @@ export class MakeRecipeTableComponent implements OnInit {
   recipeItemPortionSize!: number;
   recipeItemPreparationTime!: number;
 
-
   constructor(private recipeService: MakeRecipeService) {}
 
   @Input() restaurantId: number = 1;
@@ -83,14 +79,13 @@ export class MakeRecipeTableComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
-
   private loadData() {
     this.recipeService.getAllRecipe().subscribe({
       next: (data: Object) => {
         this.recipeData = (data as any[]).map((recipe: any) => ({
           ...recipe,
         }));
-        console.log('Recipe data loaded', this.recipeData);
+        // console.log('Recipe data loaded', this.recipeData);
       },
       error: (error) => {
         console.error('Error fetching recipe data', error);
@@ -109,12 +104,10 @@ export class MakeRecipeTableComponent implements OnInit {
       recipeItemPreparationTime: this.recipeItemPreparationTime
     };
 
-    console.log('New Recipe Item:', newRecipeItem);
-
     if (this.isEdit) {
       this.recipeService.updateRecipeItem(String(this.id), newRecipeItem).subscribe({
         next: (res) => {
-          console.log('Recipe item updated successfully:', res);
+          // console.log('Recipe item updated successfully:', res);
         },
         error: (error) => {
           console.error('Error updating recipe item:', error);
@@ -123,7 +116,7 @@ export class MakeRecipeTableComponent implements OnInit {
     } else {
       this.recipeService.createRecipeItem(newRecipeItem).subscribe({
         next: (res) => {
-          console.log('Recipe item created successfully:', res);
+          // console.log('Recipe item created successfully:', res);
         },
         error: (error) => {
           console.error('Error creating recipe item:', error);
@@ -132,12 +125,11 @@ export class MakeRecipeTableComponent implements OnInit {
     }
   }
   
-
   onDelete(id: string): void {
     this.recipeService.deleteRecipeItem(id).subscribe({
       next: () => {
         this.recipeData = this.recipeData.filter(recipe => recipe._id !== id);
-        console.log(`Recipe with ID ${id} deleted successfully.`);
+        // console.log(`Recipe with ID ${id} deleted successfully.`);
       },
       error: (error: any) => {
         console.error(`Error deleting recipe with ID ${id}`, error);
@@ -149,7 +141,6 @@ export class MakeRecipeTableComponent implements OnInit {
   onEdit(recipe: any): void {
     this.visible = true;
     this.isEdit = true;
-
     this.id = recipe._id;
     this.recipeName = recipe.recipeName;
     this.recipeItemDescription = recipe.recipeItemDescription;
@@ -169,20 +160,16 @@ export class MakeRecipeTableComponent implements OnInit {
       recipeItemPreparationTime: recipe.recipeItemPreparationTime
     }
 
-    console.log('Recipe =======', recipe);
-    console.log("edit recipe details final====", editDetails);
+    // console.log('Recipe =======', recipe);
+    // console.log("edit recipe details final====", editDetails);
 
     this.recipeService.updateRecipeItem(recipe._id,editDetails).subscribe(res=>{
       console.log('recipe updated details',res);
       
     })
   }
-
-
   //for Drawer
-
   visibleRecipeDrawer = false;
-
   openRecipeDrawer(): void {
     this.visibleRecipeDrawer = true;
   }
@@ -194,7 +181,6 @@ export class MakeRecipeTableComponent implements OnInit {
   @ViewChild('recipeForm') recipeForm: any;
 
   createRecipeItems(): void {
-    console.log('click');
     this.recipeForm.createRecipeItem();
   }
 }

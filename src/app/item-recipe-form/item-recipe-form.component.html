@@ -186,7 +186,7 @@
             <nz-form-item>
               <label style="width: 180px;  text-align: left;  font-size: 18px;">Packing type:</label>
               <nz-form-control >
-                <nz-select nzPlaceHolder="Please select a box" style="font-size: 16px; height: 32px; width: 28rem; color: rgb(190, 186, 186) ;" [(ngModel)]="ItemHowToDelivery" (ngModelChange)="onPackingChange()">
+                <nz-select nzPlaceHolder="Please select a box" style="font-size: 16px; height: 32px; width: 28rem;" [(ngModel)]="ItemHowToDelivery" (ngModelChange)="onPackingChange()">
                   <nz-option  *ngFor="let el of packingBox.deliveryBox" [nzValue]="el.boxName" [nzLabel]="el.boxName" ></nz-option>
                 </nz-select>
               </nz-form-control>

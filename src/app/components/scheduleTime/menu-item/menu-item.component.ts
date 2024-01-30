@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
-// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-menu-item',
@@ -12,10 +11,7 @@ import { MenuItemServiceService } from 'src/app/services/menu-item-service.servi
   styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
-
   constructor(private menuService: MenuItemServiceService , private location: Location){
-    console.log('click form view recipe',this.selectedMenuItem);
-    
   }
 
   @Input() itemName!: string;
@@ -38,8 +34,6 @@ export class MenuItemComponent implements OnInit {
     this.getMenuItems();
     // this.getMenuItemById(13);
   }
-
-
   // For Modal
   // isVisible = false;
   // constructor(private modalService: NzModalService) {}
@@ -59,17 +53,11 @@ export class MenuItemComponent implements OnInit {
   editMenuItem(id: string): void {
     this.visible = true;
     this.getMenuItemById(id);
-    this.loadingData();
-    console.log('click form view recipe ',this.selectedMenuItem);
-    
-    
+    // this.loadingData();
   }
   close(): void {
     this.visible = false;
   }
-
-  
-  
   //Get All Menu Item
   AllMenuItems : any[] = []
   getMenuItems(){
@@ -77,95 +65,41 @@ export class MenuItemComponent implements OnInit {
       this.AllMenuItems.push(...res);
     })
   }
-
   //get Menu Item By Id
   selectedMenuItem :any = [] ;
  
   getMenuItemById(id: any){
     this.menuService.getMenuItemById(id).subscribe(res=>{
       this.selectedMenuItem.push(res);
-      console.log(" Menu Item b======y", res);
+      // console.log(" Menu Item b======y", res);
       return res;
     })
   }
 
-  form = new FormGroup({
-    itemName: new FormControl(),
-    itemProfileTastyTags: new FormControl(),
-    itemPrice: new FormControl(),
-    itemPreparationtime: new FormControl(),
-    itemPortionsize: new FormControl(),
-    itemCalories: new FormControl(),
-    itemDietaryRestrictions: new FormControl(),
-    itemImage: new FormControl(),
-    servingTemperature: new FormControl(),
-    timeOfDay: new FormControl(),
-    itemDescription: new FormControl(),
-    itemPackingType: new FormControl(),
-    itemLastingTime: new FormControl(),
-    itemCategory: new FormControl(),
-    typeOfFood: new FormControl(),
-    
-   })
-   loadingData(){
-    this.form.patchValue({
-      itemName: this.selectedMenuItem[0].item.itemName,
-      itemProfileTastyTags:this.selectedMenuItem[0].item.itemProfileTastyTags,
-      itemPrice:this.selectedMenuItem[0].item.itemPrice,
-      itemPreparationtime:this.selectedMenuItem[0].item.itemPreparationtime,
-      itemPortionsize:this.selectedMenuItem[0].item.itemPortionsize,
-      itemCalories : this.selectedMenuItem[0].item.itemCalories,
-      itemDietaryRestrictions: this.selectedMenuItem[0].item.itemDietaryRestrictions,
-      itemImage: this.selectedMenuItem[0].item.itemImage,
-      servingTemperature: this.selectedMenuItem[0].item.servingTemperature,
-      timeOfDay: this.selectedMenuItem[0].item.timeOfDay,
-      itemDescription:this.selectedMenuItem[0].item.itemDescription,
-      itemPackingType:this.selectedMenuItem[0].item.itemPackingType,
-      itemLastingTime:this.selectedMenuItem[0].item.itemLastingTime,
-      typeOfFood: this.selectedMenuItem[0].item.typeOfFood,
-      itemCategory:this.selectedMenuItem[0].category
-
-
-
-
-
-      
-    })
-   }
-   onsubmit(){
-    console.log(this.form.value);
-    
-   }
-   listOfOptionForTastyTags=[1,2,3]
-  
-
-
-   
+ 
 
   //Delete a Menu Item 
   deleteMenuItem(id: string){
     this.menuService.deleteMenuItem(id).subscribe(res=>{
-      console.log("Deleted Successfully");
       window.location.reload();
-    
     })
   }
 
+  @ViewChild('EditItem') EditItem: any;
   //Update Menu Item
-  updateMenuItem(id: number){
-  
-    
+  updateMenuItem(){
+
   }
-
-
-
   //For Edit item
   item : any;
   OpenADrawerForEdit(id: string){
-     this.item = this.AllMenuItems.find(item => item._id  === id);
-    console.log('itemForEdit ====',this.item);
+    console.log('click');
     
-    this.openForEdit();
+     this.item = this.AllMenuItems.find(item => item._id  === id);
+     this.openForEdit();
+     this.EditItem.editItem()
+     console.log('item===', this.item);
+     
   } 
   visibleForEdit = false;
  openForEdit(){
@@ -174,8 +108,4 @@ export class MenuItemComponent implements OnInit {
   closeForEdit(){
     this.visibleForEdit = false;
   }
-  
-
-
-
 }

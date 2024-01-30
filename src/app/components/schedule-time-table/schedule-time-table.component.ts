@@ -95,7 +95,7 @@ export class ScheduleTimeTableComponent implements OnInit {
         this.scheduleTimes = (data as any[]).map((ingredient: any) => ({
           ...ingredient,
         }));
-        console.log('Ingredient data loaded', this.scheduleTimes);
+        // console.log('Ingredient data loaded', this.scheduleTimes);
       },
       error: (error) => {
         console.error('Error fetching ingredient data', error);
@@ -115,15 +115,15 @@ export class ScheduleTimeTableComponent implements OnInit {
       mealTimeId: this.mealTimeId,
     };
 
-    console.log(newScheduleTime);
+    // console.log(newScheduleTime);
 
     if (this.isEdit) {
       this.scheduleTimeService.updateScheduleTime(this.id, newScheduleTime).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
       });
     } else {
       this.scheduleTimeService.createScheduleTime(newScheduleTime).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
       });
     }
   }
@@ -134,7 +134,7 @@ export class ScheduleTimeTableComponent implements OnInit {
         this.scheduleTimes = this.scheduleTimes.filter(
           (scheduleTime) => scheduleTime._id !== Id
         );
-        console.log(`Schedule Time with ID ${Id} deleted successfully.`);
+        // console.log(`Schedule Time with ID ${Id} deleted successfully.`);
       },
       error: (error: any) => {
         console.error(`Error deleting schedule time with ID ${Id}`, error);
@@ -144,8 +144,7 @@ export class ScheduleTimeTableComponent implements OnInit {
 
   onEdit(scheduleTime: any): void {
     this.visible = true;
-    this.isEdit = true;
-
+    this.isEdit = true
     this.id = scheduleTime._id;
     this.restaurantId = scheduleTime.restaurantId;
     this.mealTimeName = scheduleTime.mealTimeName;
@@ -155,7 +154,6 @@ export class ScheduleTimeTableComponent implements OnInit {
     this.startTime = scheduleTime.startTime;
     this.endTime = scheduleTime.endTime;
     this.mealTimeId = scheduleTime.mealTimeId;
-
 
     const editDetails={
       // restaurantId: 1,
@@ -169,14 +167,12 @@ export class ScheduleTimeTableComponent implements OnInit {
       endTime : scheduleTime.endTime,
       mealTimeId : scheduleTime.mealTimeId,
     }
-    console.log('categoryId=======', scheduleTime);
-    console.log("edit details final=====", editDetails);
-
+    // console.log('categoryId=======', scheduleTime);
+    // console.log("edit details final=====", editDetails);
 
     this.scheduleTimeService.updateScheduleTime(scheduleTime._id, editDetails).subscribe(res=>{
-      console.log('====subscribe Data for schedule' ,res);
+      // console.log('====subscribe Data for schedule' ,res);
       
     })
   }
-
 }

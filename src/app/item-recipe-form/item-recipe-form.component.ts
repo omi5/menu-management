@@ -17,10 +17,6 @@ import { InventoryService } from '../services/inventory.service';
 })
 
 //for Ingredinet
-
-
-
-
 //for Ingredinet
 export class ItemRecipeFormComponent implements OnInit {
 //for ingredients
@@ -42,23 +38,14 @@ totalCostForAddOns: number = 0;
 
  @Input() categoryName!: string;
  selectedCategoryItem !: any[];
-
-
-
-
-  
   visible = false;
-  
   // cloudinary: any;
-
   open(): void {
     this.visible = true;
   }
-
   close(): void {
     this.visible = false;
   }
-
   owner = ["Burger","Pizza","Drinks"]
   howToDelivered = [ 
   'Cardboard Boxes',
@@ -66,8 +53,6 @@ totalCostForAddOns: number = 0;
   'Styrofoam ',
   'Paper Bags',
   'Thermal Insulated Bags']
- 
-
   //Array Of Portion Size
    portionSizes = [
     "Small",
@@ -76,9 +61,6 @@ totalCostForAddOns: number = 0;
     "Extra Small",
     "Extra Large"
 ]
-
-
-
 
   //for Uploading a Image
   constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
@@ -98,14 +80,6 @@ totalCostForAddOns: number = 0;
       ingredientBatchesForRecipe: this._fb.array([this.createIngredientBatchForRecipe()]),
       percentageForRecipe: [0, Validators.required],
     });
-
-    
-
-    console.log('when click from ADD ===',this.categoryId);
-    
-    
-
-
     //for ingredients
 
     this.measurementTools = {
@@ -150,8 +124,6 @@ totalCostForAddOns: number = 0;
         this.measurementToolArray.push(tool);
       }
     }
-    
-    console.log('measurementToolArray',this.measurementToolArray);
 
   }
 
@@ -167,8 +139,6 @@ totalCostForAddOns: number = 0;
   //   }
   // }
 
-
-
   uploadedImageUrl: string | undefined;
   private successMessageDisplayed = false;
 
@@ -176,30 +146,21 @@ totalCostForAddOns: number = 0;
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
       console.log('File information:', info.file);
-    console.log('File list:', info.fileList);
+      console.log('File list:', info.fileList);
     }
     if (info.file.status === 'done' && !this.successMessageDisplayed) {
       this.msg.success(`${info.file.name} file uploaded successfully`);
       this.successMessageDisplayed = true;
-      console.log('Upload response:', info.file.response);
       this.uploadedImageUrl = info.file.response.url; 
     } 
     
   }
 
-  // else if (info.file.status === 'error') {
-    //   this.msg.error(`${info.file.name} file upload failed.`);
-    //   console.error('Upload error:', info.file.error);
-    // }
- 
-
   selectFile(event: any): void {
     const file = event?.file?.originFileObj;
-
       this.cloudinary.cloudUpload(file, 'dkfnaltqp') 
       .subscribe(
         (response: any) => {
-          console.log('Cloudinary API Response:', response);
           const fakeEvent: NzUploadChangeParam = {
             file: {
               ...event.file,
@@ -224,17 +185,10 @@ totalCostForAddOns: number = 0;
   
           this.handleChange(fakeEvent);
         }
-      );
-  
-    
+      );  
   }
+ //For Ingredients
 
-
-  //For Ingredients
- 
-
-  //
- 
   //New handle fun
   
   @ViewChild('ingredients') ingredients: any
@@ -286,25 +240,7 @@ totalCostForAddOns: number = 0;
     ]
   }
 
-
-  // packingBox ={
-  //   "deliveryBox": [
-        // {
-        //     "id": 1,
-        //     "boxName": "Medium Box",
-        //     "quantity": 1,
-        //     "restaurantId": 1
-        //     "unitOfStock": "gm",
-        //     "costPerUnit": 200,
-        //     "caloriesPerUnit": 150,
-        //     "liquid": "No"
-        // },
-        
-  //   ]
-  // }
-
   packingBox: { deliveryBox: any[] } = { deliveryBox: [] };
-
 
   ngOnInit(): void {
     //get recipe
@@ -315,14 +251,7 @@ totalCostForAddOns: number = 0;
     this.getAllPackingBox()
     this.addIngredientBatch()
     this.selectedCategory()
-
-    console.log('selectedCategory===',this.selectedCategoryItem);
-    console.log('categ====',this.categoryId);
-    
     this.categoryId = this.categoryName;
-    console.log('categoryName=====',this.categoryId);
-    
-
     //For allergens
     const allergens: string[] = [
       'Cereals',
@@ -342,8 +271,6 @@ totalCostForAddOns: number = 0;
       'Molluscs'
       // Add more allergens as needed
     ];
-    
-
     //For tasty tags
     const tastyTags: string[] = [
       'Savory',
@@ -370,15 +297,7 @@ totalCostForAddOns: number = 0;
 
     const mealTime = ['All Day', 'BreakFast', 'Lunch','Dinner']
     const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
-
-
-    
-
-  
-
-    // for (let i = 10; i < 36; i++) {
-    //   children.push(`${i.toString(36)}${i}`);
-    // }
+   
     this.listOfOption = allergens;
     this.listOfOptionForTastyTags= tastyTags;
     this.listOfOptionForMealTime = mealTime;
@@ -395,29 +314,17 @@ totalCostForAddOns: number = 0;
     });
   }
 
-  
-
-
   selectedCategory(){
-    console.log('invoked',this.categories);
-    
     this.categories.length && this.categories.map((item:any) => {
       if(item.categoryName === this.categoryName){
-
-        console.log('hhehehe', item);
         return item
       }
       else{
-        console.log('else', item);
-        
+        console.log('else', item);  
       }
-      
-
     })
   }
   
-  
-
   //submit Data 
   restaurantId!: number;
   MealTimeId!: number;
@@ -443,19 +350,12 @@ totalCostForAddOns: number = 0;
 
   getAllCategory(){
     this.categoryService.getAllCategory().subscribe((res: CategoryList[])=>{
-      // const categoryList = res as CategoryList;
-      console.log('category List',res);
       this.categories.push(...res);
-
      const selectCategoryItem = this.categories.find(item=> item.categoryName === this.categoryName)
      this.categoryId = selectCategoryItem?._id
-    //  this.NameOfCategory = selectCategoryItem?.categoryName;
     })
   }
  
-
-  
-
   //for get recipe and ingredinets   inventoryIngredient | recipeInterface
   // combainedRecipeAndIngredinets: any = []
   // getAllRecipeAndIngredients(){
@@ -500,14 +400,9 @@ totalCostForAddOns: number = 0;
   recipeCollections: any =[]
   getAllRecipe(){
     this.recipeService.getAllRecipe().subscribe(res=>{
-      console.log('recipe=====',res);
-      
-      this.recipeCollections.push(res)
-      console.log('list of recipe ===',this.recipeCollections);
-      
+      this.recipeCollections.push(res) 
     })
   }
-
   // getAll Ingredients
   getAllIngredinets() {
     this.inventoryService.getAllInventoryIngredients().subscribe(
@@ -515,8 +410,6 @@ totalCostForAddOns: number = 0;
         res.forEach((items: any) => {
           this.ingredentList.ingredients.push(items);
         });
-        console.log('Inventory response:', res);
-        console.log('IngredentList:', this.ingredentList);
       },
       (error) => {
         console.error('Error fetching inventory:', error);
@@ -531,23 +424,18 @@ totalCostForAddOns: number = 0;
         res.forEach((items: any) => {
           this.packingBox.deliveryBox.push(items);
         });
-        console.log('deliveryBox response:', res);
-        console.log('deliveryBox:', this.packingBox);
       },
       (error) => {
         console.error('Error fetching deliveryBox:', error);
       }
     )
   }
-
   
   createItem(){
     const ingredients = this.submitForm()
     const addOns = this.submitFormForAddOns()
     const recipe = this.submitFormForRecipe()
     const rawIngredients =  this.ingredientBatchesArray.controls.map((control: AbstractControl) => control.value)
-    // const recipes =  this.ingredientBatchesArrayForRecipe.controls.map((control: AbstractControl) => control.value)
-    console.log('===createItem Category===',this.categoryId);
     if(this.lastingtimeInMinAndHour === 'hours'){
       this.itemLastingTime =(this.itemLastingTime  * 60);
     }
@@ -555,16 +443,8 @@ totalCostForAddOns: number = 0;
       this.itemPreparationtime =(this.itemPreparationtime  * 60);
     }
     const cateName =this.categories.find(item => item._id === this.categoryId);
-    console.log('nameOf ca',cateName?.categoryName);
-    
-    console.log('cate=====Name', this.NameOfCategory);
     this.categories
-    
-    // if(this.categoryId === 'Burger'){
-    //   this.categoryId = 1;
-    // }
-    console.log('new addOns=======',addOns);
-    
+  
     let newItem ={
       "restaurantId": 1,
       "mealTimeId": 1,
@@ -597,19 +477,11 @@ totalCostForAddOns: number = 0;
         }
       }
     }
-
-    // console.log('ingredents',ingredients);
-    
-    console.log('===========item',newItem);
-
+ 
     //for adding data to backend
     this.menuService.createNewMenuItem(newItem).subscribe(res=>{
-      alert("The Item has been added successfully");
-      console.log('click',res);
-      
+      alert("The Item has been added successfully");  
     })
-    
-    // return newItem;
   }
 
   getMenuItemById(id:any){
@@ -617,38 +489,6 @@ totalCostForAddOns: number = 0;
       return {...res};
     })
   }
-
-  // updatedMenuItem(id: any){
-  //   const res = this.getMenuItemById(id);
-  //   let updatedMenuItem = {
-  //   "restaurantId": 1,
-  //   "mealTimeId": 1,
-  //   "categoryId" : res.categoryId,
-  //   "item":{
-  //   "itemName":res.itemName,
-  //   "itemProfileTastyTags" : res.listOfSelectedValueForTastyTags ,
-  //   "typeOfFoods" : res.typeOfFoods,
-  //   // .split(',')[
-  //   //   Math.floor(Math.random()*this.typeOfFood.length)] ,
-  //     "itemPortionsize" : res.itemPortionsize,
-  //     "itemPreparationtime" : parseInt(res.itemPreparationtime),
-  //     "servingTemperature" : parseInt(res.servingTemperature) ,
-  //     "itemLastingTime" : parseInt(res.itemLastingTime),
-  //     "itemPrice" : res.itemPrice,
-  //     "itemCalories" : parseInt(res.itemCalories),
-  //     "itemDietaryRestrictions": res.listOfSelectedValue,
-  //     "itemImage" : res.itemImage,
-  //     "ingredients": ingredients,
-  //     "options":{
-  //       "add": res.ingredients ,
-  //       "no": res.ingredients
-  //     }
-  //   }
-  //  }
-  // }
-
-
-  //for Ingredinetn
 
 
   private createIngredientBatch(): FormGroup {
@@ -712,31 +552,17 @@ totalCostForAddOns: number = 0;
 
   addIngredientBatchForAddOns(): void {
     this.ingredientBatchesArrayForAddOns.push(this.createIngredientBatchForAddOns());
-    console.log();
-    
     this.updateTotalsForAddOns();
   }
-  
-  // addIngredientBatchForRecipe(): void {
-  //   this.ingredientBatchesArrayForRecipe.push(this.createIngredientBatchForRecipe());
-  //   console.log();
-    
-  //   this.updateTotalsForRecipe();
-  // }
 
   addIngredientBatchForRecipe(): void {
     const recipeBatch = this.createIngredientBatchForRecipe();
-   
     this.ingredientBatchesArrayForRecipe.push(recipeBatch);
     this.updateTotals();
   }
   
-
   removeIngredientBatch(index: number): void {
-    console.log('remove Index ====',index);
      this.ingredientBatchesArray.removeAt(index);
-     
-    // const removedCostPerUnit = removedBatch.get('costPerUnit').value || 0;
     this.updateTotals();
   }
   removeIngredientBatchForAddOns(index: number): void {
@@ -747,31 +573,20 @@ totalCostForAddOns: number = 0;
     this.ingredientBatchesArrayForRecipe.removeAt(index);
     this.updateTotalsForRecipe();
   }
-
-
 //onPacking change
 
 onPackingChange(){
   const packingDetails =  this.ItemHowToDelivery;
-  console.log('packing =====',packingDetails);
   const selectedPacking = this.packingBox.deliveryBox.find(deliveryBox => deliveryBox.boxName === packingDetails);
- console.log('selectedPacking ===', {...selectedPacking });
- const finalPacking = {...selectedPacking }
-
-  this.deliveryBoxDetails.push(finalPacking)
-
- console.log('After selectedPacking ===', this.deliveryBoxDetails);
- 
-  
+  const finalPacking = {...selectedPacking }
+  this.deliveryBoxDetails.push(finalPacking) 
 }
 
 // ... (existing code)
 onIngredientChange(index: number): void {
   const ingredientBatch = this.ingredientBatchesArray.at(index);
-
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatch.value.ingredientName);
-
   // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
   if (selectedIngredient) {
     ingredientBatch.patchValue({
@@ -784,24 +599,13 @@ onIngredientChange(index: number): void {
       this.updateTotals();
     }, 100); 
     // Optionally update totals when the ingredient changes
-
   }
-  console.log("after change", selectedIngredient);
-  
 }
 //old One
 onIngredientChangeForAddOns(index: number): void {
   const ingredientBatchForAddOns = this.ingredientBatchesArrayForAddOns.at(index);
-  console.log('index =====', index);
-  console.log('index Name=====', ingredientBatchForAddOns.value.ingredientName);
-  
-  console.log('=========list ',this.ingredentList.ingredients);
-  
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatchForAddOns.value.ingredientName);
-  console.log('selectedIngredient =======', selectedIngredient);
-  
-
   // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
   // if (selectedIngredient) {
   //   ingredientBatchForAddOns.patchValue({
@@ -815,30 +619,19 @@ onIngredientChangeForAddOns(index: number): void {
       caloriesPerUnit: selectedIngredient.caloriesPerUnit,
       id: selectedIngredient.id
     });
-
     setTimeout(() => {
       this.updateTotalsForAddOns();
     }, 100); // Optionally update totals when the ingredient changes
 
   }
-  console.log("after change ", selectedIngredient);
-  
 }
 
 
 recipeListArray: any = []
 onIngredientChangeForRecipe(index: number): void {
   const ingredientBatchForRecipe = this.ingredientBatchesArrayForRecipe.at(index);
-  console.log('index for recipe =====', index);
-  console.log('index Name for recipe=====', ingredientBatchForRecipe.value.recipeName);
-  
-  // console.log('=========list ',this.ingredentList.ingredients);
-  
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.recipeCollections[0].find((ingredient: { recipeName: any; }) => ingredient.recipeName === ingredientBatchForRecipe.value.recipeName);
-  console.log('selectedIngredient =======', selectedIngredient);
-  
-
   // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
   // if (selectedIngredient) {
   //   ingredientBatchForAddOns.patchValue({
@@ -859,10 +652,6 @@ onIngredientChangeForRecipe(index: number): void {
 
   }
   this.recipeListArray.push(selectedIngredient);
-  console.log('recipelist array ===',this.recipeListArray);
-  
-  console.log("after change ", selectedIngredient);
-  
 }
 
 //new One
@@ -947,22 +736,14 @@ onIngredientChangeForRecipe(index: number): void {
 
 //new updatedTotal
 updateTotals(): void {
-  console.log("Hit");
   this.totalCostPerUnit = 0;
   this.totalCaloriesPerUnit = 0;
-
   // Check if the 'percentage' control exists in the form
   const percentageControl = this.orderForm.get('percentage');
-
   if (percentageControl) {
     const percentage = percentageControl.value / 100;
-    console.log("measurementTools", this.ingredientBatchesArray);
-
     this.ingredientBatchesArray.controls.forEach((control: AbstractControl, index) => {
-      console.log(`Processing control at index ${index}`);
-
       // Add this log to check the value of the control
-      console.log("Control value:", control.value);
       const costPerUnitControl = control.get('costPerUnit') as FormControl;
       const quantityControl = control.get('quantity') as FormControl;
       const caloriesPerUnitControl = control.get('caloriesPerUnit') as FormControl;
@@ -973,19 +754,11 @@ updateTotals(): void {
         const quantity = quantityControl.value;
         const caloriesPerUnit = caloriesPerUnitControl.value;
         const unitOfStock = unitOfStockControl.value;
-        console.log("costPerUnit", costPerUnit);
-
-        console.log("quantity", quantity);
-        console.log("caloriesPerUnit", caloriesPerUnit);
-        console.log("unitOfStock", unitOfStock);
-
         // Find the measurement details for the selected unitOfStock
         const measurementDetails = this.measurementTools[unitOfStock];
-
         if (measurementDetails) {
           // Determine the quantity based on measurementType
           let measurementQuantity: number;
-
           if (typeof measurementDetails === 'object') {
             // Handle object types like 'cup', 'tablespoon', 'teaspoon'
             measurementQuantity = measurementDetails[quantity > 1 ? 'solid' : 'liquid'].quantity;
@@ -999,10 +772,9 @@ updateTotals(): void {
         }
       }
     });
-
     // Calculate the total cost by applying the percentage
     this.totalCost = this.totalCostPerUnit * (1 + percentage);
-    console.log("Total Cost:", this.totalCost);
+    
   } else {
     console.error("Percentage control not found in the form");
   }
@@ -1013,20 +785,12 @@ updateTotalsForAddOns(): void {
   
   this.totalCostPerUnitForAddOns = 0;
   this.totalCaloriesPerUnitForAddOns = 0;
-
   // Check if the 'percentage' control exists in the form
   const percentageControlForAddOns = this.orderFormForAddOns.get('percentageForAddOns');
-
   if (percentageControlForAddOns) {
     const percentage = percentageControlForAddOns.value / 100;
-    console.log("measurementTools", this.ingredientBatchesArrayForAddOns);
-
     this.ingredientBatchesArrayForAddOns.controls.forEach((control: AbstractControl, index) => {
-      console.log(`Processing control at index ${index}`);
-
       // Add this log to check the value of the control
-      console.log("Control value:", control.value);
-      
       const costPerUnitControlForAddOns = control.get('costPerUnit') as FormControl;
       const quantityControlForAddOns = control.get('quantity') as FormControl;
       // const caloriesPerUnitControlForAddOns = control.get('caloriesPerUnitForAddOns') as FormControl;
@@ -1036,22 +800,12 @@ updateTotalsForAddOns(): void {
       if (costPerUnitControlForAddOns && quantityControlForAddOns && price) {
         const costPerUnit = costPerUnitControlForAddOns.value;
         const quantity = quantityControlForAddOns.value;
-        
         const unitOfStock = unitOfStockControlForAddOns.value;
-        console.log("costPerUnit For Add ons", costPerUnit);
-
-        console.log("quantity", quantity);
-        // console.log("caloriesPerUnit", caloriesPerUnit);
-        console.log("unitOfStock", unitOfStock);
-
         // Find the measurement details for the selected unitOfStock
-      
         const measurementDetails = this.measurementTools[unitOfStock];
-
         if (measurementDetails) {
           // Determine the quantity based on measurementType
           let measurementQuantity: number;
-
           if (typeof measurementDetails === 'object') {
             // Handle object types like 'cup', 'tablespoon', 'teaspoon'
             measurementQuantity = measurementDetails[quantity > 1 ? 'solid' : 'liquid'].quantity;
@@ -1059,11 +813,9 @@ updateTotalsForAddOns(): void {
             // Handle simple types like 'gram', 'mililiter'
             measurementQuantity = 1;
           }
-
           this.totalCostPerUnitForAddOns += costPerUnit * measurementQuantity * quantity / 100;
           // this.totalCaloriesPerUnit += caloriesPerUnit * measurementQuantity * quantity;
         }
-
         this.totalCostForAddOns = this.totalCostPerUnitForAddOns * (1 + percentage);
         price.setValue(( costPerUnit * quantity)* (1 + percentage) )
       }
@@ -1071,30 +823,19 @@ updateTotalsForAddOns(): void {
 
     // Calculate the total cost by applying the percentage
    
-    
-    console.log("Total Cost ad on:", this.totalCostForAddOns);
   } else {
     console.error("Percentage control not found in the form");
   }
 }
-updateTotalsForRecipe(): void {
-  
+updateTotalsForRecipe(): void { 
   this.totalCostPerUnitForRecipe = 0;
   this.totalCaloriesPerUnitForRecipe = 0;
-
   // Check if the 'percentage' control exists in the form
   const percentageControlForRecipe = this.orderFormForRecipe.get('percentageForRecipe');
-
   if (percentageControlForRecipe) {
     const percentage = percentageControlForRecipe.value / 100;
-    console.log("measurementTools", this.ingredientBatchesArrayForAddOns);
-
     this.ingredientBatchesArrayForRecipe.controls.forEach((control: AbstractControl, index) => {
-      console.log(`Processing control at index ${index}`);
-
       // Add this log to check the value of the control
-      console.log("Control value:", control.value);
-      
       const costPerUnitControlForRecipe = control.get('costPerUnit') as FormControl;
       const quantityControlForRecipe = control.get('quantity') as FormControl;
       // const caloriesPerUnitControlForAddOns = control.get('caloriesPerUnitForAddOns') as FormControl;
@@ -1104,23 +845,11 @@ updateTotalsForRecipe(): void {
       if (costPerUnitControlForRecipe && quantityControlForRecipe && price) {
         const costPerUnit = costPerUnitControlForRecipe.value;
         const quantity = quantityControlForRecipe.value;
-        
         const unitOfStock = unitOfStockControlForRecipe.value;
-        console.log("costPerUnit For Add ons", costPerUnit);
-
-        console.log("quantity", quantity);
-        // console.log("caloriesPerUnit", caloriesPerUnit);
-        console.log("unitOfStock", unitOfStock);
-
         // Find the measurement details for the selected unitOfStock
         const measurementDetails = this.measurementTools[unitOfStock];
-
         if (measurementDetails) {
-          // Determine the quantity based on measurementType
-
-          // this.totalCostPerUnit += costPerUnit * measurementQuantity;
           this.totalCostPerUnitForRecipe += costPerUnit * quantity;
-          // this.totalCaloriesPerUnitForAddOns += caloriesPerUnit * quantity;
         }
         this.totalCostForRecipe = this.totalCostPerUnitForRecipe * (1 + percentage);
         price.setValue(( costPerUnit * quantity)* (1 + percentage) )
@@ -1128,9 +857,6 @@ updateTotalsForRecipe(): void {
     });
 
     // Calculate the total cost by applying the percentage
-   
-    
-    console.log("Total Cost ad on:", this.totalCostForRecipe);
   } else {
     console.error("Percentage control not found in the form");
   }
@@ -1141,25 +867,7 @@ submitFormForAddOns(): void {
   if (this.orderFormForAddOns.valid) {
     const formData = this.orderFormForAddOns.value;
     this.updateTotalsForAddOns()
-
-    console.log('add onsForm Data:', formData);
-    console.log('Total Cost Per Unit:', this.totalCostPerUnit);
-    console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
-    console.log('price', formData);
-    console.log('price=========', formData.ingredientBatchesForAddOns[0].price
-    );
-    
     return formData.ingredientBatchesForAddOns;
-
-    // Uncomment the following lines to send the data to the service
-    // this.menuService.createNewMenuItem(formData).subscribe({
-    //   next: (response) => {
-    //     console.log('Post successful', response);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error in post', error);
-    //   },
-    // });
   } else {
     console.error('Form invalid');
   }
@@ -1169,32 +877,6 @@ submitFormForRecipe(): void {
 
 return this.recipeListArray;
 
-
-  // if (this.orderFormForRecipe.valid) {
-  //   const formData = this.orderFormForRecipe.value;
-  //   this.updateTotalsForRecipe()
-
-  //   console.log('add onsForm Data:', formData);
-  //   console.log('Total Cost Per Unit:', this.totalCostPerUnit);
-  //   console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
-  //   console.log('price', formData);
-  //   console.log('price=========', formData.ingredientBatchesForRecipe[0].price
-  //   );
-    
-  //   return formData.ingredientBatchesForRecipe;
-
-    // Uncomment the following lines to send the data to the service
-    // this.menuService.createNewMenuItem(formData).subscribe({
-    //   next: (response) => {
-    //     console.log('Post successful', response);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error in post', error);
-    //   },
-    // });
-  // } else {
-  //   console.error('Form invalid');
-  // }
 }
 
 submitForm(): void {
@@ -1202,28 +884,14 @@ submitForm(): void {
     const formData = this.orderForm.value;
     this.updateTotals()
 
-    console.log('Form Data:', formData);
-    console.log('Total Cost Per Unit:', this.totalCostPerUnit);
-    console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
+    // console.log('Form Data:', formData);
+    // console.log('Total Cost Per Unit:', this.totalCostPerUnit);
+    // console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
     return formData.ingredientBatches;
-
-    // Uncomment the following lines to send the data to the service
-    // this.menuService.createNewMenuItem(formData).subscribe({
-    //   next: (response) => {
-    //     console.log('Post successful', response);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error in post', error);
-    //   },
-    // });
   } else {
     console.error('Form invalid');
   }
 }
-
-
   //for Ingredinetn
-
-
 
 }

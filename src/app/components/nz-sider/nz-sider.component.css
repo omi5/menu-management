@@ -1,17 +1,15 @@
-.sidebar-bg-color{
+/* .sidebar-bg-color{
     background:#fff;
     height: 100vh;
     
     /* width: 25% !important;
-    border: 1px solid black; */
+    border: 1px solid black; 
 }
 nz-sider{
     width: 300px;
     color: black;
 }
-/* nz-sider:hover{
-    color: #05CC79;
-} */
+
 
 .trigger {
     font-size: 18px;
@@ -31,12 +29,7 @@ nz-sider{
   }
   
 
-  /* ul li:hover {
-    color: #05CC79;
-  } */
-  /* .hover-color:hover{
-    color: #05CC79;
-  } */
+  
 
   .logo {
     height: 32px;
@@ -93,9 +86,25 @@ nz-sider{
     margin-right: 10px;
     margin-top: 18px;
     padding-bottom: 4px;
-    /* border: 1px solid red; */
+  
   }
   .sidebarLi{
     padding-left: 49px !important;
     font-size: 16px;
+  } */
+
+  ul {
+    width: fit-content;
+    min-width: 12dvw;
+    height: 100dvh;
+  }
+  li a{
+    padding-left: 4px;
+  }
+  
+  .sidebarIcons{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    
   }

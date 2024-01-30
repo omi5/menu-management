@@ -22,10 +22,10 @@ export class CategoryService {
     return this.http.get(this.url+`/category/${id}`);
   }
   updateCategory(id:any, categoryObject: any){
-    console.log("service hit", categoryObject);
+    // console.log("service hit", categoryObject);
     
     let result = this.http.put(this.url + `/category/edit/${id}`, categoryObject)
-    console.log("from service", result);
+    // console.log("from service", result);
     return result
     
   }

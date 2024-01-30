@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent {
 
-
   validateForm: FormGroup<{
     userName: FormControl<string>;
     password: FormControl<string>;

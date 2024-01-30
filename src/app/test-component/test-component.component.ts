@@ -74,6 +74,8 @@ export class TestComponentComponent implements OnInit {
     // this.menuItemsService.menuItemsSubject.subscribe(res=>{
     //   this.menuItems1 = res
     // })
+    // console.log('listCommingFromTheDinner===',this.menuItems1);
+    
     forkJoin([
       this.categoryService.getAllCategory(),
       // this.menuItemsService.getAllMenuItems()
@@ -81,13 +83,7 @@ export class TestComponentComponent implements OnInit {
       ([categories]) => {
         // this.menuItems = [];
         // this.menuItem.push(...menuItems);
-
         this.categories.push(...categories);
-      
-        console.log("cat...",categories);
-        // console.log("cat...menu",menuItems);
-       
-
         this.categories.forEach((category) => {
           this.categorizedMenu[category.categoryName] = [];
         });
@@ -99,7 +95,7 @@ export class TestComponentComponent implements OnInit {
           }
         });
 
-        console.log('sorted menu', this.categorizedMenu);
+        // console.log('sorted menu', this.categorizedMenu);
       },
       error => {
         console.error('Error fetching data:', error);
@@ -107,8 +103,7 @@ export class TestComponentComponent implements OnInit {
     );
     this.getMenuItems()
     this.subscribeToIngredientChanges()
-    // this.mealTimeName = this.route.snapshot.paramMap.get();
-    console.log('route ======',this.route.snapshot.url[0].path);
+   
     if(this.route.snapshot.url[0].path === 'BreakFast'){
       this.mealTimeName = 'Breakfast';
     }
@@ -120,9 +115,7 @@ export class TestComponentComponent implements OnInit {
       this.mealTimeName = this.route.snapshot.url[0].path;
     }
     
-
   }
-
 
   private subscribeToIngredientChanges() {
     this.menuItemsService.refreshNeeded$.subscribe(() => {
@@ -142,52 +135,30 @@ export class TestComponentComponent implements OnInit {
   categoryName!: string;
   id! : string
   categoryItem: any[] = []
-  //edit button
-  // editBtn(itemCategory: any){
-  //   console.log('edit Button click',itemCategory);
-  //   this.categories.map(item=>{
-  //     if(item.categoryName === itemCategory){
-  //       this.categoryItem.unshift(item)
-  //     }
-  //     this.categoryName = this.categoryItem[0].categoryName
-  //     this.id = this.categoryItem[0]._id
-  //   })
-  //   this.showModalForCategory()
-  //   console.log('new cateee=====',this.categoryItem);
-    
-  // }
 
   editBtn(itemCategory: any) {
-    console.log('edit Button click', itemCategory);
-  
     // Find the category to edit in the categories array
     const categoryToEdit = this.categories.find(item => item.categoryName === itemCategory);
-  
     if (categoryToEdit) {
       // If found, update categoryItem
       this.categoryItem.unshift(categoryToEdit);
-  
       // Update other properties
       this.categoryName = this.categoryItem[0].categoryName;
       this.id = this.categoryItem[0]._id;
-  
       // Show modal
       this.showModalForCategory();
-      console.log('new cateee=====', this.categoryItem);
     } else {
       console.error('Category not found:', itemCategory);
     }
   }
   
   deleteBtn(){
-    console.log('delete Button is click');
+    // console.log('delete Button is click');
     
   }
   filterMenuForMenu: any []= []
    filterMenuItemsForDeleteAllMenu: any[] = []
   deleteFromAllMenu(itemCategory:any){
-  
-    console.log('edit Button click',itemCategory);
     this.categories.map(item=>{
       if(item.categoryName === itemCategory){
         this.categoryItem.push(item)
@@ -196,12 +167,7 @@ export class TestComponentComponent implements OnInit {
    if(this.mealTimeName === 'allDay'){
     this.mealTimeName = 'All Day'
    }
-   console.log('mealTimeName',this.mealTimeName);
    
- 
-    // console.log('new cateee for delete=====',this.categoryItem[0]._id);
-    // console.log('All menu Item for delete', this.allMenuItems);
-
     this.allMenuItems.map(item=>{
       if (item.categoryId == this.categoryItem[0]._id ) {
         this.filterMenuForMenu.push(item);
@@ -215,96 +181,27 @@ export class TestComponentComponent implements OnInit {
     })
     
     this.filterMenuItemsForDeleteAllMenu.map(item=>{
-     
       let index = item.item.timeOfDay.indexOf(this.mealTimeName);
       if(index > -1){
         item.item.timeOfDay = []
-      }
-      
+      }  
       this.filterMenuItemsForDeleteAllMenu.map((item: any) => {
         this.menuItemsService.deleteMenuItem(item._id).subscribe((res) => {
           // Backend delete successful, trigger a refresh
           next: this.menuItemsService.getAllMenuItems().subscribe(res =>{
-            console.log('Inside subscribe==',res);
-            this.menuItemsService.menuItemsSubject.next(res);
-            // this.cdr.detectChanges();
-            
-   })
           
-          // this.menuItemsService.refreshNeeded$.next();
+            this.menuItemsService.menuItemsSubject.next(res);
+            // this.cdr.detectChanges();    
+   })  
+
         });
-      });
-      
-      console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
-      
-    }) 
-
-    
+      });  
+    })    
    }
-
 
    filterMenu: any []= []
    filterMenuItemsForDeleteThisMenu: any[] = []
-  //  deleteFromThisMenu(itemCategory:any){
-  //   console.log('brekfast====',this.mealTimeName);
-  //   console.log("item category------->",itemCategory)
-  //   console.log("item all list------->",this.categorizedMenu)
-  //   // this.categorizedMenu.itemCategory = [];
-    
-  //   console.log('click from this menu delete');
-  //   console.log('edit Button click',itemCategory);
-  //   this.categories.map(item=>{
-  //     if(item.categoryName === itemCategory){
-  //       this.categoryItem.push(item)
-  //     }
-  //   })
-  //   // this.categoryName = this.categoryItem[0].categoryName
-  //   // this.id = this.categoryItem[0]._id
-  //   console.log('new cateee for delete=====',this.categoryItem[0]._id);
-  //   console.log('All menu Item for delete', this.allMenuItems);
-
-  //   this.allMenuItems.map(item=>{
-  //     if (item.categoryId == this.categoryItem[0]._id ) {
-  //       this.filterMenu.push(item);
-  //     }
-      
-  //   })
-  //   this.filterMenu.map(item =>{
-  //     if(item.item.timeOfDay.includes(this.mealTimeName)){
-  //       this.filterMenuItemsForDeleteThisMenu.push(item);
-  //     }
-  //   })
-    
-  //   this.filterMenuItemsForDeleteThisMenu.map(item=>{
-     
-  //     let index = item.item.timeOfDay.indexOf(this.mealTimeName);
-  //     if(index > -1){
-  //       item.item.timeOfDay.splice(index,1);
-  //     }
-      
-  //     this.filterMenuItemsForDeleteThisMenu.map((item: any) => {
-  //       this.menuItemsService.updateMenuItem(item._id,item).subscribe((res) => {
-  //         // Backend delete successful, trigger a refresh
-  //         console.log('delete from this menu==',res);
-  //         this.menuItemsService.getAllMenuItems().subscribe(res =>{
-  //           this.menuItemsService.menuItemsSubject.next(res)
-  //           console.log('updateee delete',res);
-            
-  //         })
-          
-  //         // this.menuItemsService.refreshNeeded$.next();
-  //       });
-
-  //     });
-
-  //     const updatedItem = [...this.filterMenuItemsForDeleteAllMenu]
-  //     this.menuItemsService.menuItemsSubject.next(updatedItem)
-      
-  //     console.log('filter by category item', this.filterMenuItemsForDeleteThisMenu);
-      
-  //   }) 
-  //  }
-
+  
   deleteFromThisMenu(itemCategory: any) {
     this.categories.forEach(item => {
       if (item.categoryName === itemCategory) {
@@ -326,11 +223,8 @@ export class TestComponentComponent implements OnInit {
       }
   
       this.menuItemsService.updateMenuItem(item._id, item).subscribe(res => {
-        // Backend delete successful, trigger a refresh
-        console.log('delete from this menu ==', res);
         this.menuItemsService.getAllMenuItems().subscribe(updatedMenuItems => {
           this.menuItemsService.menuItemsSubject.next(updatedMenuItems);
-          console.log('update delete', res);
         });
       });
     });
@@ -347,29 +241,16 @@ export class TestComponentComponent implements OnInit {
    let editDetails = {
     categoryName:this.categoryName
    }
-  //  this.categoryName = this.categoryItem[0].categoryName
-   console.log("tadaaaaa", this.categoryItem[0].categoryName);
-   
-
-
    this.categoryService.updateCategory(this.categoryItem[0]._id, editDetails).subscribe(res=> {
-    console.log('Updated the category', res);
+
    })
   }
-
   nameOfCategory!: string;
-
   OpenDrawerForCreateMenuItem(itemCategory: any){
     this.nameOfCategory = itemCategory;
-    
     this.open()
-    console.log('click for open a drawer',itemCategory);
-    
   }
-
-
     //For Menu Item Drawer
-
     visible = false;
     open(): void {
       this.visible = true;
@@ -382,11 +263,9 @@ export class TestComponentComponent implements OnInit {
    @ViewChild('itemForm') itemForm: any
 
    createItems(): void{
-     // console.log('click');
      this.itemForm.createItem()
      this.visible = false;
    }
-
 
    isVisibleForCategory = false;
   showModalForCategory(): void {
@@ -403,15 +282,11 @@ export class TestComponentComponent implements OnInit {
     //  this.modalFormForCategory.submitFormForCategory();
     this.submitFormForCategory()
      this.isVisibleForCategory = false;
-    
-     // this.receiveSubmittedFormData(this.receivedFormData)
-     // console.log(this.data);
-     
    }
 
   
    isVisibleForCreateCategory = false;
-  showModalForCreateCategory(): void {
+    showModalForCreateCategory(): void {
     this.isVisibleForCreateCategory = true;
   }
   
@@ -423,13 +298,10 @@ export class TestComponentComponent implements OnInit {
 
    handleOkForCreateCategory(): void {
     //  this.modalFormForCategory.submitFormForCategory();
-    console.log('click from create category');
+    // console.log('click from create category');
     
     this.modalFormForCreateCategory.submitFormForCategory()
      this.isVisibleForCreateCategory = false;
-     // this.receiveSubmittedFormData(this.receivedFormData)
-      // console.log(this.data);
-     
    }
   
 }

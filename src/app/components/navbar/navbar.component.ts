@@ -6,15 +6,12 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
   logout () {
     localStorage.removeItem('accessToken');
-    window.location.href = 'https://bento-client.vercel.app/logout';
+    window.location.href = 'https://getbento.vercel.app/logout';
   }
 
-
     //For Menu Item Drawer
-
     visible = false;
     open(): void {
       this.visible = true;
@@ -32,7 +29,6 @@ export class NavbarComponent {
      this.visible = false;
    }
 
-
     //For Modal For Category start Here
   isVisibleForCategory = false;
   showModalForCategory(): void {
@@ -47,14 +43,8 @@ export class NavbarComponent {
 
    handleOkForCategory(): void {
      this.modalFormForCategory.submitFormForCategory();
-     this.isVisibleForCategory = false;
-     // this.receiveSubmittedFormData(this.receivedFormData)
-     // console.log(this.data);
-     
+     this.isVisibleForCategory = false; 
    }
-
-
-
      //for Recipe Drawer
   visibleRecipeDrawer = false;
   openRecipeDrawer(): void {
@@ -63,11 +53,9 @@ export class NavbarComponent {
   closeRecipe(): void {
     this.visibleRecipeDrawer = false;
   }
-
   // for Create a  Recipe Items recipeForm
   @ViewChild('recipeForm') recipeForm: any
   createRecipeItems(): void{
-    console.log('click');
     this.recipeForm.createRecipeItem()
     this.visibleRecipeDrawer = false;
   }

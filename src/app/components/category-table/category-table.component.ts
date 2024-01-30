@@ -90,7 +90,7 @@ export class CategoryTableComponent implements OnInit {
         this.categoryList = (data as any[]).map((ingredient: any) => ({
           ...ingredient,
         }));
-        console.log('Ingredient data loaded', this.categoryList);
+        // console.log('Ingredient data loaded', this.categoryList);
       },
       error: (error) => {
         console.error('Error fetching ingredient data', error);
@@ -98,27 +98,6 @@ export class CategoryTableComponent implements OnInit {
     });
   }
 
-  // createUpdateCategory() {
-  //   let newCategory = {
-  //     restaurantId: 1, 
-  //     categoryName: this.categoryName,
-  //     categoryDescription: this.categoryDescription,
-  //     categoryImage: this.categoryImage,
-  //     categoryId: this.categoryId,
-  //   };
-
-  //   console.log(newCategory);
-
-  //   if (this.isEdit) {
-  //     this.categoryService.updateCategory(this.cate_id, newCategory).subscribe((res) => {
-  //       console.log(res);
-  //     });
-  //   } else {
-  //     this.categoryService.createCategory(newCategory).subscribe((res) => {
-  //       console.log(res);
-  //     });
-  //   }
-  // }
 
   onDelete(id: string): void {
     this.categoryService.deleteCategory(id).subscribe({
@@ -126,7 +105,7 @@ export class CategoryTableComponent implements OnInit {
         this.categoryList = this.categoryList.filter(
           (category) => category._id !== id
         );
-        console.log(`Category with ID ${id} deleted successfully.`);
+        // console.log(`Category with ID ${id} deleted successfully.`);
       },
       error: (error: any) => {
         console.error(`Error deleting category with ID ${id}`, error);
@@ -140,7 +119,6 @@ export class CategoryTableComponent implements OnInit {
     this.visible = true;
     this.isEdit = true;
     this._id = category._id;
-   
     this.categoryName = category.categoryName;
     this.categoryDescription = category.categoryDescription;
     this.categoryImage = category.categoryImage;
@@ -154,9 +132,8 @@ export class CategoryTableComponent implements OnInit {
       categoryImage: category.categoryImage,
       //categoryId: category._id,
     };
-    console.log('categoryId', category);
-    console.log("edit details final", editDetails);
-    
+    // console.log('categoryId', category);
+    // console.log("edit details final", editDetails);
     
     this.categoryService.updateCategory(category._id, editDetails).subscribe(res=>{
       console.log('====subscribe Data',res);

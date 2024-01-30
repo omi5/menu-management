@@ -70,11 +70,11 @@ export class AddIngredientsFieldComponent implements OnInit {
   }
 
   submitForm(): void {
-    console.log('Form Valid:', this.validateForm.valid);
+    // console.log('Form Valid:', this.validateForm.valid);
   
     if (this.validateForm.valid) {
       // Handle form submission here
-      console.log('Form Submitted:', this.validateForm.value);
+      // console.log('Form Submitted:', this.validateForm.value);
     } else {
       console.log('Form is not valid. Please check the fields.');
     }

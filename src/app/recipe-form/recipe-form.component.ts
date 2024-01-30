@@ -21,7 +21,6 @@ export class RecipeFormComponent {
    measurementToolArray:any = [];
    measurementTools: any;
    typeOfMeasurement: any = ['liquid','solid']
-
    //mock data
     ingredentList ={
     "ingredients": [
@@ -50,20 +49,10 @@ export class RecipeFormComponent {
   categories: CategoryList[] = []
   getAllCategory(){
     this.categoryService.getAllCategory().subscribe((res: CategoryList[])=>{
-      // const categoryList = res as CategoryList;
-      console.log('category List',res);
       this.categories.push(...res);
     })
   }
 
-   //For Ingredients
-  //  @ViewChild('ingredients') ingredients: any
-
-  //  includeIngredients(){
-  //    return this.ingredients.submitForm();
-  //  }
-
-   
    constructor(private _fb: FormBuilder, private inventoryService: InventoryService ,private menuService: MenuItemServiceService,private recipeService:MakeRecipeService,private categoryService: CategoryService) {
     this.getAllCategory()
     this.orderForm = this._fb.group({
@@ -117,16 +106,7 @@ export class RecipeFormComponent {
         this.measurementToolArray.push(tool);
       }
     }
-    
-    console.log('measurementToolArray',this.measurementToolArray);
-    
-
-
-
-    //for unit
-
-    
-
+    //for unit 
   }
 
   ngOnInit(): void {
@@ -151,8 +131,6 @@ export class RecipeFormComponent {
   // itemDietaryRestrictions! : string;
   // imgUrls! : string
 
-
-
    // getAll Ingredients
    getAllIngredinets() {
     this.inventoryService.getAllInventoryIngredients().subscribe(
@@ -160,8 +138,6 @@ export class RecipeFormComponent {
         res.forEach((items: any) => {
           this.ingredentList.ingredients.push(items);
         });
-        console.log('Inventory response:', res);
-        console.log('IngredentList:', this.ingredentList);
       },
       (error) => {
         console.error('Error fetching inventory:', error);
@@ -170,11 +146,8 @@ export class RecipeFormComponent {
   }
 
 
-  createRecipeItem(){
-    
+  createRecipeItem(){ 
     const ingredients = this.submitForm()
-    console.log(this.recipeItemDescription);
-
     if(this.recipeItemPreparationtimeInMinAndHour === 'hours'){
       this.recipeItemPreparationtime =(this.recipeItemPreparationtime  * 60);
     }
@@ -190,17 +163,12 @@ export class RecipeFormComponent {
       "recipeItemDescription":this.recipeItemDescription,
       // "dietary_restrictions":this.itemDietaryRestrictions,
       "ingredients":ingredients
-      }
-
-      console.log(newRecipe);
+      }   
       this.recipeService.createRecipeItem(newRecipe).subscribe(res=>{
-        alert('recipe created');
-        console.log('make recipe response', res);
-        
+        alert('recipe created');  
       })
       
     }
-
 
     //For add Ingredient
 
@@ -234,10 +202,8 @@ export class RecipeFormComponent {
   // ... (existing code)
   onIngredientChange(index: number): void {
     const ingredientBatch = this.ingredientBatchesArray.at(index);
-  
     // Find the selected ingredient in the mock data
     const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatch.value.ingredientName);
-  
     // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
     if (selectedIngredient) {
       ingredientBatch.patchValue({
@@ -250,12 +216,7 @@ export class RecipeFormComponent {
         this.updateTotals();
       }, 100); // Optionally update totals when the ingredient changes
   
-    }
-    // this.updateTotals()
-    // this.recipeItemCalories = this.totalCaloriesPerUnit;
-
-    console.log("after change", selectedIngredient);
-    
+    } 
   }
   
   
@@ -311,22 +272,15 @@ export class RecipeFormComponent {
   // =====New update
   
   updateTotals(): void {
-    console.log("Hit");
     this.totalCostPerUnit = 0;
     this.totalCaloriesPerUnit = 0;
-  
     // Check if the 'percentage' control exists in the form
     const percentageControl = this.orderForm.get('percentage');
   
     if (percentageControl) {
       const percentage = percentageControl.value / 100;
-      console.log("measurementTools", this.ingredientBatchesArray);
-  
       this.ingredientBatchesArray.controls.forEach((control: AbstractControl, index) => {
-        console.log(`Processing control at index ${index}`);
-  
         // Add this log to check the value of the control
-        console.log("Control value:", control.value);
         const costPerUnitControl = control.get('costPerUnit') as FormControl;
         const quantityControl = control.get('quantity') as FormControl;
         const caloriesPerUnitControl = control.get('caloriesPerUnit') as FormControl;
@@ -337,28 +291,18 @@ export class RecipeFormComponent {
           const quantity = quantityControl.value;
           const caloriesPerUnit = caloriesPerUnitControl.value;
           const unitOfStock = unitOfStockControl.value;
-          console.log("costPerUnit", costPerUnit);
-  
-          console.log("quantity", quantity);
-          console.log("caloriesPerUnit", caloriesPerUnit);
-          console.log("unitOfStock", unitOfStock);
-  
           // Find the measurement details for the selected unitOfStock
           const measurementDetails = this.measurementTools[unitOfStock];
-  
           if (measurementDetails) {
             // Determine the quantity based on measurementType
-  
             // this.totalCostPerUnit += costPerUnit * measurementQuantity;
             this.totalCostPerUnit +=  costPerUnit * quantity /100;
             this.totalCaloriesPerUnit += caloriesPerUnit * quantity;
           }
         }
       });
-  
       // Calculate the total cost by applying the percentage
       this.totalCost = this.totalCostPerUnit * (1 + percentage);
-      console.log("Total Cost:", this.totalCost);
     } else {
       console.error("Percentage control not found in the form");
     }
@@ -370,20 +314,10 @@ export class RecipeFormComponent {
       const formData = this.orderForm.value;
       this.updateTotals()
 
-      console.log('Form Data:', formData);
-      console.log('Total Cost Per Unit:', this.totalCostPerUnit);
-      console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
+      // console.log('Form Data:', formData);
+      // console.log('Total Cost Per Unit:', this.totalCostPerUnit);
+      // console.log('Total Calories Per Unit:', this.totalCaloriesPerUnit);
       return formData.ingredientBatches;
-
-      // Uncomment the following lines to send the data to the service
-      // this.menuService.createNewMenuItem(formData).subscribe({
-      //   next: (response) => {
-      //     console.log('Post successful', response);
-      //   },
-      //   error: (error) => {
-      //     console.error('Error in post', error);
-      //   },
-      // });
     } else {
       console.error('Form invalid');
     }

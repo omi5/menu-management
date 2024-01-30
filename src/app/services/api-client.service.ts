@@ -64,7 +64,7 @@ export class ApiClientService {
   }
 
   searchJob(searchTerm: string): Observable<any> {
-    console.log(searchTerm);
+    // console.log(searchTerm);
     return this.http.get(`${this.apiUrl}/job/search/jobs`, { params: {searchTerm: searchTerm}});
   }
 

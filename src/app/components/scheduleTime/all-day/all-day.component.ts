@@ -24,12 +24,10 @@ export class AllDayComponent implements OnInit{
   handleCancel(): void {
     this.isVisible = false;
   }
-
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
   ngOnInit(): void {
    this.getMenuItems()
   }
-
 
   //get All Menu
   filtercategoryList: any[]=[1,2]
@@ -38,19 +36,16 @@ export class AllDayComponent implements OnInit{
   getMenuItems(){
     this.menuService.getAllMenuItems().subscribe(res=>{
       this.AllMenuItems.push(res);
-      console.log('selected menu for allday',this.AllMenuItems);
-      console.log('New Menu item',this.AllMenuItems[0][0].item.timeOfDay.includes('All Day'));
-
+      
       for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-        if(this.AllMenuItems[0][i].item.timeOfDay.includes('All Day')){
+        if(this.AllMenuItems[0][i].item.timeOfDay.includes('All day')){
               this.listForAllDayMenu.push(this.AllMenuItems[0][i])
             }
       }
       // this.menuService.menuItemsSubject.next(this.AllMenuItems)
 
     })
-    console.log('listOfBreakfastMenu', this.listForAllDayMenu);
-    
+    // console.log('listOfBreakfastMenu', this.listForAllDayMenu);
   } 
 
   // getMenuItems() {
@@ -68,8 +63,5 @@ export class AllDayComponent implements OnInit{
   //     console.log('listOFAll Day====', this.listForAllDayMenu);
   //   });
   // }
-
-
-  
 
 }

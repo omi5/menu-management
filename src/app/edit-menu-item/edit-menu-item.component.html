@@ -19,25 +19,26 @@
         </p>
         <p class="ant-upload-text">Click or drag file to this area to upload</p>
       </ng-container>
-        <img style="width: 23rem;" [src]="uploadedImageUrl || ''" alt="">
+        <img  style="width: 23rem;" [src]="uploadedImageUrl || ''" alt="" formControlName="itemImage">
       </nz-upload>
       
     </div>
   </div>
     <!-- for Uploading Image -->
+    {{item.item.itemCalories}}
     
     <div nz-row [nzGutter]="8" style=" margin-top: 30px;">
       <div nz-col nzSpan="12">
         <nz-form-item>
           <label class="label" style="width: 180px;font-size: 18px;  text-align: left; ">Name:</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter item name" [(ngModel)]="itemName" style="font-size: 16px; height: 32px; width: 28rem;"/>
+            <input nz-input placeholder="please enter item name"  formControlName="itemName" style="font-size: 16px; height: 32px; width: 28rem;"/>
           </nz-form-control>
         </nz-form-item>
       </div>
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <label style="width: 180px; text-align: left;   font-size: 18px;">Tasty tags:</label>
+          <label style="width: 180px; text-align: left; font-size: 18px;">Tasty tags:</label>
           <nz-form-control>
             
             <nz-select
@@ -47,7 +48,7 @@
               [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               nzPlaceHolder="Please select"
-              [(ngModel)]="listOfSelectedValueForTastyTags"
+              formControlName="itemProfileTastyTags"
             >
               <nz-option *ngFor="let item of listOfOptionForTastyTags" [nzLabel]="item" [nzValue]="item"></nz-option>
             </nz-select>
@@ -61,9 +62,9 @@
     <div nz-row [nzGutter]="8">
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <label style="width: 180px;  text-align: left;  font-size: 18px;">Category:</label>
+          <label style="width: 180px; text-align: left; font-size: 18px;">Category:</label>
           <nz-form-control >
-            <nz-select style="font-size: 16px; height: 24px; width: 28rem;" nzPlaceHolder="Please select a Category"   [(ngModel)]="categoryId">
+            <nz-select style="font-size: 16px; height: 24px; width: 28rem;" nzPlaceHolder="Please select a Category"  formControlName="categoryId">
               <nz-option *ngFor="let el of categories" [nzValue]="el._id" [nzLabel]="el.categoryName" ></nz-option>
             </nz-select>
           </nz-form-control>
@@ -72,7 +73,7 @@
 
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <label style="width: 180px;  text-align: left;  font-size: 18px;">Delivery:</label>
+          <label style="width: 180px;  text-align: left; font-size: 18px;">Delivery:</label>
           <nz-form-control>
             
             <nz-select
@@ -81,7 +82,7 @@
               [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               nzPlaceHolder="Please select"
-              [(ngModel)]="listOfSeletedValueForTypeOfFood"
+              formControlName="typeOfFoods"
             >
               <nz-option *ngFor="let item of listOfOptionForTypeOfFood" [nzLabel]="item" [nzValue]="item"></nz-option>
             </nz-select>
@@ -101,7 +102,7 @@
         <nz-form-item>
           <label style="width: 180px; text-align: left; font-size: 18px;">Portion size:</label>
           <nz-form-control>
-            <nz-select nzPlaceHolder="Please select a Category" style="font-size: 16px; width: 28rem; height: 32px; " [(ngModel)]="itemPortionsize">
+            <nz-select nzPlaceHolder="Please select a Category" style="font-size: 16px; width: 28rem; height: 32px; " formControlName="itemPortionSize">
               <nz-option *ngFor="let el of portionSizes" [nzValue]="el" [nzLabel]="el" ></nz-option>
             </nz-select>
           </nz-form-control>
@@ -111,8 +112,8 @@
         <nz-form-item>
           <label  style="width: 180px; text-align: left;  font-size: 18px;">Preparation time:</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter preparation time" style="font-size: 16px; height: 32px; width: 18rem;" [(ngModel)]="itemPreparationtime"/>
-            <select name="" id="" style="font-size: 16px; height: 32px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186);" [(ngModel)]="itemPreparationTimeInMinAndHour">
+            <input nz-input placeholder="please enter preparation time" style="font-size: 16px; height: 32px; width: 18rem;" formControlName="itemPreparationTime"/>
+            <select name="" id="" style="font-size: 16px; height: 32px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186);" formControlName="itemPreparationTimeInMinAndHour">
               <option value="minutes">Minutes</option>
               <option value="hours">Hours</option>
             </select>
@@ -125,7 +126,7 @@
         <nz-form-item>
           <label  style="width: 180px; text-align: left;  font-size: 18px;">Serving temp (°C):</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter serving temp" style="font-size: 16px; height: 32px; width: 28rem" [(ngModel)]="servingTemperature" />
+            <input nz-input placeholder="please enter serving temp" style="font-size: 16px; height: 32px; width: 28rem" formControlName="servingTemperature" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -133,8 +134,8 @@
         <nz-form-item>
           <label  style="width: 180px; text-align: left;  font-size: 18px;">Lasting time:</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter lasting time"  style="font-size: 16px; height: 32px; width: 18rem;" [(ngModel)]="itemLastingTime"/>
-            <select name="" id="" style="font-size: 16px; height: 32px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186);" [(ngModel)]="lastingtimeInMinAndHour">
+            <input nz-input placeholder="please enter lasting time"  style="font-size: 16px; height: 32px; width: 18rem;" formControlName="itemLastingTime"/>
+            <select name="" id="" style="font-size: 16px; height: 32px; width: 8rem; margin-left: 2rem; border-color: rgb(190, 186, 186);" formControlName="lastingtimeInMinAndHour">
               <option value="minutes" >Minutes</option>
               <option value="hours" >Hours</option>
             </select>
@@ -148,7 +149,7 @@
         <nz-form-item>
           <label  style="width: 180px;text-align: left;   font-size: 18px;">Selling price:</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter the price" style="font-size: 16px; height: 32px; width: 28rem;" [(ngModel)]="itemPrice" />
+            <input nz-input placeholder="please enter the price" style="font-size: 16px; height: 32px; width: 28rem;" formControlName="itemPrice" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -156,7 +157,7 @@
         <nz-form-item>
           <label  style="width: 180px; text-align: left;  font-size: 18px;">Total calories:</label>
           <nz-form-control>
-            <input nz-input placeholder="please enter the calories" style="font-size: 16px; height: 32px; width: 28rem;" [(ngModel)]="itemCalories"/>
+            <input nz-input placeholder="please enter the calories" style="font-size: 16px; height: 32px; width: 28rem;" formControlName="itemCalories"/>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -175,7 +176,7 @@
               [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               nzPlaceHolder="Please select"
-              [(ngModel)]="listOfSelectedValue"
+              formControlName="itemDietaryRestrictions"
             >
               <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
             </nz-select>
@@ -188,7 +189,7 @@
         <nz-form-item>
           <label style="width: 180px;  text-align: left;  font-size: 18px;">Packing type:</label>
           <nz-form-control >
-            <nz-select nzPlaceHolder="Please select a box" style="font-size: 16px; height: 32px; width: 28rem; color: rgb(190, 186, 186) ;" [(ngModel)]="ItemHowToDelivery" (ngModelChange)="onPackingChange()">
+            <nz-select nzPlaceHolder="Please select a box" style="font-size: 16px; height: 32px; width: 28rem;" formControlName="itemPackingType" (ngModelChange)="onPackingChange()">
               <nz-option  *ngFor="let el of packingBox.deliveryBox" [nzValue]="el.boxName" [nzLabel]="el.boxName" ></nz-option>
             </nz-select>
           </nz-form-control>
@@ -210,7 +211,7 @@
               [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               nzPlaceHolder="Please select"
-              [(ngModel)]="listOfSeletedValueForMealTime"
+              formControlName="timeOfDay"
             >
               <nz-option style=" font-size: 16px;" *ngFor="let item of listOfOptionForMealTime" [nzLabel]="item" [nzValue]="item"></nz-option>
             </nz-select>
@@ -229,7 +230,7 @@
           <label  style="width: 180px; text-align: left;  font-size: 18px;">Description:</label>
           <nz-form-control>
             <textarea
-            [(ngModel)]="itemDescription"
+              formControlName="itemDescription"
               nz-input
               placeholder="please enter  description"
               [nzAutosize]="{ minRows: 4, maxRows: 4 }"
@@ -251,15 +252,35 @@
 
 <!-- For Ingredinet Form -->
 
+
     
 <form [formGroup]="orderForm" (ngSubmit)="submitForm()" class="form-container">
 <div style="display: flex;">
 <div>
 <!-- Ingredient Batches -->
+
+<div *ngFor="let ingredient of rawIngredients" class="form-group">
+ 
+  <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" [(ngModel)]="rawIngredient" nzPlaceHolder="input search text">
+    <option *ngFor="let item of ingredentList.ingredients" [value]="item.ingredientName" [selected]="item.ingredientName===ingredient.ingredientName">{{ item.ingredientName }}</option>
+  </select>
+
+  <input class="inputStyle" style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="ingredient.quantity" formControlName="quantity">
+
+  <select style="width:130px; font-size: 16px; height: 32px;   border-color: rgb(190, 186, 186);"  nzPlaceHolder="Please select">
+    <option  [value]="ingredient">{{ ingredient.unitOfStock }}</option>
+    <option *ngFor="let ingredient of measurementToolArray" [value]="ingredient">{{ ingredient }}</option>
+    </select>
+ 
+  
+ 
+  <button style="margin-left: 8px;  border:none; cursor: pointer; background-color: #fff;" type="button" ><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+</div>
+
+
 <div formArrayName="ingredientBatches">
   <div *ngFor="let batch of ingredientBatchesArray.controls; let i = index" [formGroupName]="i" class="form-group">
 
-    
     <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" formControlName="ingredientName" (change)="onIngredientChange(i)" nzPlaceHolder="input search text">
       <option value="" disabled selected hidden style="color: rgb(190, 186, 186);">select ingredient</option>
       <option *ngFor="let ingredient of ingredentList.ingredients" [value]="ingredient.ingredientName">{{ ingredient.ingredientName }}</option>
@@ -280,8 +301,6 @@
 </div>
 
 <!-- Delivery Box Batches -->
-
-
 <!-- Submit Button -->
 <!-- <button type="submit">Submit</button> -->
 </div>
@@ -311,10 +330,6 @@
 </div>
 
 </form>
-
-
-
-
 <!-- For Ingredinet Form -->
 <!-- For Recipe Form -->
 
@@ -325,6 +340,25 @@
 <form [formGroup]="orderFormForRecipe" (ngSubmit)="submitFormForRecipe()" class="form-container">
 <div style="display: flex;">
 <div>
+
+  <div *ngFor="let recipe of recipes" class="form-group">
+ 
+    <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;"   nzPlaceHolder="input search text">
+      <option *ngFor="let item of recipeCollections[0]" [value]="item.recipeName" [selected]="item.recipeName===recipe.recipeName">{{ item.recipeName }}</option>
+    </select>
+  
+    <input class="inputStyle" style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="recipe.recipeItemPortionSize" formControlName="quantity">
+  
+    <select style="width:130px; font-size: 16px; height: 32px;   border-color: rgb(190, 186, 186);"  nzPlaceHolder="Please select">
+      <option  [value]="recipe">{{ recipe.unitOfStock }}</option>
+      <option *ngFor="let ingredient of measurementToolArray" [value]="ingredient">{{ ingredient }}</option>
+      </select>
+   
+    
+   
+    <button style="margin-left: 8px;  border:none; cursor: pointer; background-color: #fff;" type="button" ><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+  </div>
+  
 <!-- Ingredient Batches -->
 <div formArrayName="ingredientBatchesForRecipe">
  <div *ngFor="let batch of ingredientBatchesArrayForRecipe.controls; let i = index" [formGroupName]="i" class="form-group">
@@ -374,6 +408,24 @@
 <form [formGroup]="orderFormForAddOns" (ngSubmit)="submitFormForAddOns()" class="form-container">
 <div style="display: flex;">
 <div>
+
+  <div *ngFor="let ingredient of addons" class="form-group">
+ 
+    <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;"   nzPlaceHolder="input search text">
+      <option *ngFor="let item of ingredentList.ingredients" [value]="item.ingredientName" [selected]="item.ingredientName===ingredient.ingredientName">{{ item.ingredientName }}</option>
+    </select>
+  
+    <input class="inputStyle" style="width:80px; height: 32px; border:1px solid rgb(190, 186, 186); margin-left: 32px; margin-right: 6px; font-size: 16px;" type="text" placeholder="quantity" [value]="ingredient.quantity" formControlName="quantity">
+  
+    <select style="width:130px; font-size: 16px; height: 32px;   border-color: rgb(190, 186, 186);"  nzPlaceHolder="Please select">
+      <option  [value]="ingredient">{{ ingredient.unitOfStock }}</option>
+      <option *ngFor="let ingredient of measurementToolArray" [value]="ingredient">{{ ingredient }}</option>
+      </select>
+   
+    
+   
+    <button style="margin-left: 8px;  border:none; cursor: pointer; background-color: #fff;" type="button" ><span style="font-size: 28px; padding-top: 20px; color:rgb(190, 186, 186);" nz-icon nzType="minus-circle" nzTheme="outline"></span></button>
+  </div>
 <!-- Ingredient Batches -->
 <div formArrayName="ingredientBatchesForAddOns">
  <div *ngFor="let batch of ingredientBatchesArrayForAddOns.controls; let i = index" [formGroupName]="i" class="form-group">
@@ -404,14 +456,8 @@
 </form>
 
 
-
-
-<!-- add Options -->
-
-      
-      
+<!-- add Options -->   
 
 </div>
-    <button type="submit" (click)="onsubmit">submit</button>
-    <button type="button" (click)="loadingData()">data</button>
+   
 </form>
