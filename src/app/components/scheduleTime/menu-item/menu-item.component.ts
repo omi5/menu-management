@@ -88,7 +88,9 @@ export class MenuItemComponent implements OnInit {
   @ViewChild('EditItem') EditItem: any;
   //Update Menu Item
   updateMenuItem(){
-
+  console.log('click from updateMenu');
+  
+  this.EditItem.onsubmit()
   }
   //For Edit item
   item : any;

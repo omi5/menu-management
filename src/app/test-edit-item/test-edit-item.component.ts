@@ -3,6 +3,8 @@ import { CategoryList } from '../interfaces/categoryList.interface';
 import { CategoryService } from '../services/category.service';
 import { InventoryService } from '../services/inventory.service';
 import { FormArray, FormGroup } from '@angular/forms';
+import { IngredientService } from '../services/ingredient/ingredient.service';
+import { MakeRecipeService } from '../services/make-recipe.service';
 interface ingredient {
   id: number
   ingredientName: [],
@@ -50,7 +52,7 @@ export class TestEditItemComponent implements OnInit {
   packingBox: { deliveryBox: any[] } = { deliveryBox: [] };
 
    //For Type Of Food
-   listOfOptionForTypeOfFood : string[] = []
+   listOfOptionForTypeOfFood : string[] = ['Delivery only', 'Pickup only', 'Dine-In only', 'All']
    listOfSeletedValueForTypeOfFood: string[] = [] 
 
    
@@ -70,8 +72,12 @@ export class TestEditItemComponent implements OnInit {
       "Extra Large"
     ]
 
+    measurementToolArray : string[] = [
+      "cup", "teaspoon", "tablespoon", "gm", "ml", "kg"
+    ];
+
   
-  constructor(private categoryService: CategoryService, private inventoryService: InventoryService){}
+  constructor(private categoryService: CategoryService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService){}
 
   ngOnInit(): void {
 
@@ -118,18 +124,18 @@ export class TestEditItemComponent implements OnInit {
       // Add more allergens as needed
     ];
     const mealTime = ['All day', 'Breakfast', 'Lunch','Dinner']
-    const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
+    // const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
     
     
       this.listOfOption = allergens;
       this.listOfOptionForTastyTags= tastyTags;
-      this.listOfOptionForTypeOfFood = typeOfFood;
+      // this.listOfOptionForTypeOfFood = typeOfFood;
       this.listOfOptionForMealTime = mealTime;
 
       this.editItem()
       this.getAllCategory()
-      this.getAllPackingBox()
-      this.addItem()
+      this.getAllPackingBox();
+      this.getAllRecipes()
 
       this.rawIngredients = this.item.item.ingredients.rawIngredients;
       this.addons =  this.item.item.options.add;
@@ -145,35 +151,8 @@ export class TestEditItemComponent implements OnInit {
 
   editItem(){
     console.log('click');
-    
-    this.itemName = this.item.item.itemCalories;
-    this.itemProfileTastyTags = this.item.item.itemProfileTastyTags;
-    this.categoryId = this.item.item.categoryId
-    this.listOfSeletedValueForTypeOfFood = this.item.item.typeOfFoods;
-    this.itemPortionsize = this.item.item.itemPortionSize;
-    this.itemPreparationtime = this.item.item.itemPreparationTime;
-    this.servingTemperature = this.item.item.servingTemperature;
-    this.itemLastingTime = this.item.item.itemLastingTime;
-    this.itemPrice = this.item.item.itemPrice;
-    this.itemCalories = this.item.item.itemCalories;
-    this.listOfSelectedValue = this.item.item.itemDietaryRestrictions;
-    this.ItemHowToDelivery = this.item.item.itemPackingType;
-    this.listOfSeletedValueForMealTime = this.item.item.timeOfDay;
-    this.itemDescription = this.item.item.itemDescription;
-    console.log('ingredinerts===', this.rawIngredients)
-    // console.log('ingredinerts===', this.item.item.ingredients.rawIngredients)
-     this.rawInField= this.item.item.ingredients.rawIngredients;
-      this.singleIn = this.rawInField.map((item)=>[item])
-     console.log(this.singleIn,"nested array---->")
-     console.log(this.ingredentList.ingredients,"ingrediants---->")
-     this.singleIn.forEach((item)=>{
-      this.ingredentList.ingredients.forEach((a)=>{
-        item.push(a)
-      })
-     })
-     console.log(this.singleIn,"all item")
-
-
+    this.ingredentList.ingredients = this.ingredientService.ingredients;
+    this.ingredientService.newIngredientsEvent.subscribe(data => this.ingredentList.ingredients = data);
   }
 
   getAllCategory(){
@@ -185,7 +164,7 @@ export class TestEditItemComponent implements OnInit {
   }
 
     //get all Packing box
-    getAllPackingBox(){
+  getAllPackingBox(){
       this.inventoryService.getAllPackingBox().subscribe(
         (res) => {
           res.forEach((items: any) => {
@@ -207,6 +186,14 @@ export class TestEditItemComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching inventory:', error);
+      }
+    )
+  }
+
+  getAllRecipes(){
+    this.RecipeService.getAllRecipe().subscribe(
+      res=>{
+        this.recipes = res;
       }
     )
   }
@@ -268,16 +255,102 @@ ingredentList ={
 }
 
 
+select: any;
 name!: string;
 ingredientName!: any;
 quantity!: any
 unitOfStock!: any
-addItem() {
-  // this.items.push();
+listOfIngredient: any[]=[{}]
+ rawIng: any = {};
+
+addIngredient() {
+  // console.log('this.select', this.select);
+  
+  // for (let key in this.select) {
+  //   this.rawIng[key] = this.select[key];
+  // }
+  // this.rawIng["quantity"] = this.quantity
+  
+  this.item.item.ingredients.rawIngredients.push({
+    
+  });
+
 }
 
-removeItem(index: number) {
-  // this.items.splice(index, 1);
+removeIngredient(index: number) {
+  this.item.item.ingredients.rawIngredients.splice(index, 1);
+}
+
+onIngredientChange(index: number): void {
+  let ingredientBatch = this.item.item.ingredients.rawIngredients.at(index);
+  // Find the selected ingredient in the mock data
+  console.log('ingredientBatch', ingredientBatch);
+  
+  const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatch.ingredientName);
+  console.log('selectIngredient', selectedIngredient);
+  
+  this.select = selectedIngredient;
+
+  // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
+  // if (selectedIngredient) {
+  //  ({
+  //     costPerUnit: selectedIngredient.costPerUnit,
+  //     caloriesPerUnit: selectedIngredient.caloriesPerUnit,
+  //     id: selectedIngredient.id
+  //   });
+
+  // }
+}
+
+selectAddOns !: any;
+addAddOns() {
+  const rawIng: any = {};
+  for (let key in this.selectAddOns) {
+   rawIng[key] = this.selectAddOns[key];
+  }
+  rawIng["quantity"] = this.quantity
+  // rawIng["unitOfStock"] = this.quantity
+  this.item.item.options.add.push(rawIng)
+}
+
+removeAddOns(index: number) {
+  this.item.item.options.add.splice(index, 1);
+}
+
+onIngredientChangeForAddOns(index: number): void {
+  const ingredientBatchForAddOns =this.item.item.options.add.at(index);
+  console.log('ingredientBatchAddons', ingredientBatchForAddOns);
+  
+  // Find the selected ingredient in the mock data
+  const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatchForAddOns.ingredientName);
+  console.log('selectIngredient', selectedIngredient);
+  this.selectAddOns = selectedIngredient;
+  // if (selectedIngredient) {
+  //   ingredientBatchForAddOns.patchValue({
+  //     costPerUnit: selectedIngredient.costPerUnit,
+  //     caloriesPerUnit: selectedIngredient.caloriesPerUnit,
+  //     id: selectedIngredient.id
+  //   });
+  //   // setTimeout(() => {
+  //   //   this.updateTotalsForAddOns();
+  //   // }, 100); // Optionally update totals when the ingredient changes
+
+  // }
+}
+
+
+addRecipes(){
+  this.item.item.ingredients.recipes.push({
+
+  })
+}
+removeRecipes(index: number) {
+  this.item.item.ingredients.recipes.splice(index, 1);
+}
+
+onsubmit(){
+  console.log('updatedItemForEdit',this.item);
+  
 }
   
 }
