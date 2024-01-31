@@ -606,13 +606,7 @@ onIngredientChangeForAddOns(index: number): void {
   const ingredientBatchForAddOns = this.ingredientBatchesArrayForAddOns.at(index);
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatchForAddOns.value.ingredientName);
-  // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
-  // if (selectedIngredient) {
-  //   ingredientBatchForAddOns.patchValue({
-  //     costPerUnitForAddOns: selectedIngredient.costPerUnit,
-  //     // caloriesPerUnitForAddOns: selectedIngredient.caloriesPerUnit,
-  //     id: selectedIngredient.id
-  //   });
+ 
   if (selectedIngredient) {
     ingredientBatchForAddOns.patchValue({
       costPerUnit: selectedIngredient.costPerUnit,

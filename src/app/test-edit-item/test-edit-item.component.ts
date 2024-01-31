@@ -272,7 +272,8 @@ addIngredient() {
   // this.rawIng["quantity"] = this.quantity
   
   this.item.item.ingredients.rawIngredients.push({
-    
+    // id:number ,
+
   });
 
 }
