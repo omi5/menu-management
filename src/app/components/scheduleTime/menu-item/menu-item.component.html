@@ -15,7 +15,7 @@
                  alt="Avocado Salad"
                  />
              
-                <a (click)="editMenuItem(id)"  class="viewBtn">View item</a>
+                <a (click)="viewMenuItem()"  class="viewBtn">View item</a>
                 
             </div>
             <div class="meal-content">
@@ -52,143 +52,11 @@
 
     
    
-    <nz-drawer
-    [nzBodyStyle]="{ overflow: 'auto' }"
-    [nzMaskClosable]="false"
-    [nzWidth]="1120"
-    [nzVisible]="visible"
-    nzTitle=""
-    [nzFooter]="footerTpl"
-    (nzOnClose)="close()"
-   >
-<ng-container *nzDrawerContent>
 
-  <div style="margin: 0 auto; margin-top: 80px; display: flex;">
-    <div style="width: 400px; ">
-      <img
-      style="height: 700px; border-radius: 28px;"
-          [src]="src"
-          class="meal-img"
-          alt="Avocado Salad"
-      />
-    </div>
-    <!-- information div -->
-    <div style=" width: 700px; margin-left: 70px;">
-
-      <h1
-      style="font-size: 38px;color: #333;font-weight: 600;"
-      >{{itemName}}</h1>
-      <div style="display: flex; justify-content: space-between; margin-right: 10px; margin-top: 20px;width: 500px; ">
-        <div>
-          <div style="display: flex; height: 30px;">
-            <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
-            <p class="peraStyle">{{itemCalories}}</p>
-          </div>
-          <span class="spanStyle" style="padding-left: 30px;">Calories</span>
-        </div>
-        <div>
-          <div style="display: flex; text-align: center;height: 30px;">
-            
-            <span class="iconDetails" nz-icon nzType="pie-chart" nzTheme="outline"></span>
-            <p class="peraStyle">{{itemPortionSize}}</p>
-          </div>
-          <span class="spanStyle" style="padding-left: 50px;">Size</span>
-        </div>
-        <div>
-          <div style="display: flex; height: 30px;">
-            <span  class="iconDetails" nz-icon nzType="field-time" nzTheme="outline"></span>
-            <p class="peraStyle">{{preparationTime}}</p>
-          </div>
-          <span class="spanStyle" style="padding-left: 15px;">Minutes</span>
-        </div>
-        <div>
-          <div style="display: flex; height: 30px;">
-            <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
-            <p class="peraStyle">{{itemservingTemp}}</p>
-          </div>
-          <span class="spanStyle">Celsius</span>
-        </div>
-        <div>
-          <div style="display: flex; height: 30px;">
-            <span  class="iconDetails" nz-icon nzType="field-time" nzTheme="outline"></span>
-            <p class="peraStyle">{{itemLastingTime}}</p>
-          </div>
-          <span class="spanStyle">Minutes</span>
-        </div>
-        <!-- <div style="display: flex; ">
-          <span nz-icon nzType="dollar" nzTheme="outline" class="iconDetails"></span>
-          <p style="font-size: 18px;color: #333;font-weight: 500; margin-left: 2px;margin-top: 4px;">${{itemPrice}}</p>
-        </div> -->
-
-      </div>
-      <hr style=" border-top: 2px solid #038851; width: 515px;">
-
-      <!-- timeOfDay -->
-      <h3 style="margin-top: 8px;">Menus
-        <hr style="width: 50px; border-top: 1px solid #038851;">
-      </h3>
-      <div style="display: flex; list-style: none; height: 50px; margin-top: 8px;">
-        <li *ngFor="let time of timeOfDay" style="margin-right: 15px; " class="tag tag--vegan">{{time}}</li>
-      </div>
-      <!-- itemProfileTastyTags -->
-      <h3>Tasty profile
-        <hr style="width: 90px; border-top: 1px solid #038851;">
-      </h3>
-      <div style="display: flex; list-style: none; height: 50px; margin-top: 8px;" >
-        <li *ngFor="let tastytag of itemProfileTastyTags" style="margin-right: 15px; " class="tag tag--paleo">{{tastytag}}</li>
-      </div>
-      <!-- itemDietaryRestrictions -->
-      <h3>Allergens
-        <hr style="width: 70px;  border-top: 1px solid #038851;">
-      </h3>
-      <div style="display: flex; list-style: none; height: 50px; margin-top: 8px;">
-        <li *ngFor="let Diet of itemDietaryRestrictions" style="margin-right: 15px;" class="tag tag--vegan">{{Diet}}</li>
-      </div>
-
-      <div style="height: auto; margin: 42px 0px 15px 5px;">
-        <div style="display: flex; justify-content: space-between;">
-          <h3 style=" color: #000; font-weight: 500;">Ingredients</h3>
-          <h3 style=" color: #000; font-weight: 500; margin-right: 70px;">Quantity</h3>
-
-        </div>
-        <hr style=" border-top: 2px solid #038851;">
-
-        <ul style="list-style: circle;  margin-top: 18px; margin-left: 20px; ">
-         <div *ngFor="let ingredient of ingredients" style="display: flex; justify-content: space-between;">
-           <li style="width: 200px;">{{ingredient.ingredientName}}</li>
-           <div style="display: flex; width: 135px; list-style: none;" >
-             <li style="width: 50px; text-align: center;">{{ingredient.quantity}}  <span >{{ingredient.unitOfStock}}</span></li>
-            
-           </div>
-
-         </div>
-          <li *ngFor="let recipe of recipes">{{recipe.recipeName}}</li>
-        </ul>
-      </div>
-
-      <hr style=" border-top: 2px solid #038851;">
-      <div style="display: flex; ">
-        <span nz-icon nzType="dollar" nzTheme="outline" class="iconDetails"></span>
-        <p style="font-size: 18px;color: #333;font-weight: 500; margin-left: 2px;margin-top: 4px;">${{itemPrice}}</p>
-      </div>
-
-    </div >
-
-    
-  </div> 
-</ng-container>     
-
-    <ng-template #footerTpl>
-        <div style="float: right;">
-            <button nz-button style="margin-right: 8px;" (click)="close()" class="close-btn">Cancel</button>
-            <button nz-button nzType="primary" (click)="OpenADrawerForEdit(id)" class="Add-btn">Edit Item</button>
-        </div>
-    </ng-template>
-    </nz-drawer>
 
     <!-- //Drawer For edit -->
 
-    <nz-drawer
+    <!-- <nz-drawer
     [nzBodyStyle]="{ overflow: 'auto' }"
     [nzMaskClosable]="false"
     [nzWidth]="1420"
@@ -197,10 +65,10 @@
     [nzFooter]="footerTpl1"
     (nzOnClose)="closeForEdit()"
    >
-<ng-container *nzDrawerContent>
+<ng-container *nzDrawerContent> -->
 
   <!-- <app-edit-menu-item [item]="item" #EditItem></app-edit-menu-item> -->
-  <app-test-edit-item [item]="item" #EditItem></app-test-edit-item>
+  <!-- <app-test-edit-item [item]="item" #EditItem></app-test-edit-item>
 </ng-container>     
 
     <ng-template #footerTpl1>
@@ -209,4 +77,4 @@
             <button nz-button nzType="primary" (click)="updateMenuItem()" class="Add-btn">Update Item</button>
         </div>
     </ng-template>
-    </nz-drawer>
+    </nz-drawer> -->

@@ -31,14 +31,12 @@ export class LunchComponent {
   listForLunchMenu :MenuItem[] = []
   getMenuItems(){
     this.menuService.menuItemsSubject.subscribe(res=>{
-      this.AllMenuItems.push(res);
+      this.AllMenuItems = res;
       // console.log('selected menu for Lunch',this.AllMenuItems);
       // console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('Lunch'));
-      for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-        if(this.AllMenuItems[0][i].item.timeOfDay.includes('Lunch')){
-              this.listForLunchMenu.push(this.AllMenuItems[0][i])
-            }
-      }
+
+      this.listForLunchMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Lunch'));
+
     })
     // console.log('listOfLunchMenu', this.listForLunchMenu);  
   }

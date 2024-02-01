@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
+import { SelectedItemService } from 'src/app/services/selected-item/selected-item.service';
+import { DrawerService } from 'src/app/services/drawer/drawer.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -11,9 +13,10 @@ import { MenuItemServiceService } from 'src/app/services/menu-item-service.servi
   styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
-  constructor(private menuService: MenuItemServiceService , private location: Location){
+  constructor(private menuService: MenuItemServiceService , private location: Location, private selectedItemService: SelectedItemService, private drawerService: DrawerService){
   }
 
+  @Input() menuitem! : any;
   @Input() itemName!: string;
   @Input() src!: string;
   @Input() ingredients!: any
@@ -50,11 +53,12 @@ export class MenuItemComponent implements OnInit {
   //For Menu Item Drawer
   ItemForEdit : any;
   visible = false;
-  editMenuItem(id: string): void {
-    this.visible = true;
-    this.getMenuItemById(id);
-    // this.loadingData();
+
+  viewMenuItem () {
+    console.log("From menu item:", this.menuitem);
+    this.selectedItemService.setNewItem(this.menuitem);
   }
+
   close(): void {
     this.visible = false;
   }
@@ -67,16 +71,7 @@ export class MenuItemComponent implements OnInit {
   }
   //get Menu Item By Id
   selectedMenuItem :any = [] ;
- 
-  getMenuItemById(id: any){
-    this.menuService.getMenuItemById(id).subscribe(res=>{
-      this.selectedMenuItem.push(res);
-      // console.log(" Menu Item b======y", res);
-      return res;
-    })
-  }
 
- 
 
   //Delete a Menu Item 
   deleteMenuItem(id: string){
@@ -85,29 +80,33 @@ export class MenuItemComponent implements OnInit {
     })
   }
 
-  @ViewChild('EditItem') EditItem: any;
+  // @ViewChild('EditItem') EditItem: any;
   //Update Menu Item
-  updateMenuItem(){
-  console.log('click from updateMenu');
+  // updateMenuItem(){
+  // console.log('click from updateMenu');
   
-  this.EditItem.onsubmit()
-  }
+  // this.EditItem.onsubmit()
+  // }
   //For Edit item
   item : any;
-  OpenADrawerForEdit(id: string){
-    console.log('click');
+//   OpenADrawerForEdit(id: string){
+//     console.log('click');
     
-     this.item = this.AllMenuItems.find(item => item._id  === id);
-     this.openForEdit();
-     this.EditItem.editItem()
-     console.log('item===', this.item);
+//      this.item = this.AllMenuItems.find(item => item._id  === id);
+//      this.openForEdit();
+//      this.EditItem.editItem()
+//      console.log('item===', this.item);
      
-  } 
-  visibleForEdit = false;
- openForEdit(){
-  this.visibleForEdit = true;
-  }
-  closeForEdit(){
-    this.visibleForEdit = false;
-  }
+//   } 
+//   visibleForEdit = false;
+//  openForEdit(){
+//   this.visibleForEdit = true;
+//   }
+//   closeForEdit(){
+//     this.visibleForEdit = false;
+//   }
+
+  // onItemClick () {
+  //   this.selectedItemService.selectedItem = this.item;
+  // }
 }

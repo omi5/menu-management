@@ -135,14 +135,17 @@ export class TestEditItemComponent implements OnInit {
       this.editItem()
       this.getAllCategory()
       this.getAllPackingBox();
-      this.getAllRecipes()
+      this.getAllRecipes();
 
+      if(this.item){
+        
       this.rawIngredients = this.item.item.ingredients.rawIngredients;
       this.addons =  this.item.item.options.add;
       this.recipes = this.item.item.ingredients.recipes;
       this.categoryId = this.categoryName;
-       console.log('ingredinerts===', this.rawIngredients)
-       console.log('ingredinerts===', this.item)
+      
+      }
+
       //  console.log('------->',this.items)
 
 
@@ -150,7 +153,6 @@ export class TestEditItemComponent implements OnInit {
  
 
   editItem(){
-    console.log('click');
     this.ingredentList.ingredients = this.ingredientService.ingredients;
     this.ingredientService.newIngredientsEvent.subscribe(data => this.ingredentList.ingredients = data);
   }
@@ -290,7 +292,9 @@ onIngredientChange(index: number): void {
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatch.ingredientName);
   console.log('selectIngredient', selectedIngredient);
   
-  this.select = selectedIngredient;
+  this.item.item.ingredients.rawIngredients[index].id = selectedIngredient?.id;
+  this.item.item.ingredients.rawIngredients[index].costPerUnit = selectedIngredient?.costPerUnit;
+  this.item.item.ingredients.rawIngredients[index].caloriesPerUnit = selectedIngredient?.caloriesPerUnit;
 
   // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
   // if (selectedIngredient) {
@@ -305,13 +309,13 @@ onIngredientChange(index: number): void {
 
 selectAddOns !: any;
 addAddOns() {
-  const rawIng: any = {};
-  for (let key in this.selectAddOns) {
-   rawIng[key] = this.selectAddOns[key];
-  }
-  rawIng["quantity"] = this.quantity
+  // const rawIng: any = {};
+  // for (let key in this.selectAddOns) {
+  //  rawIng[key] = this.selectAddOns[key];
+  // }
+  // rawIng["quantity"] = this.quantity
   // rawIng["unitOfStock"] = this.quantity
-  this.item.item.options.add.push(rawIng)
+  this.item.item.options.add.push({})
 }
 
 removeAddOns(index: number) {
@@ -325,7 +329,10 @@ onIngredientChangeForAddOns(index: number): void {
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatchForAddOns.ingredientName);
   console.log('selectIngredient', selectedIngredient);
-  this.selectAddOns = selectedIngredient;
+
+  this.item.item.options.add[index].id = selectedIngredient?.id;
+  this.item.item.options.add[index].costPerUnit = selectedIngredient?.costPerUnit;
+  this.item.item.options.add[index].caloriesPerUnit = selectedIngredient?.caloriesPerUnit;
   // if (selectedIngredient) {
   //   ingredientBatchForAddOns.patchValue({
   //     costPerUnit: selectedIngredient.costPerUnit,

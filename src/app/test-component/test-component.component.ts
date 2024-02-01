@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
 import { CategoryService } from '../services/category.service';
 import { forkJoin } from 'rxjs';
@@ -55,7 +55,7 @@ export interface Category {
   templateUrl: './test-component.component.html',
   styleUrls: ['./test-component.component.css'],
 })
-export class TestComponentComponent implements OnInit {
+export class TestComponentComponent implements OnInit, OnChanges {
   @Input() menuItems1: any;
   menuItems: any;
   title = 'menu';
@@ -69,34 +69,18 @@ export class TestComponentComponent implements OnInit {
   constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef) {
     
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.categorizeMenuItems();
+  }
 
   ngOnInit(): void {
-    // this.menuItemsService.menuItemsSubject.subscribe(res=>{
-    //   this.menuItems1 = res
-    // })
-    // console.log('listCommingFromTheDinner===',this.menuItems1);
-    
-    forkJoin([
-      this.categoryService.getAllCategory(),
-      // this.menuItemsService.getAllMenuItems()
-    ]).subscribe(
-      ([categories]) => {
-        // this.menuItems = [];
-        // this.menuItem.push(...menuItems);
-        this.categories.push(...categories);
-        this.categories.forEach((category) => {
-          this.categorizedMenu[category.categoryName] = [];
-        });
-
-        this.menuItems1.forEach((menuItem:any) => {
-          const category = this.categories.find((c) => c._id === menuItem.categoryId);
-          if (category) {
-            this.categorizedMenu[category.categoryName].push(menuItem);
-          }
-        });
-
-        // console.log('sorted menu', this.categorizedMenu);
-      },
+    this.categoryService.getAllCategory().subscribe(
+    (categories) => {
+      // this.menuItems = [];
+      // this.menuItem.push(...menuItems);
+      this.categories.push(...categories);
+      this.categorizeMenuItems();
+    },
       error => {
         console.error('Error fetching data:', error);
       }
@@ -115,6 +99,21 @@ export class TestComponentComponent implements OnInit {
       this.mealTimeName = this.route.snapshot.url[0].path;
     }
     
+  }
+
+  categorizeMenuItems () {
+    this.categories.forEach((category) => {
+      this.categorizedMenu[category.categoryName] = [];
+    });
+
+    this.menuItems1.forEach((menuItem:any) => {
+      const category = this.categories.find((c) => c._id === menuItem.categoryId);
+      if (category) {
+        this.categorizedMenu[category.categoryName].push(menuItem);
+      }
+    });
+
+    // console.log('sorted menu', this.categorizedMenu);
   }
 
   private subscribeToIngredientChanges() {

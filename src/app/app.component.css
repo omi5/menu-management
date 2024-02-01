@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+
+strong {
+  font-weight: 500;
+}
+
+.section-meals {
+  padding: 9.6rem 0;
+}
+
+
+
+.meal {
+  width: 220px;
+  height: 280px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+  margin-right: 15px;
+  position: relative;
+  /* margin-left: 0px; */
+}
+
+/* .meal:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+} */
+
+.meal-content {
+  padding: 10px 10px 0px 1rem;
+}
+
+.meal-tags {
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+
+
+.meal-title {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-left: 15px;
+}
+
+.meal-attributes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.meal-attribute {
+  font-size: 16px;
+  height: 25px;
+  display: flex;
+  align-items: center; 
+}
+
+
+.meal-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: #e67e22;
+  margin-top: 18px;
+}
+.iconDetails{
+  height: 2.4rem;
+  width: 2.4rem;
+  font-size: 16px;
+  color: #e67e22;
+  margin-top: 10px;
+}
+.peraStyle{
+  font-size: 18px;
+  color: #000;
+  margin-left: 2px;
+  padding-top: 4px;
+ 
+}
+.spanStyle{
+  color: gray;
+  font-size: 15px;
+  padding-left: 25px;
+
+}
+
+.meal-img {
+  width: 100%;
+  height: 130.15px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+.viewDiv:hover .meal-img{
+  transform: scale(1.2);
+}
+.deletebtn{
+  margin-top: 20px;
+}
+
+.viewDiv{
+  position: relative;
+}
+.viewBtn a{
+  text-decoration: none;
+}
+.viewBtn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  display: none;
+ 
+}
+.viewDiv:hover .viewBtn{
+  display: block;
+}
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  /* font-size: 0.9rem; */
+  text-transform: uppercase;
+  background-color: #51cf66;
+  color: #333;
+  border-radius: 100px;
+  /* font-weight: 600; */
+  height: 35px;
+  color: #fff;
+}
+
+.tag--vegan {
+  background-color: #038851;
+  
+}
+.tag--paleo {
+  background-color: #ff7f50;
+}
+
+.anticon .anticon-close .ng-star-inserted svg path{
+  background-color: #038851;
+}
+.anticon .anticon-close .ng-star-inserted{
+  background-color: #038851;
+}
+.ant-drawer-close .ng-star-inserted{
+  background-color:#038851;
+}
+.ant-drawer-close{
+  color: #26a366 !important;
+}
+.Add-btn{
+  width: 100px;
+  background-color: #038851;
+}
+.Add-btn:hover{
+  background-color: #05CC79;
+}
+.close-btn{
+  width: 80px;
+  /* color:#fff; */
+  /* background-color: #05CC79; */
+}

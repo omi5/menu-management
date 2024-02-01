@@ -36,15 +36,15 @@ export class DinnerComponent implements OnInit {
   listForDinnerMenu :any[] = []
   getMenuItems(){
     this.menuService.getAllMenuItems().subscribe(res=>{
-      this.AllMenuItems.push(res);
+      console.log('res',res);
+
+      this.AllMenuItems = res;
+
+      this.listForDinnerMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Dinner'));
       
-      for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-        if(this.AllMenuItems[0][i].item.timeOfDay.includes('Dinner')){
-              this.listForDinnerMenu.push(this.AllMenuItems[0][i])
-            }
-      }
+  
+      // console.log('listOfDinnerMenu ====', this.listForDinnerMenu); 
     })
-    console.log('listOfDinnerMenu ====', this.listForDinnerMenu); 
   }
   
 }

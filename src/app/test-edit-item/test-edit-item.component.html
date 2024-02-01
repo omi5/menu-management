@@ -1,4 +1,6 @@
-{{item.item.itemPackingType}}
+<!-- {{item.item.itemPackingType}} -->
+<div  *ngIf="item">
+
 
 <div nz-row [nzGutter]="8" style=" margin-top: 30px;">
     <div nz-col nzSpan="12">
@@ -244,7 +246,9 @@
     <input [(ngModel)]="item[i]" placeholder="" />
     <button (click)="removeItem(i)">Remove</button>
   </div> -->
-<h2>Ingredient </h2>
+  <hr style=" border-top: 1px solid #038851;">
+  <h2 style="margin-bottom: 15px; font-size: 22px;">Ingredients and preparation instruction</h2>
+
   <div *ngFor="let ingredient of listOfIngredient">
   <div *ngFor="let ingredient of item.item.ingredients.rawIngredients; let i = index">
       <!-- (change)="onIngredientChange(i)" -->
@@ -267,9 +271,9 @@
     </div>
     <!-- <button type="button" (click)="addIngredientBatch()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button> -->
   </div>
-  <button (click)="addIngredient()">Add Item</button>
+  <button (click)="addIngredient()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
 
-
+<h2 style="margin-bottom: 15px; margin-top: 40px; font-size: 22px;">Add recipe</h2>
   <h2>Recipes </h2>
   <div *ngFor="let ingredient of listOfIngredient">
   <div *ngFor="let ingredient of item.item.ingredients.recipes; let i = index">
@@ -293,17 +297,18 @@
     </div>
     <!-- <button type="button" (click)="addIngredientBatch()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button> -->
   </div>
-  <button (click)="addRecipes()">Add Item</button>
+  <button (click)="addRecipes()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Recipe</button>
 
 
 
 
+  <hr style=" border-top: 2px solid #038851; margin-top: 25px;">
+  <h2 style="margin-bottom: 15px; font-size: 22px;">Add Ons</h2>
 
-  <h2>Addons </h2>
   <div *ngFor="let ingredient of listOfIngredient">
   <div *ngFor="let ingredient of item.item.options.add; let i = index">
       <!-- (change)="onIngredientChange(i)" -->
-      <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" [(ngModel)]="ingredient.ingredientName"  nzPlaceHolder="input search text">
+      <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" [(ngModel)]="ingredient.ingredientName" (change)="onIngredientChangeForAddOns(i)"   nzPlaceHolder="input search text">
         <option value="" disabled selected hidden style="color: rgb(190, 186, 186);">select ingredient</option>
         <option *ngFor="let item of ingredentList.ingredients" [value]="item.ingredientName" [selected]="ingredient.ingredientName === item.ingredientName">{{item.ingredientName}}</option>
         <!-- <option *ngFor="let ingredient of item" [value]="ingredient.ingredientName" [selected]="ingredient.ingredientName === item.ingredientName">{{ ingredient.ingredientName }}</option> -->
@@ -322,4 +327,5 @@
     </div>
     <!-- <button type="button" (click)="addIngredientBatch()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button> -->
   </div>
-  <button (click)="addAddOns()">Add Item</button>
+  <button (click)="addAddOns()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
+</div>
