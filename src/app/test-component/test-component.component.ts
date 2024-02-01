@@ -195,7 +195,8 @@ export class TestComponentComponent implements OnInit, OnChanges {
 
         });
       });  
-    })    
+    })  
+    window.location.reload();  
    }
 
    filterMenu: any []= []
@@ -233,6 +234,7 @@ export class TestComponentComponent implements OnInit, OnChanges {
       item.item.timeOfDay.includes(this.mealTimeName)
     );
     this.filterMenuItemsForDeleteAllMenu = [...updatedItems];
+    window.location.reload();
   }
   
 
