@@ -44,6 +44,10 @@ export class MenuItemServiceService {
     return this.http.get<any>(this.url+`/menuItem/restaurant`)
   }
 
+  getAllmenuForMP(id:any): Observable<any>{
+    return this.http.get<any>(this.url+`/menuItem/restaurant/${id}`)
+  }
+
   // updateMenuItemsForCategory(categoryId: string, updateItems: any[]){
   //   const filteredItems = this.updateMenuItem(categoryId, updatedItems);
   //   this.menuItemsSubject.next(filteredItems);
