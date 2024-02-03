@@ -34,13 +34,12 @@ export class AllDayComponent implements OnInit{
   AllMenuItems : any[] = []
   listForAllDayMenu :any[] = []
   getMenuItems(){
-    this.menuService.getAllMenuItems().subscribe(res=>{
+    this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
       this.AllMenuItems = res;
 
       this.listForAllDayMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('All day'));
-
-
-      // if (this.AllMenuItems[0].length) {
+    })
+     // if (this.AllMenuItems[0].length) {
       //   for(let i = 0; i <= this.AllMenuItems[0].length; i++){
       //     if (this.AllMenuItems[0][i]){
       //       if(this.AllMenuItems[0][i].item.timeOfDay.includes('All day')){
@@ -51,9 +50,6 @@ export class AllDayComponent implements OnInit{
       //   }
 
       // }
-  
-
-    })
     // console.log('listOfBreakfastMenu', this.listForAllDayMenu);
   } 
 

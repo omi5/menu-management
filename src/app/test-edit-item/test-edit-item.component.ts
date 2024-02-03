@@ -6,6 +6,9 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { IngredientService } from '../services/ingredient/ingredient.service';
 import { MakeRecipeService } from '../services/make-recipe.service';
 import { MenuItemServiceService } from '../services/menu-item-service.service';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload/public-api';
+import { CloudinaryService } from '../services/cloudinary.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 interface ingredient {
   id: number
   ingredientName: [],
@@ -78,7 +81,7 @@ export class TestEditItemComponent implements OnInit {
     ];
 
   
-  constructor(private categoryService: CategoryService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService, private menuService: MenuItemServiceService){}
+  constructor(private categoryService: CategoryService,private msg: NzMessageService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService, private menuService: MenuItemServiceService,private cloudinary: CloudinaryService){}
 
   ngOnInit(): void {
 
@@ -363,6 +366,55 @@ onsubmit(){
     console.log(res);
     
   })
+}
+
+//For uplaoding a image
+uploadedImageUrl!: any
+successMessageDisplayed!: any
+handleChange(info: NzUploadChangeParam): void {
+  if (info.file.status !== 'uploading') {
+    console.log(info.file, info.fileList);
+    console.log('File information:', info.file);
+    console.log('File list:', info.fileList);
+  }
+  if (info.file.status === 'done' && !this.successMessageDisplayed) {
+    this.msg.success(`${info.file.name} file uploaded successfully`);
+    this.successMessageDisplayed = true;
+    this.uploadedImageUrl = info.file.response.url; 
+  } 
+  
+}
+
+selectFile(event: any): void {
+  const file = event?.file?.originFileObj;
+    this.cloudinary.cloudUpload(file, 'dkfnaltqp') 
+    .subscribe(
+      (response: any) => {
+        const fakeEvent: NzUploadChangeParam = {
+          file: {
+            ...event.file,
+            status: 'done',
+            response: response,
+          },
+          fileList: [...event.fileList],
+        };
+
+        this.handleChange(fakeEvent);
+      },
+      (error: any) => {
+        console.error('Cloudinary API Error:', error);
+        const fakeEvent: NzUploadChangeParam = {
+          file: {
+            ...event.file,
+            status: 'error',
+            response: error,
+          },
+          fileList: [...event.fileList],
+        };
+
+        this.handleChange(fakeEvent);
+      }
+    );  
 }
   
 }

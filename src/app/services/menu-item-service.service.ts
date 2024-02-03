@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenService } from '../interceptors/token/token.service';
 import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
@@ -37,6 +38,10 @@ export class MenuItemServiceService {
 
   getAllMenuItems(): Observable<any>{
     return this.http.get<any>(this.url+'/menuItem'); 
+  }
+
+  getAllMenuItemByRestaurantId(): Observable<any>{
+    return this.http.get<any>(this.url+`/menuItem/restaurant`)
   }
 
   // updateMenuItemsForCategory(categoryId: string, updateItems: any[]){

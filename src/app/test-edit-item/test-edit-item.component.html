@@ -1,5 +1,23 @@
 <!-- {{item.item.itemPackingType}} -->
 <div  *ngIf="item">
+  <div style=" width: 400px; margin: 0 auto; margin-bottom: 20px;">
+    <nz-upload
+     
+      nzType="drag"
+      [nzMultiple]="true"
+      nzAction="https://api.cloudinary.com/v1_1/dkfnaltqp/image/upload"
+      (nzChange)="selectFile($event)"
+    >
+    <ng-container *ngIf="!item.item.itemImage">
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </ng-container>
+      <img  style="width: 23rem;" [src]="item.item.itemImage || ''" alt="">
+    </nz-upload>
+    
+  </div>
 
 
 <div nz-row [nzGutter]="8" style=" margin-top: 30px;">

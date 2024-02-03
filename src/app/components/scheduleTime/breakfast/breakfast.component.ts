@@ -58,7 +58,7 @@ export class BreakfastComponent implements OnInit {
   // }
  
   getMenuItems() {
-    this.menuService.menuItemsSubject.subscribe(res => {
+    this.menuService.getAllMenuItemByRestaurantId().subscribe(res => {
       this.AllMenuItems = res;
 
       this.listForBreakfastMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Breakfast'));

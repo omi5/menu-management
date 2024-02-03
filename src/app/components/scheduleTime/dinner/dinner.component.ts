@@ -35,8 +35,8 @@ export class DinnerComponent implements OnInit {
   AllMenuItems : any[] = []
   listForDinnerMenu :any[] = []
   getMenuItems(){
-    this.menuService.getAllMenuItems().subscribe(res=>{
-      console.log('res',res);
+    this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
+      // console.log('res',res);
 
       this.AllMenuItems = res;
 

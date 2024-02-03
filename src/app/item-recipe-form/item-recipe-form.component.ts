@@ -296,7 +296,7 @@ totalCostForAddOns: number = 0;
       'Fresh'
     ];
 
-    const mealTime = ['All Day', 'BreakFast', 'Lunch','Dinner']
+    const mealTime = ['All day', 'Breakfast', 'Lunch','Dinner']
     const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
    
     this.listOfOption = allergens;
@@ -769,8 +769,8 @@ updateTotals(): void {
       }
     });
     // Calculate the total cost by applying the percentage
-    console.log(this.itemPrice);
-    console.log(((this.itemPrice - this.totalCostPerUnit) / this.itemPrice) * 100);
+    // console.log(this.itemPrice);
+    // console.log(((this.itemPrice - this.totalCostPerUnit) / this.itemPrice) * 100);
     
     this.marginCost =  ((this.itemPrice - this.totalCostPerUnit)/ this.itemPrice) * 100; 
     this.totalCost = this.totalCostPerUnit * (1 + percentage);

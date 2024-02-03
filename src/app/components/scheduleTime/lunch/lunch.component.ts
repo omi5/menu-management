@@ -30,7 +30,7 @@ export class LunchComponent {
   AllMenuItems : any[] = []
   listForLunchMenu :MenuItem[] = []
   getMenuItems(){
-    this.menuService.menuItemsSubject.subscribe(res=>{
+    this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
       this.AllMenuItems = res;
       // console.log('selected menu for Lunch',this.AllMenuItems);
       // console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('Lunch'));
