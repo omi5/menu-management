@@ -5,6 +5,7 @@ import { InventoryService } from '../services/inventory.service';
 import { FormArray, FormGroup } from '@angular/forms';
 import { IngredientService } from '../services/ingredient/ingredient.service';
 import { MakeRecipeService } from '../services/make-recipe.service';
+import { MenuItemServiceService } from '../services/menu-item-service.service';
 interface ingredient {
   id: number
   ingredientName: [],
@@ -77,7 +78,7 @@ export class TestEditItemComponent implements OnInit {
     ];
 
   
-  constructor(private categoryService: CategoryService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService){}
+  constructor(private categoryService: CategoryService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService, private menuService: MenuItemServiceService){}
 
   ngOnInit(): void {
 
@@ -358,7 +359,10 @@ removeRecipes(index: number) {
 
 onsubmit(){
   console.log('updatedItemForEdit',this.item);
-  
+  this.menuService.updateMenuItem(this.item._id, this.item).subscribe(res=>{
+    console.log(res);
+    
+  })
 }
   
 }

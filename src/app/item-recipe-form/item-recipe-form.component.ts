@@ -30,6 +30,7 @@ totalCostPerUnitForAddOns: number =0;
 totalCostPerUnitForRecipe: number =0;
 totalCaloriesPerUnitForRecipe: number =0;
 totalCostForRecipe: number =0;
+marginCost : number = 0;
 totalCost: number = 0;
 totalCostForAddOns: number = 0;
  measurementToolArray:any = [];
@@ -446,7 +447,7 @@ totalCostForAddOns: number = 0;
     this.categories
   
     let newItem ={
-      "restaurantId": 1,
+      "restaurantId": 0,
       "mealTimeId": 1,
       "categoryId" : this.categoryId,
       "categoryName": cateName?.categoryName,
@@ -732,6 +733,7 @@ onIngredientChangeForRecipe(index: number): void {
 updateTotals(): void {
   this.totalCostPerUnit = 0;
   this.totalCaloriesPerUnit = 0;
+  this.marginCost = 0;
   // Check if the 'percentage' control exists in the form
   const percentageControl = this.orderForm.get('percentage');
   if (percentageControl) {
@@ -762,11 +764,15 @@ updateTotals(): void {
           }
 
           this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity / 100;
-          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity;
+          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity / 100;
         }
       }
     });
     // Calculate the total cost by applying the percentage
+    console.log(this.itemPrice);
+    console.log(((this.itemPrice - this.totalCostPerUnit) / this.itemPrice) * 100);
+    
+    this.marginCost =  ((this.itemPrice - this.totalCostPerUnit)/ this.itemPrice) * 100; 
     this.totalCost = this.totalCostPerUnit * (1 + percentage);
     
   } else {

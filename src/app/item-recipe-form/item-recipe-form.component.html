@@ -300,12 +300,12 @@
         </div>
         <div style="margin-bottom: 8px;">
             <label for="" style="width: 180px;  margin-right: 42px;color: black; font-size: 18px;">Profit margin (%):</label>
-            <input (input)="updateTotals()" type="text"  formControlName="percentage" style="height: 35px;border: none; border-bottom: 1px solid rgb(190, 186, 186);">
+            <!-- <input (input)="updateTotals()" type="text"  formControlName="percentage" style="height: 35px;border: none; border-bottom: 1px solid rgb(190, 186, 186);"> -->
+            <span >{{marginCost.toFixed(2)}} %</span>
         </div>
         <div>
-            <label for="" style="width: 180px; margin-right: 100px;color: black; font-size: 18px; ">Total cost:</label>
+            <!-- <label for="" style="width: 180px; margin-right: 100px;color: black; font-size: 18px; ">Total cost:</label> -->
             <!-- <input type="text" [value]="totalCost.toFixed(2)" style="height: 35px; border:1px solid rgb(190, 186, 186); border: none;padding-left: 23px; " readonly> -->
-            <span>{{totalCost.toFixed(2)}}</span>
           </div>
     </div>
   </div>

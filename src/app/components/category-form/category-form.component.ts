@@ -17,7 +17,7 @@ export class CategoryFormComponent {
 
   constructor(private fb: FormBuilder, private msg: NzMessageService, private categoryService: CategoryService) {
     this.validateForm = this.fb.group({
-      restaurantId: 1,
+      restaurantId: 0,
       categoryName: ['', Validators.required],
     });
   }

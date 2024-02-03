@@ -153,7 +153,7 @@ export class RecipeFormComponent {
     }
     
     const newRecipe= {
-      "restaurantId" : 1 ,
+      "restaurantId" : 0 ,
       "recipeName":this.recipeName,
       "categoryId":this.categoryId,
       "recipeItemPortionSize":this.recipeItemPortionsize,
@@ -175,7 +175,7 @@ export class RecipeFormComponent {
     private createIngredientBatch(): FormGroup {
       return this._fb.group({
         id: 1,
-        restuarantId: 1,
+        restuarantId: 0,
         ingredientName: [''],
         unitOfStock: [''],
         quantity: [''],
