@@ -10,7 +10,7 @@ import { MenuItemServiceService } from 'src/app/services/menu-item-service.servi
 export class DinnerComponent implements OnInit {
  
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
-
+  isSpinning = false;
   isCollapsed = true;
   //for modal
   isVisible = false;
@@ -35,16 +35,15 @@ export class DinnerComponent implements OnInit {
   AllMenuItems : any[] = []
   listForDinnerMenu :any[] = []
   getMenuItems(){
+    this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
       // console.log('res',res);
-
       this.AllMenuItems = res;
-
       this.listForDinnerMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Dinner'));
-      
-  
       // console.log('listOfDinnerMenu ====', this.listForDinnerMenu); 
-    })
+      this.isSpinning = false;
+    });
+   
   }
   
 }

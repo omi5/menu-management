@@ -81,3 +81,12 @@ nz-sider{
     font-size: 36px;
     margin-left: 25px;
 }
+
+.spin-div{
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translate(50%, -58%);
+  font-size: 30px;
+  text-align: center;
+}

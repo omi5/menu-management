@@ -81,7 +81,7 @@ export class TestEditItemComponent implements OnInit {
     ];
 
   
-  constructor(private categoryService: CategoryService,private msg: NzMessageService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService, private menuService: MenuItemServiceService,private cloudinary: CloudinaryService){}
+  constructor(private categoryService: CategoryService,private msg: NzMessageService, private inventoryService: InventoryService, private ingredientService: IngredientService, private RecipeService: MakeRecipeService, private menuService: MenuItemServiceService,private cloudinary: CloudinaryService,private message: NzMessageService){}
 
   ngOnInit(): void {
 
@@ -222,23 +222,7 @@ removeIngredientBatch(index: number): void {
   // const removedCostPerUnit = removedBatch.get('costPerUnit').value || 0;
   // this.updateTotals();
 }
-// private createIngredientBatch(): FormGroup {
-//   return this._fb.group({
-//     id: 1,
-//     restuarantId: 1,
-//     ingredientName: [''],
-//     unitOfStock:  [''],
-//     quantity:  [''],
-//     costPerUnit: [0.559],
-//     caloriesPerUnit: [0.333],
-//   });
-// }
 
-// addIngredientBatch(): void {
-//   this.ingredientBatchesArray.push(this.createIngredientBatch());
-//   // this.updateTotals();
-//   this.itemCalories = this.totalCaloriesPerUnit;
-// }
 ingredentList ={
   "ingredients": [
       {
@@ -299,16 +283,6 @@ onIngredientChange(index: number): void {
   this.item.item.ingredients.rawIngredients[index].id = selectedIngredient?.id;
   this.item.item.ingredients.rawIngredients[index].costPerUnit = selectedIngredient?.costPerUnit;
   this.item.item.ingredients.rawIngredients[index].caloriesPerUnit = selectedIngredient?.caloriesPerUnit;
-
-  // Update the costPerUnit and caloriesPerUnit based on the selected ingredient
-  // if (selectedIngredient) {
-  //  ({
-  //     costPerUnit: selectedIngredient.costPerUnit,
-  //     caloriesPerUnit: selectedIngredient.caloriesPerUnit,
-  //     id: selectedIngredient.id
-  //   });
-
-  // }
 }
 
 selectAddOns !: any;
@@ -363,6 +337,7 @@ removeRecipes(index: number) {
 onsubmit(){
   console.log('updatedItemForEdit',this.item);
   this.menuService.updateMenuItem(this.item._id, this.item).subscribe(res=>{
+    this.message.success('Successfully Updated');
     console.log(res);
     
   })

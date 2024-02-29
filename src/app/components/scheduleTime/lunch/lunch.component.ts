@@ -11,6 +11,7 @@ import { MenuItem } from 'src/app/test-component/test-component.component';
 export class LunchComponent {
 
   constructor(private menuService: MenuItemServiceService , private scheduleService: GetMenuItemBySchuduleService){}
+  isSpinning = false;
   isCollapsed = true;
   //for modal
   isVisible = false;
@@ -30,15 +31,15 @@ export class LunchComponent {
   AllMenuItems : any[] = []
   listForLunchMenu :MenuItem[] = []
   getMenuItems(){
+    this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
       this.AllMenuItems = res;
       // console.log('selected menu for Lunch',this.AllMenuItems);
       // console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('Lunch'));
-
       this.listForLunchMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Lunch'));
-
+      this.isSpinning = false;
     })
-    // console.log('listOfLunchMenu', this.listForLunchMenu);  
+     
   }
 
   ngOnInit(): void {

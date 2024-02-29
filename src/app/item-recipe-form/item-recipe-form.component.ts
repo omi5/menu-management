@@ -64,7 +64,7 @@ totalCostForAddOns: number = 0;
 ]
 
   //for Uploading a Image
-  constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService) {
+  constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService,private message: NzMessageService) {
     
     this.orderForm = this._fb.group({
       // ingredientBatches: this._fb.array([this.createIngredientBatch()]),
@@ -481,7 +481,8 @@ totalCostForAddOns: number = 0;
  
     //for adding data to backend
     this.menuService.createNewMenuItem(newItem).subscribe(res=>{
-      alert("The Item has been added successfully");  
+      // alert("The Item has been added successfully");
+      this.message.success('Successfully Created');
     })
   }
 
@@ -772,7 +773,12 @@ updateTotals(): void {
     // console.log(this.itemPrice);
     // console.log(((this.itemPrice - this.totalCostPerUnit) / this.itemPrice) * 100);
     
-    this.marginCost =  ((this.itemPrice - this.totalCostPerUnit)/ this.itemPrice) * 100; 
+    this.marginCost =  ((this.itemPrice - this.totalCostPerUnit)/ this.itemPrice) * 100;
+    if(Number.isNaN(this.marginCost)){
+      this.marginCost = 0;
+    }
+   
+     
     this.totalCost = this.totalCostPerUnit * (1 + percentage);
     
   } else {

@@ -12,6 +12,8 @@ import { MenuItem } from 'src/app/test-component/test-component.component';
 })
 export class BreakfastComponent implements OnInit {
 
+  isSpinning = false;
+
   categorizedMenu: { [key: string]: any[] } = {};
   categories: CategoryList[] = [];
   Object = Object;
@@ -58,12 +60,13 @@ export class BreakfastComponent implements OnInit {
   // }
  
   getMenuItems() {
+    this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res => {
       this.AllMenuItems = res;
-
       this.listForBreakfastMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Breakfast'));
- 
+      this.isSpinning = false;
     });
+    
   }
   
   ngOnInit(): void {

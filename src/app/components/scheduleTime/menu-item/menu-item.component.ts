@@ -6,6 +6,7 @@ import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 import { SelectedItemService } from 'src/app/services/selected-item/selected-item.service';
 import { DrawerService } from 'src/app/services/drawer/drawer.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-menu-item',
@@ -13,7 +14,7 @@ import { DrawerService } from 'src/app/services/drawer/drawer.service';
   styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
-  constructor(private menuService: MenuItemServiceService , private location: Location, private selectedItemService: SelectedItemService, private drawerService: DrawerService){
+  constructor(private menuService: MenuItemServiceService , private location: Location, private selectedItemService: SelectedItemService, private drawerService: DrawerService,private message: NzMessageService){
   }
 
   @Input() menuitem! : any;
@@ -76,6 +77,7 @@ export class MenuItemComponent implements OnInit {
   //Delete a Menu Item 
   deleteMenuItem(id: string){
     this.menuService.deleteMenuItem(id).subscribe(res=>{
+      this.message.success('Successfully deleted');
       window.location.reload();
     })
   }

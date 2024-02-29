@@ -4,6 +4,7 @@ import { CategoryService } from '../services/category.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 export interface MenuItem {
   _id: string;
@@ -66,7 +67,7 @@ export class TestComponentComponent implements OnInit, OnChanges {
 
   Object = Object;
 
-  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef,private message: NzMessageService) {
     
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -195,7 +196,8 @@ export class TestComponentComponent implements OnInit, OnChanges {
 
         });
       });  
-    })  
+    }) 
+    this.message.success('Successfully deleted'); 
     window.location.reload();  
    }
 
@@ -234,6 +236,7 @@ export class TestComponentComponent implements OnInit, OnChanges {
       item.item.timeOfDay.includes(this.mealTimeName)
     );
     this.filterMenuItemsForDeleteAllMenu = [...updatedItems];
+    this.message.success('Successfully deleted');
     window.location.reload();
   }
   

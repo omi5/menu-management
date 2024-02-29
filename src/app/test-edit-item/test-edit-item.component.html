@@ -66,27 +66,6 @@
       </nz-form-item>
     </div>
 
-    <!-- <div nz-col nzSpan="12">
-      <nz-form-item>
-        <label style="width: 180px;  text-align: left;  font-size: 18px;">Delivery:</label>
-        <nz-form-control>
-          
-          <nz-select
-            style="font-size: 16px; width: 28rem;"
-            [nzMaxTagCount]="3"
-            [nzMaxTagPlaceholder]="tagPlaceHolder"
-            nzMode="multiple"
-            nzPlaceHolder="Please select"
-            [(ngModel)]="typeOfFoods"
-          >
-            <nz-option *ngFor="let item of listOfOptionForTypeOfFood" [nzLabel]="item" [nzValue]="item"></nz-option>
-          </nz-select>
-          <ng-template #tagPlaceHolder let-selectedList >and {{ selectedList.length }} more selected</ng-template>
-
-
-        </nz-form-control>
-      </nz-form-item>
-    </div> -->
 
     <div nz-col nzSpan="12">
       <nz-form-item>
@@ -291,8 +270,8 @@
   </div>
   <button (click)="addIngredient()" style="background-color: #26a366;height: 35px; margin-top: 22px; margin-left: 70px; color: #fff; font-size: 20px; border:none; cursor: pointer;">Add Ingredient</button>
 
-<h2 style="margin-bottom: 15px; margin-top: 40px; font-size: 22px;">Add recipe</h2>
-  <h2>Recipes </h2>
+<h2 style="margin-bottom: 15px; margin-top: 40px; font-size: 22px;">Add recipes</h2>
+  
   <div *ngFor="let ingredient of listOfIngredient">
   <div *ngFor="let ingredient of item.item.ingredients.recipes; let i = index">
       <!-- (change)="onIngredientChange(i)" -->

@@ -66,6 +66,8 @@ import { EditMenuItemComponent } from './edit-menu-item/edit-menu-item.component
 import { TestComponentComponent } from './test-component/test-component.component';
 import { TestIngredientsComponent } from './test-ingredients/test-ingredients.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthRedirectComponent } from './auth-redirect/auth-redirect.component';
 
@@ -140,11 +142,8 @@ registerLocaleData(en);
     NzPopconfirmModule,
     NzTimePickerModule,
     NzDropDownModule,
-    
-   
-    
-
-
+    NzMessageModule,
+    NzSpinModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
