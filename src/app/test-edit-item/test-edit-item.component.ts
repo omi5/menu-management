@@ -77,7 +77,7 @@ export class TestEditItemComponent implements OnInit {
     ]
 
     measurementToolArray : string[] = [
-      "cup", "teaspoon", "tablespoon", "gm", "ml", "kg"
+      "cup", "teaspoon", "tablespoon", "gm", "ml", "kg","piece"
     ];
 
   

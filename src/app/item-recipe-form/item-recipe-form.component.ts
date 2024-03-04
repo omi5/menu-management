@@ -117,6 +117,7 @@ totalCostForAddOns: number = 0;
       
       'gm': 'gm',
       'ml': 'ml',
+      'piece':'piece',
       
     };
     

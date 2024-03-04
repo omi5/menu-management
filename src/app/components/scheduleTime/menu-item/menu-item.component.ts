@@ -61,7 +61,7 @@ export class MenuItemComponent implements OnInit {
   visible = false;
 
   viewMenuItem () {
-    console.log("From menu item:", this.menuitem);
+    // console.log("From menu item:", this.menuitem);
     this.selectedItemService.setNewItem(this.menuitem);
   }
 
