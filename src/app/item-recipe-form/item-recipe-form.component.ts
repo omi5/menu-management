@@ -458,6 +458,8 @@ totalCostForAddOns: number = 0;
       "categoryName": cateName?.categoryName,
       "item":{
       "itemName":this.itemName,
+      "enabledInPos" : true,
+      "enabledInMarketplace": true,
       "timeOfDay": this.listOfSeletedValueForMealTime,
       "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "typeOfFoods" : this.listOfSeletedValueForTypeOfFood,
@@ -769,8 +771,8 @@ updateTotals(): void {
             measurementQuantity = 1;
           }
 
-          this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity ;
-          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity / 100;
+          this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity /100;
+          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity / 60;
         }
       }
     });
@@ -827,7 +829,7 @@ updateTotalsForAddOns(): void {
           this.totalCostPerUnitForAddOns += costPerUnit * measurementQuantity * quantity;
           // this.totalCaloriesPerUnit += caloriesPerUnit * measurementQuantity * quantity;
         }
-        this.totalCostForAddOns = this.totalCostPerUnitForAddOns * (1 + percentage);
+        this.totalCostForAddOns = this.totalCostPerUnitForAddOns * (1 + percentage) /100;
         price.setValue(( costPerUnit * quantity)* (1 + percentage) )
       }
     });
@@ -862,7 +864,7 @@ updateTotalsForRecipe(): void {
         if (measurementDetails) {
           this.totalCostPerUnitForRecipe += costPerUnit * quantity;
         }
-        this.totalCostForRecipe = this.totalCostPerUnitForRecipe * (1 + percentage);
+        this.totalCostForRecipe = this.totalCostPerUnitForRecipe * (1 + percentage)/100;
         price.setValue(( costPerUnit * quantity)* (1 + percentage) )
       }
     });

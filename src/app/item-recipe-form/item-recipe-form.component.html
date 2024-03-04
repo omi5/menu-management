@@ -256,7 +256,21 @@
     <!-- Ingredient Batches -->
     <div formArrayName="ingredientBatches">
       <div *ngFor="let batch of ingredientBatchesArray.controls; let i = index" [formGroupName]="i" class="form-group">
+        <!-- <nz-form-control>
+              <nz-select
+                style="font-size: 16px; width: 28rem;"
+                [nzMaxTagCount]="3"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+                nzPlaceHolder="select ingredient"
+                formControlName="ingredientName"
+              >
+                <nz-option *ngFor="let ingredient of ingredentList.ingredients" [nzLabel]="ingredient.ingredientName" [nzValue]="ingredient.ingredientName"></nz-option>
+              </nz-select>
+            </nz-form-control> -->
 
+            <!-- <nz-select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" nzMode="tags" nzPlaceHolder="select ingredient" formControlName="ingredientName">
+              <nz-option *ngFor="let ingredient of ingredentList.ingredients" [nzLabel]="ingredient.ingredientName" [nzValue]="ingredient.ingredientName">{{ ingredient.ingredientName }}</nz-option>
+            </nz-select> -->
         
         <select style="width:250px;  border-color: rgb(190, 186, 186); height: 32px; margin-left: 70px; font-size: 16px;" formControlName="ingredientName" (change)="onIngredientChange(i)" nzPlaceHolder="input search text">
           <option value="" disabled selected hidden style="color: rgb(190, 186, 186);">select ingredient</option>
