@@ -147,6 +147,7 @@ export class TestComponentComponent implements OnInit, OnChanges {
       this.id = this.categoryItem[0]._id;
       // Show modal
       this.showModalForCategory();
+      this.message.success('Successfully Edited.');
     } else {
       console.error('Category not found:', itemCategory);
     }
