@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     this.selectedItem = this.selectedItemService.selectedItem;
     this.selectedItemService.newItem.subscribe(data => {
       this.selectedItem = data;
-      console.log('Selected Item:', this.selectedItem)
+      // console.log('Selected Item:', this.selectedItem)
       this.drawerService.setDrawerVisibility(true);
     });
 
