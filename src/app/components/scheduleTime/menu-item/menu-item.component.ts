@@ -1,12 +1,17 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
-import { NzModalService } from 'ng-zorro-antd/modal';
+// import { NzModalService } from 'ng-zorro-antd/modal';
 import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 import { SelectedItemService } from 'src/app/services/selected-item/selected-item.service';
 import { DrawerService } from 'src/app/services/drawer/drawer.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+
+import { ChangeDetectorRef } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NgZone } from '@angular/core';
+
 
 @Component({
   selector: 'app-menu-item',
@@ -14,7 +19,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./menu-item.component.css']
 })
 export class MenuItemComponent implements OnInit {
-  constructor(private menuService: MenuItemServiceService , private location: Location, private selectedItemService: SelectedItemService, private drawerService: DrawerService,private message: NzMessageService){
+  constructor(private modal: NzModalService,private menuService: MenuItemServiceService , private location: Location, private selectedItemService: SelectedItemService, private drawerService: DrawerService,private message: NzMessageService){
   }
 
   @Input() menuitem! : any;
@@ -75,12 +80,71 @@ export class MenuItemComponent implements OnInit {
 
 
   //Delete a Menu Item 
-  deleteMenuItem(id: string){
-    this.menuService.deleteMenuItem(id).subscribe(res=>{
-      this.message.success('Successfully deleted');
-      window.location.reload();
-    })
-  }
+  // deleteMenuItem(id: string){
+  //   this.menuService.deleteMenuItem(id).subscribe(res=>{
+  //     this.message.success('Successfully deleted');
+  //     window.location.reload();
+  //   })
+  // }
+ confirmModal?: NzModalRef;
+//  deleteMenuItem(id: string) {
+//   this.showConfirm().then(() => {
+//     this.menuService.deleteMenuItem(id).subscribe(
+//       res => {
+//         this.message.success('Successfully deleted');
+//         this.AllMenuItems = this.AllMenuItems.filter(item => item.id !== id); 
+//         // this.cdr.detectChanges();
+//         // this.ngZone.run(() => {});
+//         window.location.reload();
+
+//       },
+//       error => {
+//         this.message.error('Failed to delete item');
+//       }
+//     );
+//   }).catch(() => {
+//     console.log('Deletion cancelled');
+//   });
+// }
+
+deleteMenuItem(id: string) {
+  this.showConfirm().then(() => {
+    this.menuService.deleteMenuItem(id).subscribe(
+      res => {
+        this.message.success('Successfully deleted');
+        
+        // Remove the deleted item from the array
+        this.menuService.menuItemsSubject.next(
+          this.menuService.menuItemsSubject.value.filter(item => item.id !== id)
+        );
+
+        // Optionally, perform any additional logic here
+        
+      },
+      error => {
+        this.message.error('Failed to delete item');
+      }
+    );
+  }).catch(() => {
+    console.log('Deletion cancelled');
+  });
+}
+
+
+
+showConfirm(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Do you Want to delete this item?',
+      nzContent: 'When clicked the OK button, this item will be deleted',
+      nzOnOk: () => resolve(),
+      nzOnCancel: () => reject()
+    });
+  });
+}
+
+  
+
 
   // @ViewChild('EditItem') EditItem: any;
   //Update Menu Item

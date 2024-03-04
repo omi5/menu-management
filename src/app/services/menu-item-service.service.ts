@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenService } from '../interceptors/token/token.service';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject,interval, Observable, Subject, tap } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,19 @@ export class MenuItemServiceService {
     );
   }
 
-  getAllMenuItems(): Observable<any>{
-    return this.http.get<any>(this.url+'/menuItem'); 
+  // getAllMenuItems(): Observable<any>{
+  //   return this.http.get<any>(this.url+'/menuItem'); 
+  // }
+  getAllMenuItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/menuItem`).pipe(
+      tap(data => {
+        // Update the BehaviorSubject with the fetched menu items
+        this.menuItemsSubject.next(data);
+      })
+    );
+    
   }
+  
 
   getAllMenuItemByRestaurantId(): Observable<any>{
     return this.http.get<any>(this.url+`/menuItem/restaurant`)
@@ -81,7 +92,26 @@ export class MenuItemServiceService {
     return response;
   }
   
-  deleteMenuItem(id: string){
-    return this.http.delete(this.url+`/menuItem/delete/${id}`)
+  deleteMenuItem(id: string): Observable<any> {
+    return this.http.delete(this.url + `/menuItem/delete/${id}`).pipe(
+      tap(() => {
+        // After the deletion is successful, fetch the updated menu items
+        this.getAllMenuItems().subscribe(
+          () => {
+            // Optional: You can perform any additional logic here
+            // For example, displaying a success message
+          },
+          error => {
+            console.error('Failed to fetch updated menu items:', error);
+            // Optionally, handle the error here
+          }
+        );
+      })
+    );
   }
+  
 }
+
+
+
+

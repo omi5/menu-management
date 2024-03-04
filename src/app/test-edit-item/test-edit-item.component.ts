@@ -335,8 +335,9 @@ removeRecipes(index: number) {
 }
 
 onsubmit(){
-  console.log('updatedItemForEdit',this.item);
-  this.menuService.updateMenuItem(this.item._id, this.item).subscribe(res=>{
+  const updatedItem = {...this.item, itemImage: this.uploadedImageUrl}
+  console.log('updatedItemForEdit',updatedItem);
+  this.menuService.updateMenuItem(this.item._id, updatedItem).subscribe(res=>{
     this.message.success('Successfully Updated');
     console.log(res);
     
@@ -344,7 +345,7 @@ onsubmit(){
 }
 
 //For uplaoding a image
-uploadedImageUrl!: any
+uploadedImageUrl!: string | undefined
 successMessageDisplayed!: any
 handleChange(info: NzUploadChangeParam): void {
   if (info.file.status !== 'uploading') {

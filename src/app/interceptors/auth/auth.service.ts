@@ -17,13 +17,15 @@ export class AuthService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('accessToken');
+    const isCloudinaryRequest = request.url.includes('cloudinary.com');
 
-    if (token) {
+    if (token && !isCloudinaryRequest) {
       const authRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
         },
       });
+
 
       return next.handle(authRequest);
     } else return next.handle(request);

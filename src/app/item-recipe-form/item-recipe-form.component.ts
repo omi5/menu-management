@@ -153,12 +153,16 @@ totalCostForAddOns: number = 0;
       this.msg.success(`${info.file.name} file uploaded successfully`);
       this.successMessageDisplayed = true;
       this.uploadedImageUrl = info.file.response.url; 
+      console.log(this.uploadedImageUrl);
+      
     } 
     
   }
 
   selectFile(event: any): void {
     const file = event?.file?.originFileObj;
+    console.log('file==',file);
+    
       this.cloudinary.cloudUpload(file, 'dkfnaltqp') 
       .subscribe(
         (response: any) => {
@@ -764,7 +768,7 @@ updateTotals(): void {
             measurementQuantity = 1;
           }
 
-          this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity / 100;
+          this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity ;
           this.totalCaloriesPerUnit += caloriesPerUnit  * quantity / 100;
         }
       }
@@ -819,7 +823,7 @@ updateTotalsForAddOns(): void {
             // Handle simple types like 'gram', 'mililiter'
             measurementQuantity = 1;
           }
-          this.totalCostPerUnitForAddOns += costPerUnit * measurementQuantity * quantity / 100;
+          this.totalCostPerUnitForAddOns += costPerUnit * measurementQuantity * quantity;
           // this.totalCaloriesPerUnit += caloriesPerUnit * measurementQuantity * quantity;
         }
         this.totalCostForAddOns = this.totalCostPerUnitForAddOns * (1 + percentage);
