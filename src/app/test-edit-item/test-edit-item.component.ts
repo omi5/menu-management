@@ -275,10 +275,10 @@ removeIngredient(index: number) {
 onIngredientChange(index: number): void {
   let ingredientBatch = this.item.item.ingredients.rawIngredients.at(index);
   // Find the selected ingredient in the mock data
-  console.log('ingredientBatch', ingredientBatch);
+  // console.log('ingredientBatch', ingredientBatch);
   
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatch.ingredientName);
-  console.log('selectIngredient', selectedIngredient);
+  // console.log('selectIngredient', selectedIngredient);
   
   this.item.item.ingredients.rawIngredients[index].id = selectedIngredient?.id;
   this.item.item.ingredients.rawIngredients[index].costPerUnit = selectedIngredient?.costPerUnit;
@@ -302,11 +302,11 @@ removeAddOns(index: number) {
 
 onIngredientChangeForAddOns(index: number): void {
   const ingredientBatchForAddOns =this.item.item.options.add.at(index);
-  console.log('ingredientBatchAddons', ingredientBatchForAddOns);
+  // console.log('ingredientBatchAddons', ingredientBatchForAddOns);
   
   // Find the selected ingredient in the mock data
   const selectedIngredient = this.ingredentList.ingredients.find(ingredient => ingredient.ingredientName === ingredientBatchForAddOns.ingredientName);
-  console.log('selectIngredient', selectedIngredient);
+  // console.log('selectIngredient', selectedIngredient);
 
   this.item.item.options.add[index].id = selectedIngredient?.id;
   this.item.item.options.add[index].costPerUnit = selectedIngredient?.costPerUnit;
@@ -334,13 +334,15 @@ removeRecipes(index: number) {
   this.item.item.ingredients.recipes.splice(index, 1);
 }
 
+imageUploaded = false;
 onsubmit(){
   this.item.item.itemImage = this.uploadedImageUrl
+  this.imageUploaded = true;
   const updatedItem = {...this.item}
-  console.log('updatedItemForEdit',updatedItem);
+  // console.log('updatedItemForEdit',updatedItem);
   this.menuService.updateMenuItem(this.item._id, updatedItem).subscribe(res=>{
     this.message.success('Successfully Updated');
-    console.log(res);
+    // console.log(res);
     
   })
 }
@@ -350,9 +352,9 @@ uploadedImageUrl!: string | undefined
 successMessageDisplayed!: any
 handleChange(info: NzUploadChangeParam): void {
   if (info.file.status !== 'uploading') {
-    console.log(info.file, info.fileList);
-    console.log('File information:', info.file);
-    console.log('File list:', info.fileList);
+    // console.log(info.file, info.fileList);
+    // console.log('File information:', info.file);
+    // console.log('File list:', info.fileList);
   }
   if (info.file.status === 'done' && !this.successMessageDisplayed) {
     this.msg.success(`${info.file.name} file uploaded successfully`);
