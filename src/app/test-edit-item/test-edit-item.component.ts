@@ -335,7 +335,8 @@ removeRecipes(index: number) {
 }
 
 onsubmit(){
-  const updatedItem = {...this.item, itemImage: this.uploadedImageUrl}
+  this.item.item.itemImage = this.uploadedImageUrl
+  const updatedItem = {...this.item}
   console.log('updatedItemForEdit',updatedItem);
   this.menuService.updateMenuItem(this.item._id, updatedItem).subscribe(res=>{
     this.message.success('Successfully Updated');

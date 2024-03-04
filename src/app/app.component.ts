@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   //Update Menu Item
   updateMenuItem(){
   this.EditItem.onsubmit()
-  
+  this.closeForEdit()
   }
 
   visibleForEdit = false;
