@@ -458,8 +458,8 @@ totalCostForAddOns: number = 0;
       "categoryName": cateName?.categoryName,
       "item":{
       "itemName":this.itemName,
-      "enabledInPos" : true,
-      "enabledInMarketplace": true,
+      "availableInPos" : true,
+      "availableInMarketPlace": true,
       "timeOfDay": this.listOfSeletedValueForMealTime,
       "itemProfileTastyTags" : this.listOfSelectedValueForTastyTags ,
       "typeOfFoods" : this.listOfSeletedValueForTypeOfFood,
