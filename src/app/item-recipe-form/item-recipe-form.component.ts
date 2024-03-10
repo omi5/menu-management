@@ -491,6 +491,7 @@ totalCostForAddOns: number = 0;
       // alert("The Item has been added successfully");
       this.message.success('Successfully Created');
     })
+    // window.location.reload();
   }
 
   getMenuItemById(id:any){
