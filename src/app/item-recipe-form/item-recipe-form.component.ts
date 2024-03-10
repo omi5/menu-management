@@ -773,7 +773,7 @@ updateTotals(): void {
           }
 
           this.totalCostPerUnit += costPerUnit * measurementQuantity * quantity /100;
-          this.totalCaloriesPerUnit += caloriesPerUnit  * quantity / 60;
+          this.totalCaloriesPerUnit += Math.floor(caloriesPerUnit * quantity / 60);
         }
       }
     });
