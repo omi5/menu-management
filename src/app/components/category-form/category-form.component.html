@@ -1,10 +1,7 @@
 
 <div class="mx-auto">
-    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitFormForCategory()">
-
-           
-            <div >
-
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitFormForCategory()">        
+        <div >
             <nz-form-item class="input-box-for-name">
                 <nz-form-control nzErrorTip="Please input your category name!">
                     <label for="scheduleName" nzRequired style="font-size: 18px;">Category Name</label>    
@@ -13,20 +10,8 @@
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
-<!-- 
-            <nz-form-item class="input-box-for-description">
-                <nz-form-control  nzHasFeedback nzErrorTip="Please write something here!">
-                    <label  nzRequired style="margin-bottom: 15px; font-size: 20px;">Description</label>
-                    <nz-textarea-count [nzMaxCharacterCount]="2000">
-                    <textarea formControlName="categoryDescription" nz-input rows="2" placeholder="write any thing" class="w-full text-xl" style=" width: 25rem;"></textarea>
-                    </nz-textarea-count>
-                </nz-form-control>
-            </nz-form-item> -->
-                
-            </div>
-            
- 
-            </form>
+        </div>
+    </form>
 </div>  
 
 

@@ -25,17 +25,12 @@ export class AppComponent implements OnInit {
     this.selectedItem = this.selectedItemService.selectedItem;
     this.selectedItemService.newItem.subscribe(data => {
       this.selectedItem = data;
-      // console.log('Selected Item:', this.selectedItem)
       this.drawerService.setDrawerVisibility(true);
     });
 
     this.infoDrawerVisibility = this.drawerService.visible;
     this.drawerService.drawerVisibilityChange.subscribe(state => this.infoDrawerVisibility = state);
-    // console.log('selectedItemFrom app', this.selectedItemService.selectedItem);
-    
   }
-
-
 
   @ViewChild('EditItem') EditItem: any;
   //Update Menu Item
@@ -53,13 +48,11 @@ export class AppComponent implements OnInit {
     this.visibleForEdit = false;
   }
 
-  
   title = 'menu-Builder';
-
   closeInfoDrawer () {
     this.drawerService.setDrawerVisibility(false);
   }
-
+  
   OpenADrawerForEdit(){
     this.openForEdit()
   }
