@@ -1,33 +1,3 @@
-<!-- <nz-sider nzWidth="15%" nzCollapsible  [(nzCollapsed)]="isCollapsed"  class="sidebar-bg-color"> -->
-    
-    <!-- <ul nz-menu nzTheme="light" nzMode="inline" >
-      <li  nzTitle="Menus" nzIcon="dashboard" class="hover-color">
-        <span class="sidebarIcons" nz-icon nzType="dashboard" nzTheme="outline"></span>Menus
-        <ul>
-          <li class="sidebarLi" nz-menu-item  (click)="onAllDay()">All Day</li>
-          <li class="sidebarLi" nz-menu-item (click)="onBreakfast()">Breakfast</li>
-          <li class="sidebarLi" nz-menu-item (click)="onLunch()">Lunch</li>
-          <li class="sidebarLi" nz-menu-item (click)="onDinner()">Dinner</li>
-        </ul>
-      </li> -->
-      <!-- <li nz-submenu nzTitle="Create" nzIcon="form" class="hover-color">
-        <ul>
-          <li nz-menu-item (click)="open()" >Menu Item Recipe</li>
-          <li nz-menu-item (click)="openRecipeDrawer()">Ingredient Recipe</li>
-          <li nz-menu-item (click)="showModal()">Schedule</li>
-          <li nz-menu-item (click)="showModalForCategory()">Category</li>
-        </ul>
-      </li> -->
-      <!-- <li  nzTitle="Tables" nzIcon="form" class="hover-color">
-        <span class="sidebarIcons" nz-icon nzType="table" nzTheme="outline"></span>Tables
-        <ul>
-          <li class="sidebarLi" nz-menu-item (click)="recipe()">Ingredient Recipe</li>
-          <li class="sidebarLi" nz-menu-item (click)="schedule()">Schedule</li>
-          <li class="sidebarLi" nz-menu-item (click)="category()">Category</li>
-        </ul>
-      </li>
-    </ul> -->
-  <!-- </nz-sider> -->
 
   <div style="display: flex;">
     <ul nz-menu nzMode="inline">
@@ -93,11 +63,6 @@
         <ng-container *nzModalContent>
           <!-- (submitedFormData)="submitForm($event)" -->
         <app-category-form  #modalFormForCategory></app-category-form>
-
-        <!-- //Start -->
-
-        <!-- //End -->
-          
         </ng-container>
     </nz-modal>
 
@@ -118,7 +83,7 @@
     <form nz-form *nzDrawerContent (ngSubmit)="createItems()">
      
       
-      <app-item-recipe-form #itemForm></app-item-recipe-form>
+      <create-menu-form #itemForm></create-menu-form>
 
       
     </form>

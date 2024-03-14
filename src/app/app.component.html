@@ -1,5 +1,3 @@
-<!-- <app-sidebar></app-sidebar> -->
-
 <router-outlet></router-outlet>
 
 <!-- Item info drawer -->
@@ -13,9 +11,7 @@ nzTitle=""
 (nzOnClose)="closeInfoDrawer()"
 >
 <ng-container *nzDrawerContent>
-
-
-        <div *ngIf="selectedItem" style="margin: 0 auto; margin-top: 80px; display: flex;">
+    <div *ngIf="selectedItem" style="margin: 0 auto; margin-top: 80px; display: flex;">
         <div style="width: 400px; ">
           <img
           style="height: 700px; border-radius: 28px;"
@@ -26,21 +22,17 @@ nzTitle=""
         </div>
         <!-- information div -->
         <div style=" width: 700px; margin-left: 70px;">
-        
-          <h1
-          style="font-size: 38px;color: #333;font-weight: 600;"
-          >{{selectedItem.item.itemName}}</h1>
-          <div style="display: flex; justify-content: space-between; margin-right: 10px; margin-top: 20px;width: 500px; ">
-            <div>
-              <div style="display: flex; height: 30px;">
-                <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
-                <p class="peraStyle">{{selectedItem.item.itemCalories}}</p>
-              </div>
+           <h1 style="font-size: 38px;color: #333;font-weight: 600;">{{selectedItem.item.itemName}}</h1>
+           <div style="display: flex; justify-content: space-between; margin-right: 10px; margin-top: 20px;width: 500px; ">
+              <div>
+                <div style="display: flex; height: 30px;">
+                  <span class="iconDetails" nz-icon nzType="fire" nzTheme="outline"></span>
+                  <p class="peraStyle">{{selectedItem.item.itemCalories}}</p>
+                </div>
               <span class="spanStyle" style="padding-left: 30px;">Calories</span>
-            </div>
+              </div>
             <div>
               <div style="display: flex; text-align: center;height: 30px;">
-                
                 <span class="iconDetails" nz-icon nzType="pie-chart" nzTheme="outline"></span>
                 <p class="peraStyle">{{selectedItem.item.itemPortionSize}}</p>
               </div>
@@ -67,14 +59,8 @@ nzTitle=""
               </div>
               <span class="spanStyle">Minutes</span>
             </div>
-            <!-- <div style="display: flex; ">
-              <span nz-icon nzType="dollar" nzTheme="outline" class="iconDetails"></span>
-              <p style="font-size: 18px;color: #333;font-weight: 500; margin-left: 2px;margin-top: 4px;">${{itemPrice}}</p>
-            </div> -->
-        
           </div>
           <hr style=" border-top: 2px solid #038851; width: 515px;">
-        
           <!-- timeOfDay -->
           <h3 style="margin-top: 8px;">Menus
             <hr style="width: 50px; border-top: 1px solid #038851;">
@@ -127,7 +113,7 @@ nzTitle=""
         </div >
         
         
-        </div> 
+    </div> 
 
 </ng-container>     
 
@@ -151,7 +137,7 @@ nzTitle=""
 <ng-container *nzDrawerContent>
 
 <!-- <app-edit-menu-item [item]="item" #EditItem></app-edit-menu-item> -->
-<app-test-edit-item [item]="selectedItem" #EditItem></app-test-edit-item>
+<edit-menu-item [item]="selectedItem" #EditItem></edit-menu-item>
 </ng-container>     
 
 <ng-template #footerTpl1>
