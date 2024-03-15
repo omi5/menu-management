@@ -12,6 +12,7 @@ Bento -Menu Builder system is designed to seamlessly connect the Inventory syste
 
 **_Client_**
 
+```
   src
 │
 ├── app
@@ -65,7 +66,7 @@ Bento -Menu Builder system is designed to seamlessly connect the Inventory syste
 └── assets
 |── favicon.ico
 |── index.html
-
+```
 
 ## Getting Started
 
