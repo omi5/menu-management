@@ -45,7 +45,7 @@ Bento -Menu Builder system is designed to seamlessly connect the Inventory syste
 │   ├── ingredient
 │   └── selected-item
 │
-├── services
+    ├── services
 │   ├── api-client.service.ts
 │   ├── category.service.ts
 │   ├── cloudinary.service.spec.ts
