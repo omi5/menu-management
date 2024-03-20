@@ -7,8 +7,6 @@ import { CategoryService } from '../../services/category.service';
 import { CategoryList } from '../../interfaces/categoryList.interface';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MakeRecipeService } from '../../services/make-recipe.service';
-import { inventoryIngredient } from '../../interfaces/inventoryIngredints.interface';
-import { recipeInterface } from '../../interfaces/recipeIngredints.interface';
 import { InventoryService } from '../../services/inventory.service';
 
 @Component({
