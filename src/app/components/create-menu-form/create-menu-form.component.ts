@@ -8,6 +8,7 @@ import { CategoryList } from '../../interfaces/categoryList.interface';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MakeRecipeService } from '../../services/make-recipe.service';
 import { InventoryService } from '../../services/inventory.service';
+import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
   selector: 'create-menu-form',
@@ -35,9 +36,12 @@ totalCostForRecipe: number =0;
 marginCost : number = 0;
 totalCost: number = 0;
 totalCostForAddOns: number = 0;
- measurementToolArray:any = [];
- measurementTools: any;
- typeOfMeasurement: any = ['liquid','solid']
+measurementToolArray:any = [];
+measurementTools: any;
+typeOfMeasurement: any = ['liquid','solid']
+
+tastyTags: string[] = [];
+allergens: string[] = [];
 
  @Input() categoryName!: string;
  selectedCategoryItem !: any[];
@@ -49,24 +53,11 @@ totalCostForAddOns: number = 0;
   close(): void {
     this.visible = false;
   }
-  owner = ["Burger","Pizza","Drinks"]
-  howToDelivered = [ 
-  'Cardboard Boxes',
-  'Plastic Containers',
-  'Styrofoam ',
-  'Paper Bags',
-  'Thermal Insulated Bags']
   //Array Of Portion Size
-   portionSizes = [
-    "Small",
-    "Medium",
-    "Large",
-    "Extra Small",
-    "Extra Large"
-]
+  portionSizes: string[] = []
 
   //for Uploading a Image
-  constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService,private message: NzMessageService) {
+  constructor(private _fb: FormBuilder, private inventoryService: InventoryService, private cloudinary: CloudinaryService, private msg: NzMessageService, private menuService: MenuItemServiceService, private categoryService: CategoryService,private recipeService:MakeRecipeService,private message: NzMessageService, private dataService: DataService) {
     
     this.orderForm = this._fb.group({
       // ingredientBatches: this._fb.array([this.createIngredientBatch()]),
@@ -131,6 +122,7 @@ totalCostForAddOns: number = 0;
 
   }
 
+  
 
 
   uploadedImageUrl: string | undefined;
@@ -250,57 +242,40 @@ totalCostForAddOns: number = 0;
     this.addIngredientBatch()
     this.selectedCategory()
     this.categoryId = this.categoryName;
-    //For allergens
-    const allergens: string[] = [
-      'Cereals',
-      'Gluten',
-      'Crustaceans',
-      'Eggs',
-      'Fish',
-      'Peanuts',
-      'Soybeans',
-      'Milk',
-      'Nuts',
-      'Celery',
-      'Mustard',
-      'Sesame seeds',
-      'Sulphur dioxide and sulphites',
-      'Lupin',
-      'Molluscs'
-      // Add more allergens as needed
-    ];
-    //For tasty tags
-    const tastyTags: string[] = [
-      'Savory',
-      'Spicy',
-      'Sweet',
-      'Sour',
-      'Bitter',
-      'Salty',
-      'Rich',
-      'Smoky',
-      'Tangy',
-      'Creamy',
-      'Zesty',
-      'Herby',
-      'Fruity',
-      'Nutty',
-      'Floral',
-      'Earthy',
-      'Citrusy',
-      'Buttery',
-      'Tart',
-      'Fresh'
-    ];
+   
 
     const mealTime = ['All day', 'Breakfast', 'Lunch','Dinner']
     const typeOfFood = ['Delivery', 'Pick Up', 'Eat-In', 'All'];
    
-    this.listOfOption = allergens;
-    this.listOfOptionForTastyTags= tastyTags;
+    this.listOfOption = this.allergens;
+    this.listOfOptionForTastyTags= this.tastyTags;
     this.listOfOptionForMealTime = mealTime;
     this.listOfOptionForTypeOfFood = typeOfFood;
+
+    this.getPortionSizes()
     
+  }
+
+  getPortionSizes() {
+    this.dataService.getPortionSizes().subscribe(data => {
+      for (let value in data){
+        this.portionSizes.push(value);
+      }
+    });
+  }
+  getTastytags(){
+    this.dataService.getTastyTags().subscribe(data=>{
+      for (let value in data){
+        this.tastyTags.push(value);
+      }
+    })
+  }
+  getAllergens(){
+    this.dataService.getAllergens().subscribe(data=>{
+      for(let value in data){
+        this.allergens.push(value)
+      }
+    })
   }
 
   private subscribeToIngredientChanges() {
