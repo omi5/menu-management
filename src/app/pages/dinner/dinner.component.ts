@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IItem } from 'src/app/interfaces/menuItem.interface';
 import { GetMenuItemBySchuduleService } from 'src/app/services/get-menu-item-by-schudule.service';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 
@@ -31,16 +32,14 @@ export class DinnerComponent implements OnInit {
     // this.getFilterItemForBreakfast(1);
   }
 
-  filtercategoryList: any[]=[1,2]
-  AllMenuItems : any[] = []
-  listForDinnerMenu :any[] = []
+  // filtercategoryList: any[]=[1,2]
+  AllMenuItems : IItem[] = []
+  listForDinnerMenu :IItem[] = []
   getMenuItems(){
     this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
-      // console.log('res',res);
       this.AllMenuItems = res;
       this.listForDinnerMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Dinner'));
-      // console.log('listOfDinnerMenu ====', this.listForDinnerMenu); 
       this.isSpinning = false;
     });
    

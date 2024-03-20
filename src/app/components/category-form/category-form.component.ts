@@ -30,7 +30,7 @@ export class CategoryFormComponent {
         
       })
       // console.log(formData);
-    // this.submittedFormData.(formData); 
+    // this.submittedFormData.(formData);
   }
 
 }

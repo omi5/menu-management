@@ -3,7 +3,7 @@ import { CategoryList } from 'src/app/interfaces/categoryList.interface';
 import { CategoryService } from 'src/app/services/category.service';
 import { GetMenuItemBySchuduleService } from 'src/app/services/get-menu-item-by-schudule.service';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
-import { MenuItem } from 'src/app/components/category-container/category-container.component';
+import { IItem } from 'src/app/interfaces/menuItem.interface';
 
 @Component({
   selector: 'app-breakfast',
@@ -38,31 +38,14 @@ export class BreakfastComponent implements OnInit {
     private categoryService: CategoryService
   ) { }
 
-  filtercategoryList: any[]=[1,2]
-  AllMenuItems : any[] = []
-  listForBreakfastMenu :MenuItem[] = []
-  // getMenuItems(){
-  //   this.menuService.getAllMenuItems().subscribe(res=>{
-  //     this.AllMenuItems.push(res);
-  //     console.log('selected menu for Lunch',this.AllMenuItems);
-  //     console.log('New Menu item for Lunch',this.AllMenuItems[0][0].item.timeOfDay.includes('BreakFast'));
-
-  //     for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-  //       if(this.AllMenuItems[0][i].item.timeOfDay.includes('BreakFast')){
-  //             this.listForBreakfastMenu.push(this.AllMenuItems[0][i])
-  //           }
-  //     }
-
-
-  //   })
-  //   console.log('listOfLunchMenu', this.listForBreakfastMenu);
-    
-  // }
+  // filtercategoryList: any[]=[1,2]
+  AllMenuItems : IItem[] = []
+  listForBreakfastMenu :IItem[] = []
  
   getMenuItems() {
     this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res => {
-      this.AllMenuItems = res;
+      this.AllMenuItems = res;      
       this.listForBreakfastMenu = this.AllMenuItems.filter(item => item.item.timeOfDay.includes('Breakfast'));
       this.isSpinning = false;
     });

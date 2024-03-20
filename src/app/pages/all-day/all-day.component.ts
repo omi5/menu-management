@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetMenuItemBySchuduleService } from 'src/app/services/get-menu-item-by-schudule.service';
 import { MenuItemServiceService } from 'src/app/services/menu-item-service.service';
 import { MenuItem } from 'src/app/components/category-container/category-container.component';
+import { IItem } from 'src/app/interfaces/menuItem.interface';
 
 @Component({
   selector: 'app-all-day',
@@ -31,10 +32,8 @@ export class AllDayComponent implements OnInit{
    this.getMenuItems()
   }
 
-  //get All Menu
-  filtercategoryList: any[]=[1,2]
-  AllMenuItems : any[] = []
-  listForAllDayMenu :any[] = []
+  AllMenuItems : IItem[] = []
+  listForAllDayMenu :IItem[] = []
   getMenuItems(){
     this.isSpinning = true;
     this.menuService.getAllMenuItemByRestaurantId().subscribe(res=>{
@@ -45,16 +44,3 @@ export class AllDayComponent implements OnInit{
    
   } 
 }
-
-// if (this.AllMenuItems[0].length) {
-      //   for(let i = 0; i <= this.AllMenuItems[0].length; i++){
-      //     if (this.AllMenuItems[0][i]){
-      //       if(this.AllMenuItems[0][i].item.timeOfDay.includes('All day')){
-      //         this.listForAllDayMenu.push(this.AllMenuItems[0][i])
-      //       }
-      //     }
-          
-      //   }
-
-      // }
-    // console.log('listOfBreakfastMenu', this.listForAllDayMenu);

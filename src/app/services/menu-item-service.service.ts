@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { TokenService } from '../interceptors/token/token.service';
 import { BehaviorSubject,interval, Observable, Subject, tap } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { IItem } from '../interfaces/menuItem.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +52,8 @@ export class MenuItemServiceService {
   }
   
 
-  getAllMenuItemByRestaurantId(): Observable<any>{
-    return this.http.get<any>(this.url+`/menuItem/restaurant`)
+  getAllMenuItemByRestaurantId(): Observable<IItem[]>{
+    return this.http.get<IItem[]>(this.url+`/menuItem/restaurant`)
   }
 
   getAllmenuForMP(id:any): Observable<any>{
