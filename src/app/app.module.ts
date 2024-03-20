@@ -46,7 +46,6 @@ import { RecipeTableComponent } from './components/recipe-table/recipe-table.com
 import { CategoryContainerComponent } from './components/category-container/category-container.component';
 import { AuthRedirectComponent } from './pages/auth-redirect/auth-redirect.component';
 import { EditMenuItemComponent } from './components/edit-menu-item/edit-menu-item.component';
-import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { NzHeaderForTriggerComponent } from './components/nz-header-for-trigger/nz-header-for-trigger.component';
@@ -76,7 +75,6 @@ registerLocaleData(en);
     DinnerComponent,
     MenuItemComponent,
     CreateMenuFormComponent,
-    ItemDetailsComponent,
     RecipeFormComponent,
     CategoryFormComponent,
     CategoryTableComponent,

@@ -19,7 +19,7 @@ export interface IItem {
     itemPreparationTime: number;
     itemPackingType?: IPacking[]; 
     // itemPackingDimension?: string[];  //PackingInterface
-    itemLastingTime?: number; //needed for marketplace
+    itemLastingTime: number; //needed for marketplace
     itemPortionSize: string;
     ingredients: { rawIngredients: IIngredient[]; recipes: IRecipe[] }; //IRecipe[]
     options: { add: IOption[]; no: IOption[] }; //

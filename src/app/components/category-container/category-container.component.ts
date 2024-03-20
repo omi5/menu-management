@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MenuItemServiceService } from '../../services/menu-item-service.service';
 import { CategoryService } from '../../services/category.service';
-import { forkJoin } from 'rxjs';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { IItem } from 'src/app/interfaces/menuItem.interface';
 
 export interface MenuItem {
   _id: string;
@@ -57,19 +57,15 @@ export interface Category {
   styleUrls: ['./category-container.component.css'],
 })
 export class CategoryContainerComponent implements OnInit, OnChanges {
-  @Input() menuItems1: any;
-  menuItems: any;
+  @Input() menuItems: IItem[]= [];
   title = 'menu';
-  allMenuItems: MenuItem[] = [];
+  allMenuItems: IItem[] = [];
   categories: Category[] = [];
-  categorizedMenu: { [key: string]: MenuItem[] } = {};
-  mealTimeName: any = '';
-
+  categorizedMenu: { [key: string]: IItem[] } = {};
+  mealTimeName: string = '';
   Object = Object;
 
-  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef,private message: NzMessageService) {
-    
-  }
+  constructor(private route: ActivatedRoute , private menuItemsService: MenuItemServiceService, private categoryService: CategoryService, private cdr: ChangeDetectorRef,private message: NzMessageService) { }
   ngOnChanges(changes: SimpleChanges): void {
     this.categorizeMenuItems();
   }
@@ -77,8 +73,6 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.categoryService.getAllCategory().subscribe(
     (categories) => {
-      // this.menuItems = [];
-      // this.menuItem.push(...menuItems);
       this.categories.push(...categories);
       this.categorizeMenuItems();
     },
@@ -96,25 +90,20 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
       this.mealTimeName = 'All Day';
     }
     else{
-
       this.mealTimeName = this.route.snapshot.url[0].path;
     }
-    
   }
 
   categorizeMenuItems () {
     this.categories.forEach((category) => {
       this.categorizedMenu[category.categoryName] = [];
     });
-
-    this.menuItems1.forEach((menuItem:any) => {
+    this.menuItems.forEach((menuItem:IItem) => {
       const category = this.categories.find((c) => c._id === menuItem.categoryId);
       if (category) {
         this.categorizedMenu[category.categoryName].push(menuItem);
       }
     });
-
-    // console.log('sorted menu', this.categorizedMenu);
   }
 
   private subscribeToIngredientChanges() {
@@ -123,14 +112,13 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
       this.categoryService.getAllCategory()
     });
   }
-  //get All Menu Item 
 
+  //get All Menu Item 
   getMenuItems(){
     this.menuItemsService.menuItemsSubject.subscribe(res=>{
       this.allMenuItems.push(...res)
     })
   }
-
 
   categoryName!: string;
   id! : string
