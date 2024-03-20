@@ -5,6 +5,8 @@ import { ActivatedRoute} from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { IItem } from 'src/app/interfaces/menuItem.interface';
+import { CreateMenuFormComponent } from '../create-menu-form/create-menu-form.component';
+import { CategoryFormComponent } from '../category-form/category-form.component';
 
 export interface MenuItem {
   _id: string;
@@ -122,7 +124,7 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
 
   categoryName!: string;
   id! : string
-  categoryItem: any[] = []
+  categoryItem: Category[] = []
 
   editBtn(itemCategory: any) {
     // Find the category to edit in the categories array
@@ -141,13 +143,11 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     }
   }
   
-  deleteBtn(){
-    // console.log('delete Button is click');
-    
-  }
-  filterMenuForMenu: any []= []
-   filterMenuItemsForDeleteAllMenu: any[] = []
-  deleteFromAllMenu(itemCategory:any){
+  deleteBtn(){}
+
+  filterMenuForMenu: IItem []= []
+  filterMenuItemsForDeleteAllMenu: IItem[] = []
+  deleteFromAllMenu(itemCategory:string){
     this.categories.map(item=>{
       if(item.categoryName === itemCategory){
         this.categoryItem.push(item)
@@ -156,12 +156,10 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
    if(this.mealTimeName === 'allDay'){
     this.mealTimeName = 'All Day'
    }
-   
     this.allMenuItems.map(item=>{
       if (item.categoryId == this.categoryItem[0]._id ) {
         this.filterMenuForMenu.push(item);
-      }
-      
+      } 
     })
     this.filterMenuForMenu.map(item =>{
       if(item.item.timeOfDay.includes(this.mealTimeName)){
@@ -178,11 +176,8 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
         this.menuItemsService.deleteMenuItem(item._id).subscribe((res) => {
           // Backend delete successful, trigger a refresh
           next: this.menuItemsService.getAllMenuItems().subscribe(res =>{
-          
-            this.menuItemsService.menuItemsSubject.next(res);
-            // this.cdr.detectChanges();    
+            this.menuItemsService.menuItemsSubject.next(res);   
    })  
-
         });
       });  
     }) 
@@ -190,29 +185,25 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     window.location.reload();  
    }
 
-   filterMenu: any []= []
-   filterMenuItemsForDeleteThisMenu: any[] = []
+   filterMenu: IItem []= []
+   filterMenuItemsForDeleteThisMenu: IItem[] = []
   
-  deleteFromThisMenu(itemCategory: any) {
+  deleteFromThisMenu(itemCategory: string) {
     this.categories.forEach(item => {
       if (item.categoryName === itemCategory) {
         this.categoryItem.push(item);
       }
     });
-  
     const categoryId = this.categoryItem[0]._id;
     this.filterMenu = this.allMenuItems.filter(item => item.categoryId === categoryId);
-  
     this.filterMenuItemsForDeleteThisMenu = this.filterMenu.filter(item =>
       item.item.timeOfDay.includes(this.mealTimeName)
-    );
-  
+    );  
     this.filterMenuItemsForDeleteThisMenu.forEach(item => {
       const index = item.item.timeOfDay.indexOf(this.mealTimeName);
       if (index > -1) {
         item.item.timeOfDay.splice(index, 1);
       }
-  
       this.menuItemsService.updateMenuItem(item._id, item).subscribe(res => {
         this.menuItemsService.getAllMenuItems().subscribe(updatedMenuItems => {
           this.menuItemsService.menuItemsSubject.next(updatedMenuItems);
@@ -235,11 +226,10 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     categoryName:this.categoryName
    }
    this.categoryService.updateCategory(this.categoryItem[0]._id, editDetails).subscribe(res=> {
-
    })
   }
   nameOfCategory!: string;
-  OpenDrawerForCreateMenuItem(itemCategory: any){
+  OpenDrawerForCreateMenuItem(itemCategory: string){
     this.nameOfCategory = itemCategory;
     this.open()
   }
@@ -253,7 +243,7 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     }
 
    //for item form drawer
-   @ViewChild('itemForm') itemForm: any
+   @ViewChild('itemForm') itemForm!: CreateMenuFormComponent;
 
    createItems(): void{
      this.itemForm.createItem()
@@ -269,7 +259,7 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     this.isVisibleForCategory = false;
   }
    //for Schedule modal
-   @ViewChild('modalFormForCategory') modalFormForCategory: any
+   @ViewChild('modalFormForCategory') modalFormForCategory!: CategoryFormComponent;
 
    handleOkForCategory(): void {
     //  this.modalFormForCategory.submitFormForCategory();
@@ -287,12 +277,9 @@ export class CategoryContainerComponent implements OnInit, OnChanges {
     this.isVisibleForCreateCategory = false;
   }
    //for Schedule modal
-   @ViewChild('modalFormForCategory') modalFormForCreateCategory: any
+   @ViewChild('modalFormForCategory') modalFormForCreateCategory!: CategoryFormComponent;
 
    handleOkForCreateCategory(): void {
-    //  this.modalFormForCategory.submitFormForCategory();
-    // console.log('click from create category');
-    
     this.modalFormForCreateCategory.submitFormForCategory()
      this.isVisibleForCreateCategory = false;
    }

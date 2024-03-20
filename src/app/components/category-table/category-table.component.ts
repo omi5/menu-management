@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzTablePaginationPosition, NzTablePaginationType, NzTableSize } from 'ng-zorro-antd/table/public-api';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Category } from 'src/app/interfaces/categoryList.interface';
 import { CategoryService } from 'src/app/services/category.service';
 
@@ -12,7 +11,6 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class CategoryTableComponent implements OnInit {
   isCollapsed = false;
-
 
   frontPagination = true;
   totalNumberOfData = 0;
@@ -50,7 +48,6 @@ export class CategoryTableComponent implements OnInit {
   }
 
   submitForm() {
-    // this.onEdit();
     this.visible = false;
     this.onEdit({ 
       _id: this._id,
@@ -70,7 +67,7 @@ export class CategoryTableComponent implements OnInit {
     this.categoryId = null;
   }
 
-  categoryList: any[] = []; 
+  categoryList: Category[] = []; 
 
   id = '';
   categoryName = '';
@@ -107,7 +104,7 @@ export class CategoryTableComponent implements OnInit {
         );
         // console.log(`Category with ID ${id} deleted successfully.`);
       },
-      error: (error: any) => {
+      error: (error) => {
         console.error(`Error deleting category with ID ${id}`, error);
       },
     });
@@ -122,18 +119,13 @@ export class CategoryTableComponent implements OnInit {
     this.categoryName = category.categoryName;
     this.categoryDescription = category.categoryDescription;
     this.categoryImage = category.categoryImage;
-   // this.restaurantId = category.restaurantId;
-    // this.categoryId = category.categoryId;
     const editDetails = {
       restaurantId: 1,
       _id: category._id,
       categoryName: category.categoryName,
       categoryDescription: category.categoryDescription,
       categoryImage: category.categoryImage,
-      //categoryId: category._id,
     };
-    // console.log('categoryId', category);
-    // console.log("edit details final", editDetails);
     
     this.categoryService.updateCategory(category._id, editDetails).subscribe(res=>{
       console.log('====subscribe Data',res);
@@ -141,7 +133,5 @@ export class CategoryTableComponent implements OnInit {
     })
   }
 
-
-  
 
 }

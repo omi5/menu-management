@@ -25,12 +25,8 @@ export class CategoryFormComponent {
   submitFormForCategory(): void {
       const formData = this.validateForm.value;
       this.categoryService.createCategory(formData).subscribe(res=>{
-        alert('categoryCreated');
-        // console.log(res);
-        
+        alert('categoryCreated'); 
       })
-      // console.log(formData);
-    // this.submittedFormData.(formData);
   }
 
 }

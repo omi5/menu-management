@@ -42,7 +42,6 @@ export class ModalFormComponent {
       this.scheduleService.createScheduleTime(formData).subscribe(res=>{
         alert('ScheduleTime Created'); 
       });
-      // console.log(formData);
   }
   
 }

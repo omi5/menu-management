@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ModalFormComponent } from '../modal-form/modal-form.component';
+import { CategoryFormComponent } from '../category-form/category-form.component';
+import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
+import { CreateMenuFormComponent } from '../create-menu-form/create-menu-form.component';
 
 interface Day {
   name: string;
@@ -27,7 +30,7 @@ export class NzSiderComponent {
     this.isVisible = false;
   }
    //for Schedule modal
-   @ViewChild('modalForm') modalForm: any
+   @ViewChild('modalForm') modalForm!: ModalFormComponent;
 
    handleOk(): void {
      this.isVisible = false;
@@ -45,7 +48,7 @@ export class NzSiderComponent {
     this.isVisibleForCategory = false;
   }
    //for Schedule modal
-   @ViewChild('modalFormForCategory') modalFormForCategory: any
+   @ViewChild('modalFormForCategory') modalFormForCategory!: CategoryFormComponent;
 
    handleOkForCategory(): void {
      this.modalFormForCategory.submitFormForCategory();
@@ -77,13 +80,13 @@ export class NzSiderComponent {
   }
 
 // for Create a  Recipe Items recipeForm
-@ViewChild('recipeForm') recipeForm: any
+@ViewChild('recipeForm') recipeForm!: RecipeFormComponent;
 createRecipeItems(): void{
   this.recipeForm.createRecipeItem()
   this.visibleRecipeDrawer = false;
 }
   //for item form drawer
-  @ViewChild('itemForm') itemForm: any
+  @ViewChild('itemForm') itemForm!: CreateMenuFormComponent;
 
   createItems(): void{
     // console.log('click');
