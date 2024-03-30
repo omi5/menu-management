@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<nz-layout >
+    <nz-sider nzWidth="15%" nzCollapsible  class="sidebar-bg-color">
+      <app-nz-sider></app-nz-sider>
+      
+    </nz-sider>
+    <!-- nz-Sider -->
+  
+     <nz-layout style="background: #fff;">
+       
+       <nz-content >
+        <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Create Schedule"
+        nzOkText="Add"
+        nzCancelText="Cancel"
+        (nzOnOk)="handleOk()"
+        (nzOnCancel)="handleCancel()"
+        [nzStyle]="{ width: '700px' }"
+        >
+        <ng-container *nzModalContent >
+          <!-- category Form -->
+          <app-modal-form></app-modal-form>
+          <!-- category Form -->
+        </ng-container>
+        </nz-modal>
+  
+        <category-container [menuItems1]="listForLunchMenu"></category-container>
+       
+        <footer style="background-color: #fff; height: 80px;"></footer>
+        </nz-content>
+
+        <div class="spin-div">
+          <nz-spin  [nzSpinning]="isSpinning" [nzSize]="'large'"></nz-spin>
+        </div>
+  
+     </nz-layout>
+  </nz-layout>
