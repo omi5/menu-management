@@ -768,7 +768,6 @@ updateTotals(): void {
             // Handle object types like 'cup', 'tablespoon', 'teaspoon'
             measurementQuantity = measurementDetails[quantity > 1 ? 'solid' : 'liquid'].quantity;
           } else {
-            // Handle simple types like 'gram', 'mililiter'
             measurementQuantity = 1;
           }
 
