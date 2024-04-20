@@ -1,7 +1,7 @@
 .image-upload-div{
     width: 60%;
     height: 30px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .mt{
     padding-top: 10px;
@@ -14,9 +14,7 @@
 .label{
     font-size: 30px;
 }
-.border-div{
-    border: 2px solid red;
-}
+
 
 
 /* For ingredients */
@@ -36,7 +34,7 @@ body {
     color: white;
     margin-right: 8px;
   }
-  
+
   .delete-button {
     background-color: #e74c3c;
   }
